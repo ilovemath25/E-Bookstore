@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from models import db
-from models.member import Members
+from models.members import Members
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'YourSecretKey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ilovemath25@localhost:5432/ebookstore'
