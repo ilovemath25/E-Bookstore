@@ -1,0 +1,43 @@
+# React specific
+*.cache/
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
+*.log
+instance/
+
+# Flask
+*.sqlite3
+debug.log
+
+# Editor
+.vscode/
+.idea/
+
+# Miscellaneous
+*.swp
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Static files
+staticfiles/
+
+# macOS specific
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows specific
+Thumbs.db
+*.bak
+*.tmp
