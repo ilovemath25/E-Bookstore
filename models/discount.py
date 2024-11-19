@@ -1,5 +1,4 @@
 from . import db
-
 class Discount(db.Model):
     __tablename__ = 'discount'
     DID = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
