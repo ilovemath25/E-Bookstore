@@ -1,4 +1,4 @@
-from app import db
+from . import db
 from .discount import Discount
 
 class Shipping(db.Model):
