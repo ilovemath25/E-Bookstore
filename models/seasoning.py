@@ -1,4 +1,4 @@
-from . import db
+from app import db
 from .discount import Discount
 
 class Seasoning(db.Model):
