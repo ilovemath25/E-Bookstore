@@ -22,6 +22,7 @@ debug.log
 # Editor
 .vscode/
 .idea/
+*.onetoc2
 
 # Miscellaneous
 *.swp
