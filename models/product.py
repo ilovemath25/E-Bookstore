@@ -1,8 +1,6 @@
 from . import db
-
 class Product(db.Model):
     __tablename__ = 'Product'
-    
     PID = db.Column(db.Integer, primary_key=True, nullable=False)  
     SMID = db.Column(db.Integer, db.ForeignKey('Member.MID'), nullable=False)  
     SpEvent_ID = db.Column(db.Integer, db.ForeignKey('Special_event.DID')) 
