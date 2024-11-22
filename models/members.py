@@ -1,6 +1,6 @@
 from . import db
-class Members(db.Model):
-   __tablename__ = 'Members'
+class Member(db.Model):
+   __tablename__ = 'Member'
    MID = db.Column(db.Integer, primary_key=True, nullable=False)
    F_name = db.Column(db.String(15), nullable=False)
    L_name = db.Column(db.String(15))
