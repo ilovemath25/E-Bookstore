@@ -2,8 +2,8 @@ from . import db
 class Product(db.Model):
     __tablename__ = 'Product'
     PID = db.Column(db.Integer, primary_key=True, nullable=False)  
-    SMID = db.Column(db.Integer, db.ForeignKey('Member.MID'), nullable=False)  
-    SpEvent_ID = db.Column(db.Integer, db.ForeignKey('Special_event.DID')) 
+    SMID = db.Column(db.Integer, db.ForeignKey('Member.MID', onupdate="CASCADE", ondelete="CASCADE"), nullable=False)  
+    SpEvent_ID = db.Column(db.Integer, db.ForeignKey('Special_event.DID', onupdate="CASCADE", ondelete="CASCADE")) 
     Name = db.Column(db.String(50), nullable=False)  
     Desc = db.Column(db.String(1000))  
     Author = db.Column(db.String(30))  
