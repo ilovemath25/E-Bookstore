@@ -3,6 +3,8 @@ from models import db
 from models.member import Member
 from models.product import Product
 from models.shoppingCart_item import ShoppingCart_item
+from models.special_event import Special_event
+from models.orders import Orders
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'YourSecretKey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ilovemath25@localhost:5432/ebookstore'
