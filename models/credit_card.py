@@ -1,6 +1,6 @@
 from . import db
 
-class CreditCard(db.Model):
+class Credit_card(db.Model):
     __tablename__ = 'Credit_card'
     
     Number = db.Column(db.String(16), primary_key=True, nullable=False)

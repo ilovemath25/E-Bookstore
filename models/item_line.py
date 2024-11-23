@@ -1,7 +1,7 @@
 from . import db
 from sqlalchemy import Enum
 
-class ItemLine(db.Model):
+class Item_line(db.Model):
     __tablename__ = 'Item_line'
     
     LID = db.Column(db.Integer, primary_key=True, nullable=False)
