@@ -10,6 +10,7 @@ from models.seasoning import Seasoning
 from models.shipping import Shipping
 from models.credit_card import Credit_card
 from models.item_line import Item_line
+from models.review import Review
 app = Flask(__name__)
 POSTGRES = {
    'user':'postgres',
