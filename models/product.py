@@ -11,4 +11,4 @@ class Product(db.Model):
     Stock_quantity = db.Column(db.Integer, nullable=False)  
     Category = db.Column(db.String(20)) 
     Product_pict = db.Column(db.String(100)) 
-    Sale_count = db.Column(db.Integer)  
+    Sale_count = db.Column(db.Integer)
