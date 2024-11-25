@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from ebookstore_flask.models import db
 def create_app(postgres):
    app = Flask(__name__)
