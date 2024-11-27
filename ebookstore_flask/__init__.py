@@ -8,5 +8,8 @@ def create_app(postgres):
    db.init_app(app)
    with app.app_context():
       from ebookstore_flask.routes.home import home
+      from ebookstore_flask.routes.product import product
       app.register_blueprint(home)
+      app.register_blueprint(product)
+
    return app
