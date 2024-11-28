@@ -7,8 +7,8 @@
 | 楊建璋    | 111590057   |
 | 李其灝    | 111590062   |
 ```
-+---ebookstore_flask
-|   +---models
+├───ebookstore_flask
+|   ├── models
 |   |   ├── credit_card.py
 |   |   ├── discount.py
 |   |   ├── item_line.py
@@ -21,21 +21,21 @@
 |   |   ├── shoppingCart_item.py
 |   |   ├── special_event.py
 |   |   └── __init__.py
-|   +---routes
+|   ├── routes
 |   |   ├── credit_card.py
 |   |   ├── home.py
 |   |   ├── login.py
 |   |   ├── session.py
 |   |   └── __init__.py
-|   +---static
+|   ├── static
 |   |   ├── css
 |   |   |   └── header.css
 |   |   └── images
 |   |       └── logo.png
-|   +---templates
+|   ├── templates
 |   |   ├── home.html
 |   |   └── base.html
-|   ├── __init__.py
+|   └── __init__.py
 .gitignore
 database.sql
 README.md
