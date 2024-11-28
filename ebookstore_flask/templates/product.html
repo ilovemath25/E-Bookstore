@@ -69,7 +69,7 @@
 
     <main>
         <div class="product-container">
-            <img class="product-image" src="{{ url_for('static', filename='image/book.jpg') }}" alt="Book Cover">
+            <img class="product-image" src="{{ url_for('static', filename='image/book.png') }}" alt="Book Cover">
 
 
          <div class="product-details">
@@ -78,9 +78,9 @@
             <p class="product-price">$19.99</p>
 
             <div class="product-meta">
-               <span><strong>Category:</strong> Fiction</span></br></br>
-               <span><strong>Stock Quantity:</strong> <span id="stock">25</span></span></br></br>
-               <span><strong>Sales Count:</strong> <span id="sales">150</span></span>
+               <div><strong>Category:</strong><span id="category">Fiction</div><br>
+               <div><strong>Stock Quantity:</strong> <span id="stock">25</span></div><br>
+               <div><strong>Sales Count:</strong> <span id="sales">150</span></div>
             </div>
 
             <p class="product-description">
