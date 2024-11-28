@@ -9,6 +9,7 @@
 ```
 ├───ebookstore_flask
 |   ├── models
+|   |   ├── __init__.py
 |   |   ├── credit_card.py
 |   |   ├── discount.py
 |   |   ├── item_line.py
@@ -19,22 +20,20 @@
 |   |   ├── seasoning.py
 |   |   ├── shipping.py
 |   |   ├── shoppingCart_item.py
-|   |   ├── special_event.py
-|   |   └── __init__.py
+|   |   └── special_event.py
 |   ├── routes
-|   |   ├── credit_card.py
 |   |   ├── home.py
-|   |   ├── login.py
-|   |   ├── session.py
-|   |   └── __init__.py
+|   |   └── login.py
 |   ├── static
-|   |   ├── css
-|   |   |   └── header.css
-|   |   └── images
-|   |       └── logo.png
+|   |   ├── images
+|   |   |    └── logo.png
+|   |   └── header.css
 |   ├── templates
-|   |   ├── home.html
-|   |   └── base.html
+|   |   └── home.html
+|   ├── utils
+|   |   ├── credit_card.py
+|   |   ├── session.py
+|   |   └── sessions.json
 |   └── __init__.py
 .gitignore
 database.sql
