@@ -4,7 +4,7 @@
    box-sizing: border-box;
 }
 body{
-   background-color: #f9f7f7;
+   background-color: #FFF8E1
 }
 .header-pc{
    background-color: #112d4e;
@@ -93,7 +93,16 @@ body{
 .cart i, .profile i{
    font-size: 30px;
 }
+.nothing{
+   height: 150px;
+}
+.nothing2{
+   height: 60px;
+}
 @media screen and (max-width: 950px) {
+   .nothing{
+      height: 100px;
+   }
    .header-pc{
       padding: 10px;
    }
@@ -115,6 +124,9 @@ body{
    }
 }
 @media screen and (max-width: 650px) {
+   .nothing{
+      height: 60px;
+   }
    .logo img{
       height: 40px;
    }
