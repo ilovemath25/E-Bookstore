@@ -12,4 +12,3 @@ class Product(db.Model):
     Category = db.Column(db.String(20)) 
     Product_pict = db.Column(db.String(100)) 
     Sale_count = db.Column(db.Integer)
-    
