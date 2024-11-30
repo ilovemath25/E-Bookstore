@@ -109,3 +109,11 @@ VALUES
 (2, NULL, "Sapiens: A Brief History of Humankind", "A compelling exploration of human evolution, culture, and the forces that shaped modern society.", "Yuval Noah Harari",650,11, NULL,"ebookstore_flask/static/image/books/PID_book18.png",9),
 (2, NULL, "The Hunger Games", "A dystopian novel about a teenage girl who becomes a symbol of rebellion in a world ruled by authoritarian control.", "Suzanne Collins", 750, 0,NULL,"ebookstore_flask/static/image/books/PID_book19.png",20),
 (9, NULL, "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe", "A magical adventure in the land of Narnia, where children discover their destiny to save a world in turmoil.", "C.S. Lewis", 1210, 100, NULL,"ebookstore_flask/static/image/books/PID_book20.png", 7);
+
+INSERT INTO "ShoppingCart_item" ("CMID", "Tot_price")
+VALUES
+(3, 150),
+(4, 250),
+(5, 75), 
+(6, 400), 
+(7, 325);
