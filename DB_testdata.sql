@@ -153,7 +153,7 @@ VALUES
 
 INSERT INTO "Review" ("PID","MID","Time","Rate","Rev_text","Rev_picture","Rev_video","Reply_RID")
 VALUES
-  (1, 3,  '2024-10-13 14:23:00', 4, "An enthralling read with rich characters and a gripping plot. The author masterfully weaves themes of love, loss, and resilience into a story that lingers long after the final page.","ebookstore_flask/static/image/books/PID_book1.png", "ebookstore_flask/static/video/video1.mp4", NULL)
+  (1, 3,  '2024-10-13 14:23:00', 4, "An enthralling read with rich characters and a gripping plot. The author masterfully weaves themes of love, loss, and resilience into a story that lingers long after the final page.","ebookstore_flask/static/image/books/PID_book1.png", "ebookstore_flask/static/video/video1.mp4", NULL),
   (2, 4,  '2024-11-14 09:15:00', 5, "A captivating journey through a richly imagined world. Highly recommended for fantasy lovers.","ebookstore_flask/static/image/books/PID_book2.png", NULL, NULL),
   (3, 5,  '2024-10-02 16:45:00', 3, "An engaging plot, but the pacing felt uneven at times.","ebookstore_flask/static/image/books/PID_book3.png", NULL, NULL),
   (4, 6,  '2024-10-28 11:20:00', 4, "Insightful and beautifully written. The author's storytelling is superb.","ebookstore_flask/static/image/books/PID_book4.png", "ebookstore_flask/static/video/video2.mp4", NULL),
