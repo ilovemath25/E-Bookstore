@@ -148,7 +148,7 @@ VALUES
   (11, NULL, 3,    'ShoppingCart', 1),
   (12, NULL, 4,    'ShoppingCart', 2),
   (15, NULL, 5,    'ShoppingCart', 1),
-  (20, NULL, 5,    'ShoppingCart', 3),
+  (20, NULL, 5,    'ShoppingCart', 3);
 
 
 INSERT INTO "Review" ("PID","MID","Time","Rate","Rev_text","Rev_picture","Rev_video","Reply_RID")
