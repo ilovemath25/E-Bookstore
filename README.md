@@ -23,13 +23,21 @@
 |   |   └── special_event.py
 |   ├── routes
 |   |   ├── home.py
-|   |   └── login.py
+|   |   ├── login.py
+|   |   └── product.py
 |   ├── static
-|   |   ├── images
-|   |   |    └── logo.png
-|   |   └── header.css
+|   |   ├── image
+|   |   |   ├── books
+|   |   |   |   ├── PID_Book1.png
+|   |   |   |   ├── PID_Book2.png
+|   |   |   |   └── ...
+|   |   |   ├── logo.png
+|   |   |   └── book.png
+|   |   ├── header.css
+|   |   └── product.css
 |   ├── templates
-|   |   └── home.html
+|   |   ├── home.html
+|   |   └── product.html
 |   ├── utils
 |   |   ├── credit_card.py
 |   |   ├── session.py
