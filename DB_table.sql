@@ -1,0 +1,140 @@
+CREATE TYPE "Gender" AS ENUM('Male', 'Female', 'Other');
+CREATE TABLE "Member" (
+   "MID" SERIAL PRIMARY KEY NOT NULL,
+   "F_name" VARCHAR(15) NOT NULL,
+   "L_name" VARCHAR(15),
+ 	"Password" VARCHAR(15) NOT NULL,
+   "Gender" "Gender" NOT NULL, 
+   "Email" VARCHAR(100) UNIQUE NOT NULL,
+   "Phone" CHAR(10),
+   "Birth" DATE,
+   "Address" VARCHAR(200),
+   "Reg_date" DATE NOT NULL,
+   "A_flag" BOOLEAN NOT NULL,
+   "S_flag" BOOLEAN NOT NULL,
+   "C_flag" BOOLEAN NOT NULL
+);
+
+
+CREATE TABLE "Credit_card" (
+   "Number" CHAR(16) PRIMARY KEY NOT NULL,
+   "CMID" INT NOT NULL,
+   "Expiry_date" DATE NOT NULL,
+   "CVV" CHAR(3) NOT NULL,
+   FOREIGN KEY ("CMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TYPE "Disc_type" AS ENUM('Shipping', 'Seasonings', 'Special Events');
+CREATE TABLE "Discount" (
+   "DID" SERIAL PRIMARY KEY NOT NULL,
+   "Disc_code" VARCHAR(20) UNIQUE NOT NULL,
+   "Disc_value" DECIMAL NOT NULL,
+   "Disc_type" "Disc_type" NOT NULL,
+   "Disc_name" VARCHAR(50) NOT NULL,
+   "Policy_desc" VARCHAR(1000) NOT NULL,
+   "Max_usage" INT
+);
+
+
+CREATE TABLE "Special_event" (
+	"DID" INT PRIMARY KEY NOT NULL,
+	"Valid_to" DATE NOT NULL,
+	"Valid_from" DATE NOT NULL,
+	FOREIGN KEY ("DID") REFERENCES "Discount"("DID") ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT "valid_date_range" CHECK ("Valid_to" >= "Valid_from"),
+   CONSTRAINT "unique_product_special_event" UNIQUE ("DID", "Valid_from", "Valid_to")
+);
+
+
+CREATE TABLE "Seasoning"(
+	"DID" INT PRIMARY KEY NOT NULL,
+	"Valid_to" DATE NOT NULL,
+	"Valid_from" DATE NOT NULL,
+	FOREIGN KEY ("DID") REFERENCES "Discount"("DID") ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT "valid_date_range" CHECK ("Valid_to" >= "Valid_from")
+);
+
+
+CREATE TABLE "Shipping"(
+	"DID" INT PRIMARY KEY NOT NULL,
+	"Min_Purchase" INT,
+	FOREIGN KEY ("DID") REFERENCES "Discount"("DID") ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TYPE "Order_status" AS ENUM('Processing', 'Shipping', 'Received', 'Closed');
+CREATE TABLE "Order" (
+	"OID" SERIAL PRIMARY KEY NOT NULL,
+	"CMID" INT NOT NULL,
+	"SMID" INT NOT NULL,
+	"DID" INT NULL,
+	"Credit_num" CHAR,
+	"Time" TIMESTAMP NOT NULL,
+	"Ship_address" VARCHAR(200) NOT NULL,
+	"Ship_fee" INT NOT NULL,
+	"Status" "Order_status" NOT NULL,
+	"Pay_method" VARCHAR NOT NULL CHECK ("Pay_method" IN ('Credit card', 'COD')),
+	"Tot_price" INT,
+	FOREIGN KEY ("CMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY ("SMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY ("DID") REFERENCES "Discount"("DID") ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY ("Credit_num") REFERENCES "Credit_card"("Number") ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+
+CREATE TABLE "Product"(
+	"PID" SERIAL PRIMARY KEY NOT NULL,
+	"SMID" INT NOT NULL,
+	"SpEvent_ID" INT,
+	"Name" VARCHAR(50) NOT NULL,
+	"Desc" VARCHAR(1000),
+	"Author" VARCHAR(30),
+	"Price" INT NOT NULL,
+	"Stock_quantity" INT NOT NULL,
+	"Category" VARCHAR(20),
+	"Product_pict" VARCHAR(100),
+	"Sale_count" INT,
+	FOREIGN KEY ("SMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY ("SpEvent_ID") REFERENCES "Special_event"("DID") ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+
+CREATE TABLE "ShoppingCart_item" (
+	"SCID" INT PRIMARY KEY NOT NULL,     
+	"CMID" INT,                  
+	"Tot_price" INT NOT NULL,             
+	FOREIGN KEY ("CMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TYPE "Line_type" AS ENUM('Order', 'ShoppingCart');
+CREATE TABLE "Item_line" (
+	"LID" INT PRIMARY KEY NOT NULL,
+	"PID" INT NOT NULL,
+	"OID" INT,
+	"SCID" INT,     
+	"Line_type" "Line_type" NOT NULL, 
+	"Quantity" INT NOT NULL,
+	FOREIGN KEY ("PID") REFERENCES "Product"("PID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY ("OID") REFERENCES "Order"("OID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY ("SCID") REFERENCES "ShoppingCart_item"("SCID") ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT "check_quantity_positive" CHECK ("Quantity" > 0)
+);
+
+
+CREATE TABLE "Review" (
+	"RID" SERIAL PRIMARY KEY NOT NULL,
+	"PID" INT NOT NULL,
+	"MID" INT NOT NULL,
+	"Time" TIMESTAMP NOT NULL,
+	"Rate" INT NOT NULL,
+	"Rev_text" VARCHAR(500),
+	"Rev_picture" VARCHAR(255),
+	"Rev_video" VARCHAR(255),
+	"Reply_RID" INT,
+	FOREIGN KEY ("PID") REFERENCES "Product"("PID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY ("MID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY ("Reply_RID") REFERENCES "Review"("RID") ON UPDATE CASCADE ON DELETE SET NULL,
+	CONSTRAINT "valid_rating" CHECK ("Rate" BETWEEN 1 AND 5)
+);
