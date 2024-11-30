@@ -30,7 +30,7 @@ VALUES
 (4, 8, 1,    '5312345678901233', '2024-11-28 15:45:00', '456 Oak Ave, Shelbyville',       30, 'Shipping',   'Credit card', 850),
 (7, 8, 2,     NULL,              '2024-11-25 11:00:00', '654 Cedar Ct, North Haverbrook', 25, 'Processing', 'COD',         950),
 (4, 8, NULL,  NULL,              '2024-11-22 16:40:00', '852 Cypress Way, Shelbyville',   20, 'Closed',     'COD',         700),
-(3, 2, 1     '4532147890123456', '2024-11-23 14:50:00', '741 Willow Blvd, Springfield',   50, 'Received',   'Credit card', 1700),
+(3, 2, 1,    '4532147890123456', '2024-11-23 14:50:00', '741 Willow Blvd, Springfield',   50, 'Received',   'Credit card', 1700),
 (5, 9, NULL, '3530111333300505', '2024-11-21 12:15:00', '963 Aspen Pkwy, Capital City',   45, 'Processing', 'Credit card', 1400),
 (6, 2, 2,     NULL,              '2024-11-20 08:30:00', '357 Redwood Ln, Ogdenville',     30, 'Shipping',   'COD',         1100);
 
@@ -69,20 +69,24 @@ VALUES
 
 
 INSERT INTO "Shipping" ("DID", "Valid_from", "Valid_to")
-  (1, '2024-11-01'::DATE, '2024-12-31'::DATE),  
-  (2, '2024-11-15'::DATE, '2024-12-31'::DATE),  
-  (3, '2024-10-01'::DATE, '2024-12-31'::DATE);  
+VALUES
+  (1, '2024-11-01', '2024-12-31'),  
+  (2, '2024-11-15', '2024-12-31'),  
+  (3, '2024-10-01', '2024-12-31');  
 
 
 INSERT INTO "Seasoning" ("DID", "Valid_from", "Valid_to")
 VALUES
-  (4, '2024-11-01'::DATE, '2024-11-30'::DATE),
-  (5, '2024-12-01'::DATE, '2024-12-25'::DATE),  
-  (6, '2024-11-15'::DATE, '2024-12-15'::DATE);  
+  (4, '2024-11-01', '2024-11-30'),
+  (5, '2024-12-01', '2024-12-25'),  
+  (6, '2024-11-15', '2024-12-15');  
 
 
 INSERT INTO "Special_event" ("DID", "Valid_from", "Valid_to")
 VALUES
-  (7, '2024-11-01'::DATE, '2024-11-30'::DATE), 
-  (8, '2024-12-01'::DATE, '2024-12-31'::DATE),  
-  (9, '2024-11-20'::DATE, '2024-11-22'::DATE); 
+  (7, '2024-11-01', '2024-11-30'), 
+  (8, '2024-12-01', '2024-12-31'),  
+  (9, '2024-11-20', '2024-11-22');
+
+
+
