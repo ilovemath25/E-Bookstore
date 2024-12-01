@@ -4,22 +4,19 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script src="https://kit.fontawesome.com/7006f68f03.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
    <link rel="stylesheet" href="{{ url_for('static', filename='product.css') }}">
    <title>Ebookstore</title>    
 </head>
 
 <body>
 
-    {% include "header.html" %}
+   {% include "header.html" %}
 
-    <div class="nothing"></div>
+   <div class="nothing"></div>
 
-    <main>
-        <div class="product-container">
-            <img class="product-image" src="{{ url_for('static', filename=product.Product_pict) }}" alt="{{ product.Name }}">
-
+   <main>
+      <div class="product-container">
+         <img class="product-image" src="{{ url_for('static', filename=product.Product_pict) }}" alt="{{ product.Name }}">
 
          <div class="product-details">
             <h1 class="product-title">{{ product.Name }}</h1>
@@ -35,7 +32,6 @@
             <p class="product-description">
                 {{ product.Desc }}
             </p>
-
 
             <div class="actions">
                <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
