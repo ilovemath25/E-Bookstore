@@ -5,7 +5,8 @@ class ItemLine(db.Model):
     
     LID = db.Column(db.Integer, primary_key=True, nullable=False)
     PID = db.Column(db.Integer, db.ForeignKey('Product.PID', onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
-    OID = db.Column(db.Integer, db.ForeignKey('Order.OID', onupdate="CASCADE", ondelete="SET NULL")) 
-    SCID = db.Column(db.Integer, db.ForeignKey('ShoppingCart.SCID', onupdate="CASCADE", ondelete="SET NULL")) 
-    Line_type = db.Column(db.Enum('Order', 'ShoppingCart'), nullable=False) 
-    Quantity = db.Column(db.Integer, nullable=False) 
+    OID = db.Column(db.Integer, db.ForeignKey('Order.OID', onupdate="CASCADE", ondelete="SET NULL"))
+    SCID = db.Column(db.Integer, db.ForeignKey('ShoppingCart_item.SCID', onupdate="CASCADE", ondelete="SET NULL"))
+    Line_type = db.Column(db.Enum('Order', 'ShoppingCart'), nullable=False)
+    Quantity = db.Column(db.Integer, nullable=False)
+    __table_args__ = (db.CheckConstraint('Quantity > 0', name='check_quantity_positive'),)
