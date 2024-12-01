@@ -7,86 +7,33 @@
    <script src="https://kit.fontawesome.com/7006f68f03.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
    <link rel="stylesheet" href="{{ url_for('static', filename='product.css') }}">
-   <title>Product Details - Ebookstore</title>    
+   <title>Ebookstore</title>    
 </head>
 
 <body>
 
-    <header>
-        <section class="header-pc">
-            <a class="logo" href="">
-                <img src="{{ url_for('static', filename='image/logo.png') }}">
-            </a>
-            <div class="nav-search">
-                <nav>
-                <ul>
-                    <a class="icon-text" href="">
-                        <i class="fa fa-home"></i><p>Home</p>
-                    </a>
-                    <a class="icon-text" href="">
-                        <i class="fa-solid fa-book"></i><p>Book</p>
-                    </a>
-                </ul>
-                <ul>
-                    <li class="icon-text">
-                        <i class="fa-solid fa-globe"></i><p>Language</p>
-                    </li>
-                </ul>
-                </nav>
-                <div class="search-bar">
-                <input name="search-area" id="search-area" class="search-area">
-                <div id="search-button" name="search-button" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
-                </div>
-            </div>
-            <a class="cart icon-text" href="">
-                <i class="fa-solid fa-cart-shopping"></i><p>Shopping Cart</p>
-            </a>
-            <a class="profile icon-text" href="">
-                <i class="fa-regular fa-circle-user"></i><p>User-Name</p>
-            </a>
-            <div class="icon-text language-mobile">
-                <i class="fa-solid fa-globe"></i>
-            </div>
-        </section>
-
-        <section class="header-mobile">
-            <a href="" class="icon-text">
-                <i class="fa fa-home nav-icon"></i><p class="nav-detail">Home</p>
-            </a>
-            <a href="" class="icon-text">
-                <i class="fa fa-user nav-icon"></i><p class="nav-detail">Book</p>
-            </a>
-            <a href="" class="icon-text">
-                <i class="fa fas fa-file-alt nav-icon"></i><p class="nav-detail">Shopping Cart</p>
-            </a>
-            <a href="" class="icon-text">
-                <i class="fa-regular fa-circle-user"></i><p class="nav-detail">User-Name</p>
-            </a>
-        </section>
-    </header>
+    {% include "header.html" %}
 
     <div class="nothing"></div>
 
     <main>
         <div class="product-container">
-            <img class="product-image" src="{{ url_for('static', filename='image/book.png') }}" alt="Book Cover">
+            <img class="product-image" src="{{ url_for('static', filename=product.Product_pict) }}" alt="{{ product.Name }}">
 
 
          <div class="product-details">
-            <h1 class="product-title">Book Title</h1>
-            <p class="product-author">by Author Name</p>
-            <p class="product-price">$19.99</p>
+            <h1 class="product-title">{{ product.Name }}</h1>
+            <p class="product-author">by {{ product.Author }}</p>
+            <p class="product-price">${{ product.Price }}</p>
 
             <div class="product-meta">
-               <div><strong>Category:</strong><span id="category">Fiction</span></div><br>
-               <div><strong>Stock Quantity:</strong> <span id="stock">25</span></div><br>
-               <div><strong>Sales Count:</strong> <span id="sales">150</span></div>
+               <div><strong>Category:</strong><span id="category"> {{ product.Category }}</span></div><br>
+               <div><strong>Stock Quantity:</strong> <span id="stock">{{ product.Stock_quantity }}</span></div><br>
+               <div><strong>Sales Count:</strong> <span id="sales">{{ product.Sale_count }}</span></div>
             </div>
 
             <p class="product-description">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                {{ product.Desc }}
             </p>
 
 
@@ -107,10 +54,7 @@
 
    <div class="nothing2"></div>
 
-   <footer>
-    
-   </footer>
-
+   {% include "footer.html" %}
 
 </body>
 
