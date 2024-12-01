@@ -1,12 +1,12 @@
 CREATE TYPE "Gender" AS ENUM('Male', 'Female', 'Other');
 CREATE TABLE "Member" (
-   "MID" SERIAL PRIMARY KEY NOT NULL,
-   "F_name" VARCHAR(15) NOT NULL,
-   "L_name" VARCHAR(15),
+	"MID" SERIAL PRIMARY KEY NOT NULL,
+	"F_name" VARCHAR(20) NOT NULL,
+   "L_name" VARCHAR(20),
  	"Password" VARCHAR(15) NOT NULL,
    "Gender" "Gender" NOT NULL, 
    "Email" VARCHAR(100) UNIQUE NOT NULL,
-   "Phone" CHAR(10),
+   "Phone" CHAR(10) NOT NULL,
    "Birth" DATE,
    "Address" VARCHAR(200),
    "Reg_date" DATE NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE "Credit_card" (
 );
 
 
-CREATE TYPE "Disc_type" AS ENUM('Shipping', 'Seasonings', 'Special Events');
+CREATE TYPE "Disc_type" AS ENUM('Shipping', 'Seasoning', 'Special Event');
 CREATE TABLE "Discount" (
    "DID" SERIAL PRIMARY KEY NOT NULL,
    "Disc_code" VARCHAR(20) UNIQUE NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE "Special_event" (
 	"Valid_from" DATE NOT NULL,
 	FOREIGN KEY ("DID") REFERENCES "Discount"("DID") ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT "valid_date_range" CHECK ("Valid_to" >= "Valid_from"),
-   CONSTRAINT "unique_product_special_event" UNIQUE ("DID", "Valid_from", "Valid_to")
+	CONSTRAINT "unique_product_special_event" UNIQUE ("DID", "Valid_from", "Valid_to")
 );
 
 
@@ -58,23 +58,24 @@ CREATE TABLE "Seasoning"(
 
 CREATE TABLE "Shipping"(
 	"DID" INT PRIMARY KEY NOT NULL,
-	"Min_Purchase" INT,
+	"Min_purchase" INT,
 	FOREIGN KEY ("DID") REFERENCES "Discount"("DID") ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
 CREATE TYPE "Order_status" AS ENUM('Processing', 'Shipping', 'Received', 'Closed');
+CREATE TYPE "Pay_method" AS ENUM('Credit card', 'COD');
 CREATE TABLE "Order" (
 	"OID" SERIAL PRIMARY KEY NOT NULL,
 	"CMID" INT NOT NULL,
 	"SMID" INT NOT NULL,
-	"DID" INT NULL,
-	"Credit_num" CHAR,
+	"DID" INT,
+	"Credit_num" CHAR(16),
 	"Time" TIMESTAMP NOT NULL,
 	"Ship_address" VARCHAR(200) NOT NULL,
 	"Ship_fee" INT NOT NULL,
 	"Status" "Order_status" NOT NULL,
-	"Pay_method" VARCHAR NOT NULL CHECK ("Pay_method" IN ('Credit card', 'COD')),
+	"Pay_method" "Pay_method" NOT NULL,
 	"Tot_price" INT,
 	FOREIGN KEY ("CMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY ("SMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE,
@@ -87,22 +88,22 @@ CREATE TABLE "Product"(
 	"PID" SERIAL PRIMARY KEY NOT NULL,
 	"SMID" INT NOT NULL,
 	"SpEvent_ID" INT,
-	"Name" VARCHAR(50) NOT NULL,
+	"Name" VARCHAR(100) NOT NULL,
 	"Desc" VARCHAR(1000),
-	"Author" VARCHAR(30),
+	"Author" VARCHAR(50),
 	"Price" INT NOT NULL,
 	"Stock_quantity" INT NOT NULL,
 	"Category" VARCHAR(20),
 	"Product_pict" VARCHAR(100),
-	"Sale_count" INT,
+	"Sale_count" INT NOT NULL,
 	FOREIGN KEY ("SMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY ("SpEvent_ID") REFERENCES "Special_event"("DID") ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 
 CREATE TABLE "ShoppingCart_item" (
-	"SCID" INT PRIMARY KEY NOT NULL,     
-	"CMID" INT,                  
+	"SCID" SERIAL PRIMARY KEY NOT NULL,     
+	"CMID" INT,
 	"Tot_price" INT NOT NULL,             
 	FOREIGN KEY ("CMID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -110,7 +111,7 @@ CREATE TABLE "ShoppingCart_item" (
 
 CREATE TYPE "Line_type" AS ENUM('Order', 'ShoppingCart');
 CREATE TABLE "Item_line" (
-	"LID" INT PRIMARY KEY NOT NULL,
+	"LID" SERIAL PRIMARY KEY NOT NULL,
 	"PID" INT NOT NULL,
 	"OID" INT,
 	"SCID" INT,     
@@ -128,7 +129,7 @@ CREATE TABLE "Review" (
 	"PID" INT NOT NULL,
 	"MID" INT NOT NULL,
 	"Time" TIMESTAMP NOT NULL,
-	"Rate" INT NOT NULL,
+	"Rate" INT,
 	"Rev_text" VARCHAR(500),
 	"Rev_picture" VARCHAR(255),
 	"Rev_video" VARCHAR(255),
@@ -136,5 +137,5 @@ CREATE TABLE "Review" (
 	FOREIGN KEY ("PID") REFERENCES "Product"("PID") ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY ("MID") REFERENCES "Member"("MID") ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY ("Reply_RID") REFERENCES "Review"("RID") ON UPDATE CASCADE ON DELETE SET NULL,
-	CONSTRAINT "valid_rating" CHECK ("Rate" BETWEEN 1 AND 5)
+	CONSTRAINT "valid_rating" CHECK ("Rate" IS NULL OR "Rate" BETWEEN 1 AND 5)
 );
