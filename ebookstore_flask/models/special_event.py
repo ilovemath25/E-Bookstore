@@ -1,4 +1,5 @@
 from . import db
+
 class Special_event(db.Model):
    __tablename__ = 'Special_event'
    DID = db.Column(db.Integer, db.ForeignKey('Discount.DID', onupdate="CASCADE", ondelete="CASCADE"), primary_key=True, nullable=False)

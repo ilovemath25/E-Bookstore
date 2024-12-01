@@ -1,4 +1,5 @@
 from . import db
+
 class ShoppingCart_item(db.Model):
     __tablename__ = 'ShoppingCart_item'
     SCID = db.Column(db.Integer, primary_key = True, nullable = False)
