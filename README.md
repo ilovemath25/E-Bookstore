@@ -31,8 +31,11 @@
 |   |   |   |   ├── PID_Book1.png
 |   |   |   |   ├── PID_Book2.png
 |   |   |   |   └── ...
-|   |   |   ├── logo.png
-|   |   |   └── book.png
+|   |   |   └── logo.png
+|   |   ├── video
+|   |   |   ├── video1.mp4
+|   |   |   ├── video2.mp4
+|   |   |   └── video3.mp4
 |   |   ├── header.css
 |   |   └── product.css
 |   ├── templates
@@ -44,7 +47,8 @@
 |   |   └── sessions.json
 |   └── __init__.py
 .gitignore
-database.sql
+DB_table.sql
+DB_testdata.sql
 README.md
 run.py
 ```
