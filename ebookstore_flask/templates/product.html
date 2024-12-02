@@ -1,57 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{{ url_for('static', filename='product.css') }}">
-   <title>Ebookstore</title>    
-</head>
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/product.css') }}">
+<div class="nothing"></div>
 
-<body>
+<main>
+   <div class="product-container">
+      <img class="product-image" src="{{ url_for('static', filename=product.Product_pict) }}" alt="{{ product.Name }}">
 
-   {% include "header.html" %}
+      <div class="product-details">
+         <h1 class="product-title">{{ product.Name }}</h1>
+         <p class="product-author">by {{ product.Author }}</p>
+         <p class="product-price">${{ product.Price }}</p>
 
-   <div class="nothing"></div>
-
-   <main>
-      <div class="product-container">
-         <img class="product-image" src="{{ url_for('static', filename=product.Product_pict) }}" alt="{{ product.Name }}">
-
-         <div class="product-details">
-            <h1 class="product-title">{{ product.Name }}</h1>
-            <p class="product-author">by {{ product.Author }}</p>
-            <p class="product-price">${{ product.Price }}</p>
-
-            <div class="product-meta">
-               <div><strong>Category:</strong><span id="category"> {{ product.Category }}</span></div><br>
-               <div><strong>Stock Quantity:</strong> <span id="stock">{{ product.Stock_quantity }}</span></div><br>
-               <div><strong>Sales Count:</strong> <span id="sales">{{ product.Sale_count }}</span></div>
-            </div>
-
-            <p class="product-description">
-                {{ product.Desc }}
-            </p>
-
-            <div class="actions">
-               <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
-               <button class="buy-now" onclick="buyNow()">Buy Now</button>
-            </div>
+         <div class="product-meta">
+            <div><strong>Category:</strong><span id="category"> {{ product.Category }}</span></div><br>
+            <div><strong>Stock Quantity:</strong> <span id="stock">{{ product.Stock_quantity }}</span></div><br>
+            <div><strong>Sales Count:</strong> <span id="sales">{{ product.Sale_count }}</span></div>
          </div>
-      </div>
 
+         <p class="product-description">
+            {{ product.Desc }}
+         </p>
 
-      <div class="reviews">
-         <h2>Customer Reviews</h2>
-        <span>⭐⭐⭐⭐⭐</span>
-  
-      </div>
-   </main>
+         <div class="actions">
+            <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+            <button class="buy-now" onclick="buyNow()">Buy Now</button>
+         </div>
+         </div>
+   </div>
 
-   <div class="nothing2"></div>
+   <div class="reviews">
+      <h2>Customer Reviews</h2>
+      <span>⭐⭐⭐⭐⭐</span>
+   </div>
+</main>
 
-   {% include "footer.html" %}
+<div class="nothing2"></div>
 
-</body>
-
-</html>
+{% endblock %}
