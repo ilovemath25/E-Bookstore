@@ -1,7 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}">
 <main>
-   
+   <section class="best-seller book-container">
+      <div class="sub-title">
+         <hr><h2>Best Seller</h2><hr>
+      </div>
+      <div class="book-slider-container">
+         <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
+         <div class="book-slider">
+            {% for book in best_seller %}
+            <a class="book-card" href="book/{{book.PID}}">
+               <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
+               <h3>{{ book.Name }}</h3>
+               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+            </a>
+            {% endfor %}
+         </div>
+         <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+   </section>
+   <section class="new-release book-container">
+      <div class="sub-title">
+         <hr><h2>New Release</h2><hr>
+      </div>
+      <div class="book-slider-container">
+         <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
+         <div class="book-slider">
+            {% for book in new_release %}
+            <a class="book-card" href="book/{{book.PID}}">
+               <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
+               <h3>{{ book.Name }}</h3>
+               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+            </a>
+            {% endfor %}
+         </div>
+         <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+   </section>
 </main>
+<script src="{{ url_for('static', filename='script/home.js') }}"></script>
 {% endblock %}
