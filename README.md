@@ -47,6 +47,7 @@
 |   |   └── sessions.json
 |   └── __init__.py
 .gitignore
+binlist.csv
 DB_table.sql
 DB_testdata.sql
 README.md
