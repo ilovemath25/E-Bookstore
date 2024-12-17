@@ -1,54 +1,88 @@
-<script src="https://kit.fontawesome.com/7006f68f03.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='style/header.css') }}">
 <header>
-    <section class="header-pc">
-        <a class="logo" href="/">
-            <img src="{{ url_for('static', filename='image/logo.png') }}">
-        </a>
-        <div class="nav-search">
-            <nav>
-                <ul>
-                    <a class="icon-text" href="">
-                        <i class="fa fa-home"></i><p>Home</p>
-                    </a>
-                    <a class="icon-text" href="">
-                        <i class="fa-solid fa-book"></i><p>Book</p>
-                    </a>
-                </ul>
-                <ul>
-                    <li class="icon-text">
-                        <i class="fa-solid fa-globe"></i><p>Language</p>
-                    </li>
-                </ul>
-            </nav>
-            <div class="search-bar">
-                <input name="search-area" id="search-area" class="search-area" placeholder="Search book here">
-                <div id="search-button" name="search-button" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <nav class="navbar-container">
+        <section class="navbar-top">
+            <a class="navbar-logo" href="/">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Bookstore Logo" class="logo">
+            </a>
+            <div class="icon-name category-mobile" onclick="display_left_menu()">
+                <i class="fa-solid fa-bars"></i>
             </div>
+            <div class="search-and-navbar">
+                <form class="search-form">
+                    <input type="text" placeholder="Search" class="search-input">
+                    <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+                <div class="navbar-and-language">
+                    <div class="navbar-links">
+                        <a href="/" class="icon-name">
+                        <i class="fa fa-home"></i><p>Home</p>
+                        </a>
+                        <a href="#" class="icon-name">
+                        <i class="fa-solid fa-book"></i><p>Book</p>
+                        </a>
+                    </div>
+                    <a href="#" class="language icon-name">
+                        <i class="fa-solid fa-globe"></i><p>Language</p>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-icons">
+                <a href="#" class="icon-name">
+                    <i class="fa-solid fa-cart-shopping"></i><p>Cart</p>
+                </a>
+                <a href="#" class="icon-name">
+                    <i class="fa-regular fa-circle-user"></i><p>Profile</p>
+                </a>
+            </div>
+            <div class="icon-name language-mobile">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+        </section>
+        <section class="navbar-bottom">
+            <a href="#" class="category-name">Category 1</a>
+            <a href="#" class="category-name">Category 2</a>
+            <a href="#" class="category-name">Category 3</a>
+            <a href="#" class="category-name">Category 4</a>
+            <a href="#" class="category-name">Category 5</a>
+            <a href="#" class="category-name">Category 6</a>
+            <a href="#" class="category-name">Category 7</a>
+            <a href="#" class="category-name">Category 8</a>
+            <a href="#" class="category-name">Category 9</a>
+            <a href="#" class="category-name">Category 10</a>
+        </section>
+    </nav>
+    <nav class="navbar-mobile">
+        <a href="/" class="icon-name">
+            <i class="fa fa-home nav-icon"></i><p>Home</p>
+        </a>
+        <a href="#" class="icon-name">
+            <i class="fa-solid fa-book"></i><p>Book</p>
+        </a>
+        <a href="#" class="icon-name">
+            <i class="fa-solid fa-cart-shopping"></i><p>Cart</p>
+        </a>
+        <a href="#" class="icon-name">
+            <i class="fa-regular fa-circle-user"></i><p>Profile</p>
+        </a>
+    </nav>
+    <nav class="navbar-side-mobile">
+        <aside class="navbar-side-space" onclick="undisplay_left_menu()"></aside>
+        <div class="navbar-side-category">
+            <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Bookstore Logo" class="logo">
+            <hr>
+            <a href="#" class="category-name">Category 1</a>
+            <a href="#" class="category-name">Category 2</a>
+            <a href="#" class="category-name">Category 3</a>
+            <a href="#" class="category-name">Category 4</a>
+            <a href="#" class="category-name">Category 5</a>
+            <a href="#" class="category-name">Category 6</a>
+            <a href="#" class="category-name">Category 7</a>
+            <a href="#" class="category-name">Category 8</a>
+            <a href="#" class="category-name">Category 9</a>
+            <a href="#" class="category-name">Category 10</a>
+            <hr>
         </div>
-        <a class="cart icon-text" href="">
-            <i class="fa-solid fa-cart-shopping"></i><p>Shopping Cart</p>
-        </a>
-        <a class="profile icon-text" href="">
-            <i class="fa-regular fa-circle-user"></i><p>User-Name</p>
-        </a>
-        <div class="icon-text language-mobile">
-            <i class="fa-solid fa-globe"></i>
-        </div>
-    </section>
-
-    <section class="header-mobile">
-        <a href="/" class="icon-text">
-            <i class="fa fa-home nav-icon"></i><p class="nav-detail">Home</p>
-        </a>
-        <a href="" class="icon-text">
-            <i class="fa fa-user nav-icon"></i><p class="nav-detail">Book</p>
-        </a>
-        <a href="" class="icon-text">
-            <i class="fa fas fa-file-alt nav-icon"></i><p class="nav-detail">Shopping Cart</p>
-        </a>
-        <a href="" class="icon-text">
-            <i class="fa-regular fa-circle-user"></i><p class="nav-detail">User-Name</p>
-        </a>
-    </section>
+    </nav>
 </header>
+<script src="{{ url_for('static', filename='script/header.js') }}"></script>
