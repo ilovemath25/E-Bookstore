@@ -4,7 +4,7 @@ function undisplay_left_menu(){
    document.querySelector(".navbar-side-category").addEventListener('animationend',() => {
       document.querySelector(".navbar-side-mobile").style.display = "none";
    })
-   // document.querySelector("*").style.overflow = "";
+   document.querySelector("*").style.overflow = "";
 }
 function display_left_menu(){
    document.querySelector(".navbar-side-mobile").style.display = "block";
@@ -13,5 +13,5 @@ function display_left_menu(){
    document.querySelector(".navbar-side-category").addEventListener('animationend',() => {
       document.querySelector(".navbar-side-mobile").style.display = "block";
    })
-   // document.querySelector("*").style.overflow = "hidden";
+   document.querySelector("*").style.overflow = "hidden";
 }

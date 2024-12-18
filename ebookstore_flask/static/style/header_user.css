@@ -2,6 +2,7 @@ header {
    background-color: #112d4e;
    color: #fff;
    width: 100%;
+   margin-bottom: 30px;
 }
 .navbar-container {
    display: flex;
@@ -157,7 +158,6 @@ header {
       z-index: 30;
       left: 0;
       top: 0;
-      overflow: hidden;
    }
    .navbar-side-category{
       display: block;
@@ -165,7 +165,7 @@ header {
       background-color: #315685;
       height: 100%;
       z-index: 40;
-      overflow: hidden;
+      overflow: scroll;
    }
    .navbar-side-space{
       position: fixed;
