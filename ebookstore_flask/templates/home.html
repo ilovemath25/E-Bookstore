@@ -3,7 +3,16 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}">
 <main>
-   <section class="best-seller book-container">
+   <section class="promotion section-container">
+      <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="promotion-slider">
+         <a class="promotion-card" href="">
+            <img src="{{ url_for('static', filename='image/promotion/promotion1.png') }}">
+         </a>
+      </div>
+      <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+   </section>
+   <section class="best-seller section-container">
       <div class="sub-title">
          <hr><h2>Best Seller</h2><hr>
       </div>
@@ -11,7 +20,7 @@
          <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
          <div class="book-slider">
             {% for book in best_seller %}
-            <a class="book-card" href="book/{{book.PID}}">
+            <a class="book-card" href="book/{{ book.PID }}">
                <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
                <h3>{{ book.Name }}</h3>
                <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
@@ -21,7 +30,7 @@
          <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
    </section>
-   <section class="new-release book-container">
+   <section class="new-release section-container">
       <div class="sub-title">
          <hr><h2>New Release</h2><hr>
       </div>
@@ -33,6 +42,61 @@
                <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
                <h3>{{ book.Name }}</h3>
                <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+            </a>
+            {% endfor %}
+         </div>
+         <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+   </section>
+   <div class="top-5-and-promotion">
+      <section class="top-5-category section-container">
+         <div class="sub-title">
+            <hr><h2>Top 5 Category</h2><hr>
+         </div>
+         <ul class="top-5-container">
+            {% for category in top_5_category %}
+            <li class="category-card">
+               <p>{{ loop.index }}.</p>
+               <hr>
+               <p>{{ category }}</p>
+            </li>
+            {% endfor %}
+         </ul>
+      </section>
+      <section class="promotion section-container">
+         <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
+         <div class="promotion-slider">
+            <a class="promotion-card" href="">
+               <img src="{{ url_for('static', filename='image/promotion/promotion5.png') }}">
+            </a>
+         </div>
+         <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+      </section>
+   </div>
+   <section class="trending section-container">
+      <div class="sub-title">
+         <hr><h2>Trending</h2><hr>
+      </div>
+      <div class="book-slider-container">
+         <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
+         <div class="book-slider">
+            {% for book in top_rated %}
+            <a class="book-card" href="book/{{book.Product.PID}}">
+               <img src="{{ url_for('static', filename=book[0].Product_pict) }}" alt="{{ book.Product.Name }}">
+               <h3>{{ book.Product.Name }}</h3>
+               <div>
+                  <strong>Rate: </strong>
+                  <span class="book-rate">
+                     <br>
+                     {% for i in range(5) %}
+                        {% if i < book.Rate %}
+                           <i class="fa-solid fa-star yellow"></i>
+                        {% else %}
+                           <i class="fa-solid fa-star gray"></i>
+                        {% endif %}
+                     {% endfor %}
+                  </span>
+               </div>
             </a>
             {% endfor %}
          </div>
