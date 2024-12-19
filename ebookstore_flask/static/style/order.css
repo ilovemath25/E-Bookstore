@@ -1,32 +1,82 @@
 .navbar-order-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Aligns items to the top */
-    gap: 20px; /* Adds space between the left and right boxes */
+    align-items: flex-start;
+    gap: 20px;
     max-width: 100%;
     padding: 20px;
-    background-color: #fdf5d6; /* Background color to match your design */
- }
-.left{
-    flex: 0 0 10%;
-    padding: 100px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #fdf5d6;
 }
-.right{
-    flex: 1;
-    padding: 300px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-@media (max-width: 900) {
-    .navbar-order-container {
-        flex-direction: column; /* Stacks the boxes vertically */
-    }
 
-    .left, .right {
-        flex: 1; /* Both boxes take full width */
-    }
+.left {
+    flex: 0 0 10%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.right {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-list-subtabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.subtab {
+    padding: 10px 15px;
+    border: 1px solid #f9f9f9;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.subtab:hover {
+    border: 1px solid #f0f0f0;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    transition: 0.3s all;
+}
+
+.subtab:active{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: 0.3s all;
+}
+
+.filter {
+    display: flex;
+    margin-top: 10px;
+    margin-right: 500px;
+    padding: 20px;
+    gap: 10px;
+}
+.filter-choice{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+.filter-input{
+    margin-top: 10px;
+    width: 400px;
+    height: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 15px;
 }
