@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://kit.fontawesome.com/7006f68f03.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style/base_user.css') }}">
+   <title>Ebookstore</title>
+</head>
+
+<body>
+   
+   {% include "/user/header_user.html" %}
+
+   {% block content %}
+   {% endblock %}
+
+   {% include "/user/footer.html" %}
+
+</body>
+
+</html>
