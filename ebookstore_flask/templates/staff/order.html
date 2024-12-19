@@ -1,5 +1,20 @@
 {% extends '/staff/base_staff.html' %}
 
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/order.css') }}">
 
+<main>
+    <div class="navbar-order-container">
+        <div class="left">
+            <ul>
+                <li>Finance</li>
+                <li>Order</li>
+                <li>Product</li>
+                <li>Finance</li>
+            </ul>
+        </div>
+        <div class="right"></div>
+    </div>
+    
+</main>
 {% endblock %}
