@@ -9,22 +9,18 @@ footer{
    height: 60px;
    margin-bottom: 15px;
 }
-
 .member-name {
    display: flex; 
    flex-wrap: wrap;
    justify-content: center;
 }
-
 .member {
    padding: 10px 15px;
    transition: 0.3s all;
 }
-
 .member:hover {
-   transform: translateY(-5px); /* Hover effect */
+   transform: translateY(-5px);
 }
-
 .member p {
    margin: 5px 0;
    font-size: 14px;
