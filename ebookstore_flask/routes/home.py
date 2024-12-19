@@ -14,4 +14,4 @@ def index():
    for product in new_release:
       if product.Product_pict.startswith('ebookstore_flask/'):product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '')
       if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
-   return render_template("home.html", best_seller=best_seller, new_release=new_release)
+   return render_template("/user/home.html", best_seller=best_seller, new_release=new_release)

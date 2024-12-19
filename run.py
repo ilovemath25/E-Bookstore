@@ -1,10 +1,10 @@
 from ebookstore_flask import create_app
 POSTGRES = {
    'user':'postgres',
-   'password':'ilovemath25',
+   'password':'FeFe7404',
    'db':'ebookstore',
    'host':'localhost',
    'port':'5432',
 }
 app = create_app(POSTGRES)
-if __name__=='__main__':app.run(host='0.0.0.0', debug=True, port=5000)
+if __name__=='__main__':app.run(host='0.0.0.0', debug=True, port=5001)

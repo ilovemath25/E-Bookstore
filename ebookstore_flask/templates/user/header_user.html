@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style/header_user.css') }}">
+<header>
+    <nav class="navbar-container">
+        <section class="navbar-top">
+            <a class="navbar-logo" href="/">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Bookstore Logo" class="logo">
+            </a>
+            <div class="icon-name category-mobile" onclick="display_left_menu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="search-and-navbar">
+                <form class="search-form">
+                    <input type="text" placeholder="Search" class="search-input">
+                    <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+                <div class="navbar-and-language">
+                    <div class="navbar-links">
+                        <a href="/" class="icon-name">
+                        <i class="fa fa-home"></i><p>Home</p>
+                        </a>
+                        <a href="#" class="icon-name">
+                        <i class="fa-solid fa-book"></i><p>Book</p>
+                        </a>
+                    </div>
+                    <a href="#" class="language icon-name">
+                        <i class="fa-solid fa-globe"></i><p>Language</p>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-icons">
+                <a href="#" class="icon-name">
+                    <i class="fa-solid fa-cart-shopping"></i><p>Cart</p>
+                </a>
+                <a href="#" class="icon-name">
+                    <i class="fa-regular fa-circle-user"></i><p>Profile</p>
+                </a>
+            </div>
+            <div class="icon-name language-mobile">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+        </section>
+        <section class="navbar-bottom">
+            <a href="#" class="category-name">Category 1</a>
+            <a href="#" class="category-name">Category 2</a>
+            <a href="#" class="category-name">Category 3</a>
+            <a href="#" class="category-name">Category 4</a>
+            <a href="#" class="category-name">Category 5</a>
+            <a href="#" class="category-name">Category 6</a>
+            <a href="#" class="category-name">Category 7</a>
+            <a href="#" class="category-name">Category 8</a>
+            <a href="#" class="category-name">Category 9</a>
+            <a href="#" class="category-name">Category 10</a>
+        </section>
+    </nav>
+    <nav class="navbar-mobile">
+        <a href="/" class="icon-name">
+            <i class="fa fa-home nav-icon"></i><p>Home</p>
+        </a>
+        <a href="#" class="icon-name">
+            <i class="fa-solid fa-book"></i><p>Book</p>
+        </a>
+        <a href="#" class="icon-name">
+            <i class="fa-solid fa-cart-shopping"></i><p>Cart</p>
+        </a>
+        <a href="#" class="icon-name">
+            <i class="fa-regular fa-circle-user"></i><p>Profile</p>
+        </a>
+    </nav>
+    <nav class="navbar-side-mobile">
+        <aside class="navbar-side-space" onclick="undisplay_left_menu()"></aside>
+        <div class="navbar-side-category">
+            <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Bookstore Logo" class="logo">
+            <hr>
+            <a href="#" class="category-name">Category 1</a>
+            <a href="#" class="category-name">Category 2</a>
+            <a href="#" class="category-name">Category 3</a>
+            <a href="#" class="category-name">Category 4</a>
+            <a href="#" class="category-name">Category 5</a>
+            <a href="#" class="category-name">Category 6</a>
+            <a href="#" class="category-name">Category 7</a>
+            <a href="#" class="category-name">Category 8</a>
+            <a href="#" class="category-name">Category 9</a>
+            <a href="#" class="category-name">Category 10</a>
+            <hr>
+        </div>
+    </nav>
+</header>
+<script src="{{ url_for('static', filename='script/header.js') }}"></script>

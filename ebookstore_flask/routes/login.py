@@ -22,6 +22,6 @@ def index():
             next_url = request.args.get('next')
             if next_url: return redirect(next_url)
             return resp
-         else: return render_template("login.html", error="Invalid password")
-      else: return render_template("login.html", error="User not found")
-   return render_template("login.html",)
+         else: return render_template("/user/login.html", error="Invalid password")
+      else: return render_template("/user/login.html", error="User not found")
+   return render_template("/user/login.html",)
