@@ -9,17 +9,17 @@
  }
 .order-detail-left{
     flex: 0 0 70%;
-    padding: 0 50px 20px;
-    /* border: 1px solid #ddd; */
+    padding: 0 30px 20px 50px;
     border-radius: 8px;
-    /* background-color: #f9f9f9; */
 }
 .order-detail-right{
     flex: 1;
-    padding: 20px;
+    padding: 20px 20px 30px 30px;
+    margin-right: 40px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    width: auto;
 }
 
 .box-title{
@@ -34,8 +34,6 @@
     font-weight: 500;
     background-color: #102d4d;
     color: #fff;
-    /* word-spacing: 15px; */
-
 }
 
 .od-left-box{
@@ -55,7 +53,6 @@
 }
 .od-circle{
     margin-left: 25px;
-    /* padding: 10px 0; */
     border: 1px solid #868e96;
     background-color: #3f73ad;
     border-radius: 50px;
@@ -85,8 +82,6 @@
 }
 .cus-info-item{
     width: 200px;
-    /* margin-bottom: 5px;
-    margin-top: 5px; */
     vertical-align: middle;
     font-size: 15px;
     color:#544f4f;
@@ -158,7 +153,7 @@
     max-width: 70px;
     height: 100px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 .prt-product-row{
     margin-top: 15px;
@@ -209,4 +204,58 @@
     padding-left: 55px;
     color: #e03131;
     font-size: 20px;
+}
+
+#order-status-history {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 20px;
+}
+.status-history-word {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0 20px 15px;
+}
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    color: gray;
+    min-height: 40px;
+    margin-left: 10px;
+}
+.step.completed {
+    color: black;
+}
+.icon {
+    width: 24px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+.icon.completed-icon {
+    background-color: #3f73ad;
+    border: 1px solid #868e96;
+}
+.status-text {
+    padding-left: 10px;
+    font-size: 15px;
+}
+.status-icon-contain{
+    display: flex;
+    align-items: center;
+}
+.status-line{
+    width: 1px;
+    height: 55px;
+    left: 12px;
+    top: 24px;
+    padding-top: 0;
+    margin-top: 0;
+    margin-left: 21px;
+}
+.status-line.completed{
+    border: 1px solid #ddd;
 }

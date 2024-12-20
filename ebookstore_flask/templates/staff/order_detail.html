@@ -148,8 +148,18 @@
                 </div>
             </div>
         </div>
-        <div class="order-detail-right">
-
+        
+        <div id="order-status-history" class="order-detail-right">
+            <div class="status-history-word">Status History</div>
+            {% for step in steps %}
+                <div class="step {% if order.Status in step.completed_statuses %}completed{% endif %}" data-status="{{ step.status }}">
+                    <div class="icon {% if order.Status in step.completed_statuses %}completed-icon{% endif %}"></div>
+                    <div class="status-text">{{ step.text }}</div>
+                </div>
+                {% if loop.index < steps|length %}
+                    <div class="status-line {% if order.Status in step.line_completed_statuses %}completed{% endif %}"></div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </main>

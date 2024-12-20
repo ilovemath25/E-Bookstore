@@ -23,8 +23,8 @@
 } 
 .bar-title{
     height: 52px;
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -37,7 +37,7 @@
 .bar-list{
     position: relative;
     display: flex;
-    height: 200px;
+    height: 150px;
     width: 100%;
     flex-direction: column;
     justify-content: center;
@@ -47,6 +47,8 @@
     color: #000;
     border: 1px solid #917E57;
     background-color: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 .bar-list>.bar-row{
     height: inherit;
@@ -64,10 +66,9 @@
 
 .bar-list hr{
     width: 90%;
-    border-color: #000;
-    background-color: #102d4d;
+    background-color: #ddd;
     border: none;
-    height: 5px;
+    height: 3px;
 }
 .bar-row{
     --bs-gutter-y: 0;
