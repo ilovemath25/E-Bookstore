@@ -2,15 +2,15 @@ from flask import request
 from hashlib import sha256
 import json
 from datetime import datetime
-
+   
 def load_sessions():
-   with open("sessions.json", 'r') as f: return json.load(f)
+   with open("ebookstore_flask/utils/sessions.json", 'r') as f: return json.load(f)
 
-def add_session(email, mid):
+def add_session(email, mid, role):
    session_store = load_sessions()
    session_id = generate_session(email, mid)
-   session_store[session_id] = email
-   with open("sessions.json", 'w') as f: json.dump(session_store, f, indent=4)
+   session_store[session_id] = [email, role]
+   with open("ebookstore_flask/utils/sessions.json", 'w') as f: json.dump(session_store, f, indent=3)
    return session_id
 
 def check_session():
@@ -20,5 +20,5 @@ def check_session():
 
 def generate_session(email, mid):
    today_date = datetime.now().strftime("%Y-%m-%d")
-   session_string = email + mid + today_date
+   session_string = email + str(mid) + str(today_date)
    return sha256(session_string.encode('utf-8')).hexdigest()
