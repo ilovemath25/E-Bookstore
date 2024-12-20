@@ -1,0 +1,158 @@
+
+
+{% extends '/staff/base_staff.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/order_detail.css') }}">
+
+<main>
+    <div class="navbar-detail-container">
+        <div class="order-detail-left">
+            <!-- status -->
+            <div>
+                <div class="box-title">Order Status</div>
+                <div class="od-left-box">
+                    <div class="od-status-icon">
+                        <div class="od-circle"></div>
+                        <span class="od-status-word">{{order.Status}}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- customer info -->
+            <div>
+                <div class="box-title">Customer Information</div>
+                <div class="od-left-box">
+                    <div>
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <span class="od-cus-word">Customer Info</span>
+                        </div>
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>Customer Name</span>
+                            </div>
+                            
+                            <div class="cus-info-item">
+                                <span>{{customer.L_name}}{{customer.F_name}}</span>
+                            </div>
+
+                        </div>
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>Customer ID</span>
+                            </div>
+                            
+                            <div class="cus-info-item">
+                                <span>{{order.CMID}}</span>
+                            </div>
+                        </div>
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>Payment Method</span>
+                            </div>
+                            
+                            <div class="cus-info-item">
+                                <span>{{order.Pay_method}}</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div>
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <span class="od-cus-word">Ordered ID</span>
+                        </div>
+
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>{{order.OID}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <span class="od-cus-word">Address</span>
+                        </div>
+
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>{{order.Ship_address}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- order product -->
+            <div>
+                <div class="box-title">Order Information</div>
+                <div class="od-left-box">
+
+                    <!-- product and payment -->
+                    <div class="order-info-box">
+
+                        <!-- product -->
+                        <div class="box-in-info">
+                            <div class="prt-header"><!-- header -->
+                                <div class="prt-no">No.</div>
+                                <div class="prt-product">Product</div>
+                                <div class="prt-price">Price</div>
+                                <div class="prt-qty">Quantity</div>
+                                <div class="prt-subtotal">Subtotal</div>
+                            </div>
+
+                            <div class="prt-box"><!-- product -->
+                                {% for detail in item_details %}
+                                <div class="prt-product-row"><!-- product row-->
+                                    <div class="prt-no">{{loop.index}}</div>
+                                    <div class="prt-product-item"><!--product item info-->
+                                        <img class="product-image" src="{{ url_for('static', filename=detail.product.Product_pict) }}" alt="{{ detail.product.Name }}">
+                                        <div class="prt-detail">
+                                            <div class="prt-detail-word">{{detail.product.Name}} </div>
+                                            <div class="prt-detail-word">{{detail.product.Author}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="prt-price">  ${{ detail.prt_price }}</div>
+                                    <div class="prt-qty">{{ detail.line.Quantity }}</div>
+                                    <div class="prt-subtotal">  ${{ detail.subtotal }}</div>
+                                </div>
+                                <hr>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <!-- payment -->
+                        <div class="box-in-info">
+                            <div class="payment-box">
+                                <div class="payment-row">
+                                    <div class="payment-word">Order Total</div>
+                                    <div class="payment-price">${{ total_price }}</div>
+                                </div>
+                                <div class="payment-row">
+                                    <div class="payment-word">Shipping Price</div>
+                                    <div class="payment-price">${{ shp_fee }}</div>
+                                </div>
+                                <div class="payment-row">
+                                    <div class="payment-word">Total Price</div>
+                                    <div class="payment-total-price">${{ order_total }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-detail-right">
+
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+

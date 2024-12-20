@@ -10,8 +10,12 @@ def create_app(postgres):
       from ebookstore_flask.routes.home import home
       from ebookstore_flask.routes.product import product
       from ebookstore_flask.routes.login import login
+      from ebookstore_flask.routes.staff_order import staff_order
+      from ebookstore_flask.routes.staff_order_detail import staff_order_detail
       app.register_blueprint(home)
       app.register_blueprint(login)
       app.register_blueprint(product)
+      app.register_blueprint(staff_order)
+      app.register_blueprint(staff_order_detail)
 
    return app

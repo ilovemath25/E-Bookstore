@@ -1,0 +1,212 @@
+.navbar-detail-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    gap: 20px; 
+    max-width: 100%;
+    padding: 20px;
+    background-color: #fdf5d6; 
+ }
+.order-detail-left{
+    flex: 0 0 70%;
+    padding: 0 50px 20px;
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    /* background-color: #f9f9f9; */
+}
+.order-detail-right{
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.box-title{
+    height: 42px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px 5px 10px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #102d4d;
+    color: #fff;
+    /* word-spacing: 15px; */
+
+}
+
+.od-left-box{
+    padding: 5px 0 5px;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.od-status-icon{
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.od-circle{
+    margin-left: 25px;
+    /* padding: 10px 0; */
+    border: 1px solid #868e96;
+    background-color: #3f73ad;
+    border-radius: 50px;
+    width: 15px;
+    height: 15px;
+}
+.od-status-word{
+    padding: 10px;
+    font-size: 20px;
+    color:black;
+}
+
+.od-cus-word{
+    padding: 10px;
+    font-size: 20px;
+    color:black;
+}
+
+.cus-info-list{
+    margin-left: 65px;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color:#544f4f;
+}
+.cus-info-item{
+    width: 200px;
+    /* margin-bottom: 5px;
+    margin-top: 5px; */
+    vertical-align: middle;
+    font-size: 15px;
+    color:#544f4f;
+}
+
+.order-info-box{
+    margin: 20px;
+    justify-content: center;
+}
+.box-in-info{
+    justify-content: center;
+}
+.prt-box{
+    padding: 5px 0 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+    border: 1px solid #ddd;
+    border-bottom-width: 0.5px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.prt-box hr{
+    width: 97%;
+    margin: 0 auto;
+    border-color: #000;
+    background-color: #ddd;
+    border: none;
+    height: 1px;
+}
+
+.prt-header{
+    display: flex;
+    align-items: center;
+}
+.prt-no{
+    text-align: center;
+    vertical-align: center;
+    width: 50px;
+}
+
+.prt-product{
+    text-align: left;
+    vertical-align: center;
+    padding-left: 50px;
+    width: 500px;
+}
+
+.prt-price{
+    text-align: center;
+    vertical-align: center;
+    width: 100px;
+}
+.prt-qty{
+    text-align: center;
+    vertical-align: center;
+    width: 100px;
+}
+.prt-subtotal{
+    text-align: center;
+    vertical-align: center;
+    width: 100px;
+}
+.product-image {
+    flex: 1 1 300px;
+    max-width: 70px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.prt-product-row{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.prt-product-item{
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    width: 500px;
+}
+.prt-detail{
+    color:#544f4f;
+    padding-left: 20px;
+}
+.prt-detail-word{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.payment-box{
+    padding: 5px 0 5px;
+    margin-bottom: 25px;
+    padding: 15px 0;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top: none;
+    background-color: #f9f9f9;
+}
+.payment-row{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+.payment-word{
+    width: 700px;
+    padding-left: 560px;
+}
+.payment-price{
+    width: 50px;
+    padding-left: 75px;
+}
+.payment-total-price{
+    width: 50px;
+    padding-left: 55px;
+    color: #e03131;
+    font-size: 20px;
+}
