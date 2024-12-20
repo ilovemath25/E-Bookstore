@@ -22,7 +22,7 @@
     flex-direction: column;
 } 
 .bar-title{
-    height: 52px;
+    height: 45px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     padding: 1rem;
@@ -37,7 +37,7 @@
 .bar-list{
     position: relative;
     display: flex;
-    height: 150px;
+    height: 200px;
     width: 100%;
     flex-direction: column;
     justify-content: center;
@@ -45,7 +45,8 @@
     border-radius: 0;
     padding: 0;
     color: #000;
-    border: 1px solid #917E57;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
     background-color: #fff;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -65,7 +66,7 @@
 }
 
 .bar-list hr{
-    width: 90%;
+    width: 80%;
     background-color: #ddd;
     border: none;
     height: 3px;

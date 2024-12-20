@@ -34,7 +34,13 @@
                             </div>
                             
                             <div class="cus-info-item">
-                                <span>{{customer.L_name}}{{customer.F_name}}</span>
+                                <span>
+                                    {% if customer.L_name %}
+                                        {{ customer.L_name }} {{ customer.F_name }}
+                                    {% else %}
+                                        {{ customer.F_name }}
+                                    {% endif %}
+                                </span>
                             </div>
 
                         </div>
@@ -161,6 +167,13 @@
                 {% endif %}
             {% endfor %}
         </div>
+    </div>
+
+    <!-- Back-Button -->
+    <div class="navbar-pre-detail">
+        <a href="../../../staff_order" target="_self" class="pre-detail-button">
+                <div class="pre-detail-word">Back</div>
+        </a>
     </div>
 </main>
 {% endblock %}

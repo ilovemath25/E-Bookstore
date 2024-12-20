@@ -46,4 +46,13 @@ def index(order_id):
       {"status": "Closed", "text": "Collected by customer", "completed_statuses": ["Closed"], "line_completed_statuses": []},
    ]
 
-   return render_template("/staff/order_detail.html", order=order, customer=customer, item_details=item_details, total_price=total_price, shp_fee=shp_fee, order_total=order_total, steps=steps)
+   return render_template(
+      "/staff/order_detail.html", 
+      order=order, 
+      customer=customer, 
+      item_details=item_details, 
+      total_price=total_price, 
+      shp_fee=shp_fee, 
+      order_total=order_total, 
+      steps=steps
+   )
