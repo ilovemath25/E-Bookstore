@@ -47,6 +47,42 @@
                 <input class ="filter-input"></input>
                 <button class="apply-button">Apply</button>
             </div>
+            <div class="scrollable-box">
+                {% for order in all_items %}
+                    <div class="list-header">
+                        <div class="header-list-cid">
+                            Customer Id : {{order[0]['CMID']}}
+                        </div>
+                        <div class="header-list-oid">
+                            Order Id : {{order[0]['OID']}}
+                        </div>
+                    </div>
+                    <div class="content-list">
+                        {% for item in order %}
+                            <div class="order-list-box">
+                                <!-- <div class="order-detail-text"> -->
+                                    <div class="order-detail-pic">
+                                        <img alt="{{ hi }}" class="product-pic">
+                                    </div>
+                                    <div class="order-detail-name">
+                                        <h4>{{item.Name}}</h3>
+                                    </div>
+                                    <div class="order-detail-text">
+                                        <h4>{{item.Quantity}}</h3>
+                                    </div>
+                                    <div class="order-detail-text">
+                                        <h4>{{item.Sum}}</h3>
+                                    </div>
+                                    <div class="order-detail-text">
+                                        <h4>{{item.Status}}</h3>
+                                    </div>
+                                <!-- </div> -->
+                                
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     
