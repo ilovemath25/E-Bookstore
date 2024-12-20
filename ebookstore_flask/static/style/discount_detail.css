@@ -1,0 +1,220 @@
+/* General body styles */
+body {
+    /* font-family: 'Arial', sans-serif; */
+    margin: 0;
+    padding: 0;
+    /* background-color: #f9f5dc; */
+    height: 500px;
+}
+
+.navbar-detail-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: lex-start;
+    height: 850;
+    gap: 20px;
+    padding: 20px;
+}
+
+.left{
+    flex: 0 0 10%;
+    border-radius: 8px;
+    /* background-color: #f9f9f9; */
+    /* margin-left: 60px; */
+}
+.bar-title{
+    height: 42px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #102d4d;
+    color: #fff;
+}
+.bar-list{
+    position: relative;
+    display: flex;
+    height: 200px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    padding: 0;
+    color: #000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.bar-list>.bar-row{
+    height: inherit;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.bar-list .bar-row{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.bar-list hr{
+    width: 80%;
+    background-color: #ddd;
+    border: none;
+    height: 3px;
+}
+.bar-row{
+    --bs-gutter-y: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.bar-row:hover{
+    background-color: #afc7e5;
+    transition: all 0.3s;
+}
+.bar-row:active{
+    background-color: #8ea4c0;
+    transition: all 0s; 
+}
+.bar-center{
+    width: 100%;
+    padding: .25rem 1rem;
+    display: flex;
+    justify-content: center;
+    font-size: .75rem;
+    line-height: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+    text-decoration-line: none;
+}
+
+
+.bar-list .bar-row:first-child .bar-center{
+    margin-top: 0;
+    text-overflow: clip;
+}
+
+a{
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.bar-center a{
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+
+/* number two */
+.discount-details {
+    flex: 1;
+    width: 600px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px 30px 20px 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    /* margin: 0px 200px 20px 60px; */
+}
+.discount-details hr{
+    width: 93%;
+    margin: 0 auto;
+    border-color: #000;
+    background-color: #ddd;
+    border: none;
+    height: 1px;
+}
+h1 {
+    text-align: left;
+    font-size: 24px;
+    color: black;
+    margin-bottom: 60px;
+    margin-left: 10px;
+}
+
+.detail-item {
+    display: flex;
+    margin: 50px 0;
+}
+
+.label-box{
+    width: 450px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555555;
+    padding-left: 50px;
+}
+
+.value-box {
+    width: 500px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 16px;
+    color: #544f4f;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    vertical-align: center;
+    gap: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.navbar-button-detail{
+    /* padding-left: 850px; */
+    padding-bottom: 50px;
+    background-color: #fdf5d6;
+}
+.btn-detail-button:hover{
+    background-color: #7aa6dc;
+    transition: all 0.3s;
+}
+.btn-detail-button:active{
+    background-color: #537eb2;
+    transition: all 0s; 
+}
+.btn-detail-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3f72af;
+    border-radius: 8px;
+    width: 100px;
+    height: 50px;
+}
+.navbar-btn-detail a{
+    text-decoration: none;
+}
+.btn-detail-word{
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
