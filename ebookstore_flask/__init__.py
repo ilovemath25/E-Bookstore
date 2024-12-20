@@ -9,7 +9,9 @@ def create_app(postgres):
    with app.app_context():
       from ebookstore_flask.routes.home import home
       from ebookstore_flask.routes.product import product
+      from ebookstore_flask.routes.login import login
       app.register_blueprint(home)
+      app.register_blueprint(login)
       app.register_blueprint(product)
 
    return app
