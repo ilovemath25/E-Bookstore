@@ -9,8 +9,15 @@
          <a class="promotion-card" href="">
             <img src="{{ url_for('static', filename='image/promotion/promotion1.png') }}">
          </a>
+         <a class="promotion-card" href="">
+            <img src="{{ url_for('static', filename='image/promotion/promotion2.png') }}">
+         </a>
       </div>
       <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="slider-indicators">
+         <input type="radio" name="slider" checked>
+         <input type="radio" name="slider">
+      </div>
    </section>
    <section class="best-seller section-container">
       <div class="sub-title">
@@ -67,15 +74,22 @@
          <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
          <div class="promotion-slider">
             <a class="promotion-card" href="">
+               <img src="{{ url_for('static', filename='image/promotion/promotion4.png') }}">
+            </a>
+            <a class="promotion-card" href="">
                <img src="{{ url_for('static', filename='image/promotion/promotion5.png') }}">
             </a>
          </div>
          <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
+         <div class="slider-indicators">
+            <input type="radio" name="slider" checked>
+            <input type="radio" name="slider">
+         </div>
       </section>
    </div>
    <section class="trending section-container">
       <div class="sub-title">
-         <hr><h2>Trending</h2><hr>
+         <hr><h2>Most Rated</h2><hr>
       </div>
       <div class="book-slider-container">
          <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
