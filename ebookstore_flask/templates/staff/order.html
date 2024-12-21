@@ -36,25 +36,26 @@
         </div>
         <div class="right">
             <div class="order-list-subtabs">
-                <p class="subtab">All</p>
-                <p class="subtab">Need to be shipped</p>
-                <p class="subtab">Finished</p>
-                <p class="subtab">Returned/Cancel</p>
+                <a href="/staff_order" class="subtab {% if active_route == 'main' %}active{% else %}inactive{% endif %}">All</a>
+                <a href="/staff_order/to_ship" class="subtab {% if active_route == 'to_ship' %}active{% else %}inactive{% endif %}">Need to be shipped</a>
+                <a href="/staff_order/finished" class="subtab {% if active_route == 'finished' %}active{% else %}inactive{% endif %}">Finished</a>
+                <a href="/staff_order/returned" class="subtab {% if active_route == 'returned' %}active{% else %}inactive{% endif %}">Returned/Cancel</a>
             </div>
             <hr>
-            <div class="filter">
+            <form action="{{ request.path }}/find" method="POST" class="filter">
                 <button class="filter-choice">Order ID</button>
-                <input class ="filter-input"></input>
+                <label for="user_input"></label>
+                <input type="text" id="user_input" name="user_input" value="{{ user_input }}" class ="filter-input"></input>
                 <button class="apply-button">Apply</button>
-            </div>
+            </form>
             <div class="scrollable-box">
                 {% for order in all_items %}
                     <div class="list-header">
                         <div class="header-list-cid">
-                            Customer Id : {{order[0]['CMID']}}
+                            <a href="{{url_for('staff_order_detail.index', order_id=order[0]['OID'])}}">Customer Id : {{order[0]['CMID']}}</a>
                         </div>
                         <div class="header-list-oid">
-                            Order Id : {{order[0]['OID']}}
+                            <a href="{{url_for('staff_order_detail.index', order_id=order[0]['OID'])}}">Order Id : {{order[0]['OID']}}</a>
                         </div>
                     </div>
                     <div class="content-list">
@@ -62,7 +63,7 @@
                             <div class="order-list-box">
                                 <!-- <div class="order-detail-text"> -->
                                     <div class="order-detail-pic">
-                                        <img alt="{{ hi }}" class="product-pic">
+                                        <img src="{{ url_for('static', filename=item.Product_pict) }}" alt="{{ hi }}" class="product-pic">
                                     </div>
                                     <div class="order-detail-name">
                                         <h4>{{item.Name}}</h3>
@@ -71,7 +72,7 @@
                                         <h4>{{item.Quantity}}</h3>
                                     </div>
                                     <div class="order-detail-text">
-                                        <h4>{{item.Sum}}</h3>
+                                        <h4>${{item.Sum}}</h3>
                                     </div>
                                     <div class="order-detail-text">
                                         <h4>{{item.Status}}</h3>
