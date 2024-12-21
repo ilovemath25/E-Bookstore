@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, redirect, render_template, request
 from ebookstore_flask.models.order import Order
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models.item_line import Item_line
@@ -54,6 +54,9 @@ def index(type="",returned="main"):
             if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
             ordered_product.append({"Product_pict": product.Product_pict,"Name" : product.Name,"Quantity": line.Quantity, "Sum" : sum_price, "OID": line.OID, "CMID": order.CMID, "Status": order.Status})
 
+
+
+
       
    
    ordered_product.sort(key=lambda x: x["OID"])
@@ -91,28 +94,44 @@ def finished():
 def returned():
    return index("returned")
 
+
 @staff_order.route('/<path:current_path>/find', methods=['POST'])
 def filter_by(current_path):
-   user_input = request.form['user_input']
+      user_input = request.form.get('user_input', "").strip() 
+      filter_field = request.form.get('filter_field', "order_id")
 
-   type=current_path.split('/')
-   print(type[1])
+      # check_find = current_path.split('/find')
+      # if len(check_find)>2:
+      #    current_path = request.path.replace('/find/find', '/find') 
+      #    # return redirect(f"/{current_path}/find")
+      if not user_input:
+         return redirect(f"/{current_path}")
+      
+      type_info = current_path.split('/')
+      if len(type_info) == 1: current_type = ""
+      elif len(type_info) > 1: current_type = type_info[1]
 
-   data= index(type=type[1], returned="find")
+      data = index(type=current_type, returned="find")
 
-   print(data)
+      filtered_items = []
+      for key, values in data.items():
+         if filter_field == "order_id" and user_input.isdigit() and str(key) == user_input:
+            filtered_items.append(values)
+         elif filter_field == "product":
+            filtered_values = [val for val in values if user_input.lower() in val["Name"].lower()]
+            if filtered_values:
+                  filtered_items.append(values)
 
-   all_items = []
-   for key, values in data.items():
-      save = []
-      print(key)
-      print(user_input)
-      if key==int(user_input):
-         for val in values:
-            save.append(val)
-         all_items.append(save)
-   print(all_items)
-   return render_template("/staff/order.html", all_items=all_items, user_input=user_input,active_route=type[1])
+      return render_template(
+         "/staff/order.html",
+         all_items=filtered_items,
+         user_input=user_input,
+         filter_field=filter_field,
+         active_route=current_type
+)
+
+
+
 
 
 
