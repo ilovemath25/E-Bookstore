@@ -99,8 +99,13 @@ def returned():
 def filter_by(current_path):
       user_input = request.form.get('user_input', "").strip() 
       filter_field = request.form.get('filter_field', "order_id")
+
+      # check_find = current_path.split('/find')
+      # if len(check_find)>2:
+      #    current_path = request.path.replace('/find/find', '/find') 
+      #    # return redirect(f"/{current_path}/find")
       if not user_input:
-        return redirect(f"/{current_path}")
+         return redirect(f"/{current_path}")
       
       type_info = current_path.split('/')
       if len(type_info) == 1: current_type = ""

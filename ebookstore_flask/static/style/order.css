@@ -340,3 +340,12 @@ a{
 a{
     color: black;
 }
+
+.no-result{
+    margin: 250px;
+    display: flex;
+    font-size: 30px;
+    color: #544f4f;
+    height: auto;
+    justify-content: center;
+}

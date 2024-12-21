@@ -47,49 +47,52 @@
                     <option value="order_id" {% if filter_field == 'order_id' %}selected{% endif %}>Order ID</option>
                     <option value="product" {% if filter_field == 'product' %}selected{% endif %}>Product</option>
                 </select>
-                <!-- <label for="user_input"></label> -->
                 <input type="text" id="user_input" name="user_input" value="{{ user_input }}" class ="filter-input"></input>
                 <button class="apply-button" type="submit">Apply</button>
             </form>
             <div class="scrollable-box">
-                {% for order in all_items %}
-                    <div class="list-header">
-                        <div class="header-list-cid">
-                            <span>Customer ID : {{order[0]['CMID']}}</span>
+                {% if all_items|length == 0 %}
+                    <div class="no-result">No Result !</div>
+                {% else %}
+                    {% for order in all_items %}
+                        <div class="list-header">
+                            <div class="header-list-cid">
+                                <span>Customer ID : {{order[0]['CMID']}}</span>
+                            </div>
+                            <div class="header-list-oid">
+                                <span>Order ID : {{order[0]['OID']}}</span>
+                            </div>
                         </div>
-                        <div class="header-list-oid">
-                            <span>Order ID : {{order[0]['OID']}}</span>
-                        </div>
-                    </div>
-                    <a href="{{url_for('staff_order_detail.index', order_id=order[0]['OID'])}}">
-                        <div class="content-list">
-                            {% for item in order %}
-                                <div class="order-list-box">
-                                    <!-- <div class="order-detail-text"> -->
-                                        <div class="order-detail-pic">
-                                            <img src="{{ url_for('static', filename=item.Product_pict) }}" alt="{{ hi }}" class="product-pic">
-                                        </div>
-                                        <div class="order-detail-name">
-                                            <h4>{{item.Name}}</h4>
-                                        </div>
-                                        <div class="order-detail-text">
-                                            <h4>{{item.Quantity}}</h4>
-                                        </div>
-                                        <div class="order-detail-text">
-                                            <h4>${{item.Sum}}</h4>
-                                        </div>
-                                        <div class="order-detail-text">
-                                            <h4>{{item.Status}}</h4>
-                                        </div>
-                                    <!-- </div> -->
-                                </div>
-                                {% if loop.index < order|length %}
-                                    <hr>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </a>
-                {% endfor %}
+                        <a href="{{url_for('staff_order_detail.index', order_id=order[0]['OID'])}}">
+                            <div class="content-list">
+                                {% for item in order %}
+                                    <div class="order-list-box">
+                                        <!-- <div class="order-detail-text"> -->
+                                            <div class="order-detail-pic">
+                                                <img src="{{ url_for('static', filename=item.Product_pict) }}" alt="{{ hi }}" class="product-pic">
+                                            </div>
+                                            <div class="order-detail-name">
+                                                <h4>{{item.Name}}</h4>
+                                            </div>
+                                            <div class="order-detail-text">
+                                                <h4>{{item.Quantity}}</h4>
+                                            </div>
+                                            <div class="order-detail-text">
+                                                <h4>${{item.Sum}}</h4>
+                                            </div>
+                                            <div class="order-detail-text">
+                                                <h4>{{item.Status}}</h4>
+                                            </div>
+                                        <!-- </div> -->
+                                    </div>
+                                    {% if loop.index < order|length %}
+                                        <hr>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
