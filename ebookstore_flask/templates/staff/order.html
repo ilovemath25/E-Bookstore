@@ -43,10 +43,13 @@
             </div>
             <hr>
             <form action="{{ request.path }}/find" method="POST" class="filter">
-                <button class="filter-choice">Order ID</button>
-                <label for="user_input"></label>
+                <select class="filter-choice" name="filter_field">
+                    <option value="order_id" {% if filter_field == 'order_id' %}selected{% endif %}>Order ID</option>
+                    <option value="product" {% if filter_field == 'product' %}selected{% endif %}>Product</option>
+                </select>
+                <!-- <label for="user_input"></label> -->
                 <input type="text" id="user_input" name="user_input" value="{{ user_input }}" class ="filter-input"></input>
-                <button class="apply-button">Apply</button>
+                <button class="apply-button" type="submit">Apply</button>
             </form>
             <div class="scrollable-box">
                 {% for order in all_items %}
