@@ -32,8 +32,10 @@
     justify-content: left;
     font-size: 16px;
     font-weight: 500;
-    background-color: #102d4d;
+    background-color: #1f446c;
+    /* background-color: #dbe2ef; */
     color: #fff;
+    /* color: #000; */
 }
 
 .od-left-box{
@@ -99,7 +101,6 @@
     margin-top: 10px;
     margin-bottom: 0;
     border: 1px solid #ddd;
-    border-bottom-width: 0.5px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
@@ -266,10 +267,12 @@
 }
 .pre-detail-button:hover{
     background-color: #7aa6dc;
+    border: 1px solid #7aa6dc;
     transition: all 0.3s;
 }
 .pre-detail-button:active{
     background-color: #537eb2;
+    border: 1px solid #3f72af;
     transition: all 0s; 
 }
 .pre-detail-button{
@@ -277,6 +280,7 @@
     align-items: center;
     justify-content: center;
     background-color: #3f72af;
+    border: 1px solid #3f72af;
     border-radius: 8px;
     width: 120px;
     height: 60px;
