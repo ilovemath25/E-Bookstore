@@ -13,11 +13,13 @@ def create_app(postgres):
       from ebookstore_flask.routes.staff_order import staff_order
       from ebookstore_flask.routes.staff_order_detail import staff_order_detail
       from ebookstore_flask.routes.staff_discount_detail import staff_discount_detail
+      from ebookstore_flask.routes.user_profile import user_profile
       app.register_blueprint(home)
       app.register_blueprint(login)
       app.register_blueprint(product)
       app.register_blueprint(staff_order)
       app.register_blueprint(staff_order_detail)
       app.register_blueprint(staff_discount_detail)
+      app.register_blueprint(user_profile)
 
    return app

@@ -1,0 +1,43 @@
+{% extends '/user/base_user.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
+<main>
+   {% include "/user/user_profile_menu.html" %}
+   <div class="section-container">
+      <div class="sub-title">
+         <hr><h2>My Profile</h2><hr>
+      </div>
+      <table class="profile-container">
+         <tr class="profile-item">
+            <td class="profile-label">Name</td>
+            <td class="profile-value">{{ user.F_name }} {{ user.L_name }}</td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Birth</td>
+            <td class="profile-value">{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else 'Not Provided' }}</td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Gender</td>
+            <td class="profile-value">{{ user.Gender }}</td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Email</td>
+            <td class="profile-value" id="email-value" data-original={{ user.Email }}></td>
+            <td class="profile-value"><i id="toggle-email" class="fa-solid fa-eye-slash"></i></td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Phone</td>
+            <td class="profile-value" id="phone-value" data-original={{ user.Phone }}></td>
+            <td class="profile-value"><i id="toggle-phone" class="fa-solid fa-eye-slash"></i></td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Address</td>
+            <td class="profile-value">{{ user.Address if user.Address else 'Not Provided' }}</td>
+         </tr>
+      </table>
+      <a class="edit-profile" href="profile/edit">Edit</a>
+   </div>
+</main>
+<script src="{{ url_for('static', filename='script/user_profile.js') }}"></script>
+{% endblock %}

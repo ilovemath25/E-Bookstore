@@ -9,15 +9,15 @@ def index():
       return redirect(next_url if next_url else url_for('home.index'))
    if request.method == 'POST':
       from ebookstore_flask.models.member import Member
-      from ebookstore_flask.utils.session import add_session, check_role
+      from ebookstore_flask.utils.session import add_session
+      from ebookstore_flask.utils.role import check_role
       email = request.form.get('email')
       password = request.form.get('password')
       user = (
          Member.query                     # SELECT * FROM "Member"
          .filter(Member.Email == email)   # WHERE "Email" = <email>;
-         .all()
+         .first()
       )
-      user = user[0]
       if user:
          if user.Password==password:
             role = check_role(user.C_flag, user.S_flag, user.A_flag)
