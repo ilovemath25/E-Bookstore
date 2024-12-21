@@ -53,9 +53,6 @@ def index(type="",returned="main"):
             if product.Product_pict.startswith('ebookstore_flask/'):product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '')
             if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
             ordered_product.append({"Product_pict": product.Product_pict,"Name" : product.Name,"Quantity": line.Quantity, "Sum" : sum_price, "OID": line.OID, "CMID": order.CMID, "Status": order.Status})
-      if type == "staff_order":
-         # 添加處理邏輯或報錯提示
-         return render_template("/staff/order.html", all_items=[], active_route="staff_order")
 
 
 
@@ -106,7 +103,8 @@ def filter_by(current_path):
         return redirect(f"/{current_path}")
       
       type_info = current_path.split('/')
-      current_type = type_info[1] if len(type_info) > 1 else None
+      if len(type_info) == 1: current_type = ""
+      elif len(type_info) > 1: current_type = type_info[1]
 
       data = index(type=current_type, returned="find")
 
