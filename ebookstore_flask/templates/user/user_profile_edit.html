@@ -1,0 +1,64 @@
+{% extends '/user/base_user.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
+<main>
+   {% include "/user/user_profile_menu.html" %}
+   <form class="section-container" method="POST" action="{{ url_for('user_profile.index2') }}">
+      <div class="sub-title">
+         <hr><h2>My Profile</h2><hr>
+      </div>
+      <table class="profile-container">
+         <tr class="profile-item">
+            <td class="profile-label">Name</td>
+            <td class="profile-value">
+               <input type="text" name="F_name" id="F_name" class="profile-input" value="{{ user.F_name }}" placeholder="First Name">
+               <input type="text" name="L_name" id="L_name" class="profile-input" value="{{ user.L_name }}" placeholder="Last Name">
+            </td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Birth</td>
+            <td class="profile-value">
+               <input type="date" name="Birth" id="Birth" class="profile-input birth" value="{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else '' }}">
+            </td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Gender</td>
+            <td class="profile-value">
+               <select name="Gender" id="Gender" class="profile-input gender">
+                  <option value="Male" {% if user.Gender == 'Male' %}selected{% endif %}>Male</option>
+                  <option value="Female" {% if user.Gender == 'Female' %}selected{% endif %}>Female</option>
+                  <option value="Other" {% if user.Gender == 'Other' %}selected{% endif %}>Other</option>
+               </select>
+            </td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Email</td>
+            <td class="profile-value">
+               <input type="email" name="Email" id="email-value" class="profile-input" value="{{ user.Email }}" data-original="{{ user.Email }}">
+            </td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Phone</td>
+            <td class="profile-value">
+               <input type="tel" name="Phone" id="phone-value" class="profile-input" value="{{ user.Phone }}" data-original="{{ user.Phone }}">
+            </td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label">Address</td>
+            <td class="profile-value">
+               <input type="text" name="Address" id="Address" class="profile-input" value="{{ user.Address if user.Address else '' }}" placeholder="Your Address">
+            </td>
+         </tr>
+         <tr class="profile-item">
+            <td class="profile-label"></td>
+            <td class="profile-value">
+            </td>
+         </tr>
+      </table>
+      <input type="submit" class="edit-profile" href="/user/profile" value="Save"></input>
+      <a href="/user/profile" class="cancel-edit">Cancel</a>
+   </form>
+</main>
+<script src="{{ url_for('static', filename='script/user_profile.js') }}"></script>
+{% endblock %}

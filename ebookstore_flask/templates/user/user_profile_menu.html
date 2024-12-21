@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
+<div class="profile-menu">
+   <div class="menu-header">Profile</div>
+   <ul>
+      <li class="menu-option">My Profile</li>
+      <li class="menu-option">Credit Card</li>
+      <li class="menu-option">Change Password</li>
+      <li class="menu-option">Order History</li>
+      <li class="menu-option">My Discount</li>
+      <li class="menu-option" id="logout">Logout</li>
+   </ul>
+</div>
+<form class="logout-modal-container hidden" method="POST" action="{{ url_for('user_profile.logout') }}">
+   <div class="modal-content">
+      <p>Are you sure you want to log out?</p>
+      <div class="modal-button">
+         <input type="submit" id="confirm-logout" class="modal-btn" value="Yes"></input>
+         <div id="cancel-logout" class="modal-btn">No</div>
+      </div>
+   </div>
+</form>
+<script src="{{ url_for('static', filename='script/user_profile.js') }}"></script>

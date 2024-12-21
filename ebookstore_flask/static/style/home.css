@@ -39,6 +39,7 @@
    color: #c8c8c8;
    border-radius: 50%;
    top: 50%;
+   transform: translateY(-20px);
    z-index: 10;
    position: absolute;
    cursor: pointer;
@@ -109,6 +110,7 @@
    max-width: 151px;
    max-height: 210px;
    object-fit: cover;
+   pointer-events: none;
    border-radius: 3px;
    border: 1px solid #000;
 }
@@ -137,19 +139,56 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   padding: 10px;
 }
 .promotion-slider{
    display: flex;
-   overflow: hidden;
+   overflow-x: auto;
    width: 98%;
    scroll-behavior: smooth;
    scroll-snap-type: x mandatory;
 }
 .promotion-card{
-   width: 100%;
+   flex: 0 0 100%;
+   max-width: 100%;
+   scroll-snap-align: start;
+   display: flex;
+   align-items: center;
 }
 .promotion-card img{
    width: 100%;
+   pointer-events: none;
+   border-radius: 5px;
+}
+.promotion-slider {
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+}
+.promotion-slider::-webkit-scrollbar {
+   display: none;
+}
+.slider-indicators {
+   position: absolute;
+   bottom: 30px;
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+   gap: 10px;
+}
+
+.slider-indicators input {
+   appearance: none;
+   width: 10px;
+   height: 10px;
+   border: 2px solid #ccc;
+   border-radius: 50%;
+   background: #fff;
+   cursor: pointer;
+   transition: all 0.3s;
+}
+.slider-indicators input:checked {
+   background: #333;
+   transform: scale(1.2);
 }
 .top-5-and-promotion{
    display: flex;
