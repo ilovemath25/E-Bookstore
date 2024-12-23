@@ -52,7 +52,8 @@ def index():
       if product.Product.Product_pict.startswith('ebookstore_flask/'):product.Product.Product_pict = product.Product.Product_pict.replace('ebookstore_flask/', '')
       if product.Product.Product_pict.startswith('static/'):product.Product.Product_pict = product.Product.Product_pict.replace('static/', '')
    
-   return render_template("/user/home.html",
+   return render_template(
+      "/user/home.html",
       best_seller=best_seller,
       new_release=new_release,
       top_5_category=top_5_category,

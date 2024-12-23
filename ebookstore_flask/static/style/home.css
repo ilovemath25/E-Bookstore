@@ -215,8 +215,16 @@
 .category-card{
    display: flex;
    margin-left: 20px;
-   text-decoration: none;
    font-size: 18px;
+}
+.category-card a{
+   text-decoration: none;
+   color: #000;
+   transition: all 0.3s;
+}
+.category-card a:hover {
+   transform: scale(1.2) translateX(10%);
+   text-shadow: 2px 2px 5px #00000050;
 }
 .category-card hr{
    margin: 0px 10px;
