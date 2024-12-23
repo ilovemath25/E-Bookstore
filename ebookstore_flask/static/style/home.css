@@ -157,8 +157,11 @@
 }
 .promotion-card img{
    width: 100%;
-   pointer-events: none;
    border-radius: 5px;
+   transition: all 0.3s;
+}
+.promotion-card img:hover{
+   transform: scale(1.02);
 }
 .promotion-slider {
    -ms-overflow-style: none;

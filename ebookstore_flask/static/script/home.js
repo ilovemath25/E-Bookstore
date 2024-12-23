@@ -6,8 +6,6 @@ function Slider(containerSelector, autoScrollInterval) {
       const indicators = indicatorContainer ? indicatorContainer.querySelectorAll('input') : null;
       slider.offsetWidth;
       slideWidth = slider.children[0].offsetWidth;
-      console.log("Slide Width:", slideWidth); // Debug log to check value
-
       const updateIndicators = () => {
          if (!indicators) return;
          slider.offsetWidth;
