@@ -98,7 +98,7 @@
             <a class="book-card" href="book/{{book.Product.PID}}">
                <img src="{{ url_for('static', filename=book[0].Product_pict) }}" alt="{{ book.Product.Name }}">
                <h3>{{ book.Product.Name }}</h3>
-               <div>
+               <p>
                   <strong>Rate: </strong>
                   <span class="book-rate">
                      <br>
@@ -110,8 +110,8 @@
                         {% endif %}
                      {% endfor %}
                   </span>
-               </div>
-               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+               </p>
+               <p><strong>Price:</strong> <span class="book-price">${{ book.Product.Price }}</span></p>
             </a>
             {% endfor %}
          </div>

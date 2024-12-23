@@ -16,7 +16,7 @@
          </div>
          <div class="book-container">
             {% for book in books %}
-               <a class="book-card" href="book/{{ book.PID }}">
+               <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
                   <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
                   <h3>{{ book.Name }}</h3>
                   <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
@@ -32,7 +32,7 @@
       </div>
       <div class="book-container">
          {% for book in book_list %}
-            <a class="book-card" href="book/{{ book.PID }}">
+            <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
                <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
                <h3>{{ book.Name }}</h3>
                <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>

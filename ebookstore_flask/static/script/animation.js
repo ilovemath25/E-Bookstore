@@ -23,5 +23,14 @@ links.forEach(link => {
       }, 700);
    });
 });
+const showelement = new IntersectionObserver((entries) => {
+   entries.forEach((entry) => {
+      if (entry.isIntersecting){
+         entry.target.classList.add('show-animation');
+      }
+   });
+});
 document.addEventListener("DOMContentLoaded", show_up_animation);
 window.addEventListener("pageshow", reset_fill_up_animation);
+const hiddenElements = document.querySelectorAll('.hidden-animation');
+hiddenElements.forEach((el) => showelement.observe(el));
