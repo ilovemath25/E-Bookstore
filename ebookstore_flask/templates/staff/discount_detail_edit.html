@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/discount_detail.css') }}">
 
 <main>
-        <div class="navbar-detail-container">
+        <form class="navbar-detail-container" method="POST" action="{{ url_for('staff_discount_detail.index2', discount_id=discount.DID) }}">
             <div class="left">
                 <div class="bar-title">Staff Menu</div>
                 <div class="bar-list">
@@ -37,15 +37,21 @@
                 
                 <div class="detail-item">
                     <span class="label-box">Discount Name</span>
-                    <span class="value-box">{{ discount.Disc_name }}</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_name }}">
+                    </span>
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Discount Code</span>
-                    <span class="value-box">{{ discount.Disc_code }}</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_code }}">
+                    </span>
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Policy Description</span>
-                    <span class="value-box">{{ discount.Policy_desc }}</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Policy_desc }}">
+                    </span>
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Discount Type</span>
@@ -53,37 +59,45 @@
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Discount Value</span>
-                    <span class="value-box">{{ discount.Disc_value }}</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_value }}">
+                    </span>
                 </div>
                 {% if discount.Disc_type != 'Shipping' %}
                 <div class="detail-item">
                     <span class="label-box">Valid From</span>
-                    <span class="value-box">{{ details.Valid_from }}</span>
+                    <span class="value-box">
+                        <input type="date" name="Valid_from" id="Valid_from" class="dtl-input birth" value="{{ details.Valid_from.strftime('%Y-%m-%d') if details.Valid_from else '' }}">
+                    </span>
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Valid To</span>
-                    <span class="value-box">{{ details.Valid_to }}</span>
+                    <span class="value-box">
+                        <input type="date" name="Valid_to" id="Valid_to" class="dtl-input birth" value="{{ details.Valid_to.strftime('%Y-%m-%d') if details.Valid_to else '' }}">
+                    </span>
                 </div>
                 {% endif %}
                 <div class="detail-item">
                     <span class="label-box">Max Usage</span>
-                    <span class="value-box">{{ discount.Max_usage }}</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Max_usage }}">
+                    </span>
                 </div>
                 <hr>
                 <div class="buttons">
                     <div class="navbar-btn-detail">
-                        <a href="/staff/discount_detail/{{ discount.DID }}/edit" target="_self" class="btn-detail-button">
-                            <div class="btn-detail-word">Edit</div>
+                        <a href="/staff/discount_detail/{{ discount.DID }}" target="_self" class="cancel-edit">
+                            <div class="btn-detail-word">Cancel</div>
                         </a>
                     </div>
                     <div class="navbar-btn-detail">
                         <a href="#" target="_self" class="btn-detail-button">
-                            <div class="btn-detail-word">Back</div>
+                            <div class="btn-detail-word">Save</div>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     
 
 </main>

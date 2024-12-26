@@ -31,18 +31,56 @@
 |   |   |   |   ├── PID_Book1.png
 |   |   |   |   ├── PID_Book2.png
 |   |   |   |   └── ...
+|   |   |   ├── promotion
+|   |   |   |   ├── promotion1.png
+|   |   |   |   ├── promotion2.png
+|   |   |   |   └── ...
 |   |   |   └── logo.png
+|   |   ├── script
+|   |   |   ├── header.js
+|   |   |   ├── home.js
+|   |   |   └── user_profile.js
+|   |   ├── style
+|   |   |   ├── nunito
+|   |   |   |   ├── Nunito-Black.ttf
+|   |   |   |   ├── Nunito-BlackItalic.ttf
+|   |   |   |   └── ...
+|   |   |   ├── base_user.css
+|   |   |   ├── discount_detail.css
+|   |   |   ├── footer.css
+|   |   |   ├── header_staff.css
+|   |   |   ├── header_user.css
+|   |   |   ├── home.css
+|   |   |   ├── order_detail.css
+|   |   |   ├── order.css
+|   |   |   ├── product.css
+|   |   |   └── user_profile.css
 |   |   ├── video
 |   |   |   ├── video1.mp4
 |   |   |   ├── video2.mp4
 |   |   |   └── video3.mp4
-|   |   ├── header.css
-|   |   └── product.css
 |   ├── templates
-|   |   ├── home.html
-|   |   └── product.html
+|   |   ├── login
+|   |   |   ├── base_login.html
+|   |   |   ├── login.html
+|   |   ├── staff
+|   |   |   ├── base_staff.html
+|   |   |   ├── discount_detail.html
+|   |   |   ├── header_staff.html
+|   |   |   ├── hearder_staff.html
+|   |   |   ├── order_detail.html
+|   |   |   └── order.html
+|   |   ├── user
+|   |   |   ├── base_user.html
+|   |   |   ├── footer.html
+|   |   |   ├── header_user.html
+|   |   |   ├── home.html
+|   |   |   ├── user_profile_edit.html
+|   |   |   ├── user_profile_menu.html
+|   |   |   └── user_profile.html
 |   ├── utils
 |   |   ├── credit_card.py
+|   |   ├── role.py
 |   |   ├── session.py
 |   |   └── sessions.json
 |   └── __init__.py

@@ -22,7 +22,7 @@ def index():
    return render_template('user/user_profile.html', user=user)
 
 @user_profile.route('/user/profile/edit')
-def index2():
+def edit():
    if not check_session():
       next_url = request.url
       return redirect(url_for('login.index', next=next_url))

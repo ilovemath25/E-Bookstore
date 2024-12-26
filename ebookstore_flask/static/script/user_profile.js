@@ -1,8 +1,8 @@
 document.getElementById('logout').addEventListener('click', () => {
-   document.querySelector(".logout-modal-container").classList.remove('hidden');
+   document.querySelector(".logout-modal-container").classList.remove('logout-hidden');
 });
 document.getElementById('cancel-logout').addEventListener('click', () => {
-   document.querySelector(".logout-modal-container").classList.add('hidden');
+   document.querySelector(".logout-modal-container").classList.add('logout-hidden');
 });
 
 function maskValue(originalValue, type) {
