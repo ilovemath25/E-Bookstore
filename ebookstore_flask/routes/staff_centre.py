@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
 
-staff_centre= Blueprint('staff_centre', __name__)
+staff_centre= Blueprint('staff_center', __name__)
 
-@staff_centre.route('/staff_centre')
+@staff_centre.route('/staff_center')
 def index():
    if not check_session():
       next_url = request.url

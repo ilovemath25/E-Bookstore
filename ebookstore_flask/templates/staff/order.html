@@ -36,13 +36,13 @@
         </div>
         <div class="right">
             <div class="order-list-subtabs">
-                <a href="/staff_order" class="subtab {% if active_route == 'main' %}active{% else %}inactive{% endif %}">All</a>
-                <a href="/staff_order/to_ship" class="subtab {% if active_route == 'to_ship' %}active{% else %}inactive{% endif %}">Need to be shipped</a>
-                <a href="/staff_order/finished" class="subtab {% if active_route == 'finished' %}active{% else %}inactive{% endif %}">Finished</a>
-                <a href="/staff_order/returned" class="subtab {% if active_route == 'returned' %}active{% else %}inactive{% endif %}">Returned/Cancel</a>
+                <a href="/staff/order" class="subtab {% if active_route == 'main' %}active{% else %}inactive{% endif %}">All</a>
+                <a href="/staff/order/to_ship" class="subtab {% if active_route == 'to_ship' %}active{% else %}inactive{% endif %}">Need to be shipped</a>
+                <a href="/staff/order/finished" class="subtab {% if active_route == 'finished' %}active{% else %}inactive{% endif %}">Finished</a>
+                <a href="/staff/order/returned" class="subtab {% if active_route == 'returned' %}active{% else %}inactive{% endif %}">Returned/Cancel</a>
             </div>
             <hr>
-            <form action="{{ request.path }}/find" method="POST" class="filter">
+            <form action="{{ url_for('staff.filter_by', current_path=request.path.replace('/find', ''))}}" method="POST" class="filter">
                 <select class="filter-choice" name="filter_field">
                     <option value="order_id" {% if filter_field == 'order_id' %}selected{% endif %}>Order ID</option>
                     <option value="product" {% if filter_field == 'product' %}selected{% endif %}>Product</option>
