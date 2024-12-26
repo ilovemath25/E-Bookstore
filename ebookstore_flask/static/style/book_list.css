@@ -78,7 +78,7 @@
    position: fixed;
    display: flex;
    flex-direction: column;
-   right: 20px;
+   left: 20px;
    font-size: 12px;
    background-color: #f9f7f7;
    border: 2px solid #d9d9d9;
@@ -105,15 +105,6 @@
 .alphabetical-index a.active:hover {
    background-color: #808080;
    transition: background-color 0.3s ease;
-}
-.sticky {
-   position: sticky;
-   top: 10px;
-}
-.fixed {
-   position: fixed;
-   top: 50%;
-   transform: translateY(-50%);
 }
 @media screen and (max-width: 1000px) {
    .sub-title h2, .book-card div{
