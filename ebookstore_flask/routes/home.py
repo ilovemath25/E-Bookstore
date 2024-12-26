@@ -53,8 +53,8 @@ def index():
    for product in top_rated:
       if product.Product.Product_pict.startswith('ebookstore_flask/'):product.Product.Product_pict = product.Product.Product_pict.replace('ebookstore_flask/', '')
       if product.Product.Product_pict.startswith('static/'):product.Product.Product_pict = product.Product.Product_pict.replace('static/', '')
-   
 
+        
    user = None
    if check_session(): 
       session_id = request.cookies.get("session_id")
@@ -66,7 +66,8 @@ def index():
          .first()
       )
 
-   return render_template("/user/home.html",
+   return render_template(
+      "/user/home.html",
       best_seller=best_seller,
       new_release=new_release,
       top_5_category=top_5_category,

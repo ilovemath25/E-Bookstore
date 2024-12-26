@@ -1,0 +1,46 @@
+{% extends '/user/base_user.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/book_list.css') }}">
+<main>
+   {% if is_all_book %}
+      <div class="alphabetical-index">
+         {% for letter in "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+            <a href="#{{ letter }}">{{ letter }}</a>
+         {% endfor %}
+      </div>
+      {% for letter, books in book_list.items() %}
+      <section class="section-container" id="{{ letter }}">
+         <div class="sub-title">
+            <hr><h2>{{ letter }}</h2><hr>
+         </div>
+         <div class="book-container">
+            {% for book in books %}
+               <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
+                  <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
+                  <h3>{{ book.Name }}</h3>
+                  <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+               </a>
+            {% endfor %}
+         </div>
+      </section>
+      {% endfor %}
+   {% elif is_category %}
+   <section class="section-container">
+      <div class="sub-title">
+         <hr><h2>{{ category_name }}</h2><hr>
+      </div>
+      <div class="book-container">
+         {% for book in book_list %}
+            <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
+               <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
+               <h3>{{ book.Name }}</h3>
+               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+            </a>
+         {% endfor %}
+      </div>
+   </section>
+   {% endif %}
+</main>
+<script src="{{ url_for('static', filename='script/book_list.js') }}"></script>
+{% endblock %}

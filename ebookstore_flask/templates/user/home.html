@@ -3,7 +3,7 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}">
 <main>
-   <section class="promotion section-container">
+   <section class="promotion section-container hidden-animation">
       <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
       <div class="promotion-slider">
          <a class="promotion-card" href="">
@@ -15,11 +15,11 @@
       </div>
       <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="slider-indicators">
-         <input type="radio" name="slider" checked>
-         <input type="radio" name="slider">
+         <input type="checkbox" name="slider" checked>
+         <input type="checkbox" name="slider">
       </div>
    </section>
-   <section class="best-seller section-container">
+   <section class="best-seller section-container hidden-animation">
       <div class="sub-title">
          <hr><h2>Best Seller</h2><hr>
       </div>
@@ -37,7 +37,7 @@
          <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
    </section>
-   <section class="new-release section-container">
+   <section class="new-release section-container hidden-animation">
       <div class="sub-title">
          <hr><h2>New Release</h2><hr>
       </div>
@@ -56,7 +56,7 @@
       </div>
    </section>
    <div class="top-5-and-promotion">
-      <section class="top-5-category section-container">
+      <section class="top-5-category section-container hidden-animation">
          <div class="sub-title">
             <hr><h2>Top 5 Category</h2><hr>
          </div>
@@ -65,12 +65,12 @@
             <li class="category-card">
                <p>{{ loop.index }}.</p>
                <hr>
-               <p>{{ category }}</p>
+               <a href="{{ url_for('book_list.category', category_name=category) }}">{{ category }}</a>
             </li>
             {% endfor %}
          </ul>
       </section>
-      <section class="promotion section-container">
+      <section class="promotion section-container hidden-animation">
          <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
          <div class="promotion-slider">
             <a class="promotion-card" href="">
@@ -82,12 +82,12 @@
          </div>
          <button class="arrow right-arrow"><i class="fa-solid fa-chevron-right"></i></button>
          <div class="slider-indicators">
-            <input type="radio" name="slider" checked>
-            <input type="radio" name="slider">
+            <input type="checkbox" name="slider" checked>
+            <input type="checkbox" name="slider">
          </div>
       </section>
    </div>
-   <section class="trending section-container">
+   <section class="trending section-container hidden-animation">
       <div class="sub-title">
          <hr><h2>Most Rated</h2><hr>
       </div>
@@ -98,7 +98,7 @@
             <a class="book-card" href="book/{{book.Product.PID}}">
                <img src="{{ url_for('static', filename=book[0].Product_pict) }}" alt="{{ book.Product.Name }}">
                <h3>{{ book.Product.Name }}</h3>
-               <div>
+               <p>
                   <strong>Rate: </strong>
                   <span class="book-rate">
                      <br>
@@ -110,7 +110,8 @@
                         {% endif %}
                      {% endfor %}
                   </span>
-               </div>
+               </p>
+               <p><strong>Price:</strong> <span class="book-price">${{ book.Product.Price }}</span></p>
             </a>
             {% endfor %}
          </div>

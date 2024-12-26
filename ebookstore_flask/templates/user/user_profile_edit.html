@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
 <main>
    {% include "/user/user_profile_menu.html" %}
-   <form class="section-container" method="POST" action="{{ url_for('user_profile.index2') }}">
+   <form class="section-container" method="POST" action="{{ url_for('user_profile.edit') }}">
       <div class="sub-title">
          <hr><h2>My Profile</h2><hr>
       </div>
@@ -13,7 +13,7 @@
             <td class="profile-label">Name</td>
             <td class="profile-value">
                <input type="text" name="F_name" id="F_name" class="profile-input" value="{{ user.F_name }}" placeholder="First Name">
-               <input type="text" name="L_name" id="L_name" class="profile-input" value="{{ user.L_name }}" placeholder="Last Name">
+               <input type="text" name="L_name" id="L_name" class="profile-input" value="{{ user.L_name if user.L_name else '' }}" placeholder="Last Name">
             </td>
          </tr>
          <tr class="profile-item">
@@ -56,8 +56,8 @@
             </td>
          </tr>
       </table>
-      <input type="submit" class="edit-profile" href="/user/profile" value="Save"></input>
-      <a href="/user/profile" class="cancel-edit">Cancel</a>
+      <input type="submit" class="edit-profile" href="{{ url_for('user_profile.index') }}" value="Save"></input>
+      <a href="{{ url_for('user_profile.index') }}" class="cancel-edit">Cancel</a>
    </form>
 </main>
 <script src="{{ url_for('static', filename='script/user_profile.js') }}"></script>
