@@ -1,4 +1,5 @@
-from flask import Blueprint, redirect, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
+from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
 from ebookstore_flask.models.order import Order
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models.item_line import Item_line
@@ -12,6 +13,15 @@ staff_order = Blueprint('staff_order', __name__)
 
 @staff_order.route('/staff_order')
 def index(type="",returned="main"):
+   if check_session(): 
+      session_id = request.cookies.get("session_id")
+      sessions = load_sessions()
+      email = sessions.get(session_id, [None])[0]
+      role = sessions.get(session_id, [None])[1]
+      if not email: return redirect(url_for('login.index'))
+      if role == 'Customer': return redirect(url_for('home.index'))
+
+
    item_lines = Item_line.query.filter(Item_line.Line_type == "Order").all()
    
    ordered_product = []
@@ -100,10 +110,6 @@ def filter_by(current_path):
       user_input = request.form.get('user_input', "").strip() 
       filter_field = request.form.get('filter_field', "order_id")
 
-      # check_find = current_path.split('/find')
-      # if len(check_find)>2:
-      #    current_path = request.path.replace('/find/find', '/find') 
-      #    # return redirect(f"/{current_path}/find")
       if not user_input:
          return redirect(f"/{current_path}")
       

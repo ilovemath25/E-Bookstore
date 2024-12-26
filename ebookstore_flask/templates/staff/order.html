@@ -42,11 +42,19 @@
                 <a href="/staff_order/returned" class="subtab {% if active_route == 'returned' %}active{% else %}inactive{% endif %}">Returned/Cancel</a>
             </div>
             <hr>
-            <form action="{{ request.path }}/find" method="POST" class="filter">
-                <select class="filter-choice" name="filter_field">
-                    <option value="order_id" {% if filter_field == 'order_id' %}selected{% endif %}>Order ID</option>
-                    <option value="product" {% if filter_field == 'product' %}selected{% endif %}>Product</option>
-                </select>
+            <form action="{{ url_for('staff_order.filter_by', current_path=request.path.replace('/find', ''))}}" method="POST" class="filter">
+                <div class="search-filter">
+                    <div class="selected-filter" name="filter_field">
+                        <span id="selectedText">Order ID</span>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="option" id="dropdown">
+                        <div class="option-filter" name="filter_field" style="display: none;">
+                            <p value="order_id" onclick="selectOption('Order ID')" {% if filter_field == 'order_id' %}selected{% endif %}>Order ID</p>
+                            <p value="product" onclick="selectOption('Product')" {% if filter_field == 'product' %}selected{% endif %}>Product</p>
+                        </div>
+                    </div>
+                </div>
                 <input type="text" id="user_input" name="user_input" value="{{ user_input }}" class ="filter-input"></input>
                 <button class="apply-button" type="submit">Apply</button>
             </form>
@@ -67,7 +75,6 @@
                             <div class="content-list">
                                 {% for item in order %}
                                     <div class="order-list-box">
-                                        <!-- <div class="order-detail-text"> -->
                                             <div class="order-detail-pic">
                                                 <img src="{{ url_for('static', filename=item.Product_pict) }}" alt="{{ hi }}" class="product-pic">
                                             </div>
@@ -83,7 +90,6 @@
                                             <div class="order-detail-text">
                                                 <h4>{{item.Status}}</h4>
                                             </div>
-                                        <!-- </div> -->
                                     </div>
                                     {% if loop.index < order|length %}
                                         <hr>
@@ -96,6 +102,6 @@
             </div>
         </div>
     </div>
-    
+    <script src="{{ url_for('static',filename='script/order.js') }}"></script>
 </main>
 {% endblock %}

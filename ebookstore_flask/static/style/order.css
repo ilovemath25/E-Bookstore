@@ -1,21 +1,17 @@
 .navbar-order-container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    max-width: 100%;
-    padding: 20px;
-    background-color: #fdf5d6;
+    gap : 25px;
 }
 .left{
     flex: 0 0 10%;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    margin-left: 60px;
 }
 .right {
     flex: 1;
     padding: 20px;
     border: 1px solid #ddd;
+    margin-right: 80px;
     border-radius: 8px;
     background-color: #f9f9f9;
     display: flex;
@@ -85,6 +81,8 @@
 .bar-row:hover{
     background-color: #afc7e5;
     transition: all 0.3s;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 .bar-row:active{
     background-color: #8ea4c0;
@@ -166,14 +164,14 @@ a{
     display: flex;
     align-items: center;
     margin-top: 10px;
-    margin-right: 500px;
     padding: 20px;
     gap: 10px;
 }
-.filter-choice{
+.selected-filter{
     margin-top: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 160px;
     height: 35px;
     background-color: #f9f9f9;
@@ -181,6 +179,26 @@ a{
     border: 1px solid #ddd;
     padding: 15px;
     font-size: 15px;
+    user-select: none;
+    cursor: pointer;
+}
+.option{
+    position: relative;
+    user-select: none;
+}
+.option-filter{
+    display: none;
+    user-select: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px 0;
+    width: 100%;
+}
+.option-filter p{
+    cursor: pointer;
+    padding: 5px;
 }
 .filter-input{
     margin-top: 10px;
