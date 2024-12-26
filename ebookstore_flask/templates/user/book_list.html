@@ -40,6 +40,21 @@
          {% endfor %}
       </div>
    </section>
+   {% elif is_search %}
+   <section class="section-container">
+      <div class="sub-title">
+         <hr><h2>Result of : {{ user_search }}</h2><hr>
+      </div>
+      <div class="book-container">
+         {% for book in book_list %}
+            <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
+               <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
+               <h3>{{ book.Name }}</h3>
+               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+            </a>
+         {% endfor %}
+      </div>
+   </section>
    {% endif %}
 </main>
 <script src="{{ url_for('static', filename='script/book_list.js') }}"></script>

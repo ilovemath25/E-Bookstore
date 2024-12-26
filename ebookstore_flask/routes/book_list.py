@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 book_list = Blueprint('book_list', __name__)
 
@@ -18,7 +18,6 @@ def category(category_name):
       category_name=category_name,
       book_list=book_list,
       is_category=True,
-      is_all_book_list=False
    )
 
 @book_list.route('/book')
@@ -39,6 +38,27 @@ def all_book():
    return render_template(
       "user/book_list.html",
       book_list=book_list,
-      is_category=False,
-      is_all_book=True
+      is_all_book=True,
+   )
+
+@book_list.route('/search/<string:user_search>')
+def search(user_search):
+   from ebookstore_flask.models.product import Product
+   from ebookstore_flask.utils.search import search_books
+   all_list = (
+      Product.query           # SELECT * FROM "Product"
+      .order_by(Product.Name) # ORDER BY "Name";
+      .all()
+   )
+   results = search_books(user_search, all_list)
+   book_list = []
+   for book in results:
+      if book.Product_pict.startswith('ebookstore_flask/'):book.Product_pict = book.Product_pict.replace('ebookstore_flask/', '')
+      if book.Product_pict.startswith('static/'):book.Product_pict = book.Product_pict.replace('static/', '')
+      book_list.append(book)
+   return render_template(
+      "user/book_list.html",
+      book_list=book_list,
+      user_search=user_search,
+      is_search=True
    )

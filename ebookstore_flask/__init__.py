@@ -6,6 +6,12 @@ def create_app(postgres):
    app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{postgres['user']}:{postgres['password']}@{postgres['host']}:{postgres['port']}/{postgres['db']}"
    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
    db.init_app(app)
+   @app.context_processor
+   def inject_global_data():
+      from ebookstore_flask.models.product import Product
+      search_dataset = Product.query.with_entities(Product.Name).all()
+      search_dataset = [data[0] for data in search_dataset]
+      return {"search_dataset": search_dataset}
    with app.app_context():
       from ebookstore_flask.routes.home import home
       from ebookstore_flask.routes.product import product
