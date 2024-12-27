@@ -38,3 +38,10 @@ def logout():
    response = redirect(url_for('home.index'))
    response.delete_cookie('session_id')
    return response
+
+@login.route('/register', methods=['POST', 'GET'])
+def register():
+   if check_session():
+      next_url = request.args.get('next')
+      return redirect(next_url if next_url else url_for('home.index'))
+   return render_template("/login/register.html",)
