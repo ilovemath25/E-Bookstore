@@ -2,7 +2,10 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 def combined_features(product):
-   return f"{product.Name} {product.Category or ''} {product.Desc or ''} {product.Author or ''}"
+   try: return f"{product.Name} {product.Category or ''} {product.Desc or ''} {product.Author or ''}"
+   except: pass
+   try: return f"{product.get('Name', '')} {product.get('Category', '')} {product.get('Desc', '')} {product.get('Author', '')}"
+   except: pass
 
 def search_books(query, products):
    product_features = [combined_features(product) for product in products]
