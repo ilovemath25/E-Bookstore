@@ -5,6 +5,7 @@
 
 .login-form-container {
     width: 100%;
+    height: fit-content;
     margin: 200px ;
     padding: 20px;
     text-align: center;
@@ -16,7 +17,7 @@
    
 }
 .login-form-container .fa-circle-user{
-    font-size: 200px;
+    font-size: 100px;
     margin: 20px;
 }
 .login-form-container .login-profile-logo{
@@ -26,6 +27,12 @@
     font-size: 30px;
     align-items: left;
     color:#d2bab0 ;
+}
+.form-group .email-logo{
+    margin-left: 5px;
+}
+.form-group .password-logo{
+    margin-left: 9px;
 }
 .form-group-container{
     padding: 10px;
@@ -90,7 +97,8 @@
 .right-sidebar-container-login-page {
     background-color: #47617f;
     width: 800px;
-    height: 100%;
+    min-height: 100%;
+    height: fit-content;
     color: white;
     display: flex;
     padding: 80px 0px;
@@ -99,25 +107,37 @@
 }
 
 .right-sidebar-container-login-page h2{
-    font-size: 100px;
+    font-size: 80px;
     padding: 20px;
     text-align: center;
 }
 .right-sidebar-container-login-page p{
-    font-size: 30px;
+    font-size: 20px;
     padding: 5px;
     text-align: left ;
     margin: 20px;
 }
-
+.right-sidebar-title{
+    display: flex;
+    justify-content: center;
+    margin: 0px 20px;
+}
+.right-sidebar-content{
+    display: flex;
+    justify-content: center;
+    margin: 0px 50px;
+}
+.register-button-container{
+    display: flex;
+    justify-content: center;
+}
 .register-button{
     background-color: white;
     color: black;
     border: none;
     border-radius: 5px;
-    height: 8%;
-    width: 90%;
-    margin: 30px 5%;
+    height: 50px;
+    width: 60%;
     padding: 10px;
     font-size: 25px;
     cursor: pointer;

@@ -20,17 +20,18 @@
                     <input class ="form-group-input" type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 <hr>
+                <!-- <div class="forgot-password-button">
                 <a href=""  class="forgot-password-button">Forgot Password?</a>
-              
+                </div> -->
                 <input type="submit" class="login-button" value="Login"></input>
             </form>
         </div>
     </div>
-
+    
     <div class="right-sidebar-container-login-page">
-        <h2>New Here ?</h2>
-        <p>Get Access to your order, shopping cart, and explore many books.</p>
-        <a href="{{ url_for('login.register') }}" class="register-button" >Register</a>
+        <div class="right-sidebar-title"><h2>New Here ?</h2></div>
+        <div class="right-sidebar-content"><p>Get Access to your order, shopping cart, and explore many books.</p></div>
+        <div class="register-button-container"><a href="{{ url_for('login.register') }}" class="register-button" >Register</a></div>
     </div>
 </div>
 {% endblock %}
