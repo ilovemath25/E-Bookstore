@@ -194,6 +194,11 @@ a{
     padding-bottom: 50px;
     background-color: #fdf5d6;
 }
+.btn-detail-button{
+    border: none;
+    color: #fff;
+    font-size: 14px;
+}
 .btn-detail-button:hover{
     background-color: #7aa6dc;
     transition: all 0.3s;

@@ -63,4 +63,37 @@ def index2(discount_id):
         details=details
     )
 
+@staff_discount_detail.route('/staff/discount_detail/<int:discount_id>/update', methods=['POST'])
+def update_discount(discount_id):
+    from ebookstore_flask import db
+    from ebookstore_flask.models.discount import Discount
+    from ebookstore_flask.models.special_event import Special_event
+    from ebookstore_flask.models.shipping import Shipping
+    from ebookstore_flask.models.seasoning import Seasoning
+
+    discount = Discount.query.filter_by(DID=discount_id).first()
+
+    discount.Disc_name = request.form.get('Disc_name')
+    discount.Disc_code = request.form.get('Disc_code')
+    discount.Policy_desc = request.form.get('Policy_desc')
+    discount.Disc_type = request.form.get('Disc_type')
+    discount.Disc_value = request.form.get('Disc_value')
+    discount.Max_usage = request.form.get('Max_usage')
+
+    if discount.Disc_type == 'Shipping':
+        details = Shipping.query.filter_by(DID=discount_id).first()
+        details.Min_purchase = request.form.get('Min_purchase')
+    elif discount.Disc_type == 'Seasoning':
+        details = Seasoning.query.filter_by(DID=discount_id).first()
+        details.Valid_to = request.form.get('Valid_to')
+        details.Valid_from = request.form.get('Valid_from')
+    elif discount.Disc_type == 'Special Event':
+        details = Special_event.query.filter_by(DID=discount_id).first()
+        details.Valid_to = request.form.get('Valid_to')
+        details.Valid_from = request.form.get('Valid_from')
+
+    db.session.commit()
+
+    return redirect(url_for('staff_discount_detail.index', discount_id=discount_id))
+
     

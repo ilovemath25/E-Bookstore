@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/discount_detail.css') }}">
 
 <main>
-        <form class="navbar-detail-container" method="POST" action="{{ url_for('staff_discount_detail.index2', discount_id=discount.DID) }}">
+        <form class="navbar-detail-container" method="POST" action="{{ url_for('staff_discount_detail.update_discount', discount_id=discount.DID) }}">
             <div class="left">
                 <div class="bar-title">Staff Menu</div>
                 <div class="bar-list">
@@ -38,19 +38,19 @@
                 <div class="detail-item">
                     <span class="label-box">Discount Name</span>
                     <span class="value-box">
-                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_name }}">
+                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_name }}" data-original="{{ discount.Disc_name }}">
                     </span>
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Discount Code</span>
                     <span class="value-box">
-                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_code }}">
+                        <input type="text" name="Disc_code" id="Disc_code" class="dtl-input" value="{{ discount.Disc_code }}" data-original="{{ discount.Disc_code }}">
                     </span>
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Policy Description</span>
                     <span class="value-box">
-                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Policy_desc }}">
+                        <input type="text" name="Policy_desc" id="Policy_desc" class="dtl-input" value="{{ discount.Policy_desc }}" data-original="{{ discount.Disc_desc }}">
                     </span>
                 </div>
                 <div class="detail-item">
@@ -70,7 +70,7 @@
                 <div class="detail-item">
                     <span class="label-box">Discount Value</span>
                     <span class="value-box">
-                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_value }}">
+                        <input type="text" name="Disc_value" id="Disc_value" class="dtl-input" value="{{ discount.Disc_value }}" data-original="{{ discount.Disc_value }}">
                     </span>
                 </div>
                 <div id="date-fields">
@@ -91,14 +91,14 @@
                     <div class="detail-item">
                         <span class="label-box">Minimum Purchase</span>
                         <span class="value-box">
-                            <input type="text" name="Min_purchase" id="Min_purchase" class="dtl-input" value="{{ details.Min_purchase }}">
+                            <input type="text" name="Min_purchase" id="Min_purchase" class="dtl-input" value="{{ details.Min_purchase if details.Min_purchase else ''}}" data-original="{{ details.Min_purchase if details.Min_purchase else ''}}">
                         </span>
                     </div>
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Max Usage</span>
                     <span class="value-box">
-                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Max_usage }}">
+                        <input type="text" name="Max_usage" id="Max_usage" class="dtl-input" value="{{ discount.Max_usage if discount.Max_usage else ''}}" data-original="{{ discount.Max_usage if discount.Max_usage else ''}}">
                     </span>
                 </div>
                 <hr>
@@ -108,11 +108,9 @@
                             <div class="btn-detail-word">Cancel</div>
                         </a>
                     </div>
-                    <div class="navbar-btn-detail">
-                        <a href="#" target="_self" class="btn-detail-button">
-                            <div class="btn-detail-word">Save</div>
-                        </a>
-                    </div>
+                    <form class="navbar-detail-container" method="POST" action="{{ url_for('staff_discount_detail.update_discount', discount_id=discount.DID) }}">
+                        <input type="submit" class="btn-detail-button" value="Save">
+                    </form>
                 </div>
             </div>
         </form>
