@@ -92,14 +92,6 @@ def filter_by(current_path):
                 filtered_items.append(item)
             
     print("filtered_items",filtered_items)
-    #   for key, values in data.items():
-    #      if filter_field == "order_id" and user_input.isdigit() and str(key) == user_input:
-    #         filtered_items.append(values)
-    #      elif filter_field == "product":
-    #         filtered_values = [val for val in values if user_input.lower() in val["Name"].lower()]
-    #         if filtered_values:
-    #               filtered_items.append(values)
-
     return render_template(
         "/staff/discount.html",
         all_items=filtered_items,

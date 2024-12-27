@@ -12,7 +12,7 @@ from itertools import groupby
 staff_order = Blueprint('staff_order', __name__)
 
 @staff_order.route('/staff/order')
-def index(order_type="main", returned="main"):
+def index(order_type="order", returned="main"):
    print("current_type1",order_type)
    def format_product_data(line, product, order):
       sum_price = line.Quantity * product.Price
@@ -29,7 +29,7 @@ def index(order_type="main", returned="main"):
 
    def filter_ordered_products(item_lines, order_type):
       status_map = {
-         "main": ["Processing","Closed","Shipping", "Received","Returned", "Cancel"],
+         "order": ["Processing","Closed","Shipping", "Received", "Returned", "Cancel"],
          "to_ship": ["Processing"],
          "finished": ["Closed", "Received"],
          "returned": ["Returned", "Cancel"]
