@@ -11,7 +11,7 @@
                 <!-- order -->
                 <div class="bar-row">
                     <div id="bar-order" class="bar-center">
-                        <a href="" target="_self">Order</a>
+                        <a href="/staff/order" target="_self">Order</a>
                     </div>
                 </div>
                 <hr>
@@ -23,16 +23,10 @@
                 <hr>
                 <div class="bar-row">
                     <div id="bar-discount" class="bar-center">
-                        <a href="" target="_self">Discount</a>
+                        <a href="/staff/discount" target="_self">Discount</a>
                     </div>
                 </div>
             </div>
-            <!-- <ul>
-                <li>Finance</li>
-                <li>Order</li>
-                <li>Product</li>
-                <li>Finance</li>
-            </ul> -->
         </div>
         <div class="right">
             <div class="order-list-subtabs">
@@ -42,7 +36,7 @@
                 <a href="/staff/order/returned" class="subtab {% if active_route == 'returned' %}active{% else %}inactive{% endif %}">Returned/Cancel</a>
             </div>
             <hr>
-            <form action={{ url_for('staff.filter_by', current_path=request.path.replace('/find', ''))}}" method="POST" class="filter">
+            <form action="{{ url_for('staff_order.filter_by', current_path=request.path.replace('/find', '')) }}" method="POST" class="filter">
                 <div class="search-filter">
                     <div class="selected-filter" name="filter_field">
                         <span id="selectedText">Order ID</span>
@@ -55,7 +49,6 @@
                         </div>
                     </div>
                 </div>
->>>>>>> 6a58a89d2afccc460e3a06388915bc1227388463
                 <input type="text" id="user_input" name="user_input" value="{{ user_input }}" class ="filter-input"></input>
                 <button class="apply-button" type="submit">Apply</button>
             </form>

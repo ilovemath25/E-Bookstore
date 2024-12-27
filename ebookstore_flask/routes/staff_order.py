@@ -9,10 +9,11 @@ from ebookstore_flask import db
 
 from itertools import groupby
 
-staff_order = Blueprint('staff', __name__)
+staff_order = Blueprint('staff_order', __name__)
 
 @staff_order.route('/staff/order')
-def index(order_type="", returned="main"):
+def index(order_type="main", returned="main"):
+   print("current_type1",order_type)
    def format_product_data(line, product, order):
       sum_price = line.Quantity * product.Price
       product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '').replace('static/', '')
@@ -28,7 +29,7 @@ def index(order_type="", returned="main"):
 
    def filter_ordered_products(item_lines, order_type):
       status_map = {
-         "order": ["Processing","Closed","Shipping", "Received","Returned", "Cancel"],
+         "main": ["Processing","Closed","Shipping", "Received","Returned", "Cancel"],
          "to_ship": ["Processing"],
          "finished": ["Closed", "Received"],
          "returned": ["Returned", "Cancel"]
@@ -59,8 +60,9 @@ def index(order_type="", returned="main"):
       return grouped_data
 
    all_items = [list(values) for values in grouped_data.values()]
-   active_route = order_type or "main"
-   return render_template(f"/staff/order.html", all_items=all_items, active_route=active_route)
+   active_route = order_type
+   print("current_type",active_route)
+   return render_template("/staff/order.html", all_items=all_items, active_route=active_route)
 
 @staff_order.route('/staff/order/to_ship')
 def shipped():
@@ -83,7 +85,7 @@ def filter_by(current_path):
       current_type = type_info.pop()
 
       data = index(order_type=current_type, returned="find")
-
+      print("current_type",current_type)
       filtered_items = []
       for key, values in data.items():
          if filter_field == "order_id" and user_input.isdigit() and str(key) == user_input:
