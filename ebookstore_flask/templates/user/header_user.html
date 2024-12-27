@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="navbar-icons">
-                {% if user is not none and not user.C_flag %}
+                {% if role is not none and role == "Staff" %}
                     <a href="{{ url_for('staff_centre.index') }}" class="icon-name">
                         <i class="fa-solid fa-user-tie"></i><p>Staff</p>
                     </a>

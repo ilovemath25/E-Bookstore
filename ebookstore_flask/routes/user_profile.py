@@ -5,7 +5,9 @@ user_profile = Blueprint('user_profile', __name__)
 
 @user_profile.route('/user/profile')
 def index():
-   check_session()
+   if check_session():
+      next_url = request.args.get('next')
+      return redirect(next_url if next_url else url_for('home.index'))
    from ebookstore_flask.models.member import Member
    
    session_id = request.cookies.get("session_id")
@@ -24,7 +26,9 @@ def index():
 
 @user_profile.route('/user/profile/edit')
 def edit():
-   check_session()
+   if check_session():
+      next_url = request.args.get('next')
+      return redirect(next_url if next_url else url_for('home.index'))
    from ebookstore_flask.models.member import Member
    session_id = request.cookies.get("session_id")
    sessions = load_sessions()
@@ -42,7 +46,9 @@ def edit():
 
 @user_profile.route('/user/profile/credit_card')
 def credit_card():
-   check_session()
+   if check_session():
+      next_url = request.args.get('next')
+      return redirect(next_url if next_url else url_for('home.index'))
    from ebookstore_flask.models.member import Member
    from ebookstore_flask.models.credit_card import Credit_card
    from ebookstore_flask.utils.credit_card import bin_number_checker
