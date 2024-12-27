@@ -53,30 +53,54 @@
                         <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Policy_desc }}">
                     </span>
                 </div>
-                <div class="detail-item">
+                <!-- <div class="detail-item">
                     <span class="label-box">Discount Type</span>
                     <span class="value-box">{{ discount.Disc_type }}</span>
-                </div>
+                </div> -->
+                <div class="detail-item">
+                    <span class="label-box">Discount Type</span>
+                    <div class="radio-group">
+                        {% for type in ['Shipping', 'Seasoning', 'Special Event'] %}
+                            <label class="radio-option">
+                                <input type="radio" name="Disc_type" value="{{ type }}" 
+                                    {% if type == discount.Disc_type %}checked{% endif %}
+                                    onchange="toggleFields(this.value)">
+                                <span class="radio-custom"></span>
+                                {{ type }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>               
                 <div class="detail-item">
                     <span class="label-box">Discount Value</span>
                     <span class="value-box">
                         <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_value }}">
                     </span>
                 </div>
-                {% if discount.Disc_type != 'Shipping' %}
-                <div class="detail-item">
-                    <span class="label-box">Valid From</span>
-                    <span class="value-box">
-                        <input type="date" name="Valid_from" id="Valid_from" class="dtl-input birth" value="{{ details.Valid_from.strftime('%Y-%m-%d') if details.Valid_from else '' }}">
-                    </span>
+                <!-- {% if discount.Disc_type != 'Shipping' %} -->
+                <div id="date-fields" style="display: none;">
+                    <div class="detail-item">
+                        <span class="label-box">Valid To</span>
+                        <span class="value-box">
+                            <input type="date" name="Valid_to" id="Valid_to" class="dtl-input birth" value="{{ details.Valid_to.strftime('%Y-%m-%d') if details.Valid_to else '' }}">
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label-box">Valid From</span>
+                        <span class="value-box">
+                            <input type="date" name="Valid_from" id="Valid_from" class="dtl-input birth" value="{{ details.Valid_from.strftime('%Y-%m-%d') if details.Valid_from else '' }}">
+                        </span>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <span class="label-box">Valid To</span>
-                    <span class="value-box">
-                        <input type="date" name="Valid_to" id="Valid_to" class="dtl-input birth" value="{{ details.Valid_to.strftime('%Y-%m-%d') if details.Valid_to else '' }}">
-                    </span>
+                <!-- {% endif %} -->
+                <div id="shipping-fields" style="display: none;">
+                    <div class="detail-item">
+                        <span class="label-box">Minimum Purchase</span>
+                        <span class="value-box">
+                            <input type="text" name="Min_purchase" id="Min_purchase" class="dtl-input" value="{{ details.Min_purchase }}">
+                        </span>
+                    </div>
                 </div>
-                {% endif %}
                 <div class="detail-item">
                     <span class="label-box">Max Usage</span>
                     <span class="value-box">
@@ -98,7 +122,7 @@
                 </div>
             </div>
         </form>
-    
+        <script src="{{ url_for('static',filename='script/discount.js') }}"></script>
 
 </main>
 {% endblock %}

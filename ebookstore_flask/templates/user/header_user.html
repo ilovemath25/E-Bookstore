@@ -3,16 +3,18 @@
     <nav class="navbar-container">
         <section class="navbar-top">
             <a class="navbar-logo" href="/">
-                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Bookstore Logo" class="logo">
+                <img src="https://lh3.googleusercontent.com/d/1MAsxp8dde5_6AffSBvoZIR9wIylHzGos" alt="Bookstore Logo" class="logo">
             </a>
             <div class="icon-name category-mobile" onclick="display_left_menu()">
                 <i class="fa-solid fa-bars"></i>
             </div>
             <div class="search-and-navbar">
-                <form class="search-form">
-                    <input type="text" placeholder="Search" class="search-input">
-                    <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
+                <div class="search-form">
+                    <input type="text" placeholder="Search" name="user_search" id="user_search" class="search-input">
+                    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <ul class="suggestions"></ul>
+                </div>
+                <script> dataset = {{ search_dataset|tojson }} </script>
                 <div class="navbar-and-language">
                     <div class="navbar-links">
                         <a href="/" class="icon-name">

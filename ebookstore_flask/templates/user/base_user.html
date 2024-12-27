@@ -11,15 +11,12 @@
 
 <body>
    
-   <div class="show-up-animation"></div>
    {% include "/user/header_user.html" %}
 
    {% block content %}
    {% endblock %}
 
    {% include "/user/footer.html" %}
-   <div class="fill-up-animation"></div>
-   <script src="{{ url_for('static', filename='script/animation.js') }}"></script>
 </body>
 
 </html>

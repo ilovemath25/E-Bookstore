@@ -39,6 +39,7 @@ header {
 }
 .search-form {
    display: flex;
+   position: relative;
    width: 100%;
    background-color: #fff;
    border-radius: 7px;
@@ -57,6 +58,29 @@ header {
    border-radius: 5px;
    margin: 3px;
    cursor: pointer;
+}
+.suggestions {
+   position: absolute;
+   display: none;
+   top: 100%;
+   left: 0;
+   width: 100%;
+   background-color: white;
+   color: #000;
+   border: 1px solid #ccc;
+   max-height: 300px;
+   list-style: none;
+   overflow-y: auto;
+   margin: 0;
+   padding: 0;
+   z-index: 1000;
+}
+.suggestions li {
+   padding: 8px;
+   cursor: pointer;
+}
+.suggestions li:hover {
+   background-color: #f0f0f0;
 }
 .icon-name{
    list-style-type: none;

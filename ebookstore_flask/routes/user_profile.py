@@ -19,7 +19,10 @@ def index():
       .filter(Member.Email == email)   # WHERE "Email" = <email>;
       .first()
    )
-   return render_template('user/user_profile.html', user=user)
+   return render_template(
+      'user/user_profile.html',
+      user=user
+   )
 
 @user_profile.route('/user/profile/edit')
 def edit():
@@ -36,7 +39,10 @@ def edit():
       .filter(Member.Email == email)   # WHERE "Email" = <email>;
       .first()
    )
-   return render_template('user/user_profile_edit.html', user=user)
+   return render_template(
+      'user/user_profile_edit.html',
+      user=user
+   )
 
 @user_profile.route('/user/logout', methods=['POST', 'GET'])
 def logout():

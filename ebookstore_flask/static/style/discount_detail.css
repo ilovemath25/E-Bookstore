@@ -229,3 +229,42 @@ a{
     background-color: #cdcdcd;
     margin-right: 0px;
 }
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+  
+.radio-option {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+.radio-option input[type="radio"] {
+    display: none; 
+}
+  
+.radio-custom {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #4a90e2;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+}
+  
+.radio-option input[type="radio"]:checked + .radio-custom::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: #4a90e2;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
