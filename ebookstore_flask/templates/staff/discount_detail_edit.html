@@ -53,10 +53,6 @@
                         <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Policy_desc }}">
                     </span>
                 </div>
-                <!-- <div class="detail-item">
-                    <span class="label-box">Discount Type</span>
-                    <span class="value-box">{{ discount.Disc_type }}</span>
-                </div> -->
                 <div class="detail-item">
                     <span class="label-box">Discount Type</span>
                     <div class="radio-group">
@@ -77,8 +73,7 @@
                         <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_value }}">
                     </span>
                 </div>
-                <!-- {% if discount.Disc_type != 'Shipping' %} -->
-                <div id="date-fields" style="display: none;">
+                <div id="date-fields">
                     <div class="detail-item">
                         <span class="label-box">Valid To</span>
                         <span class="value-box">
@@ -92,8 +87,7 @@
                         </span>
                     </div>
                 </div>
-                <!-- {% endif %} -->
-                <div id="shipping-fields" style="display: none;">
+                <div id="shipping-fields">
                     <div class="detail-item">
                         <span class="label-box">Minimum Purchase</span>
                         <span class="value-box">
