@@ -178,3 +178,59 @@ form .profile-container .profile-value{
 .logout-hidden{
    display: none;
 }
+.card-container{
+   display: flex;
+   justify-content: space-between;
+   border: 2px solid #d9d9d9;
+   border-radius: 5px;
+   padding: 10px 20px;
+}
+.card-image{
+   min-width: 120px;
+   min-height: 70px;
+   margin-right: 10px;
+   padding: 5px 10px;
+   background-color: #94c8ed;
+   border: 2px solid #b4b4b4;
+   border-radius: 3px;
+}
+.card-image .currency{
+   font-size: 20px;
+   display: flex;
+   justify-content: right;
+}
+.card-image .chip{
+   display: flex;
+   justify-content: left;
+   background-color: #dbbf1e;
+   color: #dbbf1e;
+   border: 2px solid #846358;
+   border-radius: 3px;
+   width: 25px;
+   font-size: 10px;
+   margin: 0px 2px;
+}
+.card-image .lines{
+   display: flex;
+   justify-content: space-between;
+   margin: 3px 0px;
+}
+.card-image .lines .line{
+   margin: 2px;
+   width: 100%;
+   font-size: 5px;
+   background-color: #fff;
+}
+.card-center{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   margin-right: 10px;
+   font-size: 18px;
+}
+.card-right{
+   flex-grow: 2;
+   display: flex;
+   justify-content: right;
+   align-items: center;
+}

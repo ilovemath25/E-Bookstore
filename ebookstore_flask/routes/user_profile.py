@@ -5,7 +5,7 @@ user_profile = Blueprint('user_profile', __name__)
 
 @user_profile.route('/user/profile')
 def index():
-   if check_session():
+   if not check_session():
       next_url = request.args.get('next')
       return redirect(next_url if next_url else url_for('home.index'))
    from ebookstore_flask.models.member import Member
@@ -26,7 +26,7 @@ def index():
 
 @user_profile.route('/user/profile/edit')
 def edit():
-   if check_session():
+   if not check_session():
       next_url = request.args.get('next')
       return redirect(next_url if next_url else url_for('home.index'))
    from ebookstore_flask.models.member import Member
@@ -46,7 +46,7 @@ def edit():
 
 @user_profile.route('/user/profile/credit_card')
 def credit_card():
-   if check_session():
+   if not check_session():
       next_url = request.args.get('next')
       return redirect(next_url if next_url else url_for('home.index'))
    from ebookstore_flask.models.member import Member

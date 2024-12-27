@@ -6,17 +6,31 @@
    {% include "/user/user_profile_menu.html" %}
    <div class="section-container">
       <div class="sub-title">
-         <hr><h2>My Credit Card</h2><hr>
+         <hr><h2>My Card</h2><hr>
       </div>
-      <table class="profile-container">
+      <section class="profile-container">
          {% for card in credit_cards %}
-         <tr class="card-container">
-            <td class="profile-value">{{ card.Number }}</td>
-            <td class="profile-value">{{ card.Issuer }}</td>
-            <td class="profile-value">{{ card.Brand }}</td>
-         </tr>
+         <div class="card-container">
+            <div class="card-image">
+               <div class="currency">$</div>
+               <div class="chip">_</div>
+               <div class="lines">
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+               </div>
+            </div>
+            <div class="card-center">
+               <p>{{ card.Issuer }}</p>
+               <p class="card-number">{{ card.Number }}</p>
+            </div>
+            <div class="card-right">
+               <p class="card-type">{{ card.Brand }}</p>
+            </div>
+         </div>
          {% endfor %}
-      </table>
+      </section>
       <a class="edit-profile" href="{{ url_for('user_profile.edit') }}">Edit</a>
    </div>
 </main>

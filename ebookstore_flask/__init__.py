@@ -1,10 +1,13 @@
 from flask import Flask
+import pandas as pd, os
 from ebookstore_flask.models import db
 def create_app(postgres):
    app = Flask(__name__)
    app.config['SECRET_KEY'] = 'YourSecretKey'
    app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{postgres['user']}:{postgres['password']}@{postgres['host']}:{postgres['port']}/{postgres['db']}"
    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+   bin_data = pd.read_csv(os.path.join(os.getcwd(), "binlist.csv"))
+   app.config['BIN_DATA'] = bin_data
    db.init_app(app)
    @app.context_processor
    def inject_global_data():
