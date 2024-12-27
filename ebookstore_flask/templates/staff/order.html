@@ -30,7 +30,7 @@
                 <a href="/staff/order/returned" class="subtab {% if active_route == 'returned' %}active{% else %}inactive{% endif %}">Returned/Cancel</a>
             </div>
             <hr>
-            <form action="{{ url_for('staff_order.filter_by', current_path=request.path.replace('/find', '')) }}" method="POST" class="filter">
+            <form action="{{ url_for('staff_order.filter_by', current_path=request.path.replace('/findOrder', '')) }}" method="POST" class="filter">
                 <div class="search-filter">
                     <div class="selected-filter" name="filter_field">
                         <span id="selectedText">Order ID</span>

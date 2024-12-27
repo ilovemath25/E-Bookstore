@@ -30,31 +30,32 @@
         </div>
         <div class="right">
             <div class="list-subtabs">
-                <a href="/staff/discount" class="subtab {% if active_route == 'main' %}active{% else %}inactive{% endif %}">All</a>
+                <a href="/staff/discount" class="subtab {% if active_route == 'discount' %}active{% else %}inactive{% endif %}">All</a>
                 <a href="/staff/discount/shipping" class="subtab {% if active_route == 'shipping' %}active{% else %}inactive{% endif %}">Shipping</a>
                 <a href="/staff/discount/seasoning" class="subtab {% if active_route == 'seasoning' %}active{% else %}inactive{% endif %}">Seasoning</a>
                 <a href="/staff/discount/specialEvent" class="subtab {% if active_route == 'specialEvent' %}active{% else %}inactive{% endif %}">Special Event</a>
             </div>
             <hr>
-            <form action="{{ url_for('staff_discount.filter_by', current_path=request.path.replace('/find', ''))}}" method="POST" class="filter">
+            <form action="{{ url_for('staff_discount.filter_by', current_path=request.path.replace('/findDiscount', ''))}}" method="POST" class="filter">
                 <div class="search-filter">
                     <div class="selected-filter" name="filter_field">
-                        <span id="selectedText">Order ID</span>
+                        <span id="selectedText">Discount ID</span>
                         <i class="fa fa-caret-down"></i>
                     </div>
                     <div class="option" id="dropdown">
-                        <!-- <div class="option-filter" name="filter_field" style="display: none;">
-                            <p value="order_id" onclick="selectOption('Order ID')" {% if filter_field == 'order_id' %}selected{% endif %}>Order ID</p>
-                            <p value="product" onclick="selectOption('Product')" {% if filter_field == 'product' %}selected{% endif %}>Product</p>
-                        </div> -->
+                        <div class="option-filter" name="filter_field" style="display: none;">
+                            <p value="discount_id" onclick="selectOption('Discount ID')" {% if filter_field == 'discount_id' %}selected{% endif %}>Discount ID</p>
+                            <p value="discount_code" onclick="selectOption('Discount Code')" {% if filter_field == 'discount_code' %}selected{% endif %}>Discount Code</p>
+                        </div>
                     </div>
                 </div>
+                <input type="hidden" id="filter_field" name="filter_field" value="discount_id">
                 <input type="text" id="user_input" name="user_input" value="{{ user_input }}" class ="filter-input"></input>
                 <button class="apply-button" type="submit">Apply</button>
             </form>
             <div class="header-box">
                     <div class="discount-header">Discount ID</div>
-                    <div class="discount-header">Discount Name</div>
+                    <div class="discount-header">Discount Code</div>
                     <div class="discount-header">Discount Value</div>
                     <div class="discount-header">Discount Type</div>
             </div>
@@ -87,6 +88,6 @@
             </div>
         </div>
     </div>
-    <!-- <script src="{{ url_for('static',filename='script/order.js') }}"></script> -->
+    <script src="{{ url_for('static',filename='script/discount_list.js') }}"></script>
 </main>
 {% endblock %}

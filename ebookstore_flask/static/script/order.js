@@ -13,6 +13,9 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
        localStorage.setItem("option_filter", selectedText.textContent);
        document.querySelector('.selected-filter').style.color = "black";
        optionDiv.style.display = 'none';
+       if (selectedLang === 'Discount ID'|| selectedLang === 'Discount Name'){
+         selectedLang = 'Order ID'
+      }
        document.getElementById('filter_field').value = selectedLang === 'Product' ? 'product' : 'order_id';
     });
  });
@@ -21,6 +24,9 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
     var savedOption = localStorage.getItem("option_filter");
     if (savedOption) {
         selectedText.textContent = savedOption;
+        if (savedOption === 'Discount ID'|| savedOption === 'Discount Name'){
+            savedOption = 'Order ID'
+         }
         document.getElementById('filter_field').value = savedOption === 'Product' ? 'product' : 'order_id';
     }
     // if (selectedText.innerHTML == "Order ID") {
@@ -34,5 +40,8 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
 
  function selectOption(optionText) {
     const selectedText = document.getElementById('selectedText');
+    if (optionText === 'Discount ID'|| optionText === 'Discount Name'){
+      optionText = 'Order ID'
+  }
     selectedText.textContent = optionText;
 }

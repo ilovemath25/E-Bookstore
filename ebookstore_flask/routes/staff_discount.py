@@ -16,7 +16,7 @@ def index(type="", returned="main"):
         return {
         "DID": discount.DID,
         "Disc_code": discount.Disc_code,
-        "Disc_value": int(discount.Disc_value * 100),
+        "Disc_value": 100 - int(discount.Disc_value * 100),
         "Disc_type": discount.Disc_type
     }
 
@@ -46,11 +46,11 @@ def index(type="", returned="main"):
 
     print("discount_list",discount_list)
 
-    # if returned == "find":
-    #     return grouped_data
+    if returned == "find":
+        return discount_list
 
     # all_items = [list(values) for values in grouped_data.values()]
-    active_route = type or "main"
+    active_route = type or "discount"
     return render_template(f"/staff/discount.html", all_items=discount_list, active_route=active_route)
 
 @staff_discount.route('/staff/discount/shipping')
@@ -65,17 +65,33 @@ def finished():
 def returned():
    return index("specialEvent")
 
-@staff_discount.route('/<path:current_path>/find', methods=['POST'])
+@staff_discount.route('/<path:current_path>/findDiscount', methods=['POST'])
 def filter_by(current_path):
-      user_input = request.form.get('user_input', "").strip() 
-      filter_field = request.form.get('filter_field', "order_id")
+    user_input = request.form.get('user_input', "").strip() 
+    filter_field = request.form.get('filter_field', "discount_id")
 
-      type_info = current_path.split('/')
-      current_type = type_info.pop()
+    type_info = current_path.split('/')
+    current_type = type_info.pop()
 
-      data = index(type=current_type, returned="find")
+    data = index(type=current_type, returned="find")
 
-    #   filtered_items = []
+    filtered_items = []
+    
+    for item in data:
+        print("DID",item['DID'])
+        print("filter_field",filter_field)
+        print("user_input",user_input)
+        print(filter_field == "discountID")
+        print(user_input.isdigit())
+        print(item['DID'] == user_input)
+        if filter_field == "discountID" and user_input.isdigit() and item['DID'] == int(user_input):
+            print("msk sini")
+            filtered_items.append(item)
+        elif filter_field == "discountCode":
+            if user_input.lower() in item["Disc_code"].lower():
+                filtered_items.append(item)
+            
+    print("filtered_items",filtered_items)
     #   for key, values in data.items():
     #      if filter_field == "order_id" and user_input.isdigit() and str(key) == user_input:
     #         filtered_items.append(values)
@@ -84,10 +100,10 @@ def filter_by(current_path):
     #         if filtered_values:
     #               filtered_items.append(values)
 
-      return render_template(
-         "/staff/discount.html",
-         all_items=data,
-         user_input=user_input,
-         filter_field=filter_field,
-         active_route=current_type
-        )
+    return render_template(
+        "/staff/discount.html",
+        all_items=filtered_items,
+        user_input=user_input,
+        filter_field=filter_field,
+        active_route=current_type
+    )

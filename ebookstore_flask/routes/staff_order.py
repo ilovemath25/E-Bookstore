@@ -76,7 +76,7 @@ def finished():
 def returned():
    return index("returned")
 
-@staff_order.route('/<path:current_path>/find', methods=['POST'])
+@staff_order.route('/<path:current_path>/findOrder', methods=['POST'])
 def filter_by(current_path):
       user_input = request.form.get('user_input', "").strip() 
       filter_field = request.form.get('filter_field', "order_id")
@@ -94,11 +94,12 @@ def filter_by(current_path):
             filtered_values = [val for val in values if user_input.lower() in val["Name"].lower()]
             if filtered_values:
                   filtered_items.append(values)
-
+      
       return render_template(
          "/staff/order.html",
          all_items=filtered_items,
          user_input=user_input,
          filter_field=filter_field,
          active_route=current_type
+
 )

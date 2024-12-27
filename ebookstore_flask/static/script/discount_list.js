@@ -1,19 +1,3 @@
-function toggleFields(selectedType) {
-    const dateFields = document.getElementById('date-fields');
-    const shippingFields = document.getElementById('shipping-fields');
-
-    if (selectedType === 'Shipping') {
-        dateFields.style.display = 'none';
-        shippingFields.style.display = 'block';
-    } else {
-        dateFields.style.display = 'block';
-        shippingFields.style.display = 'none';
-    }
-}
-document.addEventListener('DOMContentLoaded', function () {
-    const selectedType = "{{ discount.Disc_type }}";
-    toggleFields(selectedType);
-});
 document.querySelector('.selected-filter').addEventListener('click', function(){
     var optionDiv = document.querySelector('.option-filter');
     if(optionDiv.style.display == 'none') optionDiv.style.display = 'block';
@@ -26,28 +10,29 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
        var selectedText = document.getElementById('selectedText');
         //    document.querySelector('.selected-filter').textContent = selectedLang;
 
-        if (selectedLang === 'Order ID'|| selectedLang === 'Product'){
-            selectedLang = 'Discount ID'
+        if (selectedText.textContent === 'Order ID'|| selectedText.textContent === 'Product'){
+            console.log('msk order selecteedlang')
+            selectedText.textContent = 'Discount ID'
         }
 
        selectedText.textContent = selectedLang;
+       console.log(selectedLang);
        localStorage.setItem("option_filter", selectedText.textContent);
        document.querySelector('.selected-filter').style.color = "black";
        optionDiv.style.display = 'none';
        
-       document.getElementById('filter_field').value = selectedLang === 'Discount ID' ? 'discountID' : 'discountName';
+       document.getElementById('filter_field').value = selectedLang === 'Discount ID' ? 'discountID' : 'discountCode';
     });
  });
  document.addEventListener("DOMContentLoaded", () => {
     var selectedText = document.getElementById('selectedText');
     var savedOption = localStorage.getItem("option_filter");
-    console.log("savedOption", savedOption);
     if (savedOption) {
-        selectedText.textContent = savedOption;
         if (savedOption === 'Order ID'|| savedOption === 'Product'){
             savedOption = 'Discount ID'
         }
-        document.getElementById('filter_field').value = savedOption === 'Discount ID' ? 'discountID' : 'discountName';
+        selectedText.textContent = savedOption;
+        document.getElementById('filter_field').value = savedOption === 'Discount ID' ? 'discountID' : 'discountCode';
     }
     // if (selectedText.innerHTML == "Order ID") {
     //     selectedText.innerHTML = localStorage.getItem("option_filter");
