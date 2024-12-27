@@ -56,14 +56,14 @@ def credit_card():
       .filter(Member.Email == email)                      # WHERE "Member"."Email" = <email>;
       .all()
    )
-   print(cards)
    credit_cards = [card[0] for card in cards]
    for i in range(len(credit_cards)):
-      bin_info = bin_number_checker(credit_cards[i].Number[:6])
+      bin_info = bin_number_checker(credit_cards[i][:6])
+      print(credit_cards[i][:6], bin_info)
       credit_cards[i] = {
          'Number': credit_cards[i],
-         'Card_type': bin_info.get('Card_type', 'Unknown'),
-         'Bank': bin_info.get('Bank', 'Unknown')
+         'Brand': bin_info.get('Brand', 'Unknown'),
+         'Issuer': bin_info.get('Issuer', 'Unknown')
       }
    return render_template('user/user_profile_credit_card.html', credit_cards=credit_cards)
 
