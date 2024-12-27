@@ -56,14 +56,20 @@
                     <span class="value-box">{{ discount.Disc_value }}</span>
                 </div>
                 {% if discount.Disc_type != 'Shipping' %}
-                <div class="detail-item">
-                    <span class="label-box">Valid From</span>
-                    <span class="value-box">{{ details.Valid_from }}</span>
-                </div>
-                <div class="detail-item">
-                    <span class="label-box">Valid To</span>
-                    <span class="value-box">{{ details.Valid_to }}</span>
-                </div>
+                    <div class="detail-item">
+                        <span class="label-box">Valid To</span>
+                        <span class="value-box">{{ details.Valid_to }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label-box">Valid From</span>
+                        <span class="value-box">{{ details.Valid_from }}</span>
+                    </div>
+                {% endif %}
+                {% if discount.Disc_type == 'Shipping' %}
+                    <div class="detail-item">
+                        <span class="label-box">Minimum Purchase</span>
+                        <span class="value-box">{{ details.Min_purchase }}</span>
+                    </div>
                 {% endif %}
                 <div class="detail-item">
                     <span class="label-box">Max Usage</span>

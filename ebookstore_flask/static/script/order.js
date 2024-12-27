@@ -8,11 +8,24 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
        var selectedLang = this.textContent;
        var optionDiv = document.querySelector('.option-filter');
        var selectedText = document.getElementById('selectedText');
-    //    document.querySelector('.selected-filter').textContent = selectedLang;
+        //    document.querySelector('.selected-filter').textContent = selectedLang;
        selectedText.textContent = selectedLang;
+       localStorage.setItem("option_filter", selectedText.textContent);
        document.querySelector('.selected-filter').style.color = "black";
        optionDiv.style.display = 'none';
+       document.getElementById('filter_field').value = selectedLang === 'Product' ? 'product' : 'order_id';
     });
+ });
+ document.addEventListener("DOMContentLoaded", () => {
+    var selectedText = document.getElementById('selectedText');
+    var savedOption = localStorage.getItem("option_filter");
+    if (savedOption) {
+        selectedText.textContent = savedOption;
+        document.getElementById('filter_field').value = savedOption === 'Product' ? 'product' : 'order_id';
+    }
+    // if (selectedText.innerHTML == "Order ID") {
+    //     selectedText.innerHTML = localStorage.getItem("option_filter");
+    // }
  });
  function toggleDropdown() {
     const dropdown = document.getElementById('dropdown');
