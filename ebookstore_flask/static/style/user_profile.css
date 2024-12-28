@@ -277,6 +277,14 @@ form .profile-container .profile-value{
    text-decoration: none;
    font-size: 14px;
 }
+
+
+.change-password-error-message{
+   color: red;
+   text-align: center;
+   margin-bottom: 15px;
+}
+
 .card-right .fa-circle-xmark{
    cursor: pointer;
    color: #ff0000;

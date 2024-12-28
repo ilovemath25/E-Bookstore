@@ -111,41 +111,39 @@ def credit_card_edit():
       role=session_data[1] if session_data else None
    )
 
-@user_profile.route('/user/profile/change_password')
+@user_profile.route('/user/profile/change_password', methods=['GET', 'POST'])
 def change_password():
-   if not check_session():
-      return redirect(url_for('login.index'))
-   from ebookstore_flask.models.member import Member
-   from . import db
-   
-   session_id = request.cookies.get("session_id")
-   sessions = load_sessions()
-   email = sessions.get(session_id, [None])[0]
-   if not email: return redirect(url_for('login.index'))
-   user = (
-      Member.query                     # SELECT * FROM "Member"
-      .filter(Member.Email == email)   # WHERE "Email" = <email>;
-      .first()
-   )
-   if request.method == 'POST':
-      from werkzeug.security import check_password_hash, generate_password_hash
-      from ebookstore_flask.models.member import Member
+    if not check_session():
+        return redirect(url_for('login.index'))
 
-      user = Member.query.filter_by(Email=email).first()
-      old_password = request.form['old_password']
-      new_password = request.form['new_password']
-      confirm_password = request.form['confirm_password']
+    # Get user session
+    session_id = request.cookies.get("session_id")
+    sessions = load_sessions()
+    email = sessions.get(session_id, [None])[0]
+    if not email:
+        return redirect(url_for('login.index'))
 
-      if not check_password_hash(user.Password, old_password):
-         return "Old password is incorrect.", 400
+    # Fetch user from the database
+    from ebookstore_flask.models.member import Member
+    from ebookstore_flask.models import db
 
-      if new_password != confirm_password:
-         return "Passwords do not match.", 400
+    user = Member.query.filter_by(Email=email).first()
+    if not user:
+        return "User not found.", 404
 
-      user.Password = generate_password_hash(new_password, method='sha256')
-      db.session.commit()
-      return redirect(url_for('user_profile.index'))
-   return render_template('user/user_profile_change_password.html')
+    if request.method == 'POST':
+        old_password = request.form.get('currentPassword')
+        new_password = request.form.get('newPassword')
+        confirm_password = request.form.get('confirmNewPassword')
+        print(user.Password , old_password)
+
+        
+        user.Password = new_password
+        db.session.commit()
+
+        return redirect(url_for('user_profile.index'))
+
+    return render_template('user/user_profile_change_password.html', old_password=user.Password)
 
 @user_profile.route('/user/profile/order')
 def order():
