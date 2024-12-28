@@ -1,7 +1,7 @@
 {% extends '/user/base_user.html' %}
 
 {% block content %}
-<main>
+<main class="user_profile_credit_card_page">
    {% include "/user/user_profile_menu.html" %}
    <div class="section-container">
       <div class="sub-title">
@@ -31,28 +31,41 @@
          </div>
          {% endfor %}
       </section>
-      <input type="submit" class="edit-profile" href="{{ url_for('user_profile.credit_card') }}" value="Save"></input>
-      <a href="{{ url_for('user_profile.credit_card') }}" class="cancel-edit">Cancel</a>
       <button class="add-card" id="add-card">Add new card</button>
+      <a href="{{ url_for('user_profile.credit_card') }}" class="cancel-edit">Cancel</a>
    </div>
-   <form class="credit-card-modal-container credit-card-hidden" method="POST" action="{{ url_for('user_profile.credit_card_edit') }}">
+   <div class="credit-card-modal-container credit-card-hidden">
       <div class="modal-content">
          <div class="sub-title">
-            <hr><h2>Edit Credit Card</h2><hr>
+            <hr><h2>New Card</h2><hr>
          </div>
+         <p class="error-message"></p>
          <div class="form-group">
             <label for="card-number">Card Number</label>
             <input type="text" name="Number" id="card-number" class="profile-input" required>
-            <div>
-               <label for="card-expiry">Expiry Date</label>
-               <input type="text" name="Expiry" id="card-expiry" class="profile-input" required>
-               <label for="card-cvc">CVC</label>
-               <input type="text" name="CVC" id="card-cvc" class="profile-input" required>
+            <div class="form-group-inline">
+               <div>
+                  <label for="card-expiry">Expiry Date (MM/YY)</label>
+                  <input type="text" name="Expiry" id="card-expiry" class="profile-input" maxlength="5" required>
+               </div>
+               <div>
+                  <label for="card-cvc">CVV</label>
+                  <input type="text" name="CVV" id="card-cvv" class="profile-input" required>
+               </div>
             </div>
          </div>
          <div class="modal-button">
-            <input type="submit" id="confirm-edit" class="modal-btn" value="Save"></input>
-            <div id="cancel-edit" class="modal-btn">Cancel</div>
+            <div id="confirm-edit" class="modal-btn">Save</div>
+            <div id="cancel-edit" class="modal-btn cancel-edit">Cancel</div>
+         </div>
+      </div>
+   </div>
+   <form class="delete-card-container credit-card-hidden" method="POST" action="{{ url_for('user_profile.credit_card') }}">
+      <div class="modal-content">
+         <p>Are you sure you want to delete this card?</p>
+         <div class="modal-button">
+            <input type="submit" id="confirm-delete" class="modal-btn" value="Yes"></input>
+            <div id="cancel-delete" class="modal-btn cancel-edit">Cancel</div>
          </div>
       </div>
    </form>
