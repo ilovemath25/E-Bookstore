@@ -1,15 +1,15 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
+from ebookstore_flask.models.discount import Discount
+from ebookstore_flask.models.special_event import Special_event
+from ebookstore_flask.models.shipping import Shipping
+from ebookstore_flask.models.seasoning import Seasoning
+from ebookstore_flask.models import db
 
 staff_discount_detail = Blueprint('staff_discount_detail', __name__)
 
 @staff_discount_detail.route('/staff/discount_detail/<int:discount_id>')
 def index(discount_id):
-    from ebookstore_flask.models.discount import Discount
-    from ebookstore_flask.models.special_event import Special_event
-    from ebookstore_flask.models.shipping import Shipping
-    from ebookstore_flask.models.seasoning import Seasoning
-    
     if check_session(): 
         session_id = request.cookies.get("session_id")
         sessions = load_sessions()
@@ -30,7 +30,8 @@ def index(discount_id):
     return render_template(
         "/staff/discount_detail.html",
         discount=discount,
-        details=details
+        details=details,
+        discount_ID=discount_id
     )
 
 @staff_discount_detail.route('/staff/discount_detail/<int:discount_id>/edit')
@@ -60,7 +61,8 @@ def index2(discount_id):
     return render_template(
         "/staff/discount_detail_edit.html",
         discount=discount,
-        details=details
+        details=details,
+        discount_ID=discount_id
     )
 
 @staff_discount_detail.route('/staff/discount_detail/<int:discount_id>/update', methods=['POST'])
@@ -96,4 +98,12 @@ def update_discount(discount_id):
 
     return redirect(url_for('staff_discount_detail.index', discount_id=discount_id))
 
-    
+@staff_discount_detail.route('/staff/discount/delete/<int:discount_id>', methods=['POST'])
+def delete(discount_id):
+    discount = Discount.query.get(discount_id)
+
+    db.session.delete(discount)
+    db.session.commit()
+
+    if request.method == 'POST':
+        return redirect(url_for('staff_discount.index'))

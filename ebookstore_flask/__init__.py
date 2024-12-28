@@ -20,6 +20,7 @@ def create_app(postgres):
       from ebookstore_flask.routes.staff_discount import staff_discount
       from ebookstore_flask.routes.staff_order_detail import staff_order_detail
       from ebookstore_flask.routes.staff_discount_detail import staff_discount_detail
+      from ebookstore_flask.routes.staff_discount_add import staff_discount_add
       from ebookstore_flask.routes.user_profile import user_profile
       from ebookstore_flask.routes.staff_centre import staff_centre
       from ebookstore_flask.routes.book_list import book_list
@@ -30,6 +31,7 @@ def create_app(postgres):
       app.register_blueprint(staff_discount)
       app.register_blueprint(staff_order_detail)
       app.register_blueprint(staff_discount_detail)
+      app.register_blueprint(staff_discount_add)
       app.register_blueprint(user_profile)
       app.register_blueprint(staff_centre)
       app.register_blueprint(book_list)

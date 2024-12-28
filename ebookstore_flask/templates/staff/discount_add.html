@@ -1,0 +1,123 @@
+{% extends '/staff/base_staff.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/discount_detail.css') }}">
+
+<main>
+        <form class="navbar-detail-container" method="POST" action="{{ url_for('staff_discount_add.index') }}">
+            <div class="left">
+                <div class="bar-title">Staff Menu</div>
+                <div class="bar-list">
+                    <!-- order -->
+                    <div class="bar-row">
+                        <div id="bar-order" class="bar-center">
+                            <a href="" target="_self">Order</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="bar-row">
+                        <div id="bar-product" class="bar-center">
+                            <a href="" target="_self">Product</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="bar-row">
+                        <div id="bar-discount" class="bar-center">
+                            <a href="" target="_self">Discount</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="discount-details">
+                <div class="dtl-title">
+                    <hr>
+                    <h2>Add New Discount</h2>
+                    <hr>
+                </div>
+                <div class="dtl-title">
+                    <p class="error-message">{{errorMsg if errorMsg else ''}}</p>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="label-box">Discount Name</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_name" id="Disc_name" class="dtl-input" value="{{ discount.Disc_name if discount.Disc_name else '' }}" data-original="{{ discount.Disc_name }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Discount Code</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_code" id="Disc_code" class="dtl-input" value="{{ discount.Disc_code if discount.Disc_code else '' }}" data-original="{{ discount.Disc_code }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Policy Description</span>
+                    <span class="value-box">
+                        <input type="text" name="Policy_desc" id="Policy_desc" class="dtl-input" value="{{ discount.Policy_desc if discount.Policy_desc else '' }}" data-original="{{ discount.Disc_desc }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Discount Type</span>
+                    <div class="radio-group">
+                        {% for type in ['Shipping', 'Seasoning', 'Special Event'] %}
+                            <label class="radio-option">
+                                <input type="radio" name="Disc_type" value="{{ type }}" 
+                                {% if type == (discount.Disc_type if discount.Disc_type else 'Seasoning') %}checked{% endif %}
+                                    onchange="toggleFields(this.value)">
+                                <span class="radio-custom"></span>
+                                {{ type }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>               
+                <div class="detail-item">
+                    <span class="label-box">Discount Value</span>
+                    <span class="value-box">
+                        <input type="text" name="Disc_value" id="Disc_value" class="dtl-input" value="{{ discount.Disc_value if discount.Disc_value else '' }}" data-original="{{ discount.Disc_value }}" required>
+                    </span>
+                </div>
+                <div id="date-fields">
+                    <div class="detail-item">
+                        <span class="label-box">Valid To</span>
+                        <span class="value-box">
+                            <input type="date" name="Valid_to" id="Valid_to" class="dtl-input birth" value="{{ details.Valid_to.strftime('%Y-%m-%d') if details.Valid_to else '' }}">
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label-box">Valid From</span>
+                        <span class="value-box">
+                            <input type="date" name="Valid_from" id="Valid_from" class="dtl-input birth" value="{{ details.Valid_from.strftime('%Y-%m-%d') if details.Valid_from else '' }}">
+                        </span>
+                    </div>
+                </div>
+                <div id="shipping-fields">
+                    <div class="detail-item">
+                        <span class="label-box">Minimum Purchase</span>
+                        <span class="value-box">
+                            <input type="text" name="Min_purchase" id="Min_purchase" class="dtl-input" value="{{ details.Min_purchase if details.Min_purchase else ''}}" data-original="{{ details.Min_purchase if details.Min_purchase else ''}}">
+                        </span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Max Usage</span>
+                    <span class="value-box">
+                        <input type="text" name="Max_usage" id="Max_usage" class="dtl-input" value="{{ discount.Max_usage if discount.Max_usage else ''}}" data-original="{{ discount.Max_usage if discount.Max_usage else ''}}" required>
+                    </span>
+                </div>
+                <hr>
+                <div class="buttons">
+                    <div class="navbar-btn-detail">
+                        <a href="/staff/discount" target="_self" class="cancel-edit">
+                            <div class="btn-detail-word">Cancel</div>
+                        </a>
+                    </div>
+                    <form class="navbar-detail-container" method="POST" action="{{ url_for('staff_discount_add.index') }}">
+                        <input id="save-btn" type="submit" class="btn-detail-button" value="Save">
+                    </form>
+                </div>
+            </div>
+        </form>
+        <script src="{{ url_for('static',filename='script/discount.js') }}"></script>
+
+</main>
+{% endblock %}

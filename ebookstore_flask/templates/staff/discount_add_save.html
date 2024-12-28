@@ -31,7 +31,7 @@
             <div class="discount-details">
                 <div class="dtl-title">
                     <hr>
-                    <h2>Discount Details</h2>
+                    <h2>New Discount Details</h2>
                     <hr>
                 </div>
                 
@@ -77,22 +77,17 @@
                 </div>
                 <hr>
                 <div class="buttons">
-                    <div class="navbar-btn-detail">
-                        <a href="/staff/discount" target="_self" class="btn-detail-button">
-                            <div class="btn-detail-word">Back</div>
-                        </a>
+                        <div class="navbar-btn-detail">
+                            <a href="/staff/discount" target="_self" class="btn-detail-button">
+                                <div class="btn-detail-word">Back</div>
+                            </a>
+                        </div>
+                        <div class="navbar-btn-detail">
+                            <a type="submit" id="delete" class="btn-detail-button">
+                                <div class="btn-detail-word">Delete</div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="navbar-btn-detail">
-                        <a href="/staff/discount_detail/{{ discount.DID }}/edit" target="_self" class="btn-detail-button">
-                            <div class="btn-detail-word">Edit</div>
-                        </a>
-                    </div>
-                    <div class="navbar-btn-detail">
-                        <a type="submit" id="delete" class="btn-detail-button">
-                            <div class="btn-detail-word">Delete</div>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
         <form class="logout-modal-container delete-hidden" method="POST" action="{{ url_for('staff_discount_detail.delete',discount_id=discount_ID) }}">

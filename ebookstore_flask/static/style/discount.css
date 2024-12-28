@@ -166,9 +166,24 @@ a{
     display: flex;
     align-items: center;
     margin-top: 10px;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.filter-box{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.add-new-box {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
     padding: 20px;
     gap: 10px;
+    width:30%;
 }
+
 .selected-filter{
     margin-top: 10px;
     display: flex;
@@ -324,3 +339,10 @@ a{
     padding: 20px;
     justify-content: center;
 }
+
+.apply-button:hover {
+    background-color: #5880b0;
+ }
+ .apply-button:active{
+    background-color: #5075a2;
+ }
