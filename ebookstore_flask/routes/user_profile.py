@@ -5,7 +5,8 @@ user_profile = Blueprint('user_profile', __name__)
 
 @user_profile.route('/user/profile')
 def index():
-   check_session()
+   if not check_session():
+      return redirect(url_for('login.index'))
    from ebookstore_flask.models.member import Member
    
    session_id = request.cookies.get("session_id")
@@ -17,19 +18,27 @@ def index():
       .filter(Member.Email == email)   # WHERE "Email" = <email>;
       .first()
    )
+   role = None
+   session_data = check_session()
+   if(session_data): _, role = session_data
    return render_template(
       'user/user_profile.html',
-      user=user
+      user=user,
+      role=role
    )
 
-@user_profile.route('/user/profile/edit')
+@user_profile.route('/user/profile/edit', methods=['POST','GET'])
 def edit():
-   check_session()
+   if not check_session():
+      return redirect(url_for('login.index'))
    from ebookstore_flask.models.member import Member
    session_id = request.cookies.get("session_id")
    sessions = load_sessions()
    email = sessions.get(session_id, [None])[0]
    if not email: return redirect(url_for('login.index'))
+   role = None
+   session_data = check_session()
+   if(session_data): _, role = session_data
    user = (
       Member.query                     # SELECT * FROM "Member"
       .filter(Member.Email == email)   # WHERE "Email" = <email>;
@@ -37,12 +46,15 @@ def edit():
    )
    return render_template(
       'user/user_profile_edit.html',
-      user=user
+      user=user,
+      role=role
    )
 
 @user_profile.route('/user/profile/credit_card')
 def credit_card():
-   check_session()
+   if not check_session():
+      next_url = request.args.get('next')
+      return redirect(next_url if next_url else url_for('home.index'))
    from ebookstore_flask.models.member import Member
    from ebookstore_flask.models.credit_card import Credit_card
    from ebookstore_flask.utils.credit_card import bin_number_checker
@@ -56,20 +68,37 @@ def credit_card():
       .filter(Member.Email == email)                      # WHERE "Member"."Email" = <email>;
       .all()
    )
-   print(cards)
+   role = None
+   session_data = check_session()
+   if(session_data): _, role = session_data
    credit_cards = [card[0] for card in cards]
    for i in range(len(credit_cards)):
-      bin_info = bin_number_checker(credit_cards[i].Number[:6])
+      bin_info = bin_number_checker(credit_cards[i][:6])
+      credit_cards[i] = '**** **** **** ' + credit_cards[i][-4:]
       credit_cards[i] = {
          'Number': credit_cards[i],
-         'Card_type': bin_info.get('Card_type', 'Unknown'),
-         'Bank': bin_info.get('Bank', 'Unknown')
+         'Brand': bin_info.get('Brand', 'Unknown'),
+         'Issuer': bin_info.get('Issuer', 'Unknown')
       }
-   return render_template('user/user_profile_credit_card.html', credit_cards=credit_cards)
+   return render_template(
+      'user/user_profile_credit_card.html',
+      credit_cards=credit_cards,
+      role=role
+   )
+
+@user_profile.route('/user/profile/credit_card/edit', methods=['POST'])
+def credit_card_edit():
+   if not check_session():
+      next_url = request.args.get('next')
+      return redirect(next_url if next_url else url_for('home.index'))
+   from ebookstore_flask.models.credit_card import Credit_card
+   
+   
 
 @user_profile.route('/user/profile/change_password')
 def change_password():
-   return render_template('user/change_password.html')
+   
+   return render_template('user/user_profile_change_password.html')
 
 @user_profile.route('/user/profile/order')
 def order():

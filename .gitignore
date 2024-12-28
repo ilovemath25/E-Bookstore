@@ -42,3 +42,7 @@ staticfiles/
 Thumbs.db
 *.bak
 *.tmp
+
+# ebookstore_flask
+run.py
+sessions.json
