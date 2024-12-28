@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
+from ebookstore_flask.utils.role import check_role
 
 staff_discount_detail = Blueprint('staff_discount_detail', __name__)
 
@@ -10,13 +10,7 @@ def index(discount_id):
     from ebookstore_flask.models.shipping import Shipping
     from ebookstore_flask.models.seasoning import Seasoning
     
-    if check_session(): 
-        session_id = request.cookies.get("session_id")
-        sessions = load_sessions()
-        email = sessions.get(session_id, [None])[0]
-        role = sessions.get(session_id, [None])[1]
-        if not email: return redirect(url_for('login.index'))
-        if role == 'Customer': return redirect(url_for('home.index'))
+    check_role("Staff", "Administrator")
 
     discount = Discount.query.filter_by(DID=discount_id).first()
     details = {}
@@ -40,13 +34,7 @@ def index2(discount_id):
     from ebookstore_flask.models.shipping import Shipping
     from ebookstore_flask.models.seasoning import Seasoning
 
-    if check_session(): 
-        session_id = request.cookies.get("session_id")
-        sessions = load_sessions()
-        email = sessions.get(session_id, [None])[0]
-        role = sessions.get(session_id, [None])[1]
-        if not email: return redirect(url_for('login.index'))
-        if role == 'Customer': return redirect(url_for('home.index'))
+    check_role("Staff", "Administrator")
 
     discount = Discount.query.filter_by(DID=discount_id).first()
     details = {}

@@ -23,21 +23,21 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
 });
 document.querySelectorAll('.option-filter p').forEach(function(option){
     option.addEventListener('click', function(){
-       var selectedLang = this.textContent;
-       var optionDiv = document.querySelector('.option-filter');
-       var selectedText = document.getElementById('selectedText');
-        //    document.querySelector('.selected-filter').textContent = selectedLang;
+        var selectedLang = this.textContent;
+        var optionDiv = document.querySelector('.option-filter');
+        var selectedText = document.getElementById('selectedText');
+            //    document.querySelector('.selected-filter').textContent = selectedLang;
 
-        if (selectedLang === 'Order ID'|| selectedLang === 'Product Name'){
-            selectedLang = 'Discount ID'
-        }
+            if (selectedLang === 'Order ID'|| selectedLang === 'Product Name'){
+                selectedLang = 'Discount ID'
+            }
 
-       selectedText.textContent = selectedLang;
-       localStorage.setItem("option_filter", selectedText.textContent);
-       document.querySelector('.selected-filter').style.color = "black";
-       optionDiv.style.display = 'none';
-       
-       document.getElementById('filter_field').value = selectedLang === 'Discount ID' ? 'discountID' : 'discountName';
+        selectedText.textContent = selectedLang;
+        localStorage.setItem("option_filter", selectedText.textContent);
+        document.querySelector('.selected-filter').style.color = "black";
+        optionDiv.style.display = 'none';
+        
+        document.getElementById('filter_field').value = selectedLang === 'Discount ID' ? 'discountID' : 'discountName';
     });
 });
 document.addEventListener("DOMContentLoaded", () => {

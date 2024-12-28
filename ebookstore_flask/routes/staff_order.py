@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
+from ebookstore_flask.utils.role import check_role
 from ebookstore_flask.models.order import Order
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models.item_line import Item_line
@@ -41,13 +41,7 @@ def index(order_type="order", returned="main"):
          if not order_type or order.Status in status_map.get(order_type, []):
             filtered_products.append(format_product_data(line, product, order))
       return filtered_products
-   if check_session(): 
-      session_id = request.cookies.get("session_id")
-      sessions = load_sessions()
-      email = sessions.get(session_id, [None])[0]
-      role = sessions.get(session_id, [None])[1]
-      if not email: return redirect(url_for('login.index'))
-      if role == 'Customer': return redirect(url_for('home.index'))
+   check_role("Staff", "Administrator")
 
    item_lines = Item_line.query.filter_by(Line_type="Order").all()
    ordered_product = filter_ordered_products(item_lines, order_type)
