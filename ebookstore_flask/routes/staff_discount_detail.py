@@ -5,18 +5,13 @@ from ebookstore_flask.models.special_event import Special_event
 from ebookstore_flask.models.shipping import Shipping
 from ebookstore_flask.models.seasoning import Seasoning
 from ebookstore_flask.models import db
+from ebookstore_flask.utils.role import check_role
 
 staff_discount_detail = Blueprint('staff_discount_detail', __name__)
 
 @staff_discount_detail.route('/staff/discount_detail/<int:discount_id>')
 def index(discount_id):
-    if check_session(): 
-        session_id = request.cookies.get("session_id")
-        sessions = load_sessions()
-        email = sessions.get(session_id, [None])[0]
-        role = sessions.get(session_id, [None])[1]
-        if not email: return redirect(url_for('login.index'))
-        if role == 'Customer': return redirect(url_for('home.index'))
+    check_role("Staff", "Administrator")
 
     discount = Discount.query.filter_by(DID=discount_id).first()
     details = {}
@@ -41,13 +36,7 @@ def index2(discount_id):
     from ebookstore_flask.models.shipping import Shipping
     from ebookstore_flask.models.seasoning import Seasoning
 
-    if check_session(): 
-        session_id = request.cookies.get("session_id")
-        sessions = load_sessions()
-        email = sessions.get(session_id, [None])[0]
-        role = sessions.get(session_id, [None])[1]
-        if not email: return redirect(url_for('login.index'))
-        if role == 'Customer': return redirect(url_for('home.index'))
+    check_role("Staff", "Administrator")
 
     discount = Discount.query.filter_by(DID=discount_id).first()
     details = {}

@@ -1,0 +1,99 @@
+{% extends '/staff/base_staff.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/staff_product.css') }}">
+
+<main>
+    <div class="navbar-product-container">
+        <div class="left">
+            <div class="bar-title">Staff Menu</div>
+            <div class="bar-list">
+                <!-- order -->
+                <a href="/staff/order" target="_self" id="bar-order" class="bar-row">
+                    <span class="bar-center">Order</span>
+                </a>
+                <hr>
+                <a href="/staff/product" target="_self" id="bar-product" class="bar-row">
+                    <span class="bar-center">Product</span>
+                </a>
+                <hr>
+                <a href="/staff/discount" target="_self" id="bar-discount" class="bar-row">
+                    <span class="bar-row">Discount</span>
+                </a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="list-subtabs">
+                <a href="/staff/product" class="subtab {% if active_route == 'product' %}active{% else %}inactive{% endif %}">All</a>
+                <a href="/staff/product/outofstock" class="subtab {% if active_route == 'outofstock' %}active{% else %}inactive{% endif %}">Out Of Stock</a>
+            </div>
+            <hr>
+            <form action="{{ url_for('staff_product.filter_by', current_path=request.path.replace('/findProduct', ''))}}" method="POST" class="filter">
+                <div class="search-filter">
+                    <div class="selected-filter" name="filter_field">
+                        <span id="selectedText">Product ID</span>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="option" id="dropdown">
+                        <div class="option-filter" name="filter_field" style="display: none;">
+                            <p value="product_id" onclick="selectOption('Product ID')" {% if filter_field == 'product_id' %}selected{% endif %}>Product ID</p>
+                            <p value="product_name" onclick="selectOption('Book Name')" {% if filter_field == 'product_name' %}selected{% endif %}>Book Name</p>
+                            <p value="category" onclick="selectOption('Category')" {% if filter_field == 'category' %}selected{% endif %}>Category</p>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="filter_field" name="filter_field" value="product_id">
+                <input type="text" id="user_input" name="user_input" value="{{ user_input }}" class ="filter-input"></input>
+                <button class="apply-button" type="submit">Apply</button>
+            </form>
+            <div class="header-box">
+                    <div class="header-id">ID</div>
+                    <div class="header-pic">Product Pic</div>
+                    <div class="header-dtl">Product Details</div>
+                    <div class="product-header">Stock</div>
+                    <div class="product-header">Price</div>
+                    <div class="product-header">Category</div>
+            </div>
+            <div class="scrollable-box">
+                {% if all_items|length == 0 %}
+                    <div class="no-result">No Result !</div>
+                {% else %}
+                    {% for product in all_items %}
+                    <a href="#">
+                        <div class="content-list">
+                            {% for item in product %}
+                                <div class="product-list-box">
+                                        <div class="product-detail-id">
+                                            <h4>{{item.PID}}</h4>
+                                        </div>
+                                        <div class="product-detail-pic">
+                                            <img src="{{ url_for('static', filename=item.Product_pict) }}" alt="{{ hi }}" class="product-pic">
+                                        </div>
+                                        <div class="product-detail-name">
+                                            <h4>{{item.Name}}</h4>
+                                            <h4 id="author">{{item.Author}}</h4>
+                                        </div>
+                                        <div class="product-detail-text">
+                                            <h4>{{item.Stock}}</h4>
+                                        </div>
+                                        <div class="product-detail-text">
+                                            <h4>${{item.Price}}</h4>
+                                        </div>
+                                        <div class="product-detail-text">
+                                            <h4>{{item.Category}}</h4>
+                                        </div>
+                                </div>
+                                {% if loop.index < product|length %}
+                                    <hr>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static',filename='script/product_list.js') }}"></script>
+</main>
+{% endblock %}

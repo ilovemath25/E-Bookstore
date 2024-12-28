@@ -9,7 +9,8 @@ function maskValue(originalValue, type) {
    if (type === 'email-value') {
       const [local, domain] = originalValue.split('@');
       return `${local.slice(0, 2)}${'*'.repeat(local.length - 2)}@${domain}`;
-   } else if (type === 'phone-value') {
+   }
+   else if (type === 'phone-value') {
       return `${originalValue.slice(0, 2)}** *** ***`;
    }
    return '*****'; // Fallback

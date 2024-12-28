@@ -9,17 +9,17 @@
             <div class="bar-title">Staff Menu</div>
             <div class="bar-list">
                 <!-- order -->
-                <div class="bar-row">
-                    <a href="/staff/order" target="_self" id="bar-order" class="bar-center">Order</a>
-                </div>
+                <a href="/staff/order" target="_self" id="bar-order" class="bar-row">
+                    <span class="bar-center">Order</span>
+                </a>
                 <hr>
-                <div class="bar-row">
-                    <a href="" target="_self" id="bar-product" class="bar-center">Product</a>
-                </div>
+                <a href="/staff/product" target="_self" id="bar-product" class="bar-row">
+                    <span class="bar-center">Product</span>
+                </a>
                 <hr>
-                <div class="bar-row">
-                    <a href="/staff/discount" target="_self" id="bar-discount" class="bar-center">Discount</a>
-                </div>
+                <a href="/staff/discount" target="_self" id="bar-discount" class="bar-row">
+                    <span class="bar-row">Discount</span>
+                </a>
             </div>
         </div>
         <div class="right">
@@ -39,7 +39,7 @@
                     <div class="option" id="dropdown">
                         <div class="option-filter" name="filter_field" style="display: none;">
                             <p value="order_id" onclick="selectOption('Order ID')" {% if filter_field == 'order_id' %}selected{% endif %}>Order ID</p>
-                            <p value="product" onclick="selectOption('Product')" {% if filter_field == 'product' %}selected{% endif %}>Product</p>
+                            <p value="product" onclick="selectOption('Product Name')" {% if filter_field == 'product' %}selected{% endif %}>Product Name</p>
                         </div>
                     </div>
                 </div>

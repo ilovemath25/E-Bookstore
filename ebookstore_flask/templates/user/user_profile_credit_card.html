@@ -1,0 +1,38 @@
+{% extends '/user/base_user.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
+<main>
+   {% include "/user/user_profile_menu.html" %}
+   <div class="section-container">
+      <div class="sub-title">
+         <hr><h2>My Card</h2><hr>
+      </div>
+      <section class="profile-container">
+         {% for card in credit_cards %}
+         <div class="card-container">
+            <div class="card-image">
+               <div class="currency">$</div>
+               <div class="chip">_</div>
+               <div class="lines">
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+               </div>
+            </div>
+            <div class="card-center">
+               <p>{{ card.Issuer }}</p>
+               <p class="card-number">{{ card.Number }}</p>
+            </div>
+            <div class="card-right">
+               <p class="card-type">{{ card.Brand }}</p>
+            </div>
+         </div>
+         {% endfor %}
+      </section>
+      <a class="edit-profile" href="{{ url_for('user_profile.credit_card_edit') }}">Edit</a>
+   </div>
+</main>
+<script src="{{ url_for('static', filename='script/user_profile.js') }}"></script>
+{% endblock %}
