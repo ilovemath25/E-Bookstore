@@ -6,12 +6,19 @@ document.getElementById('logout').addEventListener('click', () => {
 document.getElementById('cancel-logout').addEventListener('click', () => {
    document.querySelector(".logout-modal-container").classList.add('logout-hidden');
 });
+document.getElementById('add-card').addEventListener('click', () => {
+   document.querySelector(".credit-card-modal-container").classList.remove('credit-card-hidden');
+});
+document.getElementById('cancel-edit').addEventListener('click', () => {
+   document.querySelector(".credit-card-modal-container").classList.add('credit-card-hidden');
+});
 
 function maskValue(originalValue, type) {
    if (type === 'email-value') {
       const [local, domain] = originalValue.split('@');
       return `${local.slice(0, 2)}${'*'.repeat(local.length - 2)}@${domain}`;
-   } else if (type === 'phone-value') {
+   }
+   else if (type === 'phone-value') {
       return `${originalValue.slice(0, 2)}** *** ***`;
    }
    return '*****'; // Fallback

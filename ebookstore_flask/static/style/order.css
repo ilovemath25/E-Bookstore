@@ -203,6 +203,10 @@ a{
     cursor: pointer;
     padding: 5px;
 }
+.option-filter p:hover{
+    background-color: #dbd6d656;
+    transition: all 0.3s;
+}
 .filter-input{
     margin-top: 10px;
     width: 400px;

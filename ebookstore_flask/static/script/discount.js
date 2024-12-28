@@ -20,15 +20,15 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
     var optionDiv = document.querySelector('.option-filter');
     if(optionDiv.style.display == 'none') optionDiv.style.display = 'block';
     else optionDiv.style.display = 'none';
- });
- document.querySelectorAll('.option-filter p').forEach(function(option){
+});
+document.querySelectorAll('.option-filter p').forEach(function(option){
     option.addEventListener('click', function(){
        var selectedLang = this.textContent;
        var optionDiv = document.querySelector('.option-filter');
        var selectedText = document.getElementById('selectedText');
         //    document.querySelector('.selected-filter').textContent = selectedLang;
 
-        if (selectedLang === 'Order ID'|| selectedLang === 'Product'){
+        if (selectedLang === 'Order ID'|| selectedLang === 'Product Name'){
             selectedLang = 'Discount ID'
         }
 
@@ -39,14 +39,14 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
        
        document.getElementById('filter_field').value = selectedLang === 'Discount ID' ? 'discountID' : 'discountName';
     });
- });
- document.addEventListener("DOMContentLoaded", () => {
+});
+document.addEventListener("DOMContentLoaded", () => {
     var selectedText = document.getElementById('selectedText');
     var savedOption = localStorage.getItem("option_filter");
     console.log("savedOption", savedOption);
     if (savedOption) {
         selectedText.textContent = savedOption;
-        if (savedOption === 'Order ID'|| savedOption === 'Product'){
+        if (savedOption === 'Order ID'|| savedOption === 'Product Name'){
             savedOption = 'Discount ID'
         }
         document.getElementById('filter_field').value = savedOption === 'Discount ID' ? 'discountID' : 'discountName';
@@ -54,15 +54,15 @@ document.querySelector('.selected-filter').addEventListener('click', function(){
     // if (selectedText.innerHTML == "Order ID") {
     //     selectedText.innerHTML = localStorage.getItem("option_filter");
     // }
- });
- function toggleDropdown() {
+});
+function toggleDropdown() {
     const dropdown = document.getElementById('dropdown');
     dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
 }
 
- function selectOption(optionText) {
+function selectOption(optionText) {
     const selectedText = document.getElementById('selectedText');
-    if (optionText === 'Order ID'|| optionText === 'Product'){
+    if (optionText === 'Order ID'|| optionText === 'Product Name'){
         optionText = 'Discount ID'
     }
     selectedText.textContent = optionText;
