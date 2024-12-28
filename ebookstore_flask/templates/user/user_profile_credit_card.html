@@ -8,7 +8,7 @@
       <div class="sub-title">
          <hr><h2>My Card</h2><hr>
       </div>
-      <section class="profile-container">
+      <div class="profile-container">
          {% for card in credit_cards %}
          <div class="card-container">
             <div class="card-image">
@@ -30,7 +30,6 @@
             </div>
          </div>
          {% endfor %}
-      </section>
       <a class="edit-profile" href="{{ url_for('user_profile.credit_card_edit') }}">Edit</a>
    </div>
 </main>

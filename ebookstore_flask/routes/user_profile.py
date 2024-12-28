@@ -42,6 +42,7 @@ def edit():
       .filter(Member.Email == email)   # WHERE "Email" = <email>;
       .first()
    )
+
    return render_template(
       'user/user_profile_edit.html',
       user=user,
@@ -112,7 +113,38 @@ def credit_card_edit():
 
 @user_profile.route('/user/profile/change_password')
 def change_password():
+   if not check_session():
+      return redirect(url_for('login.index'))
+   from ebookstore_flask.models.member import Member
+   from . import db
    
+   session_id = request.cookies.get("session_id")
+   sessions = load_sessions()
+   email = sessions.get(session_id, [None])[0]
+   if not email: return redirect(url_for('login.index'))
+   user = (
+      Member.query                     # SELECT * FROM "Member"
+      .filter(Member.Email == email)   # WHERE "Email" = <email>;
+      .first()
+   )
+   if request.method == 'POST':
+      from werkzeug.security import check_password_hash, generate_password_hash
+      from ebookstore_flask.models.member import Member
+
+      user = Member.query.filter_by(Email=email).first()
+      old_password = request.form['old_password']
+      new_password = request.form['new_password']
+      confirm_password = request.form['confirm_password']
+
+      if not check_password_hash(user.Password, old_password):
+         return "Old password is incorrect.", 400
+
+      if new_password != confirm_password:
+         return "Passwords do not match.", 400
+
+      user.Password = generate_password_hash(new_password, method='sha256')
+      db.session.commit()
+      return redirect(url_for('user_profile.index'))
    return render_template('user/user_profile_change_password.html')
 
 @user_profile.route('/user/profile/order')
