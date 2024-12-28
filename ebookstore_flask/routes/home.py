@@ -8,7 +8,6 @@ home = Blueprint('home', __name__)
 def index():
    from ebookstore_flask.models.product import Product
    from ebookstore_flask.models.review import Review
-   from ebookstore_flask.models.member import Member
    from ebookstore_flask import db
    # .all() must be added in all query
    # it used to convert SQL query object into python list
@@ -54,21 +53,9 @@ def index():
       if product.Product.Product_pict.startswith('ebookstore_flask/'):product.Product.Product_pict = product.Product.Product_pict.replace('ebookstore_flask/', '')
       if product.Product.Product_pict.startswith('static/'):product.Product.Product_pict = product.Product.Product_pict.replace('static/', '')
 
-        
-   # user = None
-   # if check_session(): 
-   #    session_id = request.cookies.get("session_id")
-   #    sessions = load_sessions()
-   #    email = sessions.get(session_id, [None])[0]
-   #    user = (
-   #       Member.query                     # SELECT * FROM "Member"
-   #       .filter(Member.Email == email)   # WHERE "Email" = <email>;
-   #       .first()
-   #    )
    role = None
    session_data = check_session()
    if(session_data): _, role = session_data
-   print(role)
    return render_template(
       "/user/home.html",
       best_seller=best_seller,

@@ -72,6 +72,9 @@ main{
 }
 .profile-container{
    margin: 20px 40px;
+   display: flex;
+   flex-direction: column;
+   min-height: 320px;
 }
 .profile-label, .profile-value{
    padding: 15px 50px;
@@ -101,14 +104,14 @@ form .profile-container .profile-value{
    border: 1px solid #9b9b9b;
    border-radius: 5px;
 }
-.edit-profile, .cancel-edit{
+ .add-card, .edit-profile, .cancel-edit{
    display: flex;
    justify-content: center;
    align-items: center;
    float: right;
    padding: 10px 50px;
    border-radius: 10px;
-   margin: 0px 70px 30px 30px;
+   margin: 0px 15px 30px 15px;
    background-color: #3f72af;
    border: #000;
    color: #fff;
@@ -118,21 +121,24 @@ form .profile-container .profile-value{
 }
 .cancel-edit{
    background-color: #cdcdcd;
-   margin-right: 0px;
+}
+.edit-profile{
+   margin-right: 60px;
+}
+.add-card{
+   background-color: #466891;
 }
 .edit-profile:hover{
    background-color: #5880b0;
    transition: all 0.3s;
 }
-.edit-profile:active{
-   background-color: #5075a2;
+.add-card:hover{
+   background-color: #375273;
+   transition: all 0.3s;
 }
 .cancel-edit:hover{
    background-color: #bebebe;
    transition: all 0.3s;
-}
-.cancel-edit:active{
-   background-color: #9b9b9b;
 }
 .logout-modal-container{
    background-color: #00000030;
@@ -220,6 +226,7 @@ form .profile-container .profile-value{
    width: 100%;
    font-size: 5px;
    background-color: #fff;
+   color: #fff;
 }
 .card-center{
    display: flex;
@@ -234,7 +241,6 @@ form .profile-container .profile-value{
    justify-content: right;
    align-items: center;
 }
-
 .change-password-container{
    margin: 20px 40px;
    padding-right: 30%;
@@ -281,8 +287,89 @@ form .profile-container .profile-value{
    font-size: 14px;
 }
 
+
 .change-password-error-message{
    color: red;
    text-align: center;
    margin-bottom: 15px;
+}
+
+.card-right .fa-circle-xmark{
+   cursor: pointer;
+   color: #ff0000;
+   margin-left: 10px;
+   font-size: 25px;
+}
+.credit-card-modal-container {
+   background-color: #00000030;
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+   position: fixed;
+   top: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+}
+.credit-card-hidden {
+   display: none;
+}
+.credit-card-modal-container .modal-content {
+   background-color: #fff;
+   padding: 30px;
+   border-radius: 8px;
+   text-align: center;
+   box-shadow: 0 4px 8px #00000033;
+   width: 400px;
+}
+.credit-card-modal-container .modal-content .sub-title {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.credit-card-modal-container .modal-content .form-group {
+   display: flex;
+   flex-direction: column;
+   margin-top: 20px;
+   text-align: left;
+}
+.credit-card-modal-container .modal-content .form-group label {
+   margin-bottom: 5px;
+   font-size: 14px;
+   color: #555;
+}
+.credit-card-modal-container .modal-content .form-group input {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 15px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   font-size: 14px;
+}
+.credit-card-modal-container .modal-content .modal-button {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 20px;
+}
+.credit-card-modal-container .modal-content .modal-btn {
+   width: 45%;
+   padding: 10px;
+   font-size: 14px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   color: #fff;
+   background-color: #3f72af;
+   transition: all 0.3s;
+}
+.credit-card-modal-container .modal-content .modal-btn:hover {
+   background-color: #5880b0;
+}
+.credit-card-modal-container .modal-content .modal-btn#cancel-edit {
+   background-color: #cdcdcd;
+   color: #000;
+}
+.credit-card-modal-container .modal-content .modal-btn#cancel-edit:hover {
+   background-color: #bebebe;
 }
