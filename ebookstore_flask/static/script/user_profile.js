@@ -56,7 +56,7 @@ const user_profile_change_password_page = () => {
    const submitButton = document.querySelector(".change-password-button");
    document.querySelector(".change-password-container").querySelectorAll('.profile-input').forEach(input => {
       input.addEventListener('input', () => {
-         input.dispatchEvent(new Event('input'));
+         // input.dispatchEvent(new Event('input'));
          // Clear previous messages
          messageElement.textContent = "";
 
