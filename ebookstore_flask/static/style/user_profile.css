@@ -234,3 +234,50 @@ form .profile-container .profile-value{
    justify-content: right;
    align-items: center;
 }
+
+.change-password-container{
+   margin: 20px 40px;
+   padding-right: 30%;
+   display: flex;
+   justify-content: center;
+}
+.change-password-label, .change-password-value{
+   padding: 15px 60px;
+}
+.change-password-label{
+   color: #868e96;
+}
+
+.change-password-container .change-password-value{
+   display: flex;
+   width: 200%;
+   padding: 10px 15px 10px 0px;
+}
+.submit-and-cancel-change-password-button{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   float: right;
+  
+}
+.cancel-button {
+   background-color: #868e96;
+}
+.submit-button {
+   background-color: #3f72af;
+}
+.change-password-button{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   float: right;
+   padding: 10px 50px;
+   border-radius: 10px;
+   margin: 0px 70px 30px 30px;
+   border: #000;
+   color: #fff;
+   cursor: pointer;
+   text-decoration: none;
+   font-size: 14px;
+}
+
