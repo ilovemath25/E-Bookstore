@@ -40,6 +40,5 @@ document.querySelector(".search-button").addEventListener("click", (e) => {
    e.preventDefault();
    suggestions.innerHTML = "";
    const searchInputValue = searchInput.value;
-   console.log(searchInputValue);
-   if (searchInput) window.location.href = `/search/${encodeURIComponent(searchInputValue)}`;
+   if (searchInputValue) window.location.href = `/search/${encodeURIComponent(searchInputValue)}`;
 });

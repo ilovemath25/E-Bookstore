@@ -72,6 +72,9 @@ main{
 }
 .profile-container{
    margin: 20px 40px;
+   display: flex;
+   flex-direction: column;
+   min-height: 320px;
 }
 .profile-label, .profile-value{
    padding: 15px 50px;
