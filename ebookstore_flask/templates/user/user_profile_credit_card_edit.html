@@ -1,0 +1,60 @@
+{% extends '/user/base_user.html' %}
+
+{% block content %}
+<main>
+   {% include "/user/user_profile_menu.html" %}
+   <div class="section-container">
+      <div class="sub-title">
+         <hr><h2>My Card</h2><hr>
+      </div>
+      <section class="profile-container">
+         {% for card in credit_cards %}
+         <div class="card-container">
+            <div class="card-image">
+               <div class="currency">$</div>
+               <div class="chip">_</div>
+               <div class="lines">
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+                  <div class="line">_</div>
+               </div>
+            </div>
+            <div class="card-center">
+               <p>{{ card.Issuer }}</p>
+               <p class="card-number">{{ card.Number }}</p>
+            </div>
+            <div class="card-right">
+               <p class="card-type">{{ card.Brand }}</p>
+               <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+         </div>
+         {% endfor %}
+      </section>
+      <input type="submit" class="edit-profile" href="{{ url_for('user_profile.credit_card') }}" value="Save"></input>
+      <a href="{{ url_for('user_profile.credit_card') }}" class="cancel-edit">Cancel</a>
+      <button class="add-card" id="add-card">Add new card</button>
+   </div>
+   <form class="credit-card-modal-container credit-card-hidden" method="POST" action="{{ url_for('user_profile.credit_card_edit') }}">
+      <div class="modal-content">
+         <div class="sub-title">
+            <hr><h2>Edit Credit Card</h2><hr>
+         </div>
+         <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <input type="text" name="Number" id="card-number" class="profile-input" required>
+            <div>
+               <label for="card-expiry">Expiry Date</label>
+               <input type="text" name="Expiry" id="card-expiry" class="profile-input" required>
+               <label for="card-cvc">CVC</label>
+               <input type="text" name="CVC" id="card-cvc" class="profile-input" required>
+            </div>
+         </div>
+         <div class="modal-button">
+            <input type="submit" id="confirm-edit" class="modal-btn" value="Save"></input>
+            <div id="cancel-edit" class="modal-btn">Cancel</div>
+         </div>
+      </div>
+   </form>
+</main>
+{% endblock %}

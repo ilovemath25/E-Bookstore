@@ -4,6 +4,12 @@ document.getElementById('logout').addEventListener('click', () => {
 document.getElementById('cancel-logout').addEventListener('click', () => {
    document.querySelector(".logout-modal-container").classList.add('logout-hidden');
 });
+document.getElementById('add-card').addEventListener('click', () => {
+   document.querySelector(".credit-card-modal-container").classList.remove('credit-card-hidden');
+});
+document.getElementById('cancel-edit').addEventListener('click', () => {
+   document.querySelector(".credit-card-modal-container").classList.add('credit-card-hidden');
+});
 
 function maskValue(originalValue, type) {
    if (type === 'email-value') {

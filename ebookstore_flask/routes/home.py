@@ -8,7 +8,6 @@ home = Blueprint('home', __name__)
 def index():
    from ebookstore_flask.models.product import Product
    from ebookstore_flask.models.review import Review
-   from ebookstore_flask.models.member import Member
    from ebookstore_flask import db
    # .all() must be added in all query
    # it used to convert SQL query object into python list
