@@ -137,22 +137,7 @@ def change_password():
         confirm_password = request.form.get('confirmNewPassword')
         print(user.Password , old_password)
 
-        if user.Password != old_password:
-            print("Plaintext passwords do not match")
-            return render_template(
-               'user/user_profile_change_password.html',
-               error="Old password is incorrect."
-            )
-
-        # Check if new passwords match
-        if new_password != confirm_password:
-            print ("Passwords do not match.")
-            return render_template(
-                'user/user_profile_change_password.html',
-                error="Passwords do not match."
-            )
-
-        # Update to new password (hashed)
+        
         user.Password = new_password
         db.session.commit()
 
