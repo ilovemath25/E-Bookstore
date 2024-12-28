@@ -40,54 +40,54 @@ document.getElementById('phone-value').textContent = maskValue(document.getEleme
 
 
 const user_profile_change_password_page = () => {
-document.querySelector('.submit-button').addEventListener('click', () => {
-   changePassword();
-   console.log("Password changed");
-   });
+   const form = document.querySelector(".section-container");
+   const oldPasswordInput = document.getElementById("old-password");
+   const currentPasswordInput = document.getElementById("currentPassword");
+   const newPasswordInput = document.getElementById("newPassword");
+   const confirmNewPasswordInput = document.getElementById("confirmNewPassword");
+   const messageElement = document.querySelector(".change-password-error-message");
+   const submitButton = document.querySelector(".change-password-button");
+   document.querySelector(".change-password-container").querySelectorAll('.profile-input').forEach(input => {
+      input.addEventListener('input', () => {
+         input.dispatchEvent(new Event('input'));
+         // Clear previous messages
+         messageElement.textContent = "";
 
+         // Get input values
+         const oldPassword = oldPasswordInput.value.trim();
+         const currentPassword = currentPasswordInput.value.trim();
+         const newPassword = newPasswordInput.value.trim();
+         const confirmNewPassword = confirmNewPasswordInput.value.trim();
 
-// Mock current password stored in the system
+         let checkAllFields = true;
 
-const mockCurrentPassword = "haloinibv";
-function changePassword() {
-   
-   const currentPassword = document.getElementById("currentPassword").value;
-   const newPassword = document.getElementById("newPassword").value;
-   const confirmPassword = document.getElementById("confirmNewPassword").value;
-   console.log(currentPassword, newPassword, confirmPassword);
-
-   const message = document.getElementById("message");
-
-   // Clear previous messages
-   message.textContent = "";
-   message.classList.remove("error", "success");
-
-   // Check if the current password matches
-   if (currentPassword !== mockCurrentPassword) {
-      message.textContent = "The current password is incorrect.";
-      message.classList.add("error");
-      return;
-      }
-
-   // Check if the new password and confirm password match
-   if (newPassword !== confirmPassword) {
-      message.textContent = "New password and confirmation do not match.";
-      message.classList.add("error");
-      return;
-      }
-
-   // Check if the new password is different from the current password
-   if (newPassword === mockCurrentPassword) {
-      message.textContent = "The new password must be different from the current password.";
-      message.classList.add("error");
-      return;
-      }
-
-   // Successfully changed password
-   message.textContent = "Password successfully changed!";
-   message.classList.add("success");
+         // Validate fields
+         if (!currentPassword || !newPassword || !confirmNewPassword) {
+             messageElement.textContent = "All fields are required.";
+             messageElement.style.color = "red";
+             checkAllFields = false;
+         }
+         else if (currentPassword !== oldPassword) {
+            messageElement.textContent = "Old password is incorrect.";
+            messageElement.style.color = "red";
+            checkAllFields = false;
         }
-
+        else if (newPassword.length < 8) {
+            messageElement.textContent = "New password must be at least 8 characters long.";
+            messageElement.style.color = "red";
+            checkAllFields = false;
+        }
+         // Check if new password matches confirmation
+         else if (newPassword !== confirmNewPassword) {
+             messageElement.textContent = "New passwords do not match.";
+             messageElement.style.color = "red";
+             checkAllFields = false;
+         }
+         submitButton.disabled = !checkAllFields;
+         submitButton.classList.toggle("disabled-button", submitButton.disabled);
+     });
+   });
+  
       };
 
 document.addEventListener('DOMContentLoaded', () => {
