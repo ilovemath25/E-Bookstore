@@ -1,16 +1,21 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
 <div class="profile-menu">
    <div class="menu-header">Profile</div>
-   <ul>
-      <li class="menu-option">My Profile</li>
-      <li class="menu-option">Credit Card</li>
-      <li class="menu-option">Change Password</li>
-      <li class="menu-option">Order History</li>
-      <li class="menu-option">My Discount</li>
-      <li class="menu-option" id="logout">Logout</li>
-   </ul>
+   <div class="menu-options">
+      <a class="menu-option {% if request.endpoint in ['user_profile.index', 'user_profile.edit'] %}active{% endif %}"
+      href="{{ url_for('user_profile.index') }}">My Profile</a>
+      <a class="menu-option {% if request.endpoint in ['user_profile.credit_card', 'user_profile.credit_card_edit'] %}active{% endif %}"
+      href="{{ url_for('user_profile.credit_card') }}">Credit Card</a>
+      <a class="menu-option {% if request.endpoint == 'user_profile.change_password' %}active{% endif %}"
+      href="{{ url_for('user_profile.change_password') }}">Change Password</a>
+      <a class="menu-option {% if request.endpoint == 'user_profile.order' %}active{% endif %}"
+      href="{{ url_for('user_profile.order') }}">Order History</a>
+      <a class="menu-option {% if request.endpoint == 'user_profile.discount' %}active{% endif %}"
+      href="{{ url_for('user_profile.discount') }}">My Discount</a>
+      <a class="menu-option" id="logout">Logout</a>
+   </div>
 </div>
-<form class="logout-modal-container logout-hidden" method="POST" action="{{ url_for('user_profile.logout') }}">
+<form class="logout-modal-container logout-hidden" method="POST" action="{{ url_for('login.logout') }}">
    <div class="modal-content">
       <p>Are you sure you want to log out?</p>
       <div class="modal-button">

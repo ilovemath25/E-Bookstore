@@ -76,12 +76,3 @@ document.addEventListener("DOMContentLoaded", () => {
    Slider('.promotion-slider', 4000);
    Indicators('.promotion .slider-indicators');
 });
-const showelement = new IntersectionObserver((entries) => {
-   entries.forEach((entry) => {
-      if (entry.isIntersecting){
-         entry.target.classList.add('show-animation');
-      }
-   });
-});
-const hiddenElements = document.querySelectorAll('.hidden-animation');
-hiddenElements.forEach((el) => showelement.observe(el));

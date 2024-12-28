@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Error {{ error_code }}</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style/error.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='style/base_user.css') }}">
+</head>
+<body>
+   <h2 class="error-code">{{ error_code }}</h2>
+   <h3 class="error-title">{{ error_message }}</h3>
+   <p class="error-description">{{ error_description }}</p>
+   <a href="/" class="back-home">Go Back to Home</a>
+</body>
+</html>

@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
 
 home = Blueprint('home', __name__)
 
@@ -51,11 +52,15 @@ def index():
    for product in top_rated:
       if product.Product.Product_pict.startswith('ebookstore_flask/'):product.Product.Product_pict = product.Product.Product_pict.replace('ebookstore_flask/', '')
       if product.Product.Product_pict.startswith('static/'):product.Product.Product_pict = product.Product.Product_pict.replace('static/', '')
-   
+
+   role = None
+   session_data = check_session()
+   if(session_data): _, role = session_data
    return render_template(
       "/user/home.html",
       best_seller=best_seller,
       new_release=new_release,
       top_5_category=top_5_category,
-      top_rated=top_rated
+      top_rated=top_rated,
+      role = role
    )

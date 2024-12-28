@@ -17,7 +17,8 @@ def add_session(email, mid, role):
 
 def check_session():
    session_id = request.cookies.get("session_id")
-   if session_id and session_id in load_sessions(): return True
+   session_store = load_sessions()
+   if session_id and session_id in session_store: return session_store[session_id]
    return False
 
 def generate_session(email, mid):

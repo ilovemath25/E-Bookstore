@@ -1,8 +1,7 @@
 {% extends '/user/base_user.html' %}
 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
-<main>
+<main class="user_profile">
    {% include "/user/user_profile_menu.html" %}
    <div class="section-container">
       <div class="sub-title">
@@ -39,5 +38,4 @@
       <a class="edit-profile" href="{{ url_for('user_profile.edit') }}">Edit</a>
    </div>
 </main>
-<script src="{{ url_for('static', filename='script/user_profile.js') }}"></script>
 {% endblock %}
