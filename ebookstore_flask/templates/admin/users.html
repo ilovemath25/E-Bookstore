@@ -1,0 +1,47 @@
+{% extends '/admin/base_admin.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/users.css') }}">
+<main>
+  <div class="navbar"></div>
+  <div class="container">
+    <div class="sidebar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+        <button>&#x1F50D;</button>
+      </div>
+      <ul class="user-list">
+        <!-- Example user IDs -->
+        <li>#User_ID_1</li>
+        <li>#User_ID_2</li>
+        <li>#User_ID_3</li>
+        <li>#User_ID_4</li>
+        <li>#User_ID_5</li>
+        <li>#User_ID_6</li>
+        <li>#User_ID_7</li>
+        <li>#User_ID_8</li>
+        <li>#User_ID_9</li>
+        <li>#User_ID_10</li>
+        <li>#User_ID_11</li>
+        <li>#User_ID_12</li>
+        <li>#User_ID_13</li>
+        <li>#User_ID_14</li>
+        <li>#User_ID_15</li>
+        <!-- Add as many as needed -->
+      </ul>
+    </div>
+    <div class="main-content">
+      <div class="dropdown">
+        <label for="memberType">Member type:</label>
+        <select id="memberType">
+          <option>All User</option>
+          <option>Staff</option>
+          <option>Customer</option>
+        </select>
+      </div>
+      <h2>Member Account</h2>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
