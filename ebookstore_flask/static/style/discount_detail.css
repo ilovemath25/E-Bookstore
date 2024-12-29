@@ -73,9 +73,13 @@
 .bar-row:hover{
     background-color: #afc7e5;
     transition: all 0.3s;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
 }
+
+.bar-row:last-child:hover{
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
 .bar-row:active{
     background-color: #8ea4c0;
     transition: all 0s; 
@@ -102,6 +106,7 @@
 a{
     text-decoration: none;
     background-color: transparent;
+    color: black;
 }
 
 .bar-center a{

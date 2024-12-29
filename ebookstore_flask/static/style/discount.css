@@ -112,6 +112,7 @@
 a{
     text-decoration: none;
     background-color: transparent;
+    color: black;
 }
 
 .bar-center a{
@@ -317,10 +318,6 @@ a{
     width: 100%;
     height: 50px;
     color: #544f4f;
-}
-
-a{
-    color: black;
 }
 
 .no-result{

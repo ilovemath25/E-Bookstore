@@ -51,12 +51,12 @@
                 </div>
                 {% if discount.Disc_type != 'Shipping' %}
                     <div class="detail-item">
-                        <span class="label-box">Valid To</span>
-                        <span class="value-box">{{ details.Valid_to }}</span>
-                    </div>
-                    <div class="detail-item">
                         <span class="label-box">Valid From</span>
                         <span class="value-box">{{ details.Valid_from }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label-box">Valid To</span>
+                        <span class="value-box">{{ details.Valid_to }}</span>
                     </div>
                 {% endif %}
                 {% if discount.Disc_type == 'Shipping' %}
@@ -82,9 +82,9 @@
                         </a>
                     </div>
                     <div class="navbar-btn-detail">
-                        <a type="submit" id="delete" class="btn-detail-button">
+                        <button type="button" id="delete" class="btn-detail-button">
                             <div class="btn-detail-word">Delete</div>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -78,15 +78,15 @@
                 </div>
                 <div id="date-fields">
                     <div class="detail-item">
-                        <span class="label-box">Valid To</span>
-                        <span class="value-box">
-                            <input type="date" name="Valid_to" id="Valid_to" class="dtl-input birth" value="{{ details.Valid_to.strftime('%Y-%m-%d') if details.Valid_to else '' }}">
-                        </span>
-                    </div>
-                    <div class="detail-item">
                         <span class="label-box">Valid From</span>
                         <span class="value-box">
                             <input type="date" name="Valid_from" id="Valid_from" class="dtl-input birth" value="{{ details.Valid_from.strftime('%Y-%m-%d') if details.Valid_from else '' }}">
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label-box">Valid To</span>
+                        <span class="value-box">
+                            <input type="date" name="Valid_to" id="Valid_to" class="dtl-input birth" value="{{ details.Valid_to.strftime('%Y-%m-%d') if details.Valid_to else '' }}">
                         </span>
                     </div>
                 </div>

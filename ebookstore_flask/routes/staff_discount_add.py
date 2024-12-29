@@ -20,14 +20,7 @@ def index():
     Disc_type = request.form.get('Disc_type')
     Disc_value = request.form.get('Disc_value')
     Max_usage = request.form.get('Max_usage')
-    # discount = {
-    #     'Disc_name': request.form.get('Disc_name'),
-    #     'Disc_code': request.form.get('Disc_code'),
-    #     'Policy_desc': request.form.get('Policy_desc'),
-    #     'Disc_type': request.form.get('Disc_type'),
-    #     'Disc_value': request.form.get('Disc_value'),
-    #     'Max_usage': request.form.get('Max_usage'),
-    # }
+
     print("disc_code get",Disc_code)
     discount = {
             "Disc_name" : Disc_name,
@@ -61,12 +54,14 @@ def index():
                 details['Valid_to'] = datetime.strptime(Valid_to, '%Y-%m-%d') if Valid_to else None
                 details['Valid_from'] = datetime.strptime(Valid_from, '%Y-%m-%d') if Valid_from else None
 
-                if details['Valid_to'] < details['Valid_from']:
-                    print("render3")
-                    return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Valid to should be bigger than Valid from!")
+                try:
+                    if details['Valid_to'] < details['Valid_from']:
+                        print("render3")
+                        return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Valid to should be bigger than Valid from!")
+                except:
+                    return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Invalid date format!")
 
             except ValueError:
-                print("render4")
                 return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Invalid date format!")
 
             if Disc_type == 'Seasoning':

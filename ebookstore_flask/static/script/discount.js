@@ -1,3 +1,5 @@
+console.log('JavaScript loaded!');
+
 function toggleFields(selectedType) {
     const dateFields = document.getElementById('date-fields');
     const shippingFields = document.getElementById('shipping-fields');
@@ -10,21 +12,21 @@ function toggleFields(selectedType) {
         shippingFields.style.display = 'none';
     }
 }
-document.addEventListener('DOMContentLoaded', function () {
-    const selectedType = "{{ discount.Disc_type }}";
-    toggleFields(selectedType);
-});
-document.addEventListener('DOMContentLoaded', function () {
-    const radioInput = document.querySelectorAll(".radio-option input");
-    if (radioInput[0].checked) toggleFields("Shipping");
-    else if (radioInput[1].checked) toggleFields("Seasoning");
-    else if (radioInput[2].checked) toggleFields("Special Event");
-});
-document.querySelector('.selected-filter').addEventListener('click', function(){
-    var optionDiv = document.querySelector('.option-filter');
-    if(optionDiv.style.display == 'none') optionDiv.style.display = 'block';
-    else optionDiv.style.display = 'none';
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     const selectedType = "{{ discount.Disc_type }}";
+//     toggleFields(selectedType);
+// });
+// document.addEventListener('DOMContentLoaded', function () {
+//     const radioInput = document.querySelectorAll(".radio-option input");
+//     if (radioInput[0].checked) toggleFields("Shipping");
+//     else if (radioInput[1].checked) toggleFields("Seasoning");
+//     else if (radioInput[2].checked) toggleFields("Special Event");
+// });
+// document.querySelector('.selected-filter').addEventListener('click', function(){
+//     var optionDiv = document.querySelector('.option-filter');
+//     if(optionDiv.style.display == 'none') optionDiv.style.display = 'block';
+//     else optionDiv.style.display = 'none';
+// });
 document.querySelectorAll('.option-filter p').forEach(function(option){
     option.addEventListener('click', function(){
         var selectedLang = this.textContent;
@@ -74,12 +76,13 @@ function selectOption(optionText) {
 
 document.getElementById('delete').addEventListener('click', () => {
     document.querySelector(".logout-modal-container").classList.remove('delete-hidden');
- });
- document.getElementById('cancel-delete').addEventListener('click', () => {
-    document.querySelector(".logout-modal-container").classList.add('delete-hidden');
- });
+});
 
- document.addEventListener('DOMContentLoaded', function () {
+document.getElementById('cancel-delete').addEventListener('click', () => {
+    document.querySelector(".logout-modal-container").classList.add('delete-hidden');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const discValidToInput = document.getElementById('Disc_validTo');
     const discValidFromInput = document.getElementById('Disc_validFrom');
     const discMinInput = document.getElementById('Disc_min');
