@@ -8,9 +8,9 @@
         <p class="error-message">{{ error }}</p>
     {% endif %}
     <div class="form-group-container" >
-        <form method="POST" action="{{ url_for('login.index') }}">
-            <div class="sub-title">
-                <hr><h2>Register</h2><hr>
+        <form method="POST" action="{{ url_for('login.register') }}">
+            <div class="sub-title-container">
+                <div class="title-line"><hr></div><h2 class="sub-title">Register</h2> <div class="title-line"><hr></div>
              </div>
             <p class="register-title">Create your account for free and only take a minute</p>
             <div class="form-group-name">
@@ -28,12 +28,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <input class ="form-group-input" type="email" id="email" name="email" placeholder="Enter your Email / Phone Number" required><p>*</p>
+                <input class ="form-group-input" type="email" id="email" name="email" placeholder="Enter your Email" required><p>*</p>
             </div>
             <hr>
             <div class="form-group">
                 <div class="dropdown-container">
-                    <!-- <p class="select-gen"></p> -->
                     <div class="option-gen" id="option-gen" style="display: none;">
                         <p>Male</p>
                         <p>Female</p>
@@ -44,6 +43,10 @@
                 <p>*</p>
             </div>
             <hr>            
+            <div class="form-group">
+                <input class="form-group-input" type="text" id="birthDate" name="birthDate" placeholder="Birth Date (YYYY/MM/DD)" >
+            </div>
+            <hr>
             <div class="form-group">
                 <input class="form-group-input" type="tel" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" pattern="[0-9]*" required><p>*</p>
             </div>
@@ -57,14 +60,26 @@
             </div>
             <hr>
             <div class="form-group">
-                <input class ="form-group-input" type="text" id="address" name="address" placeholder="Address" required><p>*</p>
+                <input class ="form-group-input" type="text" id="address" name="address" placeholder="Address">
             </div>
             <hr>
             <div class="privacyPolicy">
                 <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
                 <label for="privacyPolicy">  I accept the 
-                    <a href="#" id="privacyPolicyLink">Term of Use and Privacy Policy</a></label>
+                    <a href="#" id="privacyPolicyLink">Term of Use and Privacy Policy</a>
+                </label>
             </div>
+            <div class="register-error-message" > </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
 
             <!-- Privacy Policy Modal -->
             <div id="privacyPolicyModal" class="modal">
@@ -209,7 +224,13 @@
             
             
             <input type="submit" class="register-button" value="Register"></input>
+            
         </form>
+        <div class="backToLoginPage">
+            <label for="backToLoginPage" >  Already have an account?
+                <a href="{{ url_for('login.index') }}"id="loginPageLink">Login Here</a>
+        </label>
+        </div>
     </div>
 </div>
 <script src="{{ url_for('static', filename='script/register.js') }}"></script>

@@ -115,6 +115,10 @@ const user_profile_change_password_page = () => {
          submitButton.classList.toggle("disabled-button", submitButton.disabled);
      });
    });
+   
+   form.addEventListener('submit', (e) => {
+      alert("Password changed successfully!");
+   });
 };
 
 const user_profile_credit_card_page = () => {

@@ -168,14 +168,12 @@ def change_password():
     if not check_session():
          return redirect(url_for('login.index'))
 
-    # Get user session
     session_id = request.cookies.get("session_id")
     sessions = load_sessions()
     email = sessions.get(session_id, [None])[0]
     if not email:
         return redirect(url_for('login.index'))
 
-    # Fetch user from the database
     from ebookstore_flask.models.member import Member
     from ebookstore_flask.models import db
 
