@@ -45,4 +45,4 @@ Thumbs.db
 
 # ebookstore_flask
 run.py
-sessions.json
+ebookstore_flask/utils/sessions.json
