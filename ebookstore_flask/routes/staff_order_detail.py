@@ -28,9 +28,6 @@ def index(order_id):
          prt_price *= discounts.Disc_value
       subtotal = line.Quantity * prt_price
       total_price += subtotal
-      if product and product.Product_pict:
-         if product.Product_pict.startswith('ebookstore_flask/static/'):product.Product_pict = product.Product_pict.replace('ebookstore_flask/static/', '')
-         if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
       item_details.append({"line": line, "product": product, "prt_price":prt_price, "subtotal": subtotal})
 
    shp_fee = order.Ship_fee
