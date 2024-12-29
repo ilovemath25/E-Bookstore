@@ -28,7 +28,7 @@
          <div class="book-slider">
             {% for book in best_seller %}
             <a class="book-card" href="book/{{ book.PID }}">
-               <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
+               <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
                <h3>{{ book.Name }}</h3>
                <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
             </a>
@@ -46,7 +46,7 @@
          <div class="book-slider">
             {% for book in new_release %}
             <a class="book-card" href="book/{{book.PID}}">
-               <img src="{{ url_for('static', filename=book.Product_pict) }}" alt="{{ book.Name }}">
+               <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
                <h3>{{ book.Name }}</h3>
                <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
             </a>
@@ -96,7 +96,7 @@
          <div class="book-slider">
             {% for book in top_rated %}
             <a class="book-card" href="book/{{book.Product.PID}}">
-               <img src="{{ url_for('static', filename=book[0].Product_pict) }}" alt="{{ book.Product.Name }}">
+               <img src="{{ book[0].Product_pict }}" alt="{{ book.Product.Name }}">
                <h3>{{ book.Product.Name }}</h3>
                <p>
                   <strong>Rate: </strong>
