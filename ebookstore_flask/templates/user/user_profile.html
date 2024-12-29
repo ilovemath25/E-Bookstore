@@ -14,7 +14,7 @@
          </tr>
          <tr class="profile-item">
             <td class="profile-label">Birth</td>
-            <td class="profile-value">{{ user.Birth.strftime('%Y-%m-%d') }}</td>
+            <td class="profile-value">{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else 'Not Provided' }}</td>
          </tr>
          <tr class="profile-item">
             <td class="profile-label">Gender</td>
