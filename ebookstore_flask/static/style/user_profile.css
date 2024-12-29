@@ -72,8 +72,7 @@ main{
 }
 .profile-container{
    margin: 20px 40px;
-   display: flex;
-   flex-direction: column;
+   overflow: auto;
    min-height: 320px;
 }
 .profile-label, .profile-value{
@@ -91,7 +90,8 @@ form .profile-container .profile-label{
 form .profile-container .profile-value{
    display: flex;
    width: 100%;
-   padding: 10px 15px 10px 0px;
+   padding: 10px 0px;
+   position: relative;
 }
 .fa-eye-slash, .fa-eye{
    cursor: pointer;
@@ -99,19 +99,43 @@ form .profile-container .profile-value{
 }
 .profile-input{
    padding: 5px 10px;
-   margin-right: 10px;
    width: 100%;
    border: 1px solid #9b9b9b;
    border-radius: 5px;
+   font-size: 16px;
 }
-.edit-profile, .cancel-edit{
+#selected-gender{
+   cursor: pointer;
+}
+.dropdown-options {
+   display: none;
+   position: absolute;
+   background-color: #fff;
+   border: 1px solid #9b9b9b;
+   border-radius: 5px;
+   z-index: 5;
+   top: 40px;
+   width: 100%;
+   overflow-y: auto;
+}
+.dropdown-option {
+   padding: 5px 10px;
+   cursor: pointer;
+}
+.dropdown-option:hover {
+   background-color: #f1f1f1;
+}
+.dropdown-options.active{
+   display: block;
+}
+.add-card, .edit-profile, .cancel-edit{
    display: flex;
    justify-content: center;
    align-items: center;
    float: right;
    padding: 10px 50px;
    border-radius: 10px;
-   margin: 0px 70px 30px 30px;
+   margin: 0px 15px 30px 15px;
    background-color: #3f72af;
    border: #000;
    color: #fff;
@@ -119,25 +143,22 @@ form .profile-container .profile-value{
    text-decoration: none;
    font-size: 14px;
 }
-.cancel-edit{
-   background-color: #cdcdcd;
-   margin-right: 0px;
+.edit-profile{
+   margin-right: 60px;
+}
+.add-card{
+   background-color: #466891;
+   margin-right: 60px;
 }
 .edit-profile:hover{
    background-color: #5880b0;
    transition: all 0.3s;
 }
-.edit-profile:active{
-   background-color: #5075a2;
-}
-.cancel-edit:hover{
-   background-color: #bebebe;
+.add-card:hover{
+   background-color: #375273;
    transition: all 0.3s;
 }
-.cancel-edit:active{
-   background-color: #9b9b9b;
-}
-.logout-modal-container{
+.logout-modal-container, .delete-card-container{
    background-color: #00000030;
    width: 100%;
    height: 100vh;
@@ -223,6 +244,7 @@ form .profile-container .profile-value{
    width: 100%;
    font-size: 5px;
    background-color: #fff;
+   color: #fff;
 }
 .card-center{
    display: flex;
@@ -236,4 +258,113 @@ form .profile-container .profile-value{
    display: flex;
    justify-content: right;
    align-items: center;
+}
+.change-password-container{
+   margin: 20px 40px;
+   padding-right: 30%;
+   display: flex;
+   justify-content: center;
+}
+.change-password-label, .change-password-value{
+   padding: 15px 60px;
+}
+.change-password-label{
+   color: #868e96;
+}
+.change-password-container .change-password-value{
+   display: flex;
+   width: 200%;
+   padding: 10px 15px 10px 0px;
+}
+.submit-and-cancel-change-password-button{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   float: right;
+}
+.cancel-button {
+   background-color: #868e96;
+}
+.submit-button {
+   background-color: #3f72af;
+}
+.change-password-button{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   float: right;
+   padding: 10px 50px;
+   border-radius: 10px;
+   margin: 0px 70px 30px 30px;
+   border: #000;
+   color: #fff;
+   cursor: pointer;
+   text-decoration: none;
+   font-size: 14px;
+}
+.change-password-error-message{
+   color: red;
+   text-align: center;
+   margin-bottom: 15px;
+}
+
+.card-right .fa-circle-xmark{
+   cursor: pointer;
+   color: #ff0000;
+   margin-left: 10px;
+   font-size: 25px;
+}
+.credit-card-modal-container {
+   background-color: #00000030;
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+   position: fixed;
+   top: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 100;
+}
+.credit-card-hidden {
+   display: none;
+}
+.credit-card-modal-container .modal-content {
+   background-color: #fff;
+   padding: 30px;
+   border-radius: 8px;
+   text-align: center;
+   box-shadow: 0 4px 8px #00000033;
+   width: 600px;
+}
+.credit-card-modal-container .form-group {
+   display: flex;
+   flex-direction: column;
+   text-align: left;
+   padding: 5px 20px;
+}
+.credit-card-modal-container .form-group label {
+   margin-bottom: 5px;
+   font-size: 14px;
+   color: #555;
+}
+.credit-card-modal-container .form-group-inline{
+   display: flex;
+   justify-content: space-between;
+   padding: 15px 0px;
+}
+.credit-card-modal-container .form-group-inline div:first-child{
+   width: 100%;
+   margin-right: 20px;
+}
+.cancel-edit{
+   background-color: #cdcdcd;
+   color: #444444;
+}
+.cancel-edit:hover{
+   background-color: #bebebe;
+   transition: all 0.3s;
+}
+.error-message{
+   color: red;
 }
