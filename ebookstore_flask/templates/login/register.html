@@ -8,7 +8,7 @@
         <p class="error-message">{{ error }}</p>
     {% endif %}
     <div class="form-group-container" >
-        <form method="POST" action="{{ url_for('login.index') }}">
+        <form method="POST" action="{{ url_for('login.register') }}">
             <div class="sub-title-container">
                 <div class="title-line"><hr></div><h2 class="sub-title">Register</h2> <div class="title-line"><hr></div>
              </div>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input class ="form-group-input" type="email" id="email" name="email" placeholder="Enter your Email / Phone Number" required><p>*</p>
+                <input class ="form-group-input" type="email" id="email" name="email" placeholder="Enter your Email" required><p>*</p>
             </div>
             <hr>
             <div class="form-group">
@@ -44,6 +44,10 @@
             </div>
             <hr>            
             <div class="form-group">
+                <input class="form-group-input" type="text" id="birthDate" name="birthDate" placeholder="Birth Date (YYYY/MM/DD)" >
+            </div>
+            <hr>
+            <div class="form-group">
                 <input class="form-group-input" type="tel" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" pattern="[0-9]*" required><p>*</p>
             </div>
             <hr>
@@ -56,7 +60,7 @@
             </div>
             <hr>
             <div class="form-group">
-                <input class ="form-group-input" type="text" id="address" name="address" placeholder="Address" required><p>*</p>
+                <input class ="form-group-input" type="text" id="address" name="address" placeholder="Address">
             </div>
             <hr>
             <div class="privacyPolicy">
@@ -65,6 +69,17 @@
                     <a href="#" id="privacyPolicyLink">Term of Use and Privacy Policy</a>
                 </label>
             </div>
+            <div class="register-error-message" > </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
 
             <!-- Privacy Policy Modal -->
             <div id="privacyPolicyModal" class="modal">

@@ -77,9 +77,18 @@ const user_profile_change_password_page = () => {
              messageElement.style.color = "red";
              checkAllFields = false;
          }
+         else if (newPassword == oldPassword) {
+            messageElement.textContent = "New passwords cannot be same as previous.";
+            messageElement.style.color = "red";
+            checkAllFields = false;
+        }
          submitButton.disabled = !checkAllFields;
          submitButton.classList.toggle("disabled-button", submitButton.disabled);
      });
+   });
+   
+   form.addEventListener('submit', (e) => {
+      alert("Password changed successfully!");
    });
 };
 
@@ -134,6 +143,7 @@ const user_profile_credit_card_page = () => {
          errorMessage.textContent = '';
       }
    });
+   
 }
 
 document.addEventListener('DOMContentLoaded', () => {
