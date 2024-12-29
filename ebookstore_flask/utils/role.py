@@ -9,5 +9,5 @@ def check_role(*required_role):
    session_data = check_session()
    session_role = session_data[1]
    for role in required_role:
-      if role and session_role != role: abort(403)
+      if role and session_role == "Customer": abort(403)
    return True
