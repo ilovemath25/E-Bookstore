@@ -4,21 +4,17 @@ document.querySelector('#gender').addEventListener('click', function () {
     optionDiv.style.display = optionDiv.style.display === 'none' || optionDiv.style.display === '' ? 'block' : 'none';
 });
 
-// Add click event listeners to all dropdown options
 document.querySelectorAll('.option-gen p').forEach(function (option) {
     option.addEventListener('click', function () {
-        var selectedGender = this.textContent; // Get the selected gender text
+        var selectedGender = this.textContent;
         var optionDiv = document.getElementById('option-gen');
 
-        // Update the input field with the selected gender
         document.getElementById('gender').value = selectedGender;
 
-        // Optionally, close the dropdown after selection
         optionDiv.style.display = 'none';
     });
 });
 
-// Close the dropdown if the user clicks outside of it
 document.addEventListener('click', function (event) {
     var dropdown = document.querySelector('.dropdown-container');
     var optionDiv = document.getElementById('option-gen');

@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, make_response
 from ebookstore_flask.utils.session import check_session, delete_session
+from ebookstore_flask.models import db
+from ebookstore_flask.models.member import Member
 login = Blueprint('login', __name__)
 
 @login.route('/login', methods=['POST', 'GET'])

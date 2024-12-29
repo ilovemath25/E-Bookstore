@@ -9,8 +9,8 @@
     {% endif %}
     <div class="form-group-container" >
         <form method="POST" action="{{ url_for('login.index') }}">
-            <div class="sub-title">
-                <hr><h2>Register</h2><hr>
+            <div class="sub-title-container">
+                <div class="title-line"><hr></div><h2 class="sub-title">Register</h2> <div class="title-line"><hr></div>
              </div>
             <p class="register-title">Create your account for free and only take a minute</p>
             <div class="form-group-name">
@@ -33,7 +33,6 @@
             <hr>
             <div class="form-group">
                 <div class="dropdown-container">
-                    <!-- <p class="select-gen"></p> -->
                     <div class="option-gen" id="option-gen" style="display: none;">
                         <p>Male</p>
                         <p>Female</p>
@@ -63,7 +62,8 @@
             <div class="privacyPolicy">
                 <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
                 <label for="privacyPolicy">  I accept the 
-                    <a href="#" id="privacyPolicyLink">Term of Use and Privacy Policy</a></label>
+                    <a href="#" id="privacyPolicyLink">Term of Use and Privacy Policy</a>
+                </label>
             </div>
 
             <!-- Privacy Policy Modal -->
@@ -145,7 +145,13 @@
             
             
             <input type="submit" class="register-button" value="Register"></input>
+            
         </form>
+        <div class="backToLoginPage">
+            <label for="backToLoginPage" >  Already have an account?
+                <a href="{{ url_for('login.index') }}"id="loginPageLink">Login Here</a>
+        </label>
+        </div>
     </div>
 </div>
 <script src="{{ url_for('static', filename='script/register.js') }}"></script>
