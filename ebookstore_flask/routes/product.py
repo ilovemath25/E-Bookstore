@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from ebookstore_flask.utils.session import check_session
 
 product = Blueprint('product', __name__)
 
@@ -6,10 +7,11 @@ product = Blueprint('product', __name__)
 def index(product_id):
    from ebookstore_flask.models.product import Product
    product = Product.query.get(product_id)
-   if product:
-      if product.Product_pict.startswith('ebookstore_flask/'):product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '')
-      if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
+   role = None
+   session_data = check_session()
+   if(session_data): _, role = session_data
    return render_template(
       "/user/product.html",
-      product=product
+      product=product,
+      role=role
    )
