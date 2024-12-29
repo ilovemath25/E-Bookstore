@@ -12,10 +12,25 @@
             <div>
                 <div class="box-title">Order Status</div>
                 <div class="od-left-box">
-                    <div class="od-status-icon">
-                        <div class="od-circle"></div>
-                        <span class="od-status-word">{{order.Status}}</span>
-                    </div>
+                    <form action="{{ url_for('staff_order_detail.index2', order_id=order.OID) }}" method="POST" class="filter">
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <div class="search-filter">
+                                <div class="selected-filter" name="filterField">
+                                    <span id="selected-text">{{order.Status}}</span>
+                                    <i class="fa fa-caret-down"></i>
+                                </div>
+                                <div class="option" id="dropdown_o">
+                                    <div class="option-filter" style="display: none;">
+                                        <p onclick="selectOption('Processing', 'process')" {% if filterField == 'process' %}selected{% endif %}>Processing</p>
+                                        <p onclick="selectOption('Shipping', 'ship')" {% if filterField == 'ship' %}selected{% endif %}>Shipping</p>
+                                        <p onclick="selectOption('Received', 'receive')" {% if filterField == 'receive' %}selected{% endif %}>Received</p>
+                                        <p onclick="selectOption('Closed', 'closed')" {% if filterField == 'close' %}selected{% endif %}>Closed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             
@@ -173,13 +188,15 @@
 
     <!-- Back-Button -->
     <div class="navbar-pre-detail">
-        <a href="/staff/order_detail/{{ order.OID }}/edit" target="_self" class="pre-detail-button">
-            <div class="pre-detail-word">Edit</div>
+        <a href="/staff/order_detail/{{ order.OID }}" target="_self" class="cancel-edit">
+            <div class="pre-detail-word">Cancel</div>
         </a>
-        <a href="/staff/order" target="_self" class="pre-detail-button">
-            <div class="pre-detail-word">Back</div>
-        </a>
+        <form class="pre-detail-button" method="POST" action="{{ url_for('staff_order_detail.update_status', order_id=order.OID) }}">
+            <input type="hidden" id="filterField" name="filterField" value="{{ order.Status }}">
+            <input type="submit" class="pre-detail-word" value="Save">
+        </form>
     </div>
+    <script src="{{ url_for('static',filename='script/order_detail.js') }}"></script>
 </main>
 {% endblock %}
 
