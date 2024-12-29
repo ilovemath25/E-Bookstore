@@ -121,15 +121,23 @@ def update_status(order_id):
    from ebookstore_flask.models.member import Member
    from ebookstore_flask.models.discount import Discount
    from ebookstore_flask.models.credit_card import Credit_card
+   from ebookstore_flask.models.item_line import Item_line
+   from ebookstore_flask.models.product import Product
+   from ebookstore_flask.models.discount import Discount
+   from ebookstore_flask.models.special_event import Special_event
    from ebookstore_flask import db
 
    order = Order.query.filter_by(OID=order_id).first()
+   item_lines = Item_line.query.filter_by(OID=order_id).all()
 
    if not order:
       return "Order not found", 404
 
    new_status = request.form.get('filterField')
-   print(new_status)
+   if new_status == 'closed':
+      for line in item_lines:
+         product = Product.query.get(line.PID)
+         product.Sale_count += 1
    if new_status in ['process', 'ship', 'receive', 'closed']:
       status_mapping = {
          'process': 'Processing',

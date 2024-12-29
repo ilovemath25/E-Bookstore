@@ -56,7 +56,7 @@ def update_product(product_id):
 
     db.session.commit()
 
-    return redirect(url_for('staff_discount_detail.index', product_id=product_id))
+    return redirect(url_for('staff_product_detail.index', product_id=product_id))
 
 @staff_product_detail.route('/staff/product/delete/<int:product_id>', methods=['POST'])
 def delete(product_id):
