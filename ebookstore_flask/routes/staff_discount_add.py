@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
+from ebookstore_flask.utils.role import check_role
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
@@ -12,6 +13,7 @@ def index():
     from ebookstore_flask.models.special_event import Special_event
     from ebookstore_flask.models.shipping import Shipping
     from ebookstore_flask.models.seasoning import Seasoning
+    check_role("Staff", "Administrator")
 
     details = {'Valid_to': None, 'Valid_from': None, 'Min_purchase': None}
     Disc_name = request.form.get('Disc_name')

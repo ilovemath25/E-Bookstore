@@ -123,7 +123,6 @@ def update_status(order_id):
    from ebookstore_flask.models.credit_card import Credit_card
    from ebookstore_flask import db
 
-      # Fetch the order by its ID
    order = Order.query.filter_by(OID=order_id).first()
 
    if not order:
