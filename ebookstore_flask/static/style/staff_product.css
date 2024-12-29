@@ -166,8 +166,16 @@ a{
     display: flex;
     align-items: center;
     margin-top: 10px;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.add-new-box {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
     padding: 20px;
     gap: 10px;
+    width:30%;
 }
 .selected-filter{
     margin-top: 10px;
@@ -216,6 +224,12 @@ a{
     padding: 15px;
     font-size: 15px;
 }
+.filter-box{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 20px;
+  }
 .apply-button{
     display: flex;
     margin-top: 10px;

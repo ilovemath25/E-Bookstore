@@ -16,7 +16,6 @@ def index(order_type="order", returned="main"):
    print("current_type1",order_type)
    def format_product_data(line, product, order):
       sum_price = line.Quantity * product.Price
-      product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '').replace('static/', '')
       return {
          "Product_pict": product.Product_pict,
          "Name": product.Name,

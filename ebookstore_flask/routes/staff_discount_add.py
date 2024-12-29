@@ -35,16 +35,19 @@ def index():
         #constraint
         if Discount.query.filter_by(Disc_code=Disc_code).first():
             print("render1")
-            return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Discount Code already exists!")
+            return render_template('/staff/discount_add.html', discount=discount, disc_type='', details=details, errorMsg="Discount Code already exists!")
         if '.' not in Disc_value: 
             print("render2")
-            return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Discount Value should be decimal!")
+            return render_template('/staff/discount_add.html', discount=discount, disc_type='', details=details, errorMsg="Discount Value should be decimal!")
+        if Disc_type == None: 
+            print("render2")
+            return render_template('/staff/discount_add.html', discount=discount, disc_type='', details=details, errorMsg="Must choose a discount type!")
         
 
         if Disc_type == 'Shipping':
             Min_purchase = request.form.get('Min_purchase')
             if Min_purchase.isdigit() == False:
-                return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Minimal purchase should be number!")
+                return render_template('/staff/discount_add.html', discount=discount, disc_type='', details=details, errorMsg="Minimal purchase should be number!")
             details['Min_purchase'] = Min_purchase
             new_to_spec = Shipping(Min_purchase=Min_purchase)
         elif Disc_type in ['Seasoning', 'Special Event']:
@@ -57,12 +60,12 @@ def index():
                 try:
                     if details['Valid_to'] < details['Valid_from']:
                         print("render3")
-                        return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Valid to should be bigger than Valid from!")
+                        return render_template('/staff/discount_add.html', discount=discount, disc_type='', details=details, errorMsg="Valid to should be bigger than Valid from!")
                 except:
-                    return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Invalid date format!")
+                    return render_template('/staff/discount_add.html', discount=discount, disc_type='', details=details, errorMsg="Invalid date format!")
 
             except ValueError:
-                return render_template('/staff/discount_add.html', discount=discount, details=details, errorMsg="Invalid date format!")
+                return render_template('/staff/discount_add.html', discount=discount, disc_type='', details=details, errorMsg="Invalid date format!")
 
             if Disc_type == 'Seasoning':
                 new_to_spec = Seasoning(Valid_to=details['Valid_to'], Valid_from=details['Valid_from'])
@@ -85,6 +88,6 @@ def index():
         db.session.commit()
 
         print("render add_save")
-        return render_template('/staff/discount_add_save.html', discount=new_discount, details=details, discount_ID=new_discount.DID)
+        return render_template('/staff/discount_detail.html', discount=new_discount, details=details, discount_ID=new_discount.DID)
 
-    return render_template('/staff/discount_add.html', discount=discount, details=details)
+    return render_template('/staff/discount_add.html', discount=discount, disc_type=discount['Disc_type'], details=details)

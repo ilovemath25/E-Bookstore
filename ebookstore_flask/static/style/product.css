@@ -97,3 +97,9 @@
     background-color: #315685;
     transition: all 0s; 
  }
+ .filter-box{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 20px;
+}

@@ -62,7 +62,7 @@
                         {% for type in ['Shipping', 'Seasoning', 'Special Event'] %}
                             <label class="radio-option">
                                 <input type="radio" name="Disc_type" value="{{ type }}" 
-                                {% if type == (discount.Disc_type if discount.Disc_type else 'Seasoning') %}checked{% endif %}
+                                {% if type == (disc_type) %}checked{% endif %}
                                     onchange="toggleFields(this.value)">
                                 <span class="radio-custom"></span>
                                 {{ type }}
@@ -76,7 +76,7 @@
                         <input type="text" name="Disc_value" id="Disc_value" class="dtl-input" value="{{ discount.Disc_value if discount.Disc_value else '' }}" data-original="{{ discount.Disc_value }}" required>
                     </span>
                 </div>
-                <div id="date-fields">
+                <div id="date-fields" style="display : none;">
                     <div class="detail-item">
                         <span class="label-box">Valid From</span>
                         <span class="value-box">
@@ -90,7 +90,7 @@
                         </span>
                     </div>
                 </div>
-                <div id="shipping-fields">
+                <div id="shipping-fields" style="display : none;">
                     <div class="detail-item">
                         <span class="label-box">Minimum Purchase</span>
                         <span class="value-box">

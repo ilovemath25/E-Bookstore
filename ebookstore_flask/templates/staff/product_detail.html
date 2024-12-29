@@ -1,0 +1,94 @@
+{% extends '/staff/base_staff.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/product_detail.css') }}">
+
+<main>
+        <div class="navbar-detail-container">
+            <div class="left">
+                <div class="bar-title">Staff Menu</div>
+                <div class="bar-list">
+                    <!-- order -->
+                    <a href="/staff/order" target="_self" id="bar-order" class="bar-row">
+                        <span class="bar-center">Order</span>
+                    </a>
+                    <hr>
+                    <a href="/staff/product" target="_self" id="bar-product" class="bar-row">
+                        <span class="bar-center">Product</span>
+                    </a>
+                    <hr>
+                    <a href="/staff/discount" target="_self" id="bar-discount" class="bar-row">
+                        <span class="bar-center">Discount</span>
+                    </a>
+                </div>
+            </div>
+            <div class="discount-details">
+                <div class="dtl-title">
+                    <hr>
+                    <h2>Product Details</h2>
+                    <hr>
+                </div>
+                <div class="dtl-title">
+                    <img src="{{ product.Product_pict }}" alt="{{ hi }}" class="product-image">
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Title</span>
+                    <span class="value-box">{{ product.Name }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Desciption</span>
+                    <span class="value-box">{{ product.Desc }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Author</span>
+                    <span class="value-box">{{ product.Author }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Price</span>
+                    <span class="value-box">{{ product.Price }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Stock</span>
+                    <span class="value-box">{{ product.Stock_quantity }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Category</span>
+                    <span class="value-box">{{ product.Category }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Special Event ID</span>
+                    <span class="value-box">{{ product.SpEvent }}</span>
+                </div>
+                <hr>
+                <div class="buttons">
+                    <div class="navbar-btn-detail">
+                        <a href="/staff/product" target="_self" class="btn-detail-button">
+                            <div class="btn-detail-word">Back</div>
+                        </a>
+                    </div>
+                    <div class="navbar-btn-detail">
+                        <a href="/staff/product_detail/{{ product.PID }}/edit" target="_self" class="btn-detail-button">
+                            <div class="btn-detail-word">Edit</div>
+                        </a>
+                    </div>
+                    <div class="navbar-btn-detail">
+                        <button type="button" id="delete" class="btn-detail-button">
+                            <div class="btn-detail-word">Delete</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form class="logout-modal-container delete-hidden" method="POST" action="{{ url_for('staff_product_detail.delete',product_id=product.PID) }}">
+            <div class="modal-content">
+               <p>Are you sure you want to delete?</p>
+               <div class="modal-button">
+                  <input type="submit" id="confirm-delete" class="modal-btn" value="Yes"></input>
+                  <div id="cancel-delete" class="modal-btn">No</div>
+               </div>
+            </div>
+        </form>
+        <script src="{{ url_for('static',filename='script/product_detail.js') }}"></script>
+
+</main>
+{% endblock %}
