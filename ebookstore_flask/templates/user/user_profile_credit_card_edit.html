@@ -26,7 +26,7 @@
             </div>
             <div class="card-right">
                <p class="card-type">{{ card.Brand }}</p>
-               <i class="fa-solid fa-circle-xmark"></i>
+               <i class="fa-solid fa-circle-xmark" data-card-number="{{ card.Number }}"></i>
             </div>
          </div>
          {% endfor %}
@@ -35,7 +35,7 @@
       <a href="{{ url_for('user_profile.credit_card') }}" class="cancel-edit">Cancel</a>
    </div>
    <div class="credit-card-modal-container credit-card-hidden">
-      <div class="modal-content">
+      <form class="modal-content" method="POST" action="{{ url_for('user_profile.credit_card_add') }}">
          <div class="sub-title">
             <hr><h2>New Card</h2><hr>
          </div>
@@ -55,14 +55,15 @@
             </div>
          </div>
          <div class="modal-button">
-            <div id="confirm-edit" class="modal-btn">Save</div>
+            <input type="submit" id="confirm-edit" class="modal-btn" value="Save"></input>
             <div id="cancel-edit" class="modal-btn cancel-edit">Cancel</div>
          </div>
-      </div>
+      </form>
    </div>
-   <form class="delete-card-container credit-card-hidden" method="POST" action="{{ url_for('user_profile.credit_card') }}">
+   <form method="POST" class="delete-card-container credit-card-hidden" action="{{ url_for('user_profile.credit_card_delete') }}">
       <div class="modal-content">
          <p>Are you sure you want to delete this card?</p>
+         <input type="hidden" name="Number" id="delete-card-number">
          <div class="modal-button">
             <input type="submit" id="confirm-delete" class="modal-btn" value="Yes"></input>
             <div id="cancel-delete" class="modal-btn cancel-edit">Cancel</div>

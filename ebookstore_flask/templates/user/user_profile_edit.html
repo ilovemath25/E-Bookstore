@@ -1,7 +1,7 @@
 {% extends '/user/base_user.html' %}
 
 {% block content %}
-<main>
+<main class="user_profile_edit">
    {% include "/user/user_profile_menu.html" %}
    <form class="section-container" method="POST" action="{{ url_for('user_profile.edit') }}">
       <div class="sub-title">
@@ -24,11 +24,13 @@
          <tr class="profile-item">
             <td class="profile-label">Gender</td>
             <td class="profile-value">
-               <select name="Gender" id="Gender" class="profile-input gender">
-                  <option value="Male" {% if user.Gender == 'Male' %}selected{% endif %}>Male</option>
-                  <option value="Female" {% if user.Gender == 'Female' %}selected{% endif %}>Female</option>
-                  <option value="Other" {% if user.Gender == 'Other' %}selected{% endif %}>Other</option>
-               </select>
+               <input type="text" class="profile-input" id="selected-gender" value="{{ user.Gender }}" readonly></input>
+               <div class="dropdown-options">
+                  <div class="dropdown-option" data-value="Male">Male</div>
+                  <div class="dropdown-option" data-value="Female">Female</div>
+                  <div class="dropdown-option" data-value="Other">Other</div>
+               </div>
+               <input type="hidden" class="profile-input" name="Gender" id="selected-gender-hidden" value="{{ user.Gender }}"></input>
             </td>
          </tr>
          <tr class="profile-item">

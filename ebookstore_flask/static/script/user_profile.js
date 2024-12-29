@@ -30,8 +30,46 @@ const user_profile_page = () => {
    document.getElementById('toggle-phone').addEventListener('click', () => {toggleVisibility('phone-value', 'toggle-phone');});
    document.getElementById('email-value').textContent = maskValue(document.getElementById('email-value').getAttribute('data-original'),'email-value');
    document.getElementById('phone-value').textContent = maskValue(document.getElementById('phone-value').getAttribute('data-original'),'phone-value');
-};
 
+   const selected = document.getElementById('selected-gender');
+   const optionsContainer = document.querySelector('.dropdown-options');
+   const options = document.querySelectorAll('.dropdown-option');
+   const hiddenInput = document.getElementById('Gender');
+
+   selected.addEventListener('click', () => {
+      optionsContainer.classList.toggle('active');
+   });
+
+   options.forEach(option => {
+      option.addEventListener('click', () => {
+         selected.value = option.textContent;
+         options.classList.remove('active');
+      });
+   });
+};
+const user_profile_edit_page = () => {
+
+   const selected = document.getElementById('selected-gender');
+   const selectedHidden = document.getElementById('selected-gender-hidden');
+   const optionsContainer = document.querySelector('.dropdown-options');
+   const options = document.querySelectorAll('.dropdown-option');
+
+   selected.addEventListener('click', () => {
+      optionsContainer.classList.toggle('active');
+   });
+   options.forEach(option => {
+      option.addEventListener('click', () => {
+         selected.value = option.textContent;
+         selectedHidden.value = option.textContent;
+         optionsContainer.classList.remove('active');
+      });
+   });
+   document.addEventListener('click', (e) => {
+      if (!selected.contains(e.target) && !optionsContainer.contains(e.target)) {
+         optionsContainer.classList.remove('active');
+      }
+   });
+};
 
 const user_profile_change_password_page = () => {
    const form = document.querySelector(".section-container");
@@ -43,11 +81,7 @@ const user_profile_change_password_page = () => {
    const submitButton = document.querySelector(".change-password-button");
    document.querySelector(".change-password-container").querySelectorAll('.profile-input').forEach(input => {
       input.addEventListener('input', () => {
-         // input.dispatchEvent(new Event('input'));
-         // Clear previous messages
          messageElement.textContent = "";
-
-         // Get input values
          const oldPassword = oldPasswordInput.value.trim();
          const currentPassword = currentPasswordInput.value.trim();
          const newPassword = newPasswordInput.value.trim();
@@ -96,6 +130,9 @@ const user_profile_credit_card_page = () => {
       const total = result.reduce((sum, digit) => sum + digit, 0);
       return total % 10 === 0;
    }
+   function maskCardNumber(cardNumber) {
+      return '**** **** **** ' + cardNumber.slice(-4);
+   }
    document.getElementById('card-expiry').addEventListener('input', (e) => {
       let value = e.target.value.replace(/[^\d]/g, '');
       if (value.length > 2) value = value.slice(0, 2) + '/' + value.slice(2);
@@ -111,17 +148,15 @@ const user_profile_credit_card_page = () => {
    document.getElementById('cancel-edit').addEventListener('click', () => {
       document.querySelector(".credit-card-modal-container").classList.add('credit-card-hidden');
    });
-   document.getElementById('confirm-edit').addEventListener('click', () => {
-      window.location.href = '/user/profile/credit_card/add';
-   });
-   document.querySelector('.fa-circle-xmark').addEventListener('click', () => {
-      document.querySelector(".delete-card-container").classList.remove('credit-card-hidden');
+   document.querySelectorAll('.fa-circle-xmark').forEach((element) => {
+      element.addEventListener('click', () => {
+         const cardNumber = element.getAttribute('data-card-number');
+         document.getElementById('delete-card-number').value = cardNumber;
+         document.querySelector(".delete-card-container").classList.remove('credit-card-hidden');
+      });
    });
    document.getElementById('cancel-delete').addEventListener('click', () => {
       document.querySelector(".delete-card-container").classList.add('credit-card-hidden');
-   });
-   document.getElementById('confirm-delete').addEventListener('click', () => {
-      window.location.href = '/user/profile/credit_card/delete';
    });
    document.getElementById('card-number').addEventListener('input', function() {
       const cardNumber = this.value;
@@ -134,6 +169,10 @@ const user_profile_credit_card_page = () => {
          errorMessage.textContent = '';
       }
    });
+   document.querySelectorAll('.card-number').forEach((element) => {
+      const cardNumber = element.getAttribute('data-card-number');
+      element.textContent = maskCardNumber(cardNumber);
+   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -141,6 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
    if (main) {
       if (main.classList.contains('user_profile')) {
          user_profile_page();
+      }
+      else if (main.classList.contains('user_profile_edit')) {
+         user_profile_edit_page();
       }
       else if (main.classList.contains('user_profile_change_password')) {
          user_profile_change_password_page();
