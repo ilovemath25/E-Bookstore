@@ -42,17 +42,6 @@ def index():
       .all()
    )
    
-   for product in best_seller:
-      if product.Product_pict.startswith('ebookstore_flask/'):product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '')
-      if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
-   for product in new_release:
-      if product.Product_pict.startswith('ebookstore_flask/'):product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '')
-      if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
-
-   for product in top_rated:
-      if product.Product.Product_pict.startswith('ebookstore_flask/'):product.Product.Product_pict = product.Product.Product_pict.replace('ebookstore_flask/', '')
-      if product.Product.Product_pict.startswith('static/'):product.Product.Product_pict = product.Product.Product_pict.replace('static/', '')
-
    role = None
    session_data = check_session()
    if(session_data): _, role = session_data

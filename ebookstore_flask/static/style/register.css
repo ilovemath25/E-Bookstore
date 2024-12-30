@@ -1,24 +1,26 @@
 body{
     height: auto;
 }
-.sub-title{
+.sub-title-container{
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
     margin: 10px;
  }
- .sub-title hr{
-    width: 42%;
+ .title-line{
+    width: 40% ;
     border: #000;
     margin: 10px;
     height: 3px;
     background-color: #eaddd7;
     color: #eaddd7;
  }
- .sub-title h2{
-    width: 16%;
+ .sub-title{
+    flex-grow: 2;
+    width: fit-content;
     font-size: 20px;
+    margin: 10px;
  }
 .login-form-container {
     width: 50%;
@@ -31,10 +33,12 @@ body{
     align-items: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background-color: #fbfbfb;
+    margin-bottom: 50px;
    
 }
 .form-group-container{
     padding: 10px;
+    
 }
 .form-group {
     margin-top: 15px;
@@ -76,15 +80,6 @@ body{
     position: relative;
     cursor: pointer;
 }
-
-/* .form-group .select-gen{
-    margin: 9px;
-    color: #868e96;
-    font-size: 12px;
-    width: 100%;
-    text-align: left;
-} */
-
 .privacyPolicy{
     color: #868e96;
     text-align: left;
@@ -152,16 +147,16 @@ body{
 
 .privacyPolicy-modal-content{
     background-color: #fff;
-    margin: 15% auto; 
+    margin: 100px auto; 
     padding: 20px;
     border: 1px ;
-    width: 50%; 
+    width: 60%; 
     border-radius: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .privacyPolicy-modal-content p {
     text-align: left;
-    font-size: 20px;
+    font-size: 16px;
     padding: 20px;
 }
 .form-group-container .privacyPolicy a{
@@ -193,3 +188,11 @@ body{
     cursor: pointer;
 }
 
+.backToLoginPage{
+    color:#868e96;
+    margin :5px;
+}
+.backToLoginPage a{
+    text-decoration: none;
+    color:  blue; ;
+}

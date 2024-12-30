@@ -11,9 +11,6 @@ def category(category_name):
       .filter_by(Category = category_name) # WHERE "Category" = <category_name>;
       .all()
    )
-   for book in book_list:
-      if book.Product_pict.startswith('ebookstore_flask/'):book.Product_pict = book.Product_pict.replace('ebookstore_flask/', '')
-      if book.Product_pict.startswith('static/'):book.Product_pict = book.Product_pict.replace('static/', '')
    role = None
    session_data = check_session()
    if(session_data): _, role = session_data
@@ -36,9 +33,7 @@ def all_book():
    book_list={}
    for product in all_list:
       first_letter = product.Name[0].upper()
-      if product.Product_pict.startswith('ebookstore_flask/'):product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '')
-      if product.Product_pict.startswith('static/'):product.Product_pict = product.Product_pict.replace('static/', '')
-      if first_letter not in book_list:book_list[first_letter] = []
+      if first_letter not in book_list: book_list[first_letter] = []
       book_list[first_letter].append(product)
    role = None
    session_data = check_session()
@@ -61,10 +56,7 @@ def search(user_search):
    )
    results = search_books(user_search, all_list)
    book_list = []
-   for book in results:
-      if book.Product_pict.startswith('ebookstore_flask/'):book.Product_pict = book.Product_pict.replace('ebookstore_flask/', '')
-      if book.Product_pict.startswith('static/'):book.Product_pict = book.Product_pict.replace('static/', '')
-      book_list.append(book)
+   for book in results: book_list.append(book)
    role = None
    session_data = check_session()
    if(session_data): _, role = session_data
@@ -72,5 +64,6 @@ def search(user_search):
       "user/book_list.html",
       book_list=book_list,
       user_search=user_search,
-      is_search=True
+      is_search=True,
+      role=role
    )
