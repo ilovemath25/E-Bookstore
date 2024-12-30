@@ -93,6 +93,7 @@ header {
  
 .pic-and-center{
    display: flex;
+   flex-grow: 1;
 }
 .center-name{
    text-decoration: none;
