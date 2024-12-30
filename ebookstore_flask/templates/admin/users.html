@@ -2,16 +2,15 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style/users.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <main>
-  <div class="navbar"></div>
   <div class="container">
     <div class="sidebar">
       <div class="search-bar">
         <input type="text" placeholder="Search" />
-        <button>&#x1F50D;</button>
+        <button><i class="fa fa-search"></i></button>
       </div>
       <ul class="user-list">
-        <!-- Example user IDs -->
         <li>#User_ID_1</li>
         <li>#User_ID_2</li>
         <li>#User_ID_3</li>
@@ -27,7 +26,6 @@
         <li>#User_ID_13</li>
         <li>#User_ID_14</li>
         <li>#User_ID_15</li>
-        <!-- Add as many as needed -->
       </ul>
     </div>
     <div class="main-content">
@@ -39,7 +37,55 @@
           <option>Customer</option>
         </select>
       </div>
-      <h2>Member Account</h2>
+      <div class="section-container">
+        <div class="sub-title">
+           <hr><h2>Member Account</h2><hr>
+        </div>
+        <table class="account-container">
+           <tr class="account-item">
+            <td class="account-label">Member ID</td>
+            <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Name</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Birth</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Gender</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Email</td>
+              <td class="account-value" id="email-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Phone</td>
+              <td class="account-value" id="phone-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Address</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Type</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+            <td class="account-label">Status</td>
+            <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+            <td class="account-label">registration-date</td>
+            <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+        </table>
+        <a class="edit-account" href="#">Edit</a>
+        <a class="delete-account" href="#">Delete</a>
+     </div>
     </div>
   </div>
 </main>

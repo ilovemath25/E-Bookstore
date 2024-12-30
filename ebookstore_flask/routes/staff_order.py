@@ -42,7 +42,7 @@ def index(order_type="order", returned="main"):
          if not order_type or order.Status in status_map.get(order_type, []):
             filtered_products.append(format_product_data(line, product, order))
       return filtered_products
-   check_role("Staff", "Administrator")
+   # check_role("Staff", "Administrator")
 
    item_lines = Item_line.query.filter_by(Line_type="Order").all()
    ordered_product = filter_ordered_products(item_lines, order_type)
