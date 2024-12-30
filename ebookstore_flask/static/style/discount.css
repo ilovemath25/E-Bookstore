@@ -95,7 +95,7 @@
     padding: .25rem 1rem;
     display: flex;
     justify-content: center;
-    font-size: .75rem;
+    font-size: 15px;
     line-height: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -112,6 +112,7 @@
 a{
     text-decoration: none;
     background-color: transparent;
+    color: black;
 }
 
 .bar-center a{
@@ -166,9 +167,24 @@ a{
     display: flex;
     align-items: center;
     margin-top: 10px;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.filter-box{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.add-new-box {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
     padding: 20px;
     gap: 10px;
+    width:30%;
 }
+
 .selected-filter{
     margin-top: 10px;
     display: flex;
@@ -304,10 +320,6 @@ a{
     color: #544f4f;
 }
 
-a{
-    color: black;
-}
-
 .no-result{
     margin: 250px;
     display: flex;
@@ -334,3 +346,10 @@ a{
     padding: 8px 20px;
     justify-content: center;
 }
+
+.apply-button:hover {
+    background-color: #5880b0;
+ }
+ .apply-button:active{
+    background-color: #5075a2;
+ }

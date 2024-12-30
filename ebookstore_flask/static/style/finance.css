@@ -1,0 +1,90 @@
+main {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff9e6;
+}
+.navbar-bottom{
+    margin-top: -30px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #3f72af;
+ }
+
+.summary-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 20px 0;
+}
+.summary-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    width: 447px;
+    background-color: #f9f9f9;
+    margin: 0 10px;
+}
+.chart-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+    margin-top: 40px;
+    height: auto;
+    margin-bottom: 100px;
+    margin: 0px 150px;
+
+}
+.chart {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    height: 500px; 
+    margin-top: 20px;
+}
+.sale-container {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 20px 20px;
+    text-align: center;
+    margin: 0px 150px;
+    margin-top: 50px;
+}
+.year-selector {
+    margin-bottom: 20px;
+}
+.year-selector label {
+    font-size: 16px;
+    font-weight: bold;
+}
+.year-selector select {
+    font-size: 16px;
+    padding: 5px;
+}
+.summary-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+table {
+    margin: 0 auto;
+    width: 85%;
+    border-collapse: collapse;
+    text-align: left;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #002b54;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+}
+td {
+    padding: 12px;
+    font-size: 16px;
+}

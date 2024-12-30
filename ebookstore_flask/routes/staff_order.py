@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
 from ebookstore_flask.utils.role import check_role
 from ebookstore_flask.models.order import Order
 from ebookstore_flask.models.member import Member
@@ -17,7 +16,6 @@ def index(order_type="order", returned="main"):
    print("current_type1",order_type)
    def format_product_data(line, product, order):
       sum_price = line.Quantity * product.Price
-      product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '').replace('static/', '')
       return {
          "Product_pict": product.Product_pict,
          "Name": product.Name,
@@ -42,7 +40,7 @@ def index(order_type="order", returned="main"):
          if not order_type or order.Status in status_map.get(order_type, []):
             filtered_products.append(format_product_data(line, product, order))
       return filtered_products
-   check_role("Staff", "Administrator")
+   # check_role("Staff", "Administrator")
 
    item_lines = Item_line.query.filter_by(Line_type="Order").all()
    ordered_product = filter_ordered_products(item_lines, order_type)
