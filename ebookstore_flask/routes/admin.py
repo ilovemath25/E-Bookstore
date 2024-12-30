@@ -4,6 +4,7 @@ from ebookstore_flask.models.product import Product
 from ebookstore_flask.models.order import Order
 from ebookstore_flask import db
 from datetime import datetime
+from sqlalchemy import extract
 
 admin = Blueprint('admin', __name__)
 
@@ -15,9 +16,10 @@ def manage_users():
 
 # Finance Overview
 @admin.route('/admin/finance')
-def finance_overview():
+@admin.route('/admin/finance/<int:year>', methods=['GET','POST'])
+def finance_overview(year = 2024):
     # Query orders to get financial data
-    orders = Order.query.all()
+    orders = Order.query.filter(extract('year',Order.Time) == year).all()
     
     total_revenue = sum(order.Tot_price for order in orders)
     total_expenses = sum(order.Tot_price * 0.7 for order in orders)  # Assuming 70% of total price is cost
@@ -59,4 +61,5 @@ def finance_overview():
                            monthly_expenses=monthly_expenses,
                            monthly_profit=monthly_profit,
                            monthly_sales=monthly_sales,
-                           top_categories=top_categories)
+                           top_categories=top_categories,
+                           year=year)
