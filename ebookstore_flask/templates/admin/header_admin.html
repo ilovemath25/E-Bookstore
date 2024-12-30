@@ -14,18 +14,17 @@
                     </a>
                 </div>
             </div>
-            
-            <div class="icon-name category-mobile" onclick="display_left_menu()">
-                <i class="fa-solid fa-bars"></i>
+            <div class="navbar-icons ">
+                {% if role is not none and role != "Administrator" %}
+                    <a href="{{ url_for('admin.finance_overview') }}" class="icon-name">
+                        <i class="fa-solid fa-user-tie"></i><p>Admin</p>
+                    </a>
+                {% endif %}
             </div>
-
             <div class="navbar-icons">
                 <a href="#" class="icon-name">
                     <i class="fa-regular fa-circle-user"></i><p>Profile</p>
                 </a>
-            </div>
-            <div class="icon-name language-mobile">
-                <i class="fa-solid fa-globe"></i>
             </div>
         </section>
     </nav>
