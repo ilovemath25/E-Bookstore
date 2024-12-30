@@ -40,7 +40,7 @@ def index(order_type="order", returned="main"):
          if not order_type or order.Status in status_map.get(order_type, []):
             filtered_products.append(format_product_data(line, product, order))
       return filtered_products
-   # check_role("Staff", "Administrator")
+   role=check_role("Staff", "Administrator")
 
    item_lines = Item_line.query.filter_by(Line_type="Order").all()
    ordered_product = filter_ordered_products(item_lines, order_type)
@@ -55,7 +55,7 @@ def index(order_type="order", returned="main"):
    all_items = [list(values) for values in grouped_data.values()]
    active_route = order_type
    print("current_type",active_route)
-   return render_template("/staff/order.html", all_items=all_items, active_route=active_route)
+   return render_template("/staff/order.html", all_items=all_items, active_route=active_route, role=role)
 
 @staff_order.route('/staff/order/to_ship')
 def shipped():
@@ -71,6 +71,7 @@ def returned():
 
 @staff_order.route('/<path:current_path>/findOrder', methods=['POST'])
 def filter_by(current_path):
+      role=check_role("Staff", "Administrator")
       user_input = request.form.get('user_input', "").strip() 
       filter_field = request.form.get('filter_field', "order_id")
 
@@ -93,6 +94,7 @@ def filter_by(current_path):
          all_items=filtered_items,
          user_input=user_input,
          filter_field=filter_field,
-         active_route=current_type
+         active_route=current_type,
+         role=role
 
 )

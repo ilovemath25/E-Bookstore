@@ -11,7 +11,7 @@ staff_centre= Blueprint('staff_centre', __name__)
 
 @staff_centre.route('/staff_centre')
 def index():
-   check_role("Staff", "Administrator")
+   role=check_role("Staff", "Administrator")
 
     # Query orders to get financial data
    orders = Order.query.all()
@@ -56,4 +56,5 @@ def index():
                            monthly_expenses=monthly_expenses,
                            monthly_profit=monthly_profit,
                            monthly_sales=monthly_sales,
-                           top_categories=top_categories)
+                           top_categories=top_categories,
+                           role=role)

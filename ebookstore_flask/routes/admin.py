@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from ebookstore_flask.utils.role import check_role
+from ebookstore_flask.utils.session import check_session
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models.product import Product
 from ebookstore_flask.models.order import Order
@@ -10,8 +12,9 @@ admin = Blueprint('admin', __name__)
 # Manage Users
 @admin.route('/admin/users')
 def manage_users():
+    role=check_role("Staff", "Administrator")
     users = Member.query.all()
-    return render_template('admin/users.html', users=users)
+    return render_template('admin/users.html', users=users, role=role)
 
 # Finance Overview
 @admin.route('/admin/finance')
@@ -51,6 +54,7 @@ def finance_overview():
     total_expenses = "{:.2f}".format(total_expenses)
     net_profit = "{:.2f}".format(net_profit)
 
+    role=check_role("Administrator")
     return render_template('admin/finance.html', 
                            total_revenue=total_revenue, 
                            total_expenses=total_expenses, 
@@ -59,4 +63,5 @@ def finance_overview():
                            monthly_expenses=monthly_expenses,
                            monthly_profit=monthly_profit,
                            monthly_sales=monthly_sales,
-                           top_categories=top_categories)
+                           top_categories=top_categories,
+                           role=role)

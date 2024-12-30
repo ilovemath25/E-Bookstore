@@ -20,6 +20,11 @@
             </div>
 
             <div class="navbar-icons">
+                {% if role is not none and role == "Administrator" %}
+                    <a href="{{ url_for('admin.finance_overview') }}" class="icon-name">
+                        <i class="fa-solid fa-user-tie"></i><p>Admin</p>
+                    </a>
+                {% endif %}
                 <a href="{{ url_for('user_profile.index') }}" class="icon-name">
                     <i class="fa-regular fa-circle-user"></i><p>Profile</p>
                 </a>
