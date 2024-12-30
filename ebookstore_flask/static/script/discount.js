@@ -87,7 +87,6 @@ function validateFields() {
     if (!selectedRadio) {
         isValid = false;
         alert("Please select a discount type!");
-        e.preventDefault();
     }
 
     return isValid;

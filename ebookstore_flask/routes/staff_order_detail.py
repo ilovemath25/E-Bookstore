@@ -128,6 +128,10 @@ def update_status(order_id):
    from ebookstore_flask import db
 
    order = Order.query.filter_by(OID=order_id).first()
+   print("order: ",order)
+   print(order.DID)
+   discount = Discount.query.filter_by(DID=order.DID).first()
+   print("discount",discount)
    item_lines = Item_line.query.filter_by(OID=order_id).all()
 
    if not order:
@@ -138,6 +142,8 @@ def update_status(order_id):
       for line in item_lines:
          product = Product.query.get(line.PID)
          product.Sale_count += 1
+         if discount:
+            discount.Max_usage -= 1
    if new_status in ['process', 'ship', 'receive', 'closed']:
       status_mapping = {
          'process': 'Processing',
