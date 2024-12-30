@@ -4,11 +4,9 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/finance.css') }}">
 <main>
     <nav class="navbar-bottom">
-        <a href="{{ url_for('book_list.category', category_name='Fantasy') }}" class="category-name">Financial</a>
-        <a href="{{ url_for('book_list.category', category_name='Mystery') }}" class="category-name">user</a>
-        <a href="{{ url_for('book_list.category', category_name='Classic') }}" class="category-name">staff</a>
-        <hr>
-    </div>
+        <a href="/admin/finance">Financial</a>
+        <a href="/admin/users">user</a>
+        <a href="/staff_centre">staff</a>
     </nav>
     <div class="summary-boxes">
         <div class="summary-box">
@@ -66,11 +64,62 @@
             </tbody>
         </table>
     </div>
+    <div class="product-sale-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Enter Product ID">
+            <select>
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+            </select>
+            <button>Search</button>
+        </div>
+        <div class="summary-title">Specific Product Sales</div>
+        <div class="product-id">Detail for product ID: 12345</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Unit Sold</th>
+                    <th>Total Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>January</td>
+                    <td>500</td>
+                    <td>$50,000</td>
+                </tr>
+                <tr>
+                    <td>February</td>
+                    <td>600</td>
+                    <td>$60,000</td>
+                </tr>
+                <tr>
+                    <td>March</td>
+                    <td>700</td>
+                    <td>$70,000</td>
+                </tr>
+                <tr>
+                    <td>April</td>
+                    <td>800</td>
+                    <td>$80,000</td>
+                </tr>
+                <tr>
+                    <td>May</td>
+                    <td>900</td>
+                    <td>$90,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const monthlyRevenue = {{ monthly_revenue | tojson }};
         const monthlyExpenses = {{ monthly_expenses | tojson }};
         const monthlyProfit = {{ monthly_profit | tojson }};
+        const monthlySales = {{ monthly_sales | tojson }};
+        const topCategories = {{ top_categories | tojson }};
         
         const ctx = document.getElementById('financialChart').getContext('2d');
         const financialChart = new Chart(ctx, {

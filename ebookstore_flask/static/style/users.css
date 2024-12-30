@@ -3,6 +3,33 @@ body {
     margin: 0;
     padding: 0;
   }
+  .navbar-bottom {
+    margin-top: -30px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #3f72af;
+}
+
+.navbar-bottom a{
+    list-style-type: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+ }
+ .navbar-bottom a:hover{
+    background-color: #5880b0;
+    transition: all 0.3s;
+ }
+ .navbar-bottom a{
+    background-color: #5075a2;
+    transition: all 0s; 
+ }
 .container {
     display: flex;
     height: calc(100vh - 50px);
