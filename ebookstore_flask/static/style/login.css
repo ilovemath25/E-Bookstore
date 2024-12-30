@@ -1,12 +1,13 @@
 .login-page-container{
     display: flex;
     height: 100%;
+    align-items: center;
 }
 
 .login-form-container {
     width: 100%;
     height: fit-content;
-    margin: 200px ;
+    margin: 0px 200px;
     padding: 20px;
     text-align: center;
     border: 1px solid #ccc;

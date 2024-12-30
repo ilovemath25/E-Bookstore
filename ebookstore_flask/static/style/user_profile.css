@@ -90,7 +90,8 @@ form .profile-container .profile-label{
 form .profile-container .profile-value{
    display: flex;
    width: 100%;
-   padding: 10px 15px 10px 0px;
+   padding: 10px 0px;
+   position: relative;
 }
 .fa-eye-slash, .fa-eye{
    cursor: pointer;
@@ -98,10 +99,34 @@ form .profile-container .profile-value{
 }
 .profile-input{
    padding: 5px 10px;
-   margin-right: 10px;
    width: 100%;
    border: 1px solid #9b9b9b;
    border-radius: 5px;
+   font-size: 16px;
+}
+#selected-gender{
+   cursor: pointer;
+}
+.dropdown-options {
+   display: none;
+   position: absolute;
+   background-color: #fff;
+   border: 1px solid #9b9b9b;
+   border-radius: 5px;
+   z-index: 5;
+   top: 40px;
+   width: 100%;
+   overflow-y: auto;
+}
+.dropdown-option {
+   padding: 5px 10px;
+   cursor: pointer;
+}
+.dropdown-option:hover {
+   background-color: #f1f1f1;
+}
+.dropdown-options.active{
+   display: block;
 }
 .add-card, .edit-profile, .cancel-edit{
    display: flex;
@@ -277,8 +302,6 @@ form .profile-container .profile-value{
    text-decoration: none;
    font-size: 14px;
 }
-
-
 .change-password-error-message{
    color: red;
    text-align: center;

@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
 from ebookstore_flask.utils.role import check_role
 from ebookstore_flask.models.order import Order
 from ebookstore_flask.models.member import Member
