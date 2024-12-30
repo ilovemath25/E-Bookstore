@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from ebookstore_flask.utils.role import check_role
+from ebookstore_flask.utils.session import check_session
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models.product import Product
 from ebookstore_flask.models.order import Order
@@ -8,16 +10,19 @@ from sqlalchemy import extract
 
 admin = Blueprint('admin', __name__)
 
+year_now = datetime.now().year
+
 # Manage Users
 @admin.route('/admin/users')
 def manage_users():
+    role=check_role("Staff", "Administrator")
     users = Member.query.all()
-    return render_template('admin/users.html', users=users)
+    return render_template('admin/users.html', users=users, role=role)
 
 # Finance Overview
 @admin.route('/admin/finance')
 @admin.route('/admin/finance/<int:year>', methods=['GET','POST'])
-def finance_overview(year = 2024):
+def finance_overview(year = year_now):
     # Query orders to get financial data
     orders = Order.query.filter(extract('year',Order.Time) == year).all()
     
@@ -53,6 +58,7 @@ def finance_overview(year = 2024):
     total_expenses = "{:.2f}".format(total_expenses)
     net_profit = "{:.2f}".format(net_profit)
 
+    role=check_role("Administrator")
     return render_template('admin/finance.html', 
                            total_revenue=total_revenue, 
                            total_expenses=total_expenses, 
@@ -62,4 +68,6 @@ def finance_overview(year = 2024):
                            monthly_profit=monthly_profit,
                            monthly_sales=monthly_sales,
                            top_categories=top_categories,
-                           year=year)
+                           year=year,
+                           year_now=year_now,
+                           role=role)

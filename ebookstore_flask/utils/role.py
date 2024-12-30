@@ -15,6 +15,7 @@ def check_role(*required_role):
       session_data = check_session()
       session_role = session_data[1]
       if len(required_role) and session_role not in required_role: abort(403)
-      return True
+      return session_role
    else:
       abort(403)
+      return 0

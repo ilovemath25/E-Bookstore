@@ -30,14 +30,14 @@
                 </div>
             </div>
             <div class="navbar-icons">
-                {% if role is not none and role == "Staff" %}
-                    <a href="{{ url_for('staff_centre.index') }}" class="icon-name">
-                        <i class="fa-solid fa-user-tie"></i><p>Staff</p>
-                    </a>
-                {% endif %}
                 {% if role is not none and role == "Administrator" %}
                     <a href="{{ url_for('admin.finance_overview') }}" class="icon-name">
                         <i class="fa-solid fa-user-tie"></i><p>Admin</p>
+                    </a>
+                {% endif %}
+                {% if role is not none and role != "Customer" %}
+                    <a href="{{ url_for('staff_centre.index') }}" class="icon-name">
+                        <i class="fa-solid fa-user-tie"></i><p>Staff</p>
                     </a>
                 {% endif %}
                 <a href="{{ url_for('shopping_cart.index') }}" class="icon-name">

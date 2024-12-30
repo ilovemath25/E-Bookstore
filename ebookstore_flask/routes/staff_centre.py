@@ -10,10 +10,12 @@ from sqlalchemy import extract
 
 staff_centre= Blueprint('staff_centre', __name__)
 
+year_now = datetime.now().year
+
 @staff_centre.route('/staff_centre')
 @staff_centre.route('/staff_centre/<int:year>', methods=['GET','POST'])
-def index(year = 2024):
-   check_role("Staff", "Administrator")
+def index(year = year_now):
+   role=check_role("Staff", "Administrator")
 
     # Query orders to get financial data
    orders = Order.query.filter(extract('year',Order.Time) == year).all()
@@ -59,5 +61,7 @@ def index(year = 2024):
                            monthly_profit=monthly_profit,
                            monthly_sales=monthly_sales,
                            top_categories=top_categories,
-                           year=year)
-                           
+                           year=year,
+                           year_now = year_now,
+                           role=role)
+

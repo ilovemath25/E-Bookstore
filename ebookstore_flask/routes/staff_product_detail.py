@@ -10,17 +10,18 @@ staff_product_detail = Blueprint('staff_product_detail', __name__)
 
 @staff_product_detail.route('/staff/product_detail/<int:product_id>')
 def index(product_id):
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     product = Product.query.filter_by(PID=product_id).first()
 
     return render_template(
         "staff/product_detail.html",
-        product=product
+        product=product,
+        role=role
     )
 @staff_product_detail.route('/staff/product_detail/<int:product_id>/edit')
 def index2(product_id):
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     errorMsg = request.args.get('errorMsg', '')
 
@@ -29,7 +30,8 @@ def index2(product_id):
     return render_template(
         "/staff/product_detail_edit.html",
         product = product,
-        errorMsg=errorMsg
+        errorMsg=errorMsg,
+        role=role
     )
     
 
