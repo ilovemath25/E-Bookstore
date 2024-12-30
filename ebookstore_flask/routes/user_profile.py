@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from ebookstore_flask.utils.session import check_session, load_sessions
 from ebookstore_flask.utils.credit_card import bin_number_checker
 from ebookstore_flask.models.credit_card import Credit_card
+from ebookstore_flask.models.discount import Discount
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models import db
 from datetime import datetime
@@ -165,35 +166,38 @@ def credit_card_delete():
 
 @user_profile.route('/user/profile/change_password', methods=['GET', 'POST'])
 def change_password():
-    if not check_session():
-         return redirect(url_for('login.index'))
+   session_data = check_session()
+   if not check_session():
+      return redirect(url_for('login.index'))
+   session_id = request.cookies.get("session_id")
+   sessions = load_sessions()
+   email = sessions.get(session_id, [None])[0]
+   if not email:
+      return redirect(url_for('login.index'))
 
-    session_id = request.cookies.get("session_id")
-    sessions = load_sessions()
-    email = sessions.get(session_id, [None])[0]
-    if not email:
-        return redirect(url_for('login.index'))
+   from ebookstore_flask.models.member import Member
+   from ebookstore_flask.models import db
 
-    from ebookstore_flask.models.member import Member
-    from ebookstore_flask.models import db
+   user = Member.query.filter_by(Email=email).first()
+   if not user:
+      return "User not found.", 404
 
-    user = Member.query.filter_by(Email=email).first()
-    if not user:
-        return "User not found.", 404
+   if request.method == 'POST':
+      old_password = request.form.get('currentPassword')
+      new_password = request.form.get('newPassword')
+      confirm_password = request.form.get('confirmNewPassword')
+      print(user.Password , old_password)
 
-    if request.method == 'POST':
-        old_password = request.form.get('currentPassword')
-        new_password = request.form.get('newPassword')
-        confirm_password = request.form.get('confirmNewPassword')
-        print(user.Password , old_password)
+      user.Password = new_password
+      db.session.commit()
 
-        
-        user.Password = new_password
-        db.session.commit()
+      return redirect(url_for('user_profile.index'))
 
-        return redirect(url_for('user_profile.index'))
-
-    return render_template('user/user_profile_change_password.html', old_password=user.Password)
+   return render_template(
+      'user/user_profile_change_password.html',
+      old_password=user.Password,
+      role=session_data[1] if session_data else None
+   )
 
 @user_profile.route('/user/profile/order')
 def order():
@@ -201,4 +205,16 @@ def order():
 
 @user_profile.route('/user/profile/discount')
 def discount():
-   return render_template('user/discount.html')
+   session_data = check_session()
+   if not check_session():
+      return redirect(url_for('login.index'))
+   session_id = request.cookies.get("session_id")
+   sessions = load_sessions()
+   email = sessions.get(session_id, [None])[0]
+   if not email:
+      return redirect(url_for('login.index'))
+
+   return render_template(
+      'user/user_profile_discount.html',
+      role=session_data[1] if session_data else None
+   )
