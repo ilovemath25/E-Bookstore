@@ -19,6 +19,27 @@ def manage_users():
     users = Member.query.all()
     return render_template('admin/users.html', users=users, role=role)
 
+# ...existing code...
+
+# Edit User
+@admin.route('/admin/users_edit', methods=['GET', 'POST'])
+def edit_user():
+    user = Member.query.all()
+    
+    if request.method == 'POST':
+        user.F_name = request.form.get('F_name')
+        user.L_name = request.form.get('L_name')
+        user.Birth = request.form.get('Birth')
+        user.Gender = request.form.get('Gender')
+        user.Email = request.form.get('Email')
+        user.Phone = request.form.get('Phone')
+        user.Address = request.form.get('Address')
+        db.session.commit()
+        flash('User updated successfully!', 'success')
+        return redirect(url_for('admin.manage_users'))
+    
+    return render_template('admin/users_edit.html', user=user)
+
 # Finance Overview
 @admin.route('/admin/finance')
 @admin.route('/admin/finance/<int:year>', methods=['GET','POST'])

@@ -1,0 +1,118 @@
+{% extends '/admin/base_admin.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/users_edit.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<main>
+  <div class="container">
+   <div class="left">
+      <div class="bar-title">Admin Menu</div>
+      <div class="bar-list">
+          <!-- order -->
+          <a href="/admin/finance" target="_self" id="bar-order" class="bar-row">
+              <span class="bar-center">Finance</span>
+          </a>
+          <hr>
+          <a href="/admin/users" target="_self" id="bar-product" class="bar-row">
+              <span class="bar-center">User Management</span>
+          </a>
+          <hr>
+          <a href="/staff/order" target="_self" id="bar-discount" class="bar-row">
+              <span class="bar-center">Staff Centre</span>
+          </a>
+      </div>
+  </div>
+    <div class="main-content">
+      <div class="dropdown">
+        <label for="memberType">Member type:</label>
+        <select id="memberType">
+          <option>All User</option>
+          <option>Staff</option>
+          <option>Customer</option>
+        </select>
+      </div>
+      <form class="section-container" method="POST" action="{{ url_for('admin.edit_user') }}">
+        <div class="sub-title">
+           <hr><h2>Member Account</h2><hr>
+        </div>
+        <table class="profile-container">
+           <tr class="profile-item">
+              <td class="profile-label">First Name</td>
+              <td class="profile-value">
+                 <input type="text" name="F_name" id="F_name" class="profile-input" value="{{ user.F_name }}" placeholder="First Name">
+              </td>
+           </tr>
+           <tr class="profile-item">
+              <td class="profile-label">Last Name</td>
+              <td class="profile-value">
+                 <input type="text" name="L_name" id="L_name" class="profile-input" value="{{ user.L_name if user.L_name else '' }}" placeholder="Last Name">
+              </td>
+           </tr>
+           <tr class="profile-item">
+              <td class="profile-label">Birth</td>
+              <td class="profile-value">
+                 <input type="text" name="Birth" id="Birth" class="profile-input birth" value="{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else '' }}">
+              </td>
+           </tr>
+           <tr class="profile-item">
+              <td class="profile-label">Gender</td>
+              <td class="profile-value">
+                 <input type="text" class="profile-input" id="selected-gender" value="{{ user.Gender }}" readonly></input>
+                 <div class="dropdown-options">
+                    <div class="dropdown-option" data-value="Male">Male</div>
+                    <div class="dropdown-option" data-value="Female">Female</div>
+                    <div class="dropdown-option" data-value="Other">Other</div>
+                 </div>
+                 <input type="hidden" class="profile-input" name="Gender" id="selected-gender-hidden" value="{{ user.Gender }}"></input>
+              </td>
+           </tr>
+           <tr class="profile-item">
+              <td class="profile-label">Email</td>
+              <td class="profile-value">
+                 <input type="email" name="Email" id="email-value" class="profile-input" value="{{ user.Email }}" data-original="{{ user.Email }}">
+              </td>
+           </tr>
+           <tr class="profile-item">
+              <td class="profile-label">Phone</td>
+              <td class="profile-value">
+                 <input type="tel" name="Phone" id="phone-value" class="profile-input" value="{{ user.Phone }}" data-original="{{ user.Phone }}">
+              </td>
+           </tr>
+           <tr class="profile-item">
+              <td class="profile-label">Address</td>
+              <td class="profile-value">
+                 <input type="text" name="Address" id="Address" class="profile-input" value="{{ user.Address if user.Address else '' }}" placeholder="Your Address">
+              </td>
+           </tr>
+        </table>
+        <input type="submit" class="edit-profile" href="#" value="Save"></input>
+        <a href="#" class="cancel-edit">Cancel</a>
+      </form>
+     <div class="sidebar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+      <ul class="user-list">
+        <li>#User_ID_1</li>
+        <li>#User_ID_2</li>
+        <li>#User_ID_3</li>
+        <li>#User_ID_4</li>
+        <li>#User_ID_5</li>
+        <li>#User_ID_6</li>
+        <li>#User_ID_7</li>
+        <li>#User_ID_8</li>
+        <li>#User_ID_9</li>
+        <li>#User_ID_10</li>
+        <li>#User_ID_11</li>
+        <li>#User_ID_12</li>
+        <li>#User_ID_13</li>
+        <li>#User_ID_14</li>
+        <li>#User_ID_15</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

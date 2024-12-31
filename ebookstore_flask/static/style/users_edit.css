@@ -8,13 +8,13 @@ body {
     height: calc(100vh - 50px);
   }
 .sidebar {
-    margin-top: auto;
+    margin-top: 100px;
     width: 20%;
     background-color: #f0f0f0;
     padding: 10px;
     box-sizing: border-box;
     margin-right: -10px;
-    margin-top: -650px;
+    margin-top: -520px;
     float: right; 
     margin-bottom: auto;
     z-index: -1;
@@ -91,57 +91,100 @@ body {
     font-size: 16px;
  }
   
-  .section-container{
+ .section-container{
     width: 75%;
     flex-grow: 2;
-    padding-bottom: 50px;
-    margin-top: -10px;
     margin-bottom: 30px;
     margin-left: 30px;
     margin-right: 150px;
     background-color: #f9f7f7;
     border: 2px solid #d9d9d9;
     border-radius: 5px;
-    position: relative;
-  }
-
-
- .account-container{
+    padding-bottom: 60px;
+ }
+ .profile-container{
     margin: 20px 40px;
     overflow: auto;
     min-height: 320px;
  }
- .account-label, .account-value{
+ .profile-label, .profile-value{
     padding: 15px 50px;
  }
- .account-label{
+ .profile-label{
     color: #868e96;
  }
- .edit-account, .delete-account{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   float: right;
-   padding: 10px 50px;
-   border-radius: 10px;
-   margin: 0px 15px 30px 15px;
-   background-color: #3f72af;
-   border: #000;
-   color: #fff;
-   cursor: pointer;
-   text-decoration: none;
-   font-size: 14px;
+ form .profile-container{
+    width: 80%;
  }
- .edit-account{
-  margin-right: 60px;
-}
-.delete-account{
-  margin-left: 20px;
-}
-.edit-account:hover, .delete-account:hover{
-  background-color: #5880b0;
-  transition: all 0.3s;
-}
+ form .profile-container .profile-label{
+    padding-right: 40px;
+ }
+ form .profile-container .profile-value{
+    display: flex;
+    width: 100%;
+    padding: 10px 0px;
+    position: relative;
+ }
+ .fa-eye-slash, .fa-eye{
+    cursor: pointer;
+    width: auto;
+ }
+ .profile-input{
+    padding: 5px 10px;
+    width: 100%;
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+    font-size: 16px;
+ }
+ #selected-gender{
+    cursor: pointer;
+ }
+ .dropdown-options {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #9b9b9b;
+    border-radius: 5px;
+    z-index: 5;
+    top: 40px;
+    width: 100%;
+    overflow-y: auto;
+ }
+ .dropdown-option {
+    padding: 5px 10px;
+    cursor: pointer;
+ }
+ .dropdown-option:hover {
+    background-color: #f1f1f1;
+ }
+ .dropdown-options.active{
+    display: block;
+ }
+ .edit-profile, .cancel-edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    padding: 10px 50px;
+    border-radius: 10px;
+    margin: 0px 15px 30px 15px;
+    background-color: #3f72af;
+    border: #000;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .edit-profile{
+   margin-right: 60px;
+ }
+ .cancel-edit{
+   margin-left: 20px;
+ }
+ .edit-profile:hover, .cancel-edit:hover{
+   background-color: #5880b0;
+   transition: all 0.3s;
+ }
 .left{
   flex: 0 0 10%;
   border-radius: 8px;
