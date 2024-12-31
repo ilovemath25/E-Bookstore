@@ -1,0 +1,63 @@
+{% extends '/user/base_user.html' %}
+{% block content %}
+<main class="user_profile_order_history">
+   {% include "/user/user_profile_menu.html" %}
+    <div class="order-section-container">
+        <!-- Subtab -->
+        <section class="order-header">
+            <a href="/user/profile/order_history/order" class="header-title {% if active_route == 'order' %}checked{% endif %}" onclick="navigateTo('order')">Total Order</a><hr>
+            <a href="/user/profile/order_history/processing" class="header-title {% if active_route == 'processing' %}checked{% endif %}" onclick="navigateTo('processing')">Processing</a><hr>
+            <a href="/user/profile/order_history/shipping" class="header-title {% if active_route == 'shipping' %}checked{% endif %}" onclick="navigateTo('shipping')">Shipping</a><hr>
+            <a href="/user/profile/order_history/received" class="header-title {% if active_route == 'received' %}checked{% endif %}" onclick="navigateTo('received')">Received</a><hr>
+            <a href="/user/profile/order_history/closed" class="header-title {% if active_route == 'closed' %}checked{% endif %}" onclick="navigateTo('closed')">Closed</a>
+        </section>
+        
+        <form class="order-form-container" method="POST" action="{{ url_for('user_profile.order') }}">
+            <div class="sub-title">
+                <hr><h2>Order History</h2><hr>
+            </div>
+            <div class="order-history-table-container">
+                <div class="scrollable-box">
+                    {% if all_items|length == 0 %}
+                        <div class="no-result">No Result !</div>
+                    {% else %}
+                        {% for order in all_items %}
+                            <div class="list-header">
+                                <div class="header-list-oid">
+                                    <span>Order ID : {{order[0]['OID']}}</span>
+                                </div>
+                            </div>
+                            <a href="{{url_for('user_profile.order_detail', order_id=order[0]['OID'])}}">
+                                <div class="content-list">
+                                    {% for item in order %}
+                                        <div class="order-list-box">
+                                            <div class="order-detail-pic">
+                                                <img src="{{ item.Product_pict }}" alt="{{ hi }}" class="product-pic">
+                                            </div>
+                                            <div class="order-detail-name">
+                                                <h4>{{item.Name}}</h4>
+                                            </div>
+                                            <div class="order-detail-text">
+                                                <h4>{{item.Quantity}}</h4>
+                                            </div>
+                                            <div class="order-detail-text">
+                                                <h4>${{item.Sum}}</h4>
+                                            </div>
+                                            <div class="order-detail-text">
+                                                <h4>{{item.Status}}</h4>
+                                            </div>
+                                        </div>
+                                        {% if loop.index < order|length %}
+                                            <hr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

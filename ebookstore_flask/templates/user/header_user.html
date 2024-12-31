@@ -81,7 +81,7 @@
     <nav class="navbar-side-mobile">
         <aside class="navbar-side-space" onclick="undisplay_left_menu()"></aside>
         <div class="navbar-side-category">
-            <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Bookstore Logo" class="logo">
+            <img src="{{ logo }}" alt="Bookstore Logo" class="logo">
             <hr>
             <a href="{{ url_for('book_list.category', category_name='Fantasy') }}" class="category-name">Fantasy</a>
             <a href="{{ url_for('book_list.category', category_name='Mystery') }}" class="category-name">Mystery</a>

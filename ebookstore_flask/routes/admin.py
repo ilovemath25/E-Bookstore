@@ -10,21 +10,11 @@ from sqlalchemy import extract
 
 admin = Blueprint('admin', __name__)
 
-year_now = datetime.now().year
-
-# Manage Users
-@admin.route('/admin/users')
-def manage_users():
-    role=check_role("Staff", "Administrator")
-    users = Member.query.all()
-    return render_template('admin/users.html', users=users, role=role)
-
-# Finance Overview
 @admin.route('/admin/finance')
 @admin.route('/admin/finance/<int:year>', methods=['GET','POST'])
-def finance_overview(year = year_now):
+def finance_overview(year = datetime.now().year):
     # Query orders to get financial data
-    orders = Order.query.filter(extract('year',Order.Time) == year).all()
+    orders = Order.query.filter(extract('year', Order.Time) == year).all()
     
     total_revenue = sum(order.Tot_price for order in orders)
     total_expenses = sum(order.Tot_price * 0.7 for order in orders)  # Assuming 70% of total price is cost
@@ -69,5 +59,27 @@ def finance_overview(year = year_now):
                            monthly_sales=monthly_sales,
                            top_categories=top_categories,
                            year=year,
-                           year_now=year_now,
+                           year_now=datetime.now().year,
                            role=role)
+
+@admin.route('/admin/users')
+def manage_users():
+    role=check_role("Administrator")
+    users = Member.query.all()
+    return render_template('admin/admin_users.html', users=users, role=role)
+
+@admin.route('/admin/users/edit', methods=['GET', 'POST'])
+def edit_user():
+    user = Member.query.all()
+    if request.method == 'POST':
+        user.F_name = request.form.get('F_name')
+        user.L_name = request.form.get('L_name')
+        user.Birth = request.form.get('Birth')
+        user.Gender = request.form.get('Gender')
+        user.Email = request.form.get('Email')
+        user.Phone = request.form.get('Phone')
+        user.Address = request.form.get('Address')
+        db.session.commit()
+        flash('User updated successfully!', 'success')
+        return redirect(url_for('admin.manage_users'))
+    return render_template('admin/admin_users_edit.html', user=user)
