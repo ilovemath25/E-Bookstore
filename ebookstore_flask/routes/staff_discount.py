@@ -72,12 +72,6 @@ def filter_by(current_path):
     filtered_items = []
     
     for item in data:
-        print("DID",item['DID'])
-        print("filter_field",filter_field)
-        print("user_input",user_input)
-        print(filter_field == "discountID")
-        print(user_input.isdigit())
-        print(item['DID'] == user_input)
         if filter_field == "discountID" and user_input.isdigit() and item['DID'] == int(user_input):
             print("msk sini")
             filtered_items.append(item)
