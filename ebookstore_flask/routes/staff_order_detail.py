@@ -12,7 +12,7 @@ def index(order_id):
    from ebookstore_flask.models.discount import Discount
    from ebookstore_flask.models.special_event import Special_event
 
-   check_role("Staff", "Administrator")
+   role=check_role("Staff", "Administrator")
 
    order = Order.query.get(order_id)
    customer = Member.query.get(order.CMID) if order else None
@@ -54,7 +54,8 @@ def index(order_id):
       total_price=total_price, 
       shp_fee=shp_fee, 
       order_total=order_total, 
-      steps=steps
+      steps=steps,
+      role=role
    )
 
 
@@ -67,7 +68,7 @@ def index2(order_id):
    from ebookstore_flask.models.discount import Discount
    from ebookstore_flask.models.special_event import Special_event
 
-   check_role("Staff", "Administrator")
+   role=check_role("Staff", "Administrator")
 
    order = Order.query.get(order_id)
    customer = Member.query.get(order.CMID) if order else None
@@ -112,7 +113,8 @@ def index2(order_id):
       total_price=total_price, 
       shp_fee=shp_fee, 
       order_total=order_total, 
-      steps=steps
+      steps=steps,
+      role=role
    )
 
 @staff_order_detail.route('/staff/order_detail/<int:order_id>/update', methods=['POST'])

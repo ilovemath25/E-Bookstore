@@ -7,7 +7,7 @@ main {
    text-align: center;
    align-items: center;
    justify-content: center;
-   margin: 10px;
+   margin: 25px;
 }
 
 .sub-title hr {
@@ -23,12 +23,10 @@ main {
    width: 16%;
    font-size: 16px;
 }
-
-.profile-menu {
-   margin: 0px 30px 30px 150px;
+.profile-menu{
+   margin: 0px 30px 30px 120px;
 }
-
-.menu-header {
+/* .menu-header{
    background-color: #3f72af;
    color: #fff;
    padding: 10px 20px;
@@ -37,16 +35,14 @@ main {
    display: flex;
    justify-content: center;
    font-size: 20px;
-}
-
-.menu-options {
+} */
+/* .menu-options{
    display: flex;
    flex-direction: column;
    border: 1px solid #c4c4c4;
    border-radius: 0px 0px 5px 5px;
-}
-
-.menu-option {
+} */
+/* .menu-option{
    background-color: #f9f7f7;
    list-style: none;
    padding: 10px 20px;
@@ -55,32 +51,117 @@ main {
    transition: all 0.3s;
    text-decoration: none;
    color: #000;
+} */
+.menu-header{
+   height: 40px;
+   border-top-left-radius: 8px;
+   border-top-right-radius: 8px;
+   padding: 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 16px;
+   font-weight: 500;
+   background-color: #102d4d;
+   color: #fff;
+}
+.menu-options{
+   position: relative;
+   display: flex;
+   height: 350px;
+   width: 180px;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-radius: 0;
+   padding: 0;
+   color: #000;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   border: 1px solid #ddd;
+   background-color: #fff;
+   border-bottom-left-radius: 8px;
+   border-bottom-right-radius: 8px;
+}
+.menu-options>.menu-option{
+   height: inherit;
+   flex-wrap: nowrap;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 5px;
 }
 
-.menu-option:first-child {
+.menu-options .menu-option{
+   margin: 0;
+   width: 100%;
+   padding: 0 1rem;
+   display: flex;
+   justify-content: center;
+   font-size: 15px;
+}
+
+.menu-options hr{
+   width: 80%;
+   background-color: #ddd;
+   border: none;
+   height: 3px;
+}
+.menu-option{
+   --bs-gutter-y: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   width: 100%;
+   margin: 0;
+}
+.menu-option:hover{
+   background-color: #afc7e5;
+   transition: all 0.3s;
+}
+
+.menu-option:last-child:hover{
+   border-bottom-left-radius: 7px;
+   border-bottom-right-radius: 7px;
+}
+.menu-option:active{
+   background-color: #8ea4c0;
+   transition: all 0s; 
+}
+.menu-option.active{
+   background-color: #afc7e5;
+   transition: all 0s; 
+}
+a{
+   color: black;
+   text-decoration: none;
+   background-color: transparent;
+}
+.menu-option:first-child{
    border-top: #000;
 }
 
 .menu-option:last-child {
    border-radius: 0px 0px 5px 5px;
 }
-
-.menu-option:hover {
+/* .menu-option:hover{
    background-color: #e5e5e5;
 }
 
 .menu-option.active {
    background-color: #d0d0d0;
-}
-
-.section-container {
+} */
+.section-container{
    flex-grow: 2;
    margin-bottom: 30px;
    margin-left: 30px;
    margin-right: 150px;
-   background-color: #f9f7f7;
-   border: 2px solid #d9d9d9;
-   border-radius: 5px;
+   /* background-color: #f9f7f7; */
+   /* border: 2px solid #d9d9d9; */
+   /* border-radius: 5px; */
+   background-color: #f9f9f9;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profile-container {
@@ -316,10 +397,8 @@ form .profile-container .profile-value {
    display: flex;
    justify-content: center;
 }
-
-.change-password-label,
-.change-password-value {
-   padding: 15px 60px;
+.change-password-label, .change-password-value{
+   padding: 35px 60px;
 }
 
 .change-password-label {
@@ -329,7 +408,7 @@ form .profile-container .profile-value {
 .change-password-container .change-password-value {
    display: flex;
    width: 200%;
-   padding: 10px 15px 10px 0px;
+   padding: 30px 15px 30px 0px;
 }
 
 .submit-and-cancel-change-password-button {
@@ -337,10 +416,11 @@ form .profile-container .profile-value {
    justify-content: center;
    align-items: center;
    float: right;
+   margin-top: 50px;
 }
 
 .cancel-button {
-   background-color: #868e96;
+   background-color: #cdcdcd;
 }
 
 .submit-button {
@@ -360,6 +440,8 @@ form .profile-container .profile-value {
    cursor: pointer;
    text-decoration: none;
    font-size: 14px;
+   width: 130px;
+   height: 43px;
 }
 
 .change-password-error-message {

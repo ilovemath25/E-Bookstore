@@ -3,71 +3,105 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style/finance.css') }}">
 <main>
-    <nav class="navbar-bottom">
-        <a href="{{ url_for('book_list.category', category_name='Fantasy') }}" class="category-name">Financial</a>
-        <a href="{{ url_for('book_list.category', category_name='Mystery') }}" class="category-name">user</a>
-        <a href="{{ url_for('book_list.category', category_name='Classic') }}" class="category-name">staff</a>
-        <hr>
-    </div>
-    </nav>
-    <div class="summary-boxes">
-        <div class="summary-box">
-            <h2>Total Revenue</h2>
-            <p>${{ total_revenue }}</p>
+    <div class="navbar-order-container">
+        <div class="left">
+            <div class="bar-title">Admin Menu</div>
+            <div class="bar-list">
+                <!-- order -->
+                <a href="/admin/finance" target="_self" id="bar-order" class="bar-row">
+                    <span class="bar-center">Finance</span>
+                </a>
+                <hr>
+                <a href="#" target="_self" id="bar-product" class="bar-row">
+                    <span class="bar-center">User Management</span>
+                </a>
+                <hr>
+                <a href="/staff/order" target="_self" id="bar-discount" class="bar-row">
+                    <span class="bar-center">Staff Centre</span>
+                </a>
+            </div>
         </div>
-        <div class="summary-box">
-            <h2>Total Expenses</h2>
-            <p>${{ total_expenses }}</p>
+        <div class="right">
+            <div class="summary-boxes">
+                <div class="summary-box">
+                    <h2>Total Revenue</h2>
+                    <p>${{ total_revenue }}</p>
+                </div>
+                <div class="summary-box">
+                    <h2>Total Expenses</h2>
+                    <p>${{ total_expenses }}</p>
+                </div>
+                <div class="summary-box">
+                    <h2>Net Profit</h2>
+                    <p>${{ net_profit }}</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h2>Financial Performance Chart</h2>
+                    <select id="year1" onchange="syncDropdowns(this.value)">
+                        {% for i in range (2022, year_now + 1) %}
+                            <option value="{{i}}" {% if year == i %}selected{% endif %}>{{i}}</option>
+                        {% endfor %}
+                    </select>
+                <div class="chart">
+                    <canvas id="financialChart"></canvas>
+                </div>
+            </div>
+            <div class="sale-container">
+                <div class="year-selector">
+                    <label for="year">Select Year:</label>
+                    <select id="year2" onchange="syncDropdowns(this.value)">
+                        {% for i in range (2022, year_now + 1) %}
+                            <option value="{{i}}" {% if year == i %}selected{% endif %}>{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="summary-title">Monthly Sales Summary</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Unit Sold</th>
+                            <th>Total Sales</th>
+                            <th>Top Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for month in range(12) %}
+                        <tr>
+                            <td>{{ ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month] }}</td>
+                            <td>{{ monthly_sales[month] }}</td>
+                            <td>${{ monthly_revenue[month] }}</td>
+                            <td>{{ top_categories[month] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="summary-box">
-            <h2>Net Profit</h2>
-            <p>${{ net_profit }}</p>
-        </div>
-    </div>
-    <div class="chart-container">
-        <h2>Financial Performance Chart</h2>
-        <select>
-            <option value="2024" selected>2024</option>
-            <option value="2023">2023</option>
-            <option value="2022">2022</option>
-        </select>
-        <div class="chart">
-            <canvas id="financialChart"></canvas>
-        </div>
-    </div>
-    <div class="sale-container">
-        <div class="year-selector">
-            <label for="year">Select Year:</label>
-            <select id="year">
-                <option value="2024" selected>2024</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-            </select>
-        </div>
-        <div class="summary-title">Monthly Sales Summary</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Month</th>
-                    <th>Unit Sold</th>
-                    <th>Total Sales</th>
-                    <th>Top Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for month in range(12) %}
-                <tr>
-                    <td>{{ ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][month] }}</td>
-                    <td>{{ monthly_sales[month] }}</td>
-                    <td>${{ monthly_revenue[month] }}</td>
-                    <td>{{ top_categories[month] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        function syncDropdowns(selectedYear) {
+            const dropdowns = [document.getElementById('year1'), document.getElementById('year2')];
+            dropdowns.forEach(dropdown => {
+                Array.from(dropdown.options).forEach(option => {
+                    option.selected = option.value === selectedYear;
+                    if (option.value === selectedYear) {
+                        option.selected = true;
+                    } else {
+                        option.selected = false;
+                    }
+                });
+            });
+            window.location.href = `/admin/finance/${selectedYear}`;
+        }
+        document.getElementById('year2').addEventListener('change', function () {
+        const selectedYear = this.value;
+            document.getElementById('year1').value = selectedYear;
+            window.location.href = `/staff_centre/${selectedYear}`;
+        });
+
         const monthlyRevenue = {{ monthly_revenue | tojson }};
         const monthlyExpenses = {{ monthly_expenses | tojson }};
         const monthlyProfit = {{ monthly_profit | tojson }};

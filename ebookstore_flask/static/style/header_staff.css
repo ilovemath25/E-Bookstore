@@ -93,6 +93,7 @@ header {
  
 .pic-and-center{
    display: flex;
+   flex-grow: 1;
 }
 .center-name{
    text-decoration: none;
@@ -118,7 +119,7 @@ header {
 
 .navbar-icons{
    display: flex;
-   width: 10%;
+   width: 15%;
 }
 .navbar-icons .icon-name{
    font-size: 18px;
