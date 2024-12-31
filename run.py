@@ -4,7 +4,7 @@ POSTGRES = {
    'password':'ilovemath25',
    'db':'ebookstore',
    'host':'localhost',
-   'port':'5433',
+   'port':'5432',
 }
 app = create_app(POSTGRES)
 if __name__=='__main__':app.run(host='0.0.0.0', debug=True, port=5001)
