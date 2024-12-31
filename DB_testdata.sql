@@ -172,14 +172,11 @@ VALUES
   (20, NULL, 5,    'ShoppingCart', 3);
 
 
-INSERT INTO "Review" ("PID", "MID", "Time", "Rate", "Rev_text", "Rev_picture", "Rev_video", "Reply_RID")
+INSERT INTO "Review" ("PID", "MID", "Time", "Rate", "Rev_text")
 VALUES
-  (1, 3,  '2024-10-13 14:23:00', 4,    'An enthralling read with rich characters and a gripping plot. The author masterfully weaves themes of love, loss, and resilience into a story that lingers long after the final page.','ebookstore_flask/static/image/books/PID_book1.png', 'ebookstore_flask/static/video/video1.mp4', NULL),
-  (2, 4,  '2024-11-14 09:15:00', 5,    'A captivating journey through a richly imagined world. Highly recommended for fantasy lovers.','ebookstore_flask/static/image/books/PID_book2.png', NULL, NULL),
-  (3, 5,  '2024-10-02 16:45:00', 3,    'An engaging plot, but the pacing felt uneven at times.','ebookstore_flask/static/image/books/PID_book3.png', NULL, NULL),
-  (4, 6,  '2024-10-28 11:20:00', 4,    'Insightful and beautifully written. The author''s storytelling is superb.','ebookstore_flask/static/image/books/PID_book4.png', 'ebookstore_flask/static/video/video2.mp4', NULL),
-  (5, 7,  '2024-09-17 18:30:00', 2,    'The story had potential, but the characters lacked depth.','ebookstore_flask/static/image/books/PID_book5.png', NULL, NULL),
-  (6, 10, '2024-11-26 14:00:00', 5,    'An absolute masterpiece! This book will stay with me for a long time.','ebookstore_flask/static/image/books/PID_book6.png', 'ebookstore_flask/static/video/video3.mp4', NULL),
-  (6, 2,  '2024-11-26 18:19:00', NULL, 'Thank you for the reply!', NULL, NULL, 6),
-  (1, 8,  '2024-10-15 20:59:00', NULL, 'Thank you for the reply!', NULL, NULL, 1),
-  (2, 9,  '2024-11-15 18:45:00', NULL, 'Thank you for the reply!', NULL, NULL, 2);
+  (1, 3,  '2024-10-13 14:23:00', 4,    'An enthralling read with rich characters and a gripping plot. The author masterfully weaves themes of love, loss, and resilience into a story that lingers long after the final page.'),
+  (2, 4,  '2024-11-14 09:15:00', 5,    'A captivating journey through a richly imagined world. Highly recommended for fantasy lovers.'),
+  (3, 5,  '2024-10-02 16:45:00', 3,    'An engaging plot, but the pacing felt uneven at times.'),
+  (4, 6,  '2024-10-28 11:20:00', 4,    'Insightful and beautifully written. The author''s storytelling is superb.'),
+  (5, 7,  '2024-09-17 18:30:00', 2,    'The story had potential, but the characters lacked depth.'),
+  (6, 10, '2024-11-26 14:00:00', 5,    'An absolute masterpiece! This book will stay with me for a long time.')
