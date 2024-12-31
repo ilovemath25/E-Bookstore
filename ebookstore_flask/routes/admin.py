@@ -159,16 +159,6 @@ def finance_overview(year = year_now):
         year=year,
         role=role
     )
-  
-@admin.route('/admin/user')
-def manage_users():
-    role=check_role("Administrator")
-    users = Member.query.all()           # SELECT * FROM "Member"
-    return render_template(
-        'admin/admin_users.html',
-        users=users,
-        role=role
-    )
 
 @admin.route('/admin/user/<int:user_id>')
 def manage_user_detail(user_id):
