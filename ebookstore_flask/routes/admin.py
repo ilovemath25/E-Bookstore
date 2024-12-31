@@ -17,7 +17,7 @@ year_now = datetime.now().year
 def manage_users():
     role=check_role("Staff", "Administrator")
     users = Member.query.all()
-    return render_template('admin/users.html', users=users, role=role)
+    return render_template('admin/admin_users.html', users=users, role=role)
 
 # ...existing code...
 
@@ -38,7 +38,7 @@ def edit_user():
         flash('User updated successfully!', 'success')
         return redirect(url_for('admin.manage_users'))
     
-    return render_template('admin/users_edit.html', user=user)
+    return render_template('admin/admin_users_edit.html', user=user)
 
 # Finance Overview
 @admin.route('/admin/finance')

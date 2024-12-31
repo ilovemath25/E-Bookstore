@@ -18,7 +18,7 @@ body {
     float: right; 
     margin-bottom: auto;
     z-index: -1;
-    height: calc(100vh - 62px); /* Adjust height to not cover the footer */
+    height: calc(100vh - 62px);
 }
 .search-bar {
     display: flex;
