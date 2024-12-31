@@ -30,7 +30,7 @@ def index(type="", returned="main"):
             elif product_type == "product" or not product_type:
                 filtered_product.append(format_product_data(line))
         return filtered_product
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     product = Product.query.all()
     product_list = filter_ordered_products(product,type)
@@ -41,7 +41,7 @@ def index(type="", returned="main"):
         return product_list
 
     active_route = type or "product"
-    return render_template(f"/staff/product.html", all_items=product_list, active_route=active_route)
+    return render_template(f"/staff/product.html", all_items=product_list, active_route=active_route, role=role)
 
 @staff_product.route('/staff/product/outofstock')
 def outofstock():
@@ -70,10 +70,12 @@ def filter_by(current_path):
                     filtered_items.append(item)
             
     print("filtered_items",filtered_items)
+    role=check_role("Staff", "Administrator")
     return render_template(
         "/staff/product.html",
         all_items=filtered_items,
         user_input=user_input,
         filter_field=filter_field,
-        active_route=current_type
+        active_route=current_type,
+        role=role
     )

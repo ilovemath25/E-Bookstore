@@ -15,15 +15,16 @@ main {
     display: flex;
     justify-content: center;
     gap: 5px;
-    margin: 20px 0;
+    margin: 25px 0;
 }
 .summary-box {
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 10px 20px;
     text-align: center;
     width: 322px;
     background-color: #f9f9f9;
     margin: 0 10px;
+    border-radius: 8px;
 }
 .chart-container {
     border: 1px solid #ccc;
@@ -34,7 +35,7 @@ main {
     height: auto;
     margin-bottom: 100px;
     margin: 0px 150px;
-
+    border-radius: 8px;
 }
 .chart {
     width: 80%;
@@ -50,6 +51,7 @@ main {
     text-align: center;
     margin: 0px 150px;
     margin-top: 50px;
+    border-radius: 8px;
 }
 .year-selector {
     margin-bottom: 20px;

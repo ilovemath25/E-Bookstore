@@ -12,7 +12,7 @@ staff_discount_detail = Blueprint('staff_discount_detail', __name__)
 
 @staff_discount_detail.route('/staff/discount_detail/<int:discount_id>')
 def index(discount_id):
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     discount = Discount.query.filter_by(DID=discount_id).first()
     details = {}
@@ -27,7 +27,8 @@ def index(discount_id):
         "/staff/discount_detail.html",
         discount=discount,
         details=details,
-        discount_ID=discount_id
+        discount_ID=discount_id,
+        role=role
     )
 
 @staff_discount_detail.route('/staff/discount_detail/<int:discount_id>/edit')
@@ -37,7 +38,7 @@ def index2(discount_id):
     from ebookstore_flask.models.shipping import Shipping
     from ebookstore_flask.models.seasoning import Seasoning
 
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     errorMsg = request.args.get('errorMsg', '')
 
@@ -55,7 +56,8 @@ def index2(discount_id):
         discount=discount,
         details=details,
         discount_ID=discount_id,
-        errorMsg=errorMsg
+        errorMsg=errorMsg,
+        role=role
     )
 
 @staff_discount_detail.route('/staff/discount_detail/<int:discount_id>/update', methods=['POST'])
