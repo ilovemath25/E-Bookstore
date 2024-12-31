@@ -1,0 +1,43 @@
+{% extends '/admin/base_admin.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/admin_user_detail.css') }}">
+<main>
+   <div class="container">
+      {% include "admin/admin_menu.html" %}
+      <div class="section-container">
+         <div class="sub-title">
+            <hr><h2>My Profile</h2><hr>
+         </div>
+         <table class="profile-container">
+            <tr class="profile-item">
+               <td class="profile-label">Name</td>
+               <td class="profile-value">{{ user.F_name }} {{ user.L_name if user.L_name else '' }}</td>
+            </tr>
+            <tr class="profile-item">
+               <td class="profile-label">Birth</td>
+               <td class="profile-value">{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else 'Not Provided' }}</td>
+            </tr>
+            <tr class="profile-item">
+               <td class="profile-label">Gender</td>
+               <td class="profile-value">{{ user.Gender }}</td>
+            </tr>
+            <tr class="profile-item">
+               <td class="profile-label">Email</td>
+               <td class="profile-value">{{ user.Email }}</td>
+            </tr>
+            <tr class="profile-item">
+               <td class="profile-label">Phone</td>
+               <td class="profile-value">{{ user.Phone }}</td>
+            </tr>
+            <tr class="profile-item">
+               <td class="profile-label">Address</td>
+               <td class="profile-value">{{ user.Address if user.Address else 'Not Provided' }}</td>
+            </tr>
+         </table>
+         <a class="edit-profile" href="{{ url_for('admin.edit_user', user_id=user.MID) }}">Edit</a>
+      </div>
+   </div>
+</main>
+<script src="{{ url_for('static', filename='script/admin.js') }}"></script>
+{% endblock %}
