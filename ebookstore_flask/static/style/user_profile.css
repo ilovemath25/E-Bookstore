@@ -26,32 +26,7 @@ main {
 .profile-menu{
    margin: 0px 30px 30px 120px;
 }
-/* .menu-header{
-   background-color: #3f72af;
-   color: #fff;
-   padding: 10px 20px;
-   border: 1px solid #112d4e;
-   border-radius: 5px 5px 0px 0px;
-   display: flex;
-   justify-content: center;
-   font-size: 20px;
-} */
-/* .menu-options{
-   display: flex;
-   flex-direction: column;
-   border: 1px solid #c4c4c4;
-   border-radius: 0px 0px 5px 5px;
-} */
-/* .menu-option{
-   background-color: #f9f7f7;
-   list-style: none;
-   padding: 10px 20px;
-   border: 1px solid #c4c4c4;
-   cursor: pointer;
-   transition: all 0.3s;
-   text-decoration: none;
-   color: #000;
-} */
+
 .menu-header{
    height: 40px;
    border-top-left-radius: 8px;
@@ -519,52 +494,56 @@ form .profile-container .profile-value {
    margin-left: 30px;
    margin-right: 150px;
 }
-.order-history-table-container{
-   height: 100%;
-}
-.user-profile-order-history-container{
-   display: flex;
-   justify-content: center;
-   margin: 20px 0px;
-}
-.order-history-subtab-title-container{
-   width: 100%;
-   padding: 3px;
-   background-color: rgb(250, 247, 243);
+
+.order-header{
+   background-color: #faf7f3;
    border: 2px solid #ccc;
-   border-radius: 8px;
+   border-radius: 5px;
    display: flex;
    justify-content: space-between;
+   margin-bottom: 20px;
 }
-   
-.order-history-subtab-title {
-   width: 100%;
-   display: flex;
-   color: black;
-   font-size: 14px;
-   justify-content: center;
+
+.header-title{
+   padding: 10px;
+   text-align: center;
+   flex-grow: 1;
 }
+
+.header-title:hover{
+   background-color: #d8d8d8;
+   transition: all 0.3s;
+}
+
 .order-form-container{
    background-color: #f9f7f7;
    border: 2px solid #d9d9d9;
    border-radius: 5px;
 }
+
 .scrollable-box{
    padding: 10px;
-   height: 600px;
+   padding-top: 0;
+   margin-bottom: 20px;
+   height: 450px;
    overflow-y: scroll;
    overflow-x: hidden;
+   text-align: center;
 }
+
 .scrollable-box::-webkit-scrollbar {
    width: 8px;
 }
+
 .scrollable-box::-webkit-scrollbar-thumb {
    background: #ddd;
    border-radius: 4px;
 }
+
 .scrollable-box::-webkit-scrollbar-thumb:hover {
    background: #2a4f7b;
 }
+
 .content-list{
    display: flex;
    flex-direction: column;
@@ -577,6 +556,7 @@ form .profile-container .profile-value {
    border-bottom-left-radius: 8px;
    border-bottom-right-radius: 8px;
 }
+
 .content-list hr{
    width: 99%;
    margin: 0 auto;
@@ -585,12 +565,14 @@ form .profile-container .profile-value {
    border: none;
    height: 1px;
 }
+
 .content-list:hover{
    background-color: #dbd6d656;
    transition: all 0.3s;
    border-bottom-left-radius: 8px;
    border-bottom-right-radius: 8px;
 }
+
 .list-header{
    display: flex;
    justify-content: space-between;
@@ -602,6 +584,7 @@ form .profile-container .profile-value {
    border-top-left-radius: 8px;
    border-top-right-radius: 8px;
 }
+
 .product-pic {
    max-width: 100%;
    max-height: 150px;
@@ -611,18 +594,21 @@ form .profile-container .profile-value {
    height: 155px;
    background-color: #f9f9f9;
 }
+
 .header-list-oid{
    display: flex;
    align-items: center;
    justify-content: right;
    color: black;
 }
+
 .order-list-box{
    display: flex;
    width: 100%;
    height: 150px;
    padding: 1px;
 }
+
 .order-detail-pic{
    display: flex;
    align-items: center;
@@ -633,11 +619,13 @@ form .profile-container .profile-value {
    width: 100%;
    height: 150px;
 }
+
 .order-detail-pic img{
    max-width: 100%;
    max-height: 100%;
    object-fit: contain;
 }
+
 .order-detail-name{
    display: flex;
    align-items: center;
@@ -649,6 +637,7 @@ form .profile-container .profile-value {
    margin-bottom: 20px;
    color: #544f4f;
 }
+
 .order-detail-text{
    display: flex;
    align-items: center;
@@ -659,4 +648,11 @@ form .profile-container .profile-value {
    height: 155px;
    margin-bottom: 20px;
    color: #544f4f;
+}
+
+.no-result{
+   position: relative;
+   top: 50%;
+   transform: translateY(-50%);
+   font-size: 30px;
 }
