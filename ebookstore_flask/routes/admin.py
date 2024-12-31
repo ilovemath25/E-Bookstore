@@ -68,7 +68,7 @@ def manage_users():
     users = Member.query.all()
     return render_template('admin/admin_users.html', users=users, role=role)
 
-@admin.route('/admin/users_edit', methods=['GET', 'POST'])
+@admin.route('/admin/users/edit', methods=['GET', 'POST'])
 def edit_user():
     user = Member.query.all()
     if request.method == 'POST':
