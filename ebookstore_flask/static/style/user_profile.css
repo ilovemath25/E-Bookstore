@@ -143,25 +143,16 @@ a{
 .menu-option:last-child {
    border-radius: 0px 0px 5px 5px;
 }
-/* .menu-option:hover{
-   background-color: #e5e5e5;
-}
 
-.menu-option.active {
-   background-color: #d0d0d0;
-} */
 .section-container{
    flex-grow: 2;
    margin-bottom: 30px;
    margin-left: 30px;
    margin-right: 150px;
-   /* background-color: #f9f7f7; */
-   /* border: 2px solid #d9d9d9; */
-   /* border-radius: 5px; */
    background-color: #f9f9f9;
    border: 1px solid #ddd;
    border-radius: 8px;
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   box-shadow: 0 4px 6px #0000001a;
 }
 
 .profile-container {
@@ -396,9 +387,10 @@ form .profile-container .profile-value {
    padding-right: 30%;
    display: flex;
    justify-content: center;
+   min-height: 267px;
 }
 .change-password-label, .change-password-value{
-   padding: 35px 60px;
+   padding: 25px 60px;
 }
 
 .change-password-label {
@@ -408,7 +400,7 @@ form .profile-container .profile-value {
 .change-password-container .change-password-value {
    display: flex;
    width: 200%;
-   padding: 30px 15px 30px 0px;
+   padding: 20px 15px 20px 0px;
 }
 
 .submit-and-cancel-change-password-button {
