@@ -12,7 +12,7 @@
                     <span class="bar-center">Finance</span>
                 </a>
                 <hr>
-                <a href="#" target="_self" id="bar-product" class="bar-row">
+                <a href="/admin/users" target="_self" id="bar-product" class="bar-row">
                     <span class="bar-center">User Management</span>
                 </a>
                 <hr>
@@ -75,6 +75,55 @@
                             <td>{{ top_categories[month] }}</td>
                         </tr>
                         {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="product-sale-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Enter Product ID">
+                    <select>
+                        <option value="2024" selected>2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                    <button>Search</button>
+                </div>
+                <div class="summary-title">Specific Product Sales</div>
+                <div class="product-id">Detail for product ID: 12345</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Unit Sold</th>
+                            <th>Total Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>January</td>
+                            <td>500</td>
+                            <td>$50,000</td>
+                        </tr>
+                        <tr>
+                            <td>February</td>
+                            <td>600</td>
+                            <td>$60,000</td>
+                        </tr>
+                        <tr>
+                            <td>March</td>
+                            <td>700</td>
+                            <td>$70,000</td>
+                        </tr>
+                        <tr>
+                            <td>April</td>
+                            <td>800</td>
+                            <td>$80,000</td>
+                        </tr>
+                        <tr>
+                            <td>May</td>
+                            <td>900</td>
+                            <td>$90,000</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

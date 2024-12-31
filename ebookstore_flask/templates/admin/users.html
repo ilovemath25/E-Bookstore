@@ -4,35 +4,24 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/users.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <main>
-   <nav class="navbar-bottom">
-      <a href="/admin/finance">Financial</a>
-      <a href="/admin/users">user</a>
-      <a href="/staff_centre">staff</a>
-  </nav>
   <div class="container">
-    <div class="sidebar">
-      <div class="search-bar">
-        <input type="text" placeholder="Search" />
-        <button><i class="fa fa-search"></i></button>
+   <div class="left">
+      <div class="bar-title">Admin Menu</div>
+      <div class="bar-list">
+          <!-- order -->
+          <a href="/admin/finance" target="_self" id="bar-order" class="bar-row">
+              <span class="bar-center">Finance</span>
+          </a>
+          <hr>
+          <a href="/admin/users" target="_self" id="bar-product" class="bar-row">
+              <span class="bar-center">User Management</span>
+          </a>
+          <hr>
+          <a href="/staff/order" target="_self" id="bar-discount" class="bar-row">
+              <span class="bar-center">Staff Centre</span>
+          </a>
       </div>
-      <ul class="user-list">
-        <li>#User_ID_1</li>
-        <li>#User_ID_2</li>
-        <li>#User_ID_3</li>
-        <li>#User_ID_4</li>
-        <li>#User_ID_5</li>
-        <li>#User_ID_6</li>
-        <li>#User_ID_7</li>
-        <li>#User_ID_8</li>
-        <li>#User_ID_9</li>
-        <li>#User_ID_10</li>
-        <li>#User_ID_11</li>
-        <li>#User_ID_12</li>
-        <li>#User_ID_13</li>
-        <li>#User_ID_14</li>
-        <li>#User_ID_15</li>
-      </ul>
-    </div>
+  </div>
     <div class="main-content">
       <div class="dropdown">
         <label for="memberType">Member type:</label>
@@ -88,9 +77,32 @@
             <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
            </tr>
         </table>
-        <a class="edit-account" href="#">Edit</a>
+        <a class="edit-account" href="{{ url_for('admin.edit_user') }}">Edit</a>
         <a class="delete-account" href="#">Delete</a>
      </div>
+     <div class="sidebar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+      <ul class="user-list">
+        <li>#User_ID_1</li>
+        <li>#User_ID_2</li>
+        <li>#User_ID_3</li>
+        <li>#User_ID_4</li>
+        <li>#User_ID_5</li>
+        <li>#User_ID_6</li>
+        <li>#User_ID_7</li>
+        <li>#User_ID_8</li>
+        <li>#User_ID_9</li>
+        <li>#User_ID_10</li>
+        <li>#User_ID_11</li>
+        <li>#User_ID_12</li>
+        <li>#User_ID_13</li>
+        <li>#User_ID_14</li>
+        <li>#User_ID_15</li>
+      </ul>
+    </div>
     </div>
   </div>
 </main>

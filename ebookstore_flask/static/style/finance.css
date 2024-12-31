@@ -4,33 +4,11 @@ main {
     padding: 0;
     background-color: #fff9e6;
 }
-
-.navbar-bottom {
+.navbar-bottom{
     margin-top: -30px;
     display: flex;
     justify-content: space-evenly;
     background-color: #3f72af;
-}
-
-.navbar-bottom a{
-    list-style-type: none;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 14px;
-    padding: 10px;
-    width: 100%;
- }
- .navbar-bottom a:hover{
-    background-color: #5880b0;
-    transition: all 0.3s;
- }
- .navbar-bottom a{
-    background-color: #5075a2;
-    transition: all 0s; 
  }
 
 .summary-boxes {
@@ -39,16 +17,14 @@ main {
     gap: 5px;
     margin: 20px 0;
 }
-
 .summary-box {
     border: 1px solid #ccc;
     padding: 20px;
     text-align: center;
-    width: 350px;
+    width: 322px;
     background-color: #f9f9f9;
     margin: 0 10px;
 }
-
 .chart-container {
     border: 1px solid #ccc;
     padding: 20px;
@@ -58,16 +34,15 @@ main {
     height: auto;
     margin-bottom: 100px;
     margin: 0px 150px;
-}
 
+}
 .chart {
     width: 80%;
     margin: 0 auto;
     background-color: #f9f9f9;
-    height: 500px;
+    height: 500px; 
     margin-top: 20px;
 }
-
 .sale-container {
     border: 1px solid #ccc;
     background-color: #f9f9f9;
@@ -76,27 +51,22 @@ main {
     margin: 0px 150px;
     margin-top: 50px;
 }
-
 .year-selector {
     margin-bottom: 20px;
 }
-
 .year-selector label {
     font-size: 16px;
     font-weight: bold;
 }
-
 .year-selector select {
     font-size: 16px;
     padding: 5px;
 }
-
 .summary-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
-
 table {
     margin: 0 auto;
     width: 85%;
@@ -105,24 +75,19 @@ table {
     border: 1px solid #ddd;
     background-color: #f9f9f9;
 }
-
 table, th, td {
     border: 1px solid #ddd;
 }
-
 th {
     background-color: #002b54;
     color: white;
     padding: 12px;
     font-size: 16px;
 }
-
 td {
     padding: 12px;
     font-size: 16px;
 }
-<<<<<<< HEAD
-
 .product-sale-container {
     border: 1px solid #ccc;
     background-color: #f9f9f9;
@@ -130,24 +95,19 @@ td {
     text-align: center;
     margin: 0px 150px;
     margin-top: 50px;
-    /* padding: 20px; */
-    text-align: center;
 }
-
 .search-bar {
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .search-bar input[type="text"],
 .search-bar select {
     font-size: 16px;
     padding: 5px;
     margin-right: 10px;
 }
-
 .search-bar button {
     background-color: #002b54;
     color: white;
@@ -156,43 +116,17 @@ td {
     border: none;
     cursor: pointer;
 }
-
 .summary-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
 }
-
 .product-id {
     margin-bottom: 20px;
     font-size: 14px;
     color: #555;
 }
 
-.product-sale-container table {
-    margin: 0 auto;
-    width: 85%;
-    border-collapse: collapse;
-    text-align: left;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-}
-
-.product-sale-container table, th, td {
-    border: 1px solid #ddd;
-}
-
-.product-sale-container th {
-    background-color: #002b54;
-    color: #f9f9f9;
-    padding: 12px;
-    font-size: 16px;
-}
-
-.product-sale-container td {
-    padding: 12px;
-    font-size: 16px;
-=======
 .navbar-order-container {
     display: flex;
     gap : 25px;
@@ -321,5 +255,4 @@ a{
     padding: 0;
     font-weight: 500;
     color: #333;
->>>>>>> 0f8fc2188d40c5d67c3010e336a23d61ab05377c
 }
