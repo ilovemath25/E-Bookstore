@@ -6,15 +6,19 @@ from ebookstore_flask.models.product import Product
 from ebookstore_flask.models.order import Order
 from ebookstore_flask import db
 from datetime import datetime
+from sqlalchemy import extract
 
 staff_centre= Blueprint('staff_centre', __name__)
 
+year_now = datetime.now().year
+
 @staff_centre.route('/staff_centre')
-def index():
-   check_role("Staff", "Administrator")
+@staff_centre.route('/staff_centre/<int:year>', methods=['GET','POST'])
+def index(year = year_now):
+   role=check_role("Staff", "Administrator")
 
     # Query orders to get financial data
-   orders = Order.query.all()
+   orders = Order.query.filter(extract('year',Order.Time) == year).all()
     
    total_revenue = sum(order.Tot_price for order in orders)
    total_expenses = sum(order.Tot_price * 0.7 for order in orders)  # Assuming 70% of total price is cost
@@ -48,7 +52,7 @@ def index():
    total_expenses = "{:.2f}".format(total_expenses)
    net_profit = "{:.2f}".format(net_profit)
 
-   return render_template('staff/staff_centre.html', 
+   return render_template('/staff/staff_centre.html', 
                            total_revenue=total_revenue, 
                            total_expenses=total_expenses, 
                            net_profit=net_profit,
@@ -56,4 +60,8 @@ def index():
                            monthly_expenses=monthly_expenses,
                            monthly_profit=monthly_profit,
                            monthly_sales=monthly_sales,
-                           top_categories=top_categories)
+                           top_categories=top_categories,
+                           year=year,
+                           year_now = year_now,
+                           role=role)
+

@@ -11,7 +11,7 @@ staff_product_add = Blueprint('/staff_product_add', __name__)
 
 @staff_product_add.route('/staff/product/add', methods=['GET','POST'])
 def add():
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     session_now = load_sessions()
     key = list(session_now.keys())[0]
@@ -70,4 +70,4 @@ def add():
 
         return render_template('/staff/product_detail.html', product=new_product)
     
-    return render_template('/staff/product_add.html',product=product)
+    return render_template('/staff/product_add.html',product=product, role=role)

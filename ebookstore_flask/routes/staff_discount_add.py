@@ -13,7 +13,7 @@ def index():
     from ebookstore_flask.models.special_event import Special_event
     from ebookstore_flask.models.shipping import Shipping
     from ebookstore_flask.models.seasoning import Seasoning
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     details = {'Valid_to': None, 'Valid_from': None, 'Min_purchase': None}
     Disc_name = request.form.get('Disc_name')
@@ -90,6 +90,6 @@ def index():
         db.session.commit()
 
         print("render add_save")
-        return render_template('/staff/discount_detail.html', discount=new_discount, details=details, discount_ID=new_discount.DID)
+        return render_template('/staff/discount_detail.html', discount=new_discount, details=details, discount_ID=new_discount.DID, role=role)
 
-    return render_template('/staff/discount_add.html', discount=discount, disc_type=discount['Disc_type'], details=details)
+    return render_template('/staff/discount_add.html', discount=discount, disc_type=discount['Disc_type'], details=details, role=role)
