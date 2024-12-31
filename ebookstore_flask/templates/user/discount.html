@@ -1,5 +1,96 @@
 {% extends '/user/base_user.html' %}
 
 {% block content %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='style/user_discount.css') }}">
+<main>
+   {% include "/user/user_profile_menu.html" %}
+   <div class="all-container">
+      <section class="section-container discount-header">
+         <a href="javascript:void(0);" class="header-title checked" onclick="showDiscounts('available')">Available</a><hr>
+         <a href="javascript:void(0);" class="header-title" onclick="showDiscounts('used')">Used</a><hr>
+         <a href="javascript:void(0);" class="header-title" onclick="showDiscounts('expired')">Expired</a>
+      </section>
+      <section class="section-container discounts">
+         <div class="sub-title">
+            <hr><h2>Discount</h2><hr>
+         </div>
+            <div id="available" class="discount-list">
+               {% for discount in available %}
+                  <div class="discount-item">
+                     <div class="discount-value">
+                        {{ discount.Disc_value }}
+                     </div>
+                     <hr>
+                     <div class="discount-details">
+                        <h3 class="discount-name">
+                           {{ discount.Disc_name }}
+                        </h3>
+                        <p class="policy-description">
+                           {{ discount.Policy_desc }}
+                        </p>
+                        <p class="discount-info">
+                           {% if discount.Disc_type == 'Shipping' %}
+                              Max usage: {{ discount.Max_usage }}
+                           {% else %}
+                              Valid from: {{ discount.Valid_from }} - Valid to: {{ discount.Valid_to }}
+                           {% endif %}
+                        </p>
+                     </div>
+                  </div>
+               {% endfor %}
+            </div>
+            <div id="used" class="discount-list" style="display: none">
+               {% for discount in used %}
+                  <div class="discount-item">
+                     <div class="discount-value">
+                        {{ discount.Disc_value }}
+                     </div>
+                     <hr>
+                     <div class="discount-details">
+                        <h3 class="discount-name">
+                           {{ discount.Disc_name }}
+                        </h3>
+                        <p class="policy-description">
+                           {{ discount.Policy_desc }}
+                        </p>
+                        <p class="discount-info">
+                           {% if discount.Disc_type == 'Shipping' %}
+                              Max usage: {{ discount.Max_usage }}
+                           {% else %}
+                              Valid from: {{ discount.Valid_from }} - Valid to: {{ discount.Valid_to }}
+                           {% endif %}
+                        </p>
+                     </div>
+                  </div>
+               {% endfor %}
+            </div>
+            <div id="expired" class="discount-list" style="display: none">
+               {% for discount in expired %}
+                  <div class="discount-item">
+                     <div class="discount-value">
+                        {{ discount.Disc_value }}
+                     </div>
+                     <hr>
+                     <div class="discount-details">
+                        <h3 class="discount-name">
+                           {{ discount.Disc_name }}
+                        </h3>
+                        <p class="policy-description">
+                           {{ discount.Policy_desc }}
+                        </p>
+                        <p class="discount-info">
+                           {% if discount.Disc_type == 'Shipping' %}
+                              Max usage: {{ discount.Max_usage }}
+                           {% else %}
+                              Valid from: {{ discount.Valid_from }} - Valid to: {{ discount.Valid_to }}
+                           {% endif %}
+                        </p>
+                     </div>
+                  </div>
+               {% endfor %}
+            </div>
+      </section>
+   </div>
+</main>
+<script src="{{ url_for('static', filename='script/user_discount.js') }}"></script>
 {% endblock %}

@@ -1,14 +1,16 @@
-main{
+main {
    display: flex;
 }
-.sub-title{
+
+.sub-title {
    display: flex;
    text-align: center;
    align-items: center;
    justify-content: center;
    margin: 10px;
 }
-.sub-title hr{
+
+.sub-title hr {
    width: 35%;
    border: #000;
    margin: 10px;
@@ -16,14 +18,17 @@ main{
    background-color: #eaddd7;
    color: #eaddd7;
 }
-.sub-title h2{
+
+.sub-title h2 {
    width: 16%;
    font-size: 16px;
 }
-.profile-menu{
+
+.profile-menu {
    margin: 0px 30px 30px 150px;
 }
-.menu-header{
+
+.menu-header {
    background-color: #3f72af;
    color: #fff;
    padding: 10px 20px;
@@ -33,13 +38,15 @@ main{
    justify-content: center;
    font-size: 20px;
 }
-.menu-options{
+
+.menu-options {
    display: flex;
    flex-direction: column;
    border: 1px solid #c4c4c4;
    border-radius: 0px 0px 5px 5px;
 }
-.menu-option{
+
+.menu-option {
    background-color: #f9f7f7;
    list-style: none;
    padding: 10px 20px;
@@ -49,19 +56,24 @@ main{
    text-decoration: none;
    color: #000;
 }
-.menu-option:first-child{
+
+.menu-option:first-child {
    border-top: #000;
 }
-.menu-option:last-child{
+
+.menu-option:last-child {
    border-radius: 0px 0px 5px 5px;
 }
-.menu-option:hover{
+
+.menu-option:hover {
    background-color: #e5e5e5;
 }
+
 .menu-option.active {
    background-color: #d0d0d0;
 }
-.section-container{
+
+.section-container {
    flex-grow: 2;
    margin-bottom: 30px;
    margin-left: 30px;
@@ -70,43 +82,55 @@ main{
    border: 2px solid #d9d9d9;
    border-radius: 5px;
 }
-.profile-container{
+
+.profile-container {
    margin: 20px 40px;
    overflow: auto;
    min-height: 320px;
 }
-.profile-label, .profile-value{
+
+.profile-label,
+.profile-value {
    padding: 15px 50px;
 }
-.profile-label{
+
+.profile-label {
    color: #868e96;
 }
-form .profile-container{
+
+form .profile-container {
    width: 80%;
 }
-form .profile-container .profile-label{
+
+form .profile-container .profile-label {
    padding-right: 40px;
 }
-form .profile-container .profile-value{
+
+form .profile-container .profile-value {
    display: flex;
    width: 100%;
    padding: 10px 0px;
    position: relative;
 }
-.fa-eye-slash, .fa-eye{
+
+.fa-eye-slash,
+.fa-eye {
    cursor: pointer;
    width: auto;
 }
-.profile-input{
+
+.profile-input {
    padding: 5px 10px;
    width: 100%;
    border: 1px solid #9b9b9b;
    border-radius: 5px;
    font-size: 16px;
 }
-#selected-gender{
+
+#selected-gender {
    cursor: pointer;
 }
+
 .dropdown-options {
    display: none;
    position: absolute;
@@ -118,17 +142,23 @@ form .profile-container .profile-value{
    width: 100%;
    overflow-y: auto;
 }
+
 .dropdown-option {
    padding: 5px 10px;
    cursor: pointer;
 }
+
 .dropdown-option:hover {
    background-color: #f1f1f1;
 }
-.dropdown-options.active{
+
+.dropdown-options.active {
    display: block;
 }
-.add-card, .edit-profile, .cancel-edit{
+
+.add-card,
+.edit-profile,
+.cancel-edit {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -143,22 +173,28 @@ form .profile-container .profile-value{
    text-decoration: none;
    font-size: 14px;
 }
-.edit-profile{
+
+.edit-profile {
    margin-right: 60px;
 }
-.add-card{
+
+.add-card {
    background-color: #466891;
    margin-right: 60px;
 }
-.edit-profile:hover{
+
+.edit-profile:hover {
    background-color: #5880b0;
    transition: all 0.3s;
 }
-.add-card:hover{
+
+.add-card:hover {
    background-color: #375273;
    transition: all 0.3s;
 }
-.logout-modal-container, .delete-card-container{
+
+.logout-modal-container,
+.delete-card-container {
    background-color: #00000030;
    width: 100%;
    height: 100vh;
@@ -169,6 +205,7 @@ form .profile-container .profile-value{
    justify-content: center;
    align-items: center;
 }
+
 .modal-content {
    background-color: #fff;
    padding: 30px;
@@ -176,11 +213,13 @@ form .profile-container .profile-value{
    text-align: center;
    box-shadow: 0 4px 8px #00000033;
 }
-.modal-button{
+
+.modal-button {
    display: flex;
    justify-content: center;
    margin-top: 20px;
 }
+
 .modal-btn {
    margin: 10px;
    width: 100%;
@@ -193,23 +232,28 @@ form .profile-container .profile-value{
    background-color: #3f72af;
    transition: all 0.3s;
 }
+
 .modal-btn:hover {
    background-color: #5880b0;
 }
-.modal-btn:active{
+
+.modal-btn:active {
    background-color: #5075a2;
 }
-.logout-hidden{
+
+.logout-hidden {
    display: none;
 }
-.card-container{
+
+.card-container {
    display: flex;
    justify-content: space-between;
    border: 2px solid #d9d9d9;
    border-radius: 5px;
    padding: 10px 20px;
 }
-.card-image{
+
+.card-image {
    min-width: 120px;
    min-height: 70px;
    margin-right: 10px;
@@ -218,12 +262,14 @@ form .profile-container .profile-value{
    border: 2px solid #b4b4b4;
    border-radius: 3px;
 }
-.card-image .currency{
+
+.card-image .currency {
    font-size: 20px;
    display: flex;
    justify-content: right;
 }
-.card-image .chip{
+
+.card-image .chip {
    display: flex;
    justify-content: left;
    background-color: #dbbf1e;
@@ -234,61 +280,74 @@ form .profile-container .profile-value{
    font-size: 10px;
    margin: 0px 2px;
 }
-.card-image .lines{
+
+.card-image .lines {
    display: flex;
    justify-content: space-between;
    margin: 3px 0px;
 }
-.card-image .lines .line{
+
+.card-image .lines .line {
    margin: 2px;
    width: 100%;
    font-size: 5px;
    background-color: #fff;
    color: #fff;
 }
-.card-center{
+
+.card-center {
    display: flex;
    flex-direction: column;
    justify-content: space-around;
    margin-right: 10px;
    font-size: 18px;
 }
-.card-right{
+
+.card-right {
    flex-grow: 2;
    display: flex;
    justify-content: right;
    align-items: center;
 }
-.change-password-container{
+
+.change-password-container {
    margin: 20px 40px;
    padding-right: 30%;
    display: flex;
    justify-content: center;
 }
-.change-password-label, .change-password-value{
+
+.change-password-label,
+.change-password-value {
    padding: 15px 60px;
 }
-.change-password-label{
+
+.change-password-label {
    color: #868e96;
 }
-.change-password-container .change-password-value{
+
+.change-password-container .change-password-value {
    display: flex;
    width: 200%;
    padding: 10px 15px 10px 0px;
 }
-.submit-and-cancel-change-password-button{
+
+.submit-and-cancel-change-password-button {
    display: flex;
    justify-content: center;
    align-items: center;
    float: right;
 }
+
 .cancel-button {
    background-color: #868e96;
 }
+
 .submit-button {
    background-color: #3f72af;
 }
-.change-password-button{
+
+.change-password-button {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -302,18 +361,20 @@ form .profile-container .profile-value{
    text-decoration: none;
    font-size: 14px;
 }
-.change-password-error-message{
+
+.change-password-error-message {
    color: red;
    text-align: center;
    margin-bottom: 15px;
 }
 
-.card-right .fa-circle-xmark{
+.card-right .fa-circle-xmark {
    cursor: pointer;
    color: #ff0000;
    margin-left: 10px;
    font-size: 25px;
 }
+
 .credit-card-modal-container {
    background-color: #00000030;
    width: 100%;
@@ -326,9 +387,11 @@ form .profile-container .profile-value{
    align-items: center;
    z-index: 100;
 }
+
 .credit-card-hidden {
    display: none;
 }
+
 .credit-card-modal-container .modal-content {
    background-color: #fff;
    padding: 30px;
@@ -337,97 +400,41 @@ form .profile-container .profile-value{
    box-shadow: 0 4px 8px #00000033;
    width: 600px;
 }
+
 .credit-card-modal-container .form-group {
    display: flex;
    flex-direction: column;
    text-align: left;
    padding: 5px 20px;
 }
+
 .credit-card-modal-container .form-group label {
    margin-bottom: 5px;
    font-size: 14px;
    color: #555;
 }
-.credit-card-modal-container .form-group-inline{
+
+.credit-card-modal-container .form-group-inline {
    display: flex;
    justify-content: space-between;
    padding: 15px 0px;
 }
-.credit-card-modal-container .form-group-inline div:first-child{
+
+.credit-card-modal-container .form-group-inline div:first-child {
    width: 100%;
    margin-right: 20px;
 }
-.cancel-edit{
+
+.cancel-edit {
    background-color: #cdcdcd;
    color: #444444;
 }
-.cancel-edit:hover{
+
+.cancel-edit:hover {
    background-color: #bebebe;
    transition: all 0.3s;
 }
-.error-message{
-   color: red;
-}
 
-/* user profile discount */
-.discount-form {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin: 10px 50px;
-   background-color: #d9d9d9;
-   border-radius: 5px;
-   padding: 10px 0;
-}
-.discount-header {
-   display: flex;
-   width: 100%;
-   justify-content: space-evenly;
-   padding: 10px 20px;
-   align-items: center;
-}
-.discount-input {
-   width: 100%;
-   max-width: 300px;
-   padding: 10px;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   font-size: 1em;
-}
-.save-discount {
-   padding: 10px 20px;
-   background-color: #3f72af;
-   color: white;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
-}
-.save-discount:hover {
-   background-color: #5880b0;
-   transition: all 0.3s;
-}
-.discount-error {
+.error-message {
    color: red;
-}
-.discount-status {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   height: 50px;
-}
-.discount-status-item {
-   text-decoration: none;
-   margin: 0 10px;
-}
-.discount-status-item:hover {
-   text-decoration: underline;
-}
-
-.discount-status hr {
-   flex-grow: 0;
-   border: none;
-   margin: 0 10px;
-   height: 80%;
-   width: 1px;
-   background-color: #eaddd7;
 }

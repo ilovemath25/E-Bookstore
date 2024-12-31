@@ -202,19 +202,3 @@ def change_password():
 @user_profile.route('/user/profile/order')
 def order():
    return render_template('user/order.html')
-
-@user_profile.route('/user/profile/discount')
-def discount():
-   session_data = check_session()
-   if not check_session():
-      return redirect(url_for('login.index'))
-   session_id = request.cookies.get("session_id")
-   sessions = load_sessions()
-   email = sessions.get(session_id, [None])[0]
-   if not email:
-      return redirect(url_for('login.index'))
-
-   return render_template(
-      'user/user_profile_discount.html',
-      role=session_data[1] if session_data else None
-   )

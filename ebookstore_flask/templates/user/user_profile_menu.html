@@ -11,7 +11,7 @@
       <a class="menu-option {% if request.endpoint == 'user_profile.order' %}active{% endif %}"
       href="{{ url_for('user_profile.order') }}">Order History</a>
       <a class="menu-option {% if request.endpoint == 'user_profile.discount' %}active{% endif %}"
-      href="{{ url_for('user_profile.discount') }}">My Discount</a>
+      href="{{ url_for('user_discount.index') }}">My Discount</a>
       <a class="menu-option" id="logout">Logout</a>
    </div>
 </div>
