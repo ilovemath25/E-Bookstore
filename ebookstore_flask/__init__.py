@@ -31,7 +31,7 @@ def create_app(postgres):
       from ebookstore_flask.routes.staff_product import staff_product
       from ebookstore_flask.routes.staff_product_detail import staff_product_detail
       from ebookstore_flask.routes.staff_product_add import staff_product_add
-      from ebookstore_flask.routes.discount import user_discount
+      from ebookstore_flask.routes.user_discount import user_discount
       from ebookstore_flask.routes.admin import admin
       from ebookstore_flask.routes.shopping_cart import shopping_cart
       app.register_blueprint(home)
