@@ -1,0 +1,18 @@
+{% extends "user/base_user.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
+<main class="user_profile_discount_page">
+   {% include "/user/user_profile_menu.html" %}
+   <div style="display: flex; flex-direction: column; flex-grow: 2;">
+      <section class="section-container">
+         <div class="sub-title">
+            <hr><h2>My Discount</h2><hr>
+         </div>
+         
+      </section>
+   </div>
+</main>
+
+<script src="{{ url_for('static', filename='script/user_profile_discount.js') }}"></script>
+{% endblock %}
