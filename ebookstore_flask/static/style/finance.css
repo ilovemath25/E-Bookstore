@@ -21,7 +21,7 @@ main {
     border: 1px solid #ccc;
     padding: 10px 20px;
     text-align: center;
-    width: 350px;
+    width: 322px;
     background-color: #f9f9f9;
     margin: 0 10px;
     border-radius: 8px;
@@ -90,6 +90,45 @@ td {
     padding: 12px;
     font-size: 16px;
 }
+.product-sale-container {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 20px 20px;
+    text-align: center;
+    margin: 0px 150px;
+    margin-top: 50px;
+}
+.search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-bar input[type="text"],
+.search-bar select {
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 10px;
+}
+.search-bar button {
+    background-color: #002b54;
+    color: white;
+    font-size: 16px;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+}
+.summary-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.product-id {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
 .navbar-order-container {
     display: flex;
     gap : 25px;

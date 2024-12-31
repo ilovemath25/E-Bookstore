@@ -8,11 +8,18 @@ body {
     height: calc(100vh - 50px);
   }
 .sidebar {
+    margin-top: auto;
     width: 20%;
     background-color: #f0f0f0;
     padding: 10px;
     box-sizing: border-box;
-  }
+    margin-right: -10px;
+    margin-top: -650px;
+    float: right; 
+    margin-bottom: auto;
+    z-index: -1;
+    height: calc(100vh - 62px);
+}
 .search-bar {
     display: flex;
     margin-bottom: 10px;
@@ -57,7 +64,7 @@ body {
 .dropdown {
     float: right;
     margin-right: 20px;
-    margin-top: 10px;
+    margin-top: -10px;
   }
 .dropdown select {
     padding: 5px;
@@ -83,60 +90,21 @@ body {
     width: 16%;
     font-size: 16px;
  }
-  .form-container {
-    margin: 20px auto;
-    max-width: 850px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #ffffff;
-  }
-  .form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .form-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  .form-field {
-    background-color: #fff6d6;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  .form-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
-  }
-  .form-buttons button {
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #002b54;
-    color: white;
-  }
-  .form-buttons button:hover {
-    background-color: #003d7a;
-  }
+  
   .section-container{
+    width: 75%;
     flex-grow: 2;
     padding-bottom: 50px;
-    margin-top: 60px;
+    margin-top: -10px;
     margin-bottom: 30px;
     margin-left: 30px;
     margin-right: 150px;
     background-color: #f9f7f7;
     border: 2px solid #d9d9d9;
     border-radius: 5px;
- }
+    position: relative;
+  }
+
 
  .account-container{
     margin: 20px 40px;
@@ -173,5 +141,130 @@ body {
 .edit-account:hover, .delete-account:hover{
   background-color: #5880b0;
   transition: all 0.3s;
+}
+.left{
+  flex: 0 0 10%;
+  border-radius: 8px;
+  margin-left: 60px;
+}
+.right {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-right: 80px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+} 
+.bar-title{
+  height: 45px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #102d4d;
+  color: #fff;
+}
+.bar-list{
+  position: relative;
+  display: flex;
+  height: 200px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+  padding: 0;
+  color: #000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.bar-list>.bar-row{
+  height: inherit;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.bar-list .bar-row{
+  margin: 0;
+  width: 100%;
+  padding: 0;
+}
+
+.bar-list hr{
+  width: 80%;
+  background-color: #ddd;
+  border: none;
+  height: 3px;
+}
+.bar-row{
+  --bs-gutter-y: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.bar-row:hover{
+  background-color: #afc7e5;
+  transition: all 0.3s;
+}
+
+.bar-row:last-child:hover{
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.bar-row:active{
+  background-color: #8ea4c0;
+  transition: all 0s; 
+}
+.bar-center{
+  width: 100%;
+  padding: .25rem 1rem;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+  text-decoration-line: none;
+}
+
+
+.bar-list .bar-row:first-child .bar-center{
+  margin-top: 0;
+  text-overflow: clip;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.bar-row a{
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.25rem;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  color: #333;
 }
 
