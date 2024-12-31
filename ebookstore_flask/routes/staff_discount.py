@@ -33,7 +33,7 @@ def index(type="", returned="main"):
             if not discount_type or line.Disc_type in status_map.get(discount_type, []):
                 filtered_discount.append(format_product_data(line))
         return filtered_discount
-    # check_role("Staff", "Administrator")
+    check_role("Staff", "Administrator")
 
     discount = Discount.query.all()
     discount_list = filter_ordered_products(discount,type)
