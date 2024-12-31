@@ -34,7 +34,6 @@ const user_profile_page = () => {
    const selected = document.getElementById('selected-gender');
    const optionsContainer = document.querySelector('.dropdown-options');
    const options = document.querySelectorAll('.dropdown-option');
-   const hiddenInput = document.getElementById('Gender');
 
    selected.addEventListener('click', () => {
       optionsContainer.classList.toggle('active');

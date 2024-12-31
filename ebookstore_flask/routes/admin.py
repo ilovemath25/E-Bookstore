@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from ebookstore_flask.utils.role import check_role
-from ebookstore_flask.utils.session import check_session
+from ebookstore_flask.utils.session import load_sessions
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models.product import Product
 from ebookstore_flask.models.order import Order
@@ -50,27 +50,51 @@ def finance_overview(year = datetime.now().year):
 
     role=check_role("Administrator")
     return render_template('admin/finance.html', 
-                           total_revenue=total_revenue, 
-                           total_expenses=total_expenses, 
-                           net_profit=net_profit,
-                           monthly_revenue=monthly_revenue,
-                           monthly_expenses=monthly_expenses,
-                           monthly_profit=monthly_profit,
-                           monthly_sales=monthly_sales,
-                           top_categories=top_categories,
-                           year=year,
-                           year_now=datetime.now().year,
-                           role=role)
+        total_revenue=total_revenue, 
+        total_expenses=total_expenses, 
+        net_profit=net_profit,
+        monthly_revenue=monthly_revenue,
+        monthly_expenses=monthly_expenses,
+        monthly_profit=monthly_profit,
+        monthly_sales=monthly_sales,
+        top_categories=top_categories,
+        year_now=datetime.now().year,
+        year=year,
+        role=role
+    )
 
-@admin.route('/admin/users')
+@admin.route('/admin/user')
 def manage_users():
     role=check_role("Administrator")
-    users = Member.query.all()
-    return render_template('admin/admin_users.html', users=users, role=role)
+    users = Member.query.all()           # SELECT * FROM "Member"
+    return render_template(
+        'admin/admin_users.html',
+        users=users,
+        role=role
+    )
 
-@admin.route('/admin/users/edit', methods=['GET', 'POST'])
-def edit_user():
-    user = Member.query.all()
+@admin.route('/admin/user/<int:user_id>')
+def manage_user_detail(user_id):
+    role=check_role("Administrator")
+    user = (
+        Member.query                     # SELECT * FROM "Member"
+        .filter(Member.MID == user_id)   # WHERE "MID" = <mid>;
+        .first()
+    )
+    return render_template(
+        'admin/admin_user_detail.html',
+        user=user,
+        role=role
+    )
+
+@admin.route('/admin/user/<int:user_id>/edit', methods=['GET', 'POST'])
+def edit_user(user_id):
+    role=check_role("Administrator")
+    user = (
+        Member.query                     # SELECT * FROM "Member"
+        .filter(Member.MID == user_id)   # WHERE "MID" = <mid>;
+        .first()
+    )
     if request.method == 'POST':
         user.F_name = request.form.get('F_name')
         user.L_name = request.form.get('L_name')
@@ -80,6 +104,9 @@ def edit_user():
         user.Phone = request.form.get('Phone')
         user.Address = request.form.get('Address')
         db.session.commit()
-        flash('User updated successfully!', 'success')
         return redirect(url_for('admin.manage_users'))
-    return render_template('admin/admin_users_edit.html', user=user)
+    return render_template(
+        'admin/admin_user_edit.html',
+        user=user,
+        role=role
+    )
