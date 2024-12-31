@@ -2,9 +2,14 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from ebookstore_flask.utils.session import check_session, load_sessions
 from ebookstore_flask.utils.credit_card import bin_number_checker
 from ebookstore_flask.models.credit_card import Credit_card
+from ebookstore_flask.models.discount import Discount
+from ebookstore_flask.models.product import Product
+from ebookstore_flask.models.order import Order
+from ebookstore_flask.models.item_line import Item_line
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models import db
 from datetime import datetime
+from itertools import groupby
 
 user_profile = Blueprint('user_profile', __name__)
 
@@ -165,40 +170,116 @@ def credit_card_delete():
 
 @user_profile.route('/user/profile/change_password', methods=['GET', 'POST'])
 def change_password():
-    if not check_session():
-         return redirect(url_for('login.index'))
+   session_data = check_session()
+   if not check_session():
+      return redirect(url_for('login.index'))
+   session_id = request.cookies.get("session_id")
+   sessions = load_sessions()
+   email = sessions.get(session_id, [None])[0]
+   if not email:
+      return redirect(url_for('login.index'))
 
-    session_id = request.cookies.get("session_id")
-    sessions = load_sessions()
-    email = sessions.get(session_id, [None])[0]
-    if not email:
-        return redirect(url_for('login.index'))
+   from ebookstore_flask.models.member import Member
+   from ebookstore_flask.models import db
 
-    from ebookstore_flask.models.member import Member
-    from ebookstore_flask.models import db
+   user = Member.query.filter_by(Email=email).first()
+   if not user:
+      return "User not found.", 404
 
-    user = Member.query.filter_by(Email=email).first()
-    if not user:
-        return "User not found.", 404
+   if request.method == 'POST':
+      old_password = request.form.get('currentPassword')
+      new_password = request.form.get('newPassword')
+      confirm_password = request.form.get('confirmNewPassword')
+      print(user.Password , old_password)
 
-    if request.method == 'POST':
-        old_password = request.form.get('currentPassword')
-        new_password = request.form.get('newPassword')
-        confirm_password = request.form.get('confirmNewPassword')
-        print(user.Password , old_password)
+      user.Password = new_password
+      db.session.commit()
 
-        
-        user.Password = new_password
-        db.session.commit()
+      return redirect(url_for('user_profile.index'))
 
-        return redirect(url_for('user_profile.index'))
+   return render_template(
+      'user/user_profile_change_password.html',
+      old_password=user.Password,
+      role=session_data[1] if session_data else None
+   )
 
-    return render_template('user/user_profile_change_password.html', old_password=user.Password)
-
-@user_profile.route('/user/profile/order')
-def order():
-   return render_template('user/order.html')
-
-@user_profile.route('/user/profile/discount')
-def discount():
-   return render_template('user/discount.html')
+@user_profile.route('/user/profile/order_history')
+def order(order_type="order", returned="main"):
+   if not check_session():
+      return redirect(url_for('login.index'))
+   session_id = request.cookies.get("session_id")
+   sessions = load_sessions()
+   email = sessions.get(session_id, [None])[0]
+   if not email:
+      return redirect(url_for('login.index'))
+   role = None
+   session_data = check_session()
+   if(session_data): _, role = session_data
+   user = (
+      Member.query                     # SELECT * FROM "Member"
+      .filter(Member.Email == email)   # WHERE "Email" = <email>;
+      .first()
+   )
+   costumer_id = user.MID
+   print("current_type1",order_type)
+   def format_product_data(line, product, order):
+      sum_price = line.Quantity * product.Price
+      return {
+         "Product_pict": product.Product_pict,
+         "Name": product.Name,
+         "Quantity": line.Quantity,
+         "Sum": sum_price,
+         "OID": line.OID,
+         "CMID": order.CMID,
+         "Status": order.Status
+      }
+   def filter_ordered_products(item_lines, order_type):
+      status_map = {
+         "order": ["Processing","Closed","Shipping", "Received", "Returned", "Cancel"],
+         "processing": ["Processing"],
+         "shipping": ["Shipping"],
+         "received": ["Received"],
+         "closed": ["Closed"]
+      }
+      filtered_products = []
+      for line in item_lines:
+         product = Product.query.filter_by(PID=line.PID).first()
+         order = Order.query.filter_by(OID=line.OID).first()
+         if not order_type or order.Status in status_map.get(order_type, []):
+            filtered_products.append(format_product_data(line, product, order))
+      return filtered_products
+   # check_role("Staff", "Administrator")
+   item_lines = Item_line.query.filter_by(Line_type="Order").all()
+   ordered_product = filter_ordered_products(item_lines, order_type)
+   print("ordered_product",ordered_product)
+   ordered_product.sort(key=lambda x: x["OID"])
+   grouped_data = {key: list(value) for key, value in groupby(ordered_product, key=lambda x: x["OID"])}
+   
+   filtered_grouped_data = {
+    key: [item for item in value if item['CMID'] == costumer_id]
+    for key, value in grouped_data.items()
+    if any(item['CMID'] == costumer_id for item in value)  # Check for non-empty result
+}
+   print("filtered_grouped_data",filtered_grouped_data)
+   if returned == "find":
+      print("find msk sini")
+      return filtered_grouped_data
+   all_items = [list(values) for values in filtered_grouped_data.values()]
+   active_route = order_type
+   print("current_type",active_route)
+   return render_template('user/user_profile_order_history.html', all_items=all_items, active_route=active_route)
+@user_profile.route('/user/profile/order_history/order')
+def TotalOrder():
+   return order(order_type="order")
+@user_profile.route('/user/profile/order_history/processing')
+def processing():
+   return order(order_type="processing")
+@user_profile.route('/user/profile/order_history/shipping')
+def shipping():
+   return order(order_type="shipping")
+@user_profile.route('/user/profile/order_history/received')
+def received():
+   return order(order_type="received")
+@user_profile.route('/user/profile/order_history/closed')
+def closed():
+   return order(order_type="closed")

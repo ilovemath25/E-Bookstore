@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
+from ebookstore_flask.utils.role import check_role
 from ebookstore_flask.models.member import Member
 from ebookstore_flask.models.product import Product
 from ebookstore_flask.models.special_event import Special_event
@@ -12,7 +12,6 @@ staff_product = Blueprint('staff_product', __name__)
 @staff_product.route('/staff/product')
 def index(type="", returned="main"):
     def format_product_data(product):
-        product.Product_pict = product.Product_pict.replace('ebookstore_flask/', '').replace('static/', '')
         return {
         "PID": product.PID,
         "Name": product.Name,
@@ -31,27 +30,18 @@ def index(type="", returned="main"):
             elif product_type == "product" or not product_type:
                 filtered_product.append(format_product_data(line))
         return filtered_product
-    if check_session(): 
-        session_id = request.cookies.get("session_id")
-        sessions = load_sessions()
-        email = sessions.get(session_id, [None])[0]
-        role = sessions.get(session_id, [None])[1]
-        if not email: return redirect(url_for('login.index'))
-        if role == 'Customer': return redirect(url_for('home.index'))
+    role=check_role("Staff", "Administrator")
 
     product = Product.query.all()
     product_list = filter_ordered_products(product,type)
     product_list.sort(key=lambda x: x["PID"])
-    grouped_data = {key: list(value) for key, value in groupby(product_list, key=lambda x: x["PID"])}
-
-    # print("grouped_data",grouped_data)
+    print(product_list)
 
     if returned == "find":
-        return grouped_data
+        return product_list
 
-    all_items = [list(values) for values in grouped_data.values()]
     active_route = type or "product"
-    return render_template(f"/staff/product.html", all_items=all_items, active_route=active_route)
+    return render_template(f"/staff/product.html", all_items=product_list, active_route=active_route, role=role)
 
 @staff_product.route('/staff/product/outofstock')
 def outofstock():
@@ -68,24 +58,24 @@ def filter_by(current_path):
     data = index(type=current_type, returned="find")
 
     filtered_items = []
-    for key, items in data.items():
+    for item in data:
             print("filter_field",filter_field)
-            if filter_field == "product_id" and user_input.isdigit() and str(key) == user_input:
-                filtered_items.append(items)
+            if filter_field == "product_id" and user_input.isdigit() and item['PID'] == int(user_input):
+                filtered_items.append(item)
             elif filter_field == "product_name":
-                filtered_values = [val for val in items if user_input.lower() in val["Name"].lower()]
-                if filtered_values:
-                    filtered_items.append(items)
+                if user_input.lower() in item["Name"].lower():
+                    filtered_items.append(item)
             elif filter_field == "category":
-                filtered_values = [val for val in items if user_input.lower() in val["Category"].lower()]
-                if filtered_values:
-                    filtered_items.append(items)
+                if user_input.lower() in item["Category"].lower():
+                    filtered_items.append(item)
             
     print("filtered_items",filtered_items)
+    role=check_role("Staff", "Administrator")
     return render_template(
         "/staff/product.html",
         all_items=filtered_items,
         user_input=user_input,
         filter_field=filter_field,
-        active_route=current_type
+        active_route=current_type,
+        role=role
     )

@@ -1,0 +1,203 @@
+
+
+{% extends '/staff/base_staff.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/order_detail.css') }}">
+
+<main>
+    <div class="navbar-detail-container">
+        <div class="order-detail-left">
+            <!-- status -->
+            <div>
+                <div class="box-title">Order Status</div>
+                <div class="od-left-box">
+                    <form action="{{ url_for('staff_order_detail.index2', order_id=order.OID) }}" method="POST" class="filter">
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <div class="search-filter">
+                                <div class="selected-filter" name="filterField">
+                                    <span id="selected-text">{{order.Status}}</span>
+                                    <i class="fa fa-caret-down"></i>
+                                </div>
+                                <div class="option" id="dropdown_o">
+                                    <div class="option-filter" style="display: none;">
+                                        <p onclick="selectOption('Processing', 'process')" {% if filterField == 'process' %}selected{% endif %}>Processing</p>
+                                        <p onclick="selectOption('Shipping', 'ship')" {% if filterField == 'ship' %}selected{% endif %}>Shipping</p>
+                                        <p onclick="selectOption('Received', 'receive')" {% if filterField == 'receive' %}selected{% endif %}>Received</p>
+                                        <p onclick="selectOption('Closed', 'closed')" {% if filterField == 'close' %}selected{% endif %}>Closed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- customer info -->
+            <div>
+                <div class="box-title">Customer Information</div>
+                <div class="od-left-box">
+                    <div>
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <span class="od-cus-word">Customer Info</span>
+                        </div>
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>Customer Name</span>
+                            </div>
+                            
+                            <div class="cus-info-item">
+                                <span>
+                                    {% if customer.L_name %}
+                                        {{ customer.L_name }} {{ customer.F_name }}
+                                    {% else %}
+                                        {{ customer.F_name }}
+                                    {% endif %}
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>Customer ID</span>
+                            </div>
+                            
+                            <div class="cus-info-item">
+                                <span>{{order.CMID}}</span>
+                            </div>
+                        </div>
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>Payment Method</span>
+                            </div>
+                            
+                            <div class="cus-info-item">
+                                <span>{{order.Pay_method}}</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div>
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <span class="od-cus-word">Ordered ID</span>
+                        </div>
+
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>{{order.OID}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="od-status-icon">
+                            <div class="od-circle"></div>
+                            <span class="od-cus-word">Address</span>
+                        </div>
+
+                        <div class="cus-info-list">
+                            <div class="cus-info-item">
+                                <span>{{order.Ship_address}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- order product -->
+            <div>
+                <div class="box-title">Order Information</div>
+                <div class="od-left-box">
+
+                    <!-- product and payment -->
+                    <div class="order-info-box">
+
+                        <!-- product -->
+                        <div class="box-in-info">
+                            <div class="prt-header"><!-- header -->
+                                <div class="prt-no">No.</div>
+                                <div class="prt-product">Product</div>
+                                <div class="prt-price">Price</div>
+                                <div class="prt-qty">Quantity</div>
+                                <div class="prt-subtotal">Subtotal</div>
+                            </div>
+
+                            <div class="prt-box"><!-- product -->
+                                {% for detail in item_details %}
+                                    <div class="prt-product-row"><!-- product row-->
+                                        <div class="prt-no">{{loop.index}}</div>
+                                        <div class="prt-product-item"><!--product item info-->
+                                            <img class="product-image" src="{{ url_for('static', filename=detail.product.Product_pict) }}" alt="{{ detail.product.Name }}">
+                                            <div class="prt-detail">
+                                                <div class="prt-detail-word">{{detail.product.Name}} </div>
+                                                <div class="prt-detail-word">{{detail.product.Author}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="prt-price">  ${{ detail.prt_price }}</div>
+                                        <div class="prt-qty">{{ detail.line.Quantity }}</div>
+                                        <div class="prt-subtotal">  ${{ detail.subtotal }}</div>
+                                    </div>
+                                    {% if loop.index < item_details|length %}
+                                        <hr>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <!-- payment -->
+                        <div class="box-in-info">
+                            <div class="payment-box">
+                                <div class="payment-row">
+                                    <div class="payment-word">Order Total</div>
+                                    <div class="payment-price">${{ total_price }}</div>
+                                </div>
+                                <div class="payment-row">
+                                    <div class="payment-word">Shipping Price</div>
+                                    <div class="payment-price">${{ shp_fee }}</div>
+                                </div>
+                                <div class="payment-row">
+                                    <div class="payment-word">Total Price</div>
+                                    <div class="payment-total-price">${{ order_total }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="order-status-history" class="order-detail-right">
+            <div class="status-history-word">Status History</div>
+            {% for step in steps %}
+                <div class="step {% if order.Status in step.completed_statuses %}completed{% endif %}" data-status="{{ step.status }}">
+                    <div class="icon {% if order.Status in step.completed_statuses %}completed-icon{% endif %}"></div>
+                    <div class="status-text">{{ step.text }}</div>
+                </div>
+                {% if loop.index < steps|length %}
+                    <div class="status-line {% if order.Status in step.line_completed_statuses %}completed{% endif %}"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Back-Button -->
+    <div class="navbar-pre-detail">
+        <a href="/staff/order_detail/{{ order.OID }}" target="_self" class="cancel-edit">
+            <div class="pre-detail-word">Cancel</div>
+        </a>
+        <form class="pre-detail-button" method="POST" action="{{ url_for('staff_order_detail.update_status', order_id=order.OID) }}">
+            <input type="hidden" id="filterField" name="filterField" value="{{ order.Status }}">
+            <input type="submit" class="pre-detail-word" value="Save">
+        </form>
+    </div>
+    <script src="{{ url_for('static',filename='script/order_detail.js') }}"></script>
+</main>
+{% endblock %}
+
+

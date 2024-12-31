@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from ebookstore_flask.utils.session import check_session, load_sessions, delete_session
 from ebookstore_flask.utils.role import check_role
 from ebookstore_flask.models.order import Order
 from ebookstore_flask.models.member import Member
@@ -33,7 +32,7 @@ def index(type="", returned="main"):
             if not discount_type or line.Disc_type in status_map.get(discount_type, []):
                 filtered_discount.append(format_product_data(line))
         return filtered_discount
-    check_role("Staff", "Administrator")
+    role=check_role("Staff", "Administrator")
 
     discount = Discount.query.all()
     discount_list = filter_ordered_products(discount,type)
@@ -46,7 +45,7 @@ def index(type="", returned="main"):
 
     # all_items = [list(values) for values in grouped_data.values()]
     active_route = type or "discount"
-    return render_template(f"/staff/discount.html", all_items=discount_list, active_route=active_route)
+    return render_template(f"/staff/discount.html", all_items=discount_list, active_route=active_route, role=role)
 
 @staff_discount.route('/staff/discount/shipping')
 def shipped():
@@ -87,10 +86,12 @@ def filter_by(current_path):
                 filtered_items.append(item)
             
     print("filtered_items",filtered_items)
+    role=check_role("Staff", "Administrator")
     return render_template(
         "/staff/discount.html",
         all_items=filtered_items,
         user_input=user_input,
         filter_field=filter_field,
-        active_route=current_type
+        active_route=current_type,
+        role=role
     )

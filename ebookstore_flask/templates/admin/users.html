@@ -1,0 +1,93 @@
+{% extends '/admin/base_admin.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/users.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<main>
+  <div class="container">
+    <div class="sidebar">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+      <ul class="user-list">
+        <li>#User_ID_1</li>
+        <li>#User_ID_2</li>
+        <li>#User_ID_3</li>
+        <li>#User_ID_4</li>
+        <li>#User_ID_5</li>
+        <li>#User_ID_6</li>
+        <li>#User_ID_7</li>
+        <li>#User_ID_8</li>
+        <li>#User_ID_9</li>
+        <li>#User_ID_10</li>
+        <li>#User_ID_11</li>
+        <li>#User_ID_12</li>
+        <li>#User_ID_13</li>
+        <li>#User_ID_14</li>
+        <li>#User_ID_15</li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <div class="dropdown">
+        <label for="memberType">Member type:</label>
+        <select id="memberType">
+          <option>All User</option>
+          <option>Staff</option>
+          <option>Customer</option>
+        </select>
+      </div>
+      <div class="section-container">
+        <div class="sub-title">
+           <hr><h2>Member Account</h2><hr>
+        </div>
+        <table class="account-container">
+           <tr class="account-item">
+            <td class="account-label">Member ID</td>
+            <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Name</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Birth</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Gender</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Email</td>
+              <td class="account-value" id="email-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Phone</td>
+              <td class="account-value" id="phone-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Address</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+              <td class="account-label">Type</td>
+              <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+            <td class="account-label">Status</td>
+            <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+           <tr class="account-item">
+            <td class="account-label">registration-date</td>
+            <td class="account-value">xxxxxxxxxxxxxxxxxxxxxxx</td>
+           </tr>
+        </table>
+        <a class="edit-account" href="#">Edit</a>
+        <a class="delete-account" href="#">Delete</a>
+     </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

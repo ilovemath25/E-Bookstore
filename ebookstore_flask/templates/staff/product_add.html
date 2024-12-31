@@ -1,0 +1,105 @@
+{% extends '/staff/base_staff.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/product_detail.css') }}">
+
+<main>
+        <form class="navbar-detail-container" method="POST" action="{{ url_for('/staff_product_add.add') }}">
+            <div class="left">
+                <div class="bar-title">Staff Menu</div>
+                <div class="bar-list">
+                    <!-- order -->
+                    <a href="/staff/order" target="_self" id="bar-order" class="bar-row">
+                        <span class="bar-center">Order</span>
+                    </a>
+                    <hr>
+                    <a href="/staff/product" target="_self" id="bar-product" class="bar-row">
+                        <span class="bar-center">Product</span>
+                    </a>
+                    <hr>
+                    <a href="/staff/discount" target="_self" id="bar-discount" class="bar-row">
+                        <span class="bar-center">Discount</span>
+                    </a>
+                </div>
+            </div>
+            <div class="discount-details">
+                <div class="dtl-title">
+                    <hr>
+                    <h2>Add New Product</h2>
+                    <hr>
+                </div>
+                <div class="dtl-title">
+                    <p class="error-message">{{errorMsg if errorMsg else ''}}</p>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Image Link</span>
+                    <span class="value-box">
+                        <input type="text" name="Product_pict" id="Product_pict" class="dtl-input" value="{{ product.Product_pict if product.Product_pict else '' }}" data-original="{{ product.Product_pict }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Name</span>
+                    <span class="value-box">
+                        <input type="text" name="Product_name" id="Product_name" class="dtl-input" value="{{product.Name if product.Name else '' }}" data-original="{{ product.Name }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Description</span>
+                    <span class="value-box">
+                        <input type="text" name="Product_desc" id="Product_desc" class="dtl-input" value="{{ product.Desc if product.Desc else '' }}" data-original="{{ product.Desc }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Price</span>
+                    <span class="value-box">
+                        <input type="text" name="Product_price" id="Product_price" class="dtl-input" value="{{ product.Price if product.Price else '' }}" data-original="{{ product.Price }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Author</span>
+                    <span class="value-box">
+                        <input type="text" name="Product_author" id="Product_author" class="dtl-input" value="{{ product.Author if product.Author else '' }}" data-original="{{ product.Author }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Stock</span>
+                    <span class="value-box">
+                        <input type="text" name="Product_stock" id="Product_stock" class="dtl-input" value="{{ product.Stock_quantity if product.Stock_quantity else '' }}" data-original="{{ product.Stock_quantity }}" required>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="label-box">Product Category</span>
+                    <div class="radio-group">
+                        {% for type in ['Adventure', 'Fantasy', 'Mystery', 'Classic', 'Romance', 'Political Fiction', 'Science Fiction', 'Historical Fiction', 'Drama', 'Non Fiction'] %}
+                            <label class="radio-option">
+                                <input type="radio" name="Product_categ" value="{{ type }}" 
+                                    {% if type == (product.Category if product.Category else 'Adventure') %}checked{% endif %}>
+                                <span class="radio-custom"></span>
+                                {{ type }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div> 
+                <div class="detail-item">
+                    <span class="label-box">Product Special Event ID</span>
+                    <span class="value-box">
+                        <input type="text" name="Product_spEvent" id="Product_spEvent" class="dtl-input" value="{{ product.SpEvent_ID if product.SpEvent_ID else '' }}" data-original="{{ product.SpEvent_ID }}">
+                    </span>
+                </div>              
+                <hr>
+                <div class="buttons">
+                    <div class="navbar-btn-detail">
+                        <a href="/staff/product" target="_self" class="cancel-edit">
+                            <div class="btn-detail-word">Cancel</div>
+                        </a>
+                    </div>
+                    <form class="navbar-detail-container" method="POST" action="{{ url_for('/staff_product_add.add') }}">
+                        <input type="submit" class="btn-detail-button" value="Save">
+                    </form>
+                </div>
+            </div>
+        </form>
+        <script src="{{ url_for('static',filename='script/product_edit.js') }}"></script>
+
+</main>
+{% endblock %}
