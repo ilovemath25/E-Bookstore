@@ -133,7 +133,7 @@
                                     <div class="prt-product-row"><!-- product row-->
                                         <div class="prt-no">{{loop.index}}</div>
                                         <div class="prt-product-item"><!--product item info-->
-                                            <img class="product-image" src="{{ url_for('static', filename=detail.product.Product_pict) }}" alt="{{ detail.product.Name }}">
+                                            <img class="product-image" src="{{ detail.product.Product_pict }}" alt="{{ detail.product.Name }}">
                                             <div class="prt-detail">
                                                 <div class="prt-detail-word">{{detail.product.Name}} </div>
                                                 <div class="prt-detail-word">{{detail.product.Author}}</div>

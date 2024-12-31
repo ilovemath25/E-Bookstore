@@ -10,18 +10,20 @@ main {
    margin: 25px;
 }
 
-.sub-title hr {
-   width: 35%;
+.sub-title hr{
+   width: 30%;
    border: #000;
-   margin: 10px;
+   margin: 10px 0;
    height: 3px;
    background-color: #eaddd7;
    color: #eaddd7;
 }
 
-.sub-title h2 {
-   width: 16%;
+.sub-title h2{
+   width: 20%;
    font-size: 16px;
+   word-spacing: 8px;
+   margin: 0 30px;
 }
 .profile-menu{
    margin: 0px 30px 30px 120px;
@@ -118,7 +120,7 @@ a{
 .menu-option:last-child {
    border-radius: 0px 0px 5px 5px;
 }
-
+:
 .section-container{
    flex-grow: 2;
    margin-bottom: 30px;
@@ -172,6 +174,7 @@ form .profile-container .profile-value {
    border: 1px solid #9b9b9b;
    border-radius: 5px;
    font-size: 16px;
+   margin-right: 10px;
 }
 
 #selected-gender {
@@ -219,6 +222,11 @@ form .profile-container .profile-value {
    cursor: pointer;
    text-decoration: none;
    font-size: 14px;
+   width: 130px;
+   height: 43px;
+}
+.add-card{
+   width: 200px;
 }
 
 .edit-profile {
@@ -230,8 +238,12 @@ form .profile-container .profile-value {
    margin-right: 60px;
 }
 
-.edit-profile:hover {
-   background-color: #5880b0;
+.edit-profile:hover{
+   background-color: #7aa6dc;
+   transition: all 0.3s;
+}
+.edit-profile:active{
+   background-color: #537eb2;
    transition: all 0.3s;
 }
 
@@ -256,7 +268,7 @@ form .profile-container .profile-value {
 
 .modal-content {
    background-color: #fff;
-   padding: 30px;
+   padding: 30px 30px 10px;
    border-radius: 8px;
    text-align: center;
    box-shadow: 0 4px 8px #00000033;
@@ -265,28 +277,31 @@ form .profile-container .profile-value {
 .modal-button {
    display: flex;
    justify-content: center;
-   margin-top: 20px;
+   margin-top: 30px;
 }
 
 .modal-btn {
-   margin: 10px;
+   height: 37px;
+   margin: 10px 35px 10px;
    width: 100%;
    padding: 10px 20px;
-   border-radius: 5px;
+   border-radius: 8px;
    font-size: 14px;
    border: none;
    cursor: pointer;
    color: #fff;
    background-color: #3f72af;
    transition: all 0.3s;
+   width: 120px;
+   height: 37px;
 }
 
 .modal-btn:hover {
-   background-color: #5880b0;
+   background-color: #7aa6dc;
 }
 
-.modal-btn:active {
-   background-color: #5075a2;
+.modal-btn:active{
+   background-color: #537eb2;
 }
 
 .logout-hidden {
@@ -395,14 +410,22 @@ form .profile-container .profile-value {
    background-color: #3f72af;
 }
 
-.change-password-button {
+#submitButton:hover{
+   background-color: #7aa6dc;
+   transition: all 0.3s;
+}
+#submitButton:active{
+   background-color: #537eb2;
+   transition: all 0s; 
+}
+.change-password-button{
    display: flex;
    justify-content: center;
    align-items: center;
    float: right;
    padding: 10px 50px;
    border-radius: 10px;
-   margin: 0px 70px 30px 30px;
+   margin: 0px 60px 30px 0;
    border: #000;
    color: #fff;
    cursor: pointer;
@@ -444,7 +467,7 @@ form .profile-container .profile-value {
 
 .credit-card-modal-container .modal-content {
    background-color: #fff;
-   padding: 30px;
+   padding: 0 30px 30px;
    border-radius: 8px;
    text-align: center;
    box-shadow: 0 4px 8px #00000033;
@@ -477,7 +500,7 @@ form .profile-container .profile-value {
 
 .cancel-edit {
    background-color: #cdcdcd;
-   color: #444444;
+   /* color: #444444; */
 }
 
 .cancel-edit:hover {

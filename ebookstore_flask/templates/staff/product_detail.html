@@ -57,7 +57,11 @@
                 </div>
                 <div class="detail-item">
                     <span class="label-box">Product Special Event ID</span>
-                    <span class="value-box">{{ product.SpEvent }}</span>
+                    {% if product.SpEvent %}
+                        <span class="value-box">{{ product.SpEvent }}</span>
+                    {% else %}
+                        <span class="value-box">None</span>
+                    {% endif %}
                 </div>
                 <hr>
                 <div class="buttons">

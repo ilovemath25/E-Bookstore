@@ -31,7 +31,42 @@
 
    <div class="reviews">
       <h2>Customer Reviews</h2>
-      <span>⭐⭐⭐⭐⭐</span>
+      {% if reviews|length > 0 %}
+         {% for review in reviews %}
+            <div class="rev-box">
+               <div class="rev-title">
+                  <!-- name -->
+                  <div class="rev-name">
+                     <span>{{review.FName}}</span>
+                     {% if review.LName %}
+                        <span>{{review.LName}}</span>
+                     {% endif %}
+                  </div>
+                  <!-- rate -->
+                  {% for i in range(5) %}
+                     {% if review.Rate and i < review.Rate %}
+                        <i class="fa-solid fa-star yellow"></i>
+                     {% else %}
+                        <i class="fa-solid fa-star gray"></i>
+                     {% endif %}
+                  {% endfor %}
+                  <!-- time -->
+               </div>
+               <span class="rev-time">{{review.Time}}</span>
+               <div class="rev-text">
+                  <span>{{review.Text}}</span>
+               </div>
+            </div>
+            {% if loop.index < reviews|length %}
+               <hr>
+            {% endif %}
+         {% endfor %}
+      {% else %}
+         <div class="no-review">
+            <span>No reviews yet ! Be the first to share your thoughts</span>
+            <i class="fa-regular fa-face-smile"></i>
+         </div>
+      {% endif %}
    </div>
 </main>
 
