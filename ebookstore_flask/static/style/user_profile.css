@@ -680,3 +680,7 @@ form .profile-container .profile-value {
    transform: translateY(-50%);
    font-size: 30px;
 }
+
+.checked{
+   background-color: #cacaca;
+}

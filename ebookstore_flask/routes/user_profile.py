@@ -260,22 +260,16 @@ def order(order_type="order", returned="main"):
       for key, value in grouped_data.items()
       if any(item['CMID'] == costumer_id for item in value)  # Check for non-empty result
    }
-   # print("filtered_grouped_data",filtered_grouped_data)
    if returned == "find":
-      print("find msk sini")
       return filtered_grouped_data
    all_items = [list(values) for values in filtered_grouped_data.values()]
-   active_route = order_type
-   # print("current_type",active_route)
+   active_route = order_type if order_type != "order" else "order_history"
    return render_template(
       'user/user_profile_order_history.html',
       all_items=all_items,
       active_route=active_route,
       role=role
    )
-@user_profile.route('/user/profile/order_history/order')
-def TotalOrder():
-   return order(order_type="order")
 @user_profile.route('/user/profile/order_history/processing')
 def processing():
    return order(order_type="processing")
