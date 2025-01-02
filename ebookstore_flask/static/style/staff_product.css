@@ -408,3 +408,6 @@ a{
     padding: 8px 170px 8px 65px;
     justify-content: center;
 }
+.selected-bar{
+    background-color:#afc7e5;
+}
