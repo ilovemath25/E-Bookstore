@@ -10,7 +10,7 @@
          {% endfor %}
       </div>
       {% for letter, books in book_list.items() %}
-      <section class="section-container" id="{{ letter }}">
+      <section class="section-container hidden-animation" id="{{ letter }}">
          <div class="sub-title">
             <hr><h2>{{ letter }}</h2><hr>
          </div>
@@ -18,39 +18,39 @@
             {% for book in books %}
                <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
                   <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
-                  <h3>{{ book.Name }}</h3>
-                  <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+                  <h3 class="translate">{{ book.Name }}</h3>
+                  <p><strong class="translate">Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
                </a>
             {% endfor %}
          </div>
       </section>
       {% endfor %}
    {% elif is_category %}
-   <section class="section-container">
+   <section class="section-container hidden-animation">
       <div class="sub-title">
-         <hr><h2>{{ category_name }}</h2><hr>
+         <hr><h2 class="translate">{{ category_name }}</h2><hr>
       </div>
       <div class="book-container">
          {% for book in book_list %}
             <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
                <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
-               <h3>{{ book.Name }}</h3>
-               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+               <h3 class="translate">{{ book.Name }}</h3>
+               <p><strong class="translate">Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
             </a>
          {% endfor %}
       </div>
    </section>
    {% elif is_search %}
-   <section class="section-container">
+   <section class="section-container hidden-animation">
       <div class="sub-title">
-         <hr><h2>Result of : {{ user_search }}</h2><hr>
+         <hr><h2><p class="translate">Result of : </p>{{ user_search }}</h2><hr>
       </div>
       <div class="book-container">
          {% for book in book_list %}
             <a class="book-card" href="{{ url_for('product.index', product_id=book.PID) }}">
                <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
-               <h3>{{ book.Name }}</h3>
-               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+               <h3 class="translate">{{ book.Name }}</h3>
+               <p><strong class="translate">Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
             </a>
          {% endfor %}
       </div>

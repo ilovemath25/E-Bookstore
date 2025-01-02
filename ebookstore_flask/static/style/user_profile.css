@@ -324,6 +324,7 @@ form .profile-container .profile-value {
    background-color: #94c8ed;
    border: 2px solid #b4b4b4;
    border-radius: 3px;
+   user-select: none;
 }
 
 .card-image .currency {
@@ -679,4 +680,8 @@ form .profile-container .profile-value {
    top: 50%;
    transform: translateY(-50%);
    font-size: 30px;
+}
+
+.checked{
+   background-color: #cacaca;
 }

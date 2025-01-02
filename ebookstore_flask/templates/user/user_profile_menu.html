@@ -1,31 +1,31 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile.css') }}">
 <div class="profile-menu">
-   <div class="menu-header">Profile</div>
+   <div class="menu-header translate">Profile</div>
    <div class="menu-options">
-      <a class="menu-option {% if request.endpoint in ['user_profile.index', 'user_profile.edit'] %}active{% endif %}"
+      <a class="menu-option translate {% if request.endpoint in ['user_profile.index', 'user_profile.edit'] %}active{% endif %}"
       href="{{ url_for('user_profile.index') }}">My Profile</a>
       <hr>
-      <a class="menu-option {% if request.endpoint in ['user_profile.credit_card', 'user_profile.credit_card_edit'] %}active{% endif %}"
+      <a class="menu-option translate {% if request.endpoint in ['user_profile.credit_card', 'user_profile.credit_card_edit'] %}active{% endif %}"
       href="{{ url_for('user_profile.credit_card') }}">Credit Card</a>
       <hr>
-      <a class="menu-option {% if request.endpoint == 'user_profile.change_password' %}active{% endif %}"
+      <a class="menu-option translate {% if request.endpoint == 'user_profile.change_password' %}active{% endif %}"
       href="{{ url_for('user_profile.change_password') }}">Change Password</a>
       <hr>
-      <a class="menu-option {% if request.endpoint == 'user_profile.order' %}active{% endif %}"
+      <a class="menu-option translate {% if request.endpoint in ['user_profile.order', ] %}active{% endif %}"
       href="{{ url_for('user_profile.order') }}">Order History</a>
       <hr>
-      <a class="menu-option {% if request.endpoint == 'user_discount.index' %}active{% endif %}"
-      href="{{ url_for('user_discount.index') }}">My Discount</a>
+      <a class="menu-option translate {% if request.endpoint == 'user_discount.index' %}active{% endif %}"
+      href="{{ url_for('user_discount.index') }}">Discount</a>
       <hr>
-      <a class="menu-option" id="logout">Logout</a>
+      <a class="menu-option translate" id="logout">Logout</a>
    </div>
 </div>
 <form class="logout-modal-container logout-hidden" method="POST" action="{{ url_for('login.logout') }}">
    <div class="modal-content">
-      <p>Are you sure you want to log out?</p>
+      <p class="translate">Are you sure you want to log out?</p>
       <div class="modal-button">
-         <input type="submit" id="confirm-logout" class="modal-btn" value="Yes"></input>
-         <div id="cancel-logout" class="modal-btn">No</div>
+         <input type="submit" id="confirm-logout" class="modal-btn translate" value="Yes"></input>
+         <div id="cancel-logout" class="modal-btn translate">No</div>
       </div>
    </div>
 </form>

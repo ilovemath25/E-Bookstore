@@ -113,6 +113,33 @@ header {
 }
 .language{
    margin: 0;
+   position: relative;
+   cursor: pointer;
+}
+.language-dropdown {
+   display: none;
+   position: absolute;
+   background-color: #fff;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   z-index: 100;
+   right: 0;
+   top: 35px;
+}
+.language-dropdown a {
+   padding: 7px 30px;
+   cursor: pointer;
+   display: block;
+   color: #000;
+   font-size: 16px;
+}
+.language-dropdown a:first-child:hover {
+   background-color: #dedede;
+   border-radius: 8px 8px 0 0;
+}
+.language-dropdown a:last-child:hover {
+   background-color: #dedede;
+   border-radius: 0 0 8px 8px;
 }
 .navbar-icons{
    display: flex;

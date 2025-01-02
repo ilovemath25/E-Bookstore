@@ -1,5 +1,4 @@
 const user_profile_page = () => {
-
    function maskValue(originalValue, type) {
       if (type === 'email-value') {
          const [local, domain] = originalValue.split('@');
@@ -25,29 +24,13 @@ const user_profile_page = () => {
          iconElement.classList.add('fa-eye-slash');
       }
    }
-
    document.getElementById('toggle-email').addEventListener('click', () => {toggleVisibility('email-value', 'toggle-email');});
    document.getElementById('toggle-phone').addEventListener('click', () => {toggleVisibility('phone-value', 'toggle-phone');});
    document.getElementById('email-value').textContent = maskValue(document.getElementById('email-value').getAttribute('data-original'),'email-value');
    document.getElementById('phone-value').textContent = maskValue(document.getElementById('phone-value').getAttribute('data-original'),'phone-value');
-
-   const selected = document.getElementById('selected-gender');
-   const optionsContainer = document.querySelector('.dropdown-options');
-   const options = document.querySelectorAll('.dropdown-option');
-
-   selected.addEventListener('click', () => {
-      optionsContainer.classList.toggle('active');
-   });
-
-   options.forEach(option => {
-      option.addEventListener('click', () => {
-         selected.value = option.textContent;
-         options.classList.remove('active');
-      });
-   });
 };
-const user_profile_edit_page = () => {
 
+const user_profile_edit_page = () => {
    const selected = document.getElementById('selected-gender');
    const selectedHidden = document.getElementById('selected-gender-hidden');
    const optionsContainer = document.querySelector('.dropdown-options');
@@ -68,6 +51,37 @@ const user_profile_edit_page = () => {
          optionsContainer.classList.remove('active');
       }
    });
+
+   const form = document.querySelector('.section-container');
+   const birthInput = document.getElementById('Birth');
+   const emailInput = document.getElementById('email-value');
+   const phoneInput = document.getElementById('phone-value');
+   const firstNameInput = document.getElementById('F_name');
+   const submitButton = document.querySelector('.edit-profile');
+
+   function validateForm() {
+      const birthValue = birthInput.value;
+      const emailValue = emailInput.value.trim();
+      const phoneValue = phoneInput.value.trim();
+      const firstNameValue = firstNameInput.value.trim();
+      const birthDatePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+      const isBirthValid = birthValue === '' || birthDatePattern.test(birthValue);
+      const isEmailOrPhoneFilled = emailValue !== '' || phoneValue !== '';
+      const isFirstNameFilled = firstNameValue !== '';
+
+      const isFormValid = isBirthValid && isEmailOrPhoneFilled && isFirstNameFilled;
+
+      submitButton.disabled = !isFormValid;
+      submitButton.classList.toggle('disabled-button', !isFormValid);
+   }
+
+   birthInput.addEventListener('input', validateForm);
+   emailInput.addEventListener('input', validateForm);
+   phoneInput.addEventListener('input', validateForm);
+   firstNameInput.addEventListener('input', validateForm);
+
+   validateForm();
 };
 
 const user_profile_change_password_page = () => {

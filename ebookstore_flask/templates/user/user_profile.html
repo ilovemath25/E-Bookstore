@@ -3,39 +3,43 @@
 {% block content %}
 <main class="user_profile">
    {% include "/user/user_profile_menu.html" %}
-   <div class="section-container">
+   <div class="section-container hidden-animation">
       <div class="sub-title">
-         <hr><h2>My Profile</h2><hr>
+         <hr><h2 class="translate">My Profile</h2><hr>
       </div>
       <table class="profile-container">
          <tr class="profile-item">
-            <td class="profile-label">Name</td>
-            <td class="profile-value">{{ user.F_name }} {{ user.L_name if user.L_name else '' }}</td>
+            <td class="profile-label translate">Name</td>
+            <td class="profile-value">{{ user.F_name }} {% if user.L_name %}{{ user.L_name }}{% endif %}</td>
          </tr>
          <tr class="profile-item">
-            <td class="profile-label">Birth</td>
-            <td class="profile-value">{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else 'Not Provided' }}</td>
-         </tr>
-         <tr class="profile-item">
-            <td class="profile-label">Gender</td>
-            <td class="profile-value">{{ user.Gender }}</td>
-         </tr>
-         <tr class="profile-item">
-            <td class="profile-label">Email</td>
+            <td class="profile-label translate">Birth</td>
+            <td class="profile-value">{% if user.Birth %}{{ user.Birth.strftime('%Y-%m-%d') }}{% else %}<span class="translate">Not Provided</span>{% endif %}</td>
+          </tr>
+          <tr class="profile-item">
+            <td class="profile-label translate">Gender</td>
+            <td class="profile-value translate">{{ user.Gender }}</td>
+          </tr>
+          <tr class="profile-item">
+            <td class="profile-label translate">Email</td>
             <td class="profile-value" id="email-value" data-original={{ user.Email }}></td>
             <td class="profile-value"><i id="toggle-email" class="fa-solid fa-eye-slash"></i></td>
-         </tr>
-         <tr class="profile-item">
-            <td class="profile-label">Phone</td>
+          </tr>
+          <tr class="profile-item">
+            <td class="profile-label translate">Phone</td>
             <td class="profile-value" id="phone-value" data-original={{ user.Phone }}></td>
             <td class="profile-value"><i id="toggle-phone" class="fa-solid fa-eye-slash"></i></td>
+          </tr>
+          <tr class="profile-item">
+            <td class="profile-label translate">Address</td>
+            <td class="profile-value">{% if user.Address %}{{ user.Address }}{% else %}<span class="translate">Not Provided</span>{% endif %}</td>
          </tr>
          <tr class="profile-item">
-            <td class="profile-label">Address</td>
-            <td class="profile-value">{{ user.Address if user.Address else 'Not Provided' }}</td>
-         </tr>
+           <td class="profile-label translate">Register Date</td>
+           <td class="profile-value" style="color:#808080">{{ user.Reg_date }}</td>
+        </tr>
       </table>
-      <a class="edit-profile" href="{{ url_for('user_profile.edit') }}">Edit</a>
+      <a class="edit-profile translate" href="{{ url_for('user_profile.edit') }}">Edit</a>
    </div>
 </main>
 {% endblock %}

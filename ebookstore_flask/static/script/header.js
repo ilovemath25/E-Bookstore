@@ -36,9 +36,12 @@ searchInput.addEventListener("input", () => {
    }
    else suggestions.style.display = "none";
 });
-document.querySelector(".search-button").addEventListener("click", (e) => {
-   e.preventDefault();
-   suggestions.innerHTML = "";
-   const searchInputValue = searchInput.value;
-   if (searchInputValue) window.location.href = `/search/${encodeURIComponent(searchInputValue)}`;
-});
+const searchButton = document.querySelector(".search-button");
+if (searchButton){
+   searchButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      suggestions.innerHTML = "";
+      const searchInputValue = searchInput.value;
+      if (searchInputValue) window.location.href = `/search/${encodeURIComponent(searchInputValue)}`;
+   });
+}
