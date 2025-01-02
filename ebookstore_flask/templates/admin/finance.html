@@ -4,7 +4,23 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/finance.css') }}">
 <main>
     <div class="navbar-order-container">
-        {% include "admin/admin_menu.html" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/admin_menu.css') }}">
+        <div class="left">
+            <div class="bar-title">Admin Menu</div>
+            <div class="bar-list">
+                <a href="/admin/finance" target="_self" id="bar-order" class="bar-row selected-bar">
+                    <span class="bar-center">Finance</span>
+                </a>
+                <hr>
+                <a href="/admin/users" target="_self" id="bar-product" class="bar-row">
+                    <span class="bar-center">User Management</span>
+                </a>
+                <hr>
+                <a href="/staff/order" target="_self" id="bar-discount" class="bar-row">
+                    <span class="bar-center">Staff Centre</span>
+                </a>
+            </div>
+        </div>
         <div class="right">
             <div class="summary-boxes">
                 <div class="summary-box">

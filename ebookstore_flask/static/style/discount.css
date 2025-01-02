@@ -67,6 +67,12 @@
     border: none;
     height: 3px;
 }
+.selected-bar{
+    background-color: #afc7e5;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
 .bar-row{
     --bs-gutter-y: 0;
     display: flex;
