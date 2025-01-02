@@ -376,3 +376,7 @@ a{
     height: auto;
     justify-content: center;
 }
+
+.selected-bar{
+    background-color:#afc7e5;
+}

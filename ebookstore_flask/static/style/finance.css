@@ -294,3 +294,7 @@ a{
     font-weight: 500;
     color: #333;
 }
+
+.selected-bar{
+    background-color:#afc7e5;
+}

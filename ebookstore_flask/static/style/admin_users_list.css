@@ -352,6 +352,11 @@ a{
 .apply-button:hover {
     background-color: #5880b0;
  }
- .apply-button:active{
+ 
+.apply-button:active{
     background-color: #5075a2;
- }
+}
+
+.selected-bar{
+    background-color:#afc7e5;
+}
