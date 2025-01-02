@@ -10,7 +10,7 @@
          {% endfor %}
       </div>
       {% for letter, books in book_list.items() %}
-      <section class="section-container" id="{{ letter }}">
+      <section class="section-container hidden-animation" id="{{ letter }}">
          <div class="sub-title">
             <hr><h2>{{ letter }}</h2><hr>
          </div>
@@ -26,7 +26,7 @@
       </section>
       {% endfor %}
    {% elif is_category %}
-   <section class="section-container">
+   <section class="section-container hidden-animation">
       <div class="sub-title">
          <hr><h2>{{ category_name }}</h2><hr>
       </div>
@@ -41,7 +41,7 @@
       </div>
    </section>
    {% elif is_search %}
-   <section class="section-container">
+   <section class="section-container hidden-animation">
       <div class="sub-title">
          <hr><h2>Result of : {{ user_search }}</h2><hr>
       </div>

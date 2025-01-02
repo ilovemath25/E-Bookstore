@@ -35,7 +35,7 @@
                         <i class="fa-solid fa-user-tie"></i><p>Admin</p>
                     </a>
                 {% endif %}
-                {% if role is not none and role != "Customer" %}
+                {% if role is not none and role == "Staff" %}
                     <a href="{{ url_for('staff_centre.index') }}" class="icon-name">
                         <i class="fa-solid fa-user-tie"></i><p>Staff</p>
                     </a>
