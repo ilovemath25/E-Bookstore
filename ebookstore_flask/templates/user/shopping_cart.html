@@ -7,12 +7,12 @@
    <section class="cart-header cart-container">
       <div class="select-all">
          <input type="checkbox" id="select-all" class="checkbox-input">
-         <label for="select-all">Select All</label>
+         <label for="select-all" class="translate">Select All</label>
       </div>
       <div class="cart-summary-header">
-         <h3 class="cart-summary-item">Unit price</h3>
-         <h3 class="cart-summary-item">Quantity</h3>
-         <h3 class="cart-summary-item">Total</h3>
+         <h3 class="cart-summary-item translate">Unit price</h3>
+         <h3 class="cart-summary-item translate">Quantity</h3>
+         <h3 class="cart-summary-item translate">Total</h3>
       </div>
    </section>
    <section class="item-container">
@@ -21,16 +21,16 @@
          <div class="item-details">
             <input type="checkbox" class="select-item checkbox-input">
             <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
-            <h3>{{ book.Name }}</h3>
+            <h3 class="translate">{{ book.Name }}</h3>
          </div>
          <div class="item-pricing">
-            <span class="book-price">${{ book.Price }}</span>
+            <span class="book-price translate">${{ book.Price }}</span>
             <div class="input-quantity">
-               <button class="quantity-btn">-</button>
+               <button class="quantity-btn translate">-</button>
                <input type="number" value="1" class="quantity-input">
-               <button class="quantity-btn">+</button>
+               <button class="quantity-btn translate">+</button>
             </div>
-            <span class="total-price">${{ book.Price }}</span>
+            <span class="total-price translate">${{ book.Price }}</span>
          </div>
          <i class="fa-solid fa-circle-xmark"></i>
       </form>
@@ -39,33 +39,37 @@
    <section class="cart-summary cart-container">
       <div class="select-all">
          <input type="checkbox" id="select-all" class="checkbox-input">
-         <label for="select-all">Select All</label>
+         <label for="select-all" class="translate">Select All</label>
       </div>
       <div class="cart-summary-header">
-         <h3 class="cart-summary-item">Subtotal(<span class="total-item">1</span> items)</h3>
-         <h3 class="cart-summary-item">$1300.00</h3>
+          <h3 class="cart-summary-item">
+            <span class="translate">Subtotal</span>
+            (<span class="total-item translate">1</span>
+             <span class="translate">items</span>)
+          </h3>
+         <h3 class="cart-summary-item translate">$1300.00</h3>
       </div>
    </section>
    <section class="discount cart-container">
       <div class="discount-container">
-         <label for="discount" class="discount-label">Discount</label>
-         <input type="text" placeholder="Enter discount code" class="discount-input" id="discount">
+         <label for="discount" class="discount-label translate">Discount</label>
+         <input type="text" placeholder="Enter discount code" class="discount-input translate" id="discount">
       </div>
       <div class="discount-error"></div>
-      <button class="apply-discount">Apply</button>
+      <button class="apply-discount translate">Apply</button>
    </section>
    <section class="cart-container address-payment">
       <div class="payment-method sub-cart-container">
-         <h3 class="payment-method-title">Payment Method</h3>
+         <h3 class="payment-method-title translate">Payment Method</h3>
          <div class="payment-method-container">
             <input type="checkbox" name="payment-method" id="credit-card" class="checkbox-input payment-method-input">
-            <label for="credit-card" class="payment-method-label">Credit Card</label>
+            <label for="credit-card" class="payment-method-label translate">Credit Card</label>
             <input type="checkbox" name="payment-method" id="cod" class="checkbox-input payment-method-input">
-            <label for="cod" class="payment-method-label">COD</label>
+            <label for="cod" class="payment-method-label translate">COD</label>
          </div>
       </div>
       <div class="select-payment-account sub-cart-container payment-method-hidden">
-         <h3 for="payment-account" class="payment-account-label">Select Payment Account:</h3>
+         <h3 for="payment-account" class="payment-account-label translate">Select Payment Account:</h3>
          <div class="payment-account-container">
             {% for card in credit_cards %}
             <div class="card-container">
@@ -80,15 +84,15 @@
                   </div>
                </div>
                <div class="card-center">
-                  <p>{{ card.Issuer }}</p>
+                  <p class="translate">{{ card.Issuer }}</p>
                   <p class="card-number">{{ card.Number }}</p>
                </div>
                <div class="card-right">
-                  <p class="card-type">{{ card.Brand }}</p>
+                  <p class="card-type translate">{{ card.Brand }}</p>
                </div>
             </div>
             {% endfor %}
-            <div class="add-another-card" id="add-another-card">+ Pay with another card</div>
+            <div class="add-another-card translate" id="add-another-card">+ Pay with another card</div>
             <div class="card-container add-card-container credit-card-hidden">
                <div class="card-image">
                   <div class="currency">$</div>
@@ -111,12 +115,12 @@
          </div>
       </div>
       <div class="address sub-cart-container">
-         <h3 class="address-title">Receiver Information</h3>
+         <h3 class="address-title translate">Receiver Information</h3>
          <div class="address-container">
-            <input type="text" placeholder="First name" class="address-input">
-            <input type="text" placeholder="Last name" class="address-input">
-            <input type="text" placeholder="Phone number" class="address-input">
-            <input type="text" placeholder="Address" class="address-input">
+            <input type="text" placeholder="First Name" class="address-input translate">
+            <input type="text" placeholder="Last Name" class="address-input translate">
+            <input type="text" placeholder="Phone number" class="address-input translate">
+            <input type="text" placeholder="Address" class="address-input translate">
          </div>
       </div>
    </section>
@@ -124,57 +128,57 @@
       <div class="checkout-detail">
          <div class="checkout-detail-container">
             <div class="checkout-detail-item">
-               <p>Item Subtotal:</p>
+               <p class="translate">Item Subtotal:</p>
                <span id="item-subtotal">$1300.00</span>
             </div>
             <div class="checkout-detail-item">
-               <p>Discount:</p>
+               <p class="translate">Discount:</p>
                <span id="discount-amount">-$0.00</span>
             </div>
             <div class="checkout-detail-item">
-               <p>Shipping Subtotal:</p>
+               <p class="translate">Shipping Subtotal:</p>
                <span id="shipping-subtotal">$0.00</span>
             </div>
             <div class="checkout-detail-item">
-               <p>Total:</p>
+               <p class="translate">Total:</p>
                <span id="total">$1300.00</span>
             </div>
          </div>
-      <button class="checkout-btn">Checkout</button>
+      <button class="checkout-btn translate">Checkout</button>
    </section>
    <div class="credit-card-modal-container credit-card-hidden">
       <div class="modal-content">
          <div class="sub-title">
-            <hr><h2>Another Card</h2><hr>
+            <hr><h2 class="translate">Another Card</h2><hr>
          </div>
          <p class="error-message"></p>
          <div class="form-group">
-            <label for="card-number">Card Number</label>
+            <label for="card-number" class="translate">Card Number</label>
             <input type="text" name="Number" id="card-number" class="profile-input" required>
             <div class="form-group-inline">
                <div>
-                  <label for="card-expiry">Expiry Date (MM/YY)</label>
+                  <label for="card-expiry" class="translate">Expiry Date (MM/YY)</label>
                   <input type="text" name="Expiry" id="card-expiry" class="profile-input" maxlength="5" required>
                </div>
                <div>
-                  <label for="card-cvc">CVV</label>
+                  <label for="card-cvc" class="translate">CVV</label>
                   <input type="text" name="CVV" id="card-cvv" class="profile-input" required>
                </div>
             </div>
          </div>
          <div class="modal-button">
-            <input type="submit" id="confirm-edit" class="modal-btn" value="Save"></input>
-            <div id="cancel-edit" class="modal-btn cancel-edit">Cancel</div>
+            <input type="submit" id="confirm-edit" class="modal-btn translate" value="Save"></input>
+            <div id="cancel-edit" class="modal-btn cancel-edit translate">Cancel</div>
          </div>
       </div>
    </div>
    <form method="POST" class="delete-card-container credit-card-hidden" action="{{ url_for('shopping_cart.delete') }}">
       <div class="modal-content">
-         <p>Are you sure you want to delete this item from your cart?</p>
+         <p class="translate">Are you sure you want to delete this item from your cart?</p>
          <input type="hidden" name="item_id" id="delete-item-id">
          <div class="modal-button">
-            <input type="submit" id="confirm-delete" class="modal-btn" value="Yes"></input>
-            <div id="cancel-delete" class="modal-btn cancel-edit">Cancel</div>
+            <input type="submit" id="confirm-delete" class="modal-btn translate" value="Yes"></input>
+            <div id="cancel-delete" class="modal-btn cancel-edit translate">Cancel</div>
          </div>
       </div>
    </form>

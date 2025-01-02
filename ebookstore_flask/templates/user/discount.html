@@ -6,33 +6,29 @@
    {% include "/user/user_profile_menu.html" %}
    <div class="all-container">
       <section class="section-container discount-header hidden-animation">
-         <a href="javascript:void(0);" class="header-title checked" onclick="showDiscounts('available')">Available</a><hr>
-         <a href="javascript:void(0);" class="header-title" onclick="showDiscounts('used')">Used</a><hr>
-         <a href="javascript:void(0);" class="header-title" onclick="showDiscounts('expired')">Expired</a>
+         <a href="javascript:void(0);" class="header-title checked translate" onclick="showDiscounts('available')">Available</a><hr>
+         <a href="javascript:void(0);" class="header-title translate" onclick="showDiscounts('used')">Used</a><hr>
+         <a href="javascript:void(0);" class="header-title translate" onclick="showDiscounts('expired')">Expired</a>
       </section>
       <section class="section-container discounts hidden-animation">
          <div class="sub-title">
-            <hr><h2>Discount</h2><hr>
+            <hr><h2 class="translate">Discount</h2><hr>
          </div>
             <div id="available" class="discount-list">
                {% for discount in available %}
                   <div class="discount-item">
                      <div class="discount-value">
-                        {{ discount.Disc_value }}
+                        {{ ((1 - discount.Disc_value | float) * 100) | round(2) }}%
                      </div>
                      <hr>
                      <div class="discount-details">
-                        <h3 class="discount-name">
-                           {{ discount.Disc_name }}
-                        </h3>
-                        <p class="policy-description">
-                           {{ discount.Policy_desc }}
-                        </p>
+                        <h3 class="discount-name translate">{{ discount.Disc_name }}</h3>
+                        <p class="policy-description translate">{{ discount.Policy_desc }}</p>
                         <p class="discount-info">
                            {% if discount.Disc_type == 'Shipping' %}
-                              Max usage: {{ discount.Max_usage }}
+                              <span class="translate">Max usage:</span> {{ discount.Max_usage }}
                            {% else %}
-                              Valid from: {{ discount.Valid_from }} - Valid to: {{ discount.Valid_to }}
+                              <span class="translate">Valid from:</span> {{ discount.Valid_from }} - <span class="translate">Valid to:</span> {{ discount.Valid_to }}
                            {% endif %}
                         </p>
                      </div>
@@ -43,21 +39,17 @@
                {% for discount in used %}
                   <div class="discount-item">
                      <div class="discount-value">
-                        {{ discount.Disc_value }}
+                        {{ ((1 - discount.Disc_value | float) * 100) | round(2) }}%
                      </div>
                      <hr>
                      <div class="discount-details">
-                        <h3 class="discount-name">
-                           {{ discount.Disc_name }}
-                        </h3>
-                        <p class="policy-description">
-                           {{ discount.Policy_desc }}
-                        </p>
+                        <h3 class="discount-name translate">{{ discount.Disc_name }}</h3>
+                        <p class="policy-description translate">{{ discount.Policy_desc }}</p>
                         <p class="discount-info">
                            {% if discount.Disc_type == 'Shipping' %}
-                              Max usage: {{ discount.Max_usage }}
+                              <span class="translate">Max usage:</span> {{ discount.Max_usage }}
                            {% else %}
-                              Valid from: {{ discount.Valid_from }} - Valid to: {{ discount.Valid_to }}
+                              <span class="translate">Valid from:</span> {{ discount.Valid_from }} - <span class="translate">Valid to:</span> {{ discount.Valid_to }}
                            {% endif %}
                         </p>
                      </div>
@@ -68,21 +60,17 @@
                {% for discount in expired %}
                   <div class="discount-item">
                      <div class="discount-value">
-                        {{ discount.Disc_value }}
+                        {{ ((1 - discount.Disc_value | float) * 100) | round(2) }}%
                      </div>
                      <hr>
                      <div class="discount-details">
-                        <h3 class="discount-name">
-                           {{ discount.Disc_name }}
-                        </h3>
-                        <p class="policy-description">
-                           {{ discount.Policy_desc }}
-                        </p>
+                        <h3 class="discount-name translate">{{ discount.Disc_name }}</h3>
+                        <p class="policy-description translate">{{ discount.Policy_desc }}</p>
                         <p class="discount-info">
                            {% if discount.Disc_type == 'Shipping' %}
-                              Max usage: {{ discount.Max_usage }}
+                              <span class="translate">Max usage:</span> {{ discount.Max_usage }}
                            {% else %}
-                              Valid from: {{ discount.Valid_from }} - Valid to: {{ discount.Valid_to }}
+                              <span class="translate">Valid from:</span> {{ discount.Valid_from }} - <span class="translate">Valid to:</span> {{ discount.Valid_to }}
                            {% endif %}
                         </p>
                      </div>

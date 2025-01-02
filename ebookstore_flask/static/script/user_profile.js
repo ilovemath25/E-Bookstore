@@ -35,10 +35,11 @@ const user_profile_page = () => {
    const optionsContainer = document.querySelector('.dropdown-options');
    const options = document.querySelectorAll('.dropdown-option');
 
-   selected.addEventListener('click', () => {
-      optionsContainer.classList.toggle('active');
-   });
-
+   if (selected){
+      selected.addEventListener('click', () => {
+         optionsContainer.classList.toggle('active');
+      });
+   }
    options.forEach(option => {
       option.addEventListener('click', () => {
          selected.value = option.textContent;

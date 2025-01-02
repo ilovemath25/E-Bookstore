@@ -10,7 +10,7 @@
             </div>
             <div class="search-and-navbar">
                 <div class="search-form">
-                    <input type="text" placeholder="Search" name="user_search" id="user_search" class="search-input">
+                    <input type="text" placeholder="Search" name="user_search" id="user_search" class="search-input translate">
                     <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                     <ul class="suggestions"></ul>
                 </div>
@@ -18,33 +18,37 @@
                 <div class="navbar-and-language">
                     <div class="navbar-links">
                         <a href="/" class="icon-name">
-                        <i class="fa fa-home"></i><p>Home</p>
+                        <i class="fa fa-home"></i><p class="translate">Home</p>
                         </a>
                         <a href="{{ url_for('book_list.all_book') }}" class="icon-name">
-                        <i class="fa-solid fa-book"></i><p>Book</p>
+                        <i class="fa-solid fa-book"></i><p class="translate">Book</p>
                         </a>
                     </div>
-                    <a href="#" class="language icon-name">
-                        <i class="fa-solid fa-globe"></i><p>Language</p>
-                    </a>
+                    <div class="language icon-name">
+                        <i class="fa-solid fa-globe"></i><p class="translate">Language</p>
+                        <div class="language-dropdown">
+                            <a data-lang="en">English</a>
+                            <a data-lang="zh-tw">中文</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="navbar-icons">
                 {% if role is not none and role == "Administrator" %}
                     <a href="{{ url_for('admin.finance_overview') }}" class="icon-name">
-                        <i class="fa-solid fa-user-tie"></i><p>Admin</p>
+                        <i class="fa-solid fa-user-tie"></i><p class="translate">Admin</p>
                     </a>
                 {% endif %}
                 {% if role is not none and role == "Staff" %}
                     <a href="{{ url_for('staff_centre.index') }}" class="icon-name">
-                        <i class="fa-solid fa-user-tie"></i><p>Staff</p>
+                        <i class="fa-solid fa-user-tie"></i><p class="translate">Staff</p>
                     </a>
                 {% endif %}
                 <a href="{{ url_for('shopping_cart.index') }}" class="icon-name">
-                    <i class="fa-solid fa-cart-shopping"></i><p>Cart</p>
+                    <i class="fa-solid fa-cart-shopping"></i><p class="translate">Cart</p>
                 </a>
                 <a href="{{ url_for('user_profile.index') }}" class="icon-name">
-                    <i class="fa-regular fa-circle-user"></i><p>Profile</p>
+                    <i class="fa-regular fa-circle-user"></i><p class="translate">Profile</p>
                 </a>
             </div>
             <div class="icon-name language-mobile">
@@ -52,30 +56,30 @@
             </div>
         </section>
         <section class="navbar-bottom">
-            <a href="{{ url_for('book_list.category', category_name='Fantasy') }}" class="category-name">Fantasy</a>
-            <a href="{{ url_for('book_list.category', category_name='Mystery') }}" class="category-name">Mystery</a>
-            <a href="{{ url_for('book_list.category', category_name='Classic') }}" class="category-name">Classic</a>
-            <a href="{{ url_for('book_list.category', category_name='Romance') }}" class="category-name">Romance</a>
-            <a href="{{ url_for('book_list.category', category_name='Science Fiction') }}" class="category-name">Science Fiction</a>
-            <a href="{{ url_for('book_list.category', category_name='Adventure') }}" class="category-name">Adventure</a>
-            <a href="{{ url_for('book_list.category', category_name='Political Fiction') }}" class="category-name">Political Fiction</a>
-            <a href="{{ url_for('book_list.category', category_name='Historical Fiction') }}" class="category-name">Historical Fiction</a>
-            <a href="{{ url_for('book_list.category', category_name='Drama') }}" class="category-name">Drama</a>
-            <a href="{{ url_for('book_list.category', category_name='Non-fiction') }}" class="category-name">Non Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Fantasy') }}" class="category-name translate">Fantasy</a>
+            <a href="{{ url_for('book_list.category', category_name='Mystery') }}" class="category-name translate">Mystery</a>
+            <a href="{{ url_for('book_list.category', category_name='Classic') }}" class="category-name translate">Classic</a>
+            <a href="{{ url_for('book_list.category', category_name='Romance') }}" class="category-name translate">Romance</a>
+            <a href="{{ url_for('book_list.category', category_name='Science Fiction') }}" class="category-name translate">Science Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Adventure') }}" class="category-name translate">Adventure</a>
+            <a href="{{ url_for('book_list.category', category_name='Political Fiction') }}" class="category-name translate">Political Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Historical Fiction') }}" class="category-name translate">Historical Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Drama') }}" class="category-name translate">Drama</a>
+            <a href="{{ url_for('book_list.category', category_name='Non-fiction') }}" class="category-name translate">Non-fiction</a>
         </section>
     </nav>
     <nav class="navbar-mobile">
         <a href="/" class="icon-name">
-            <i class="fa fa-home nav-icon"></i><p>Home</p>
+            <i class="fa fa-home nav-icon"></i><p class="translate">Home</p>
         </a>
         <a href="{{ url_for('book_list.all_book') }}" class="icon-name">
-            <i class="fa-solid fa-book"></i><p>Book</p>
+            <i class="fa-solid fa-book"></i><p class="translate">Book</p>
         </a>
         <a href="{{ url_for('shopping_cart.index') }}" class="icon-name">
-            <i class="fa-solid fa-cart-shopping"></i><p>Cart</p>
+            <i class="fa-solid fa-cart-shopping"></i><p class="translate">Cart</p>
         </a>
         <a href="{{ url_for('user_profile.index') }}" class="icon-name">
-            <i class="fa-regular fa-circle-user"></i><p>Profile</p>
+            <i class="fa-regular fa-circle-user"></i><p class="translate">Profile</p>
         </a>
     </nav>
     <nav class="navbar-side-mobile">
@@ -83,16 +87,16 @@
         <div class="navbar-side-category">
             <img src="{{ logo }}" alt="Bookstore Logo" class="logo">
             <hr>
-            <a href="{{ url_for('book_list.category', category_name='Fantasy') }}" class="category-name">Fantasy</a>
-            <a href="{{ url_for('book_list.category', category_name='Mystery') }}" class="category-name">Mystery</a>
-            <a href="{{ url_for('book_list.category', category_name='Classic') }}" class="category-name">Classic</a>
-            <a href="{{ url_for('book_list.category', category_name='Romance') }}" class="category-name">Romance</a>
-            <a href="{{ url_for('book_list.category', category_name='Science Fiction') }}" class="category-name">Science Fiction</a>
-            <a href="{{ url_for('book_list.category', category_name='Adventure') }}" class="category-name">Adventure</a>
-            <a href="{{ url_for('book_list.category', category_name='Political Fiction') }}" class="category-name">Political Fiction</a>
-            <a href="{{ url_for('book_list.category', category_name='Historical Fiction') }}" class="category-name">Historical Fiction</a>
-            <a href="{{ url_for('book_list.category', category_name='Drama') }}" class="category-name">Drama</a>
-            <a href="{{ url_for('book_list.category', category_name='Non-fiction') }}" class="category-name">Non Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Fantasy') }}" class="category-name translate">Fantasy</a>
+            <a href="{{ url_for('book_list.category', category_name='Mystery') }}" class="category-name translate">Mystery</a>
+            <a href="{{ url_for('book_list.category', category_name='Classic') }}" class="category-name translate">Classic</a>
+            <a href="{{ url_for('book_list.category', category_name='Romance') }}" class="category-name translate">Romance</a>
+            <a href="{{ url_for('book_list.category', category_name='Science Fiction') }}" class="category-name translate">Science Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Adventure') }}" class="category-name translate">Adventure</a>
+            <a href="{{ url_for('book_list.category', category_name='Political Fiction') }}" class="category-name translate">Political Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Historical Fiction') }}" class="category-name translate">Historical Fiction</a>
+            <a href="{{ url_for('book_list.category', category_name='Drama') }}" class="category-name translate">Drama</a>
+            <a href="{{ url_for('book_list.category', category_name='Non-fiction') }}" class="category-name translate">Non-fiction</a>
             <hr>
         </div>
     </nav>

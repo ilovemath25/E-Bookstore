@@ -21,7 +21,7 @@
    </section>
    <section class="best-seller section-container hidden-animation">
       <div class="sub-title">
-         <hr><h2>Best Seller</h2><hr>
+         <hr><h2 class="translate">Best Seller</h2><hr>
       </div>
       <div class="book-slider-container">
          <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
@@ -29,8 +29,8 @@
             {% for book in best_seller %}
             <a class="book-card" href="book/{{ book.PID }}">
                <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
-               <h3>{{ book.Name }}</h3>
-               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+               <h3 class="translate">{{ book.Name }}</h3>
+               <p><strong class="translate">Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
             </a>
             {% endfor %}
          </div>
@@ -39,7 +39,7 @@
    </section>
    <section class="new-release section-container hidden-animation">
       <div class="sub-title">
-         <hr><h2>New Release</h2><hr>
+         <hr><h2 class="translate">New Release</h2><hr>
       </div>
       <div class="book-slider-container">
          <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
@@ -47,8 +47,8 @@
             {% for book in new_release %}
             <a class="book-card" href="book/{{book.PID}}">
                <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
-               <h3>{{ book.Name }}</h3>
-               <p><strong>Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
+               <h3 class="translate">{{ book.Name }}</h3>
+               <p><strong class="translate">Price:</strong> <span class="book-price">${{ book.Price }}</span></p>
             </a>
             {% endfor %}
          </div>
@@ -58,14 +58,14 @@
    <div class="top-5-and-promotion">
       <section class="top-5-category section-container hidden-animation">
          <div class="sub-title">
-            <hr><h2>Top 5 Category</h2><hr>
+            <hr><h2 class="translate">Top 5 Category</h2><hr>
          </div>
          <ul class="top-5-container">
             {% for category in top_5_category %}
             <li class="category-card">
                <p>{{ loop.index }}.</p>
                <hr>
-               <a href="{{ url_for('book_list.category', category_name=category) }}">{{ category }}</a>
+               <a class="translate" href="{{ url_for('book_list.category', category_name=category) }}">{{ category }}</a>
             </li>
             {% endfor %}
          </ul>
@@ -89,7 +89,7 @@
    </div>
    <section class="trending section-container hidden-animation">
       <div class="sub-title">
-         <hr><h2>Most Rated</h2><hr>
+         <hr><h2 class="translate">Most Rated</h2><hr>
       </div>
       <div class="book-slider-container">
          <button class="arrow left-arrow"><i class="fa-solid fa-chevron-left"></i></button>
@@ -97,9 +97,9 @@
             {% for book in top_rated %}
             <a class="book-card" href="book/{{book.Product.PID}}">
                <img src="{{ book[0].Product_pict }}" alt="{{ book.Product.Name }}">
-               <h3>{{ book.Product.Name }}</h3>
+               <h3 class="translate">{{ book.Product.Name }}</h3>
                <p>
-                  <strong>Rate: </strong>
+                  <strong class="translate">Rate: </strong>
                   <span class="book-rate">
                      <br>
                      {% for i in range(5) %}
@@ -111,7 +111,7 @@
                      {% endfor %}
                   </span>
                </p>
-               <p><strong>Price:</strong> <span class="book-price">${{ book.Product.Price }}</span></p>
+               <p><strong class="translate">Price:</strong> <span class="book-price">${{ book.Product.Price }}</span></p>
             </a>
             {% endfor %}
          </div>

@@ -5,50 +5,50 @@
    {% include "/user/user_profile_menu.html" %}
    <form class="section-container" method="POST" action="{{ url_for('user_profile.edit') }}">
       <div class="sub-title">
-         <hr><h2>My Profile</h2><hr>
+         <hr><h2 class="translate">Edit Profile</h2><hr>
       </div>
       <table class="profile-container">
          <tr class="profile-item">
-            <td class="profile-label">Name</td>
+            <td class="profile-label translate">Name</td>
             <td class="profile-value">
-               <input type="text" name="F_name" id="F_name" class="profile-input" value="{{ user.F_name }}" placeholder="First Name">
-               <input type="text" name="L_name" id="L_name" class="profile-input" value="{{ user.L_name if user.L_name else '' }}" placeholder="Last Name">
+               <input type="text" name="F_name" id="F_name" class="profile-input translate" value="{{ user.F_name }}" placeholder="First Name">
+               <input type="text" name="L_name" id="L_name" class="profile-input translate" value="{{ user.L_name if user.L_name else '' }}" placeholder="Last Name">
             </td>
          </tr>
          <tr class="profile-item">
-            <td class="profile-label">Birth</td>
+            <td class="profile-label translate">Birth</td>
             <td class="profile-value">
-               <input type="text" name="Birth" id="Birth" class="profile-input birth" value="{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else '' }}">
+               <input type="text" name="Birth" id="Birth" class="profile-input birth" value="{{ user.Birth.strftime('%Y-%m-%d') if user.Birth else '' }}" placeholder="YYYY-MM-DD">
             </td>
          </tr>
          <tr class="profile-item">
-            <td class="profile-label">Gender</td>
+            <td class="profile-label translate">Gender</td>
             <td class="profile-value">
-               <input type="text" class="profile-input" id="selected-gender" value="{{ user.Gender }}" readonly></input>
+               <input type="text" class="profile-input translate" id="selected-gender" value="{{ user.Gender }}" readonly></input>
                <div class="dropdown-options">
-                  <div class="dropdown-option" data-value="Male">Male</div>
-                  <div class="dropdown-option" data-value="Female">Female</div>
-                  <div class="dropdown-option" data-value="Other">Other</div>
+                  <div class="dropdown-option translate" data-value="Male">Male</div>
+                  <div class="dropdown-option translate" data-value="Female">Female</div>
+                  <div class="dropdown-option translate" data-value="Other">Other</div>
                </div>
                <input type="hidden" class="profile-input" name="Gender" id="selected-gender-hidden" value="{{ user.Gender }}"></input>
             </td>
          </tr>
          <tr class="profile-item">
-            <td class="profile-label">Email</td>
+            <td class="profile-label translate">Email</td>
             <td class="profile-value">
-               <input type="email" name="Email" id="email-value" class="profile-input" value="{{ user.Email }}" data-original="{{ user.Email }}">
+               <input type="email" name="Email" id="email-value" class="profile-input translate" value="{{ user.Email }}" data-original="{{ user.Email }}" placeholder="Email">
             </td>
          </tr>
          <tr class="profile-item">
-            <td class="profile-label">Phone</td>
+            <td class="profile-label translate">Phone</td>
             <td class="profile-value">
-               <input type="tel" name="Phone" id="phone-value" class="profile-input" value="{{ user.Phone }}" data-original="{{ user.Phone }}">
+               <input type="tel" name="Phone" id="phone-value" class="profile-input translate" value="{{ user.Phone }}" data-original="{{ user.Phone }}" placeholder="Phone">
             </td>
          </tr>
          <tr class="profile-item">
-            <td class="profile-label">Address</td>
+            <td class="profile-label translate">Address</td>
             <td class="profile-value">
-               <input type="text" name="Address" id="Address" class="profile-input" value="{{ user.Address if user.Address else '' }}" placeholder="Your Address">
+               <input type="text" name="Address" id="Address" class="profile-input translate" value="{{ user.Address if user.Address else '' }}" placeholder="Address">
             </td>
          </tr>
          <tr class="profile-item">
@@ -57,8 +57,8 @@
             </td>
          </tr>
       </table>
-      <input type="submit" class="edit-profile" href="{{ url_for('user_profile.index') }}" value="Save"></input>
-      <a href="{{ url_for('user_profile.index') }}" class="cancel-edit">Cancel</a>
+      <input type="submit" class="edit-profile translate" href="{{ url_for('user_profile.index') }}" value="Save"></input>
+      <a href="{{ url_for('user_profile.index') }}" class="cancel-edit translate">Cancel</a>
    </form>
 </main>
 {% endblock %}

@@ -8,29 +8,27 @@
       <img class="product-image" src="{{ product.Product_pict }}" alt="{{ product.Name }}">
 
       <div class="product-details">
-         <h1 class="product-title">{{ product.Name }}</h1>
-         <p class="product-author">by {{ product.Author }}</p>
+         <h1 class="product-title translate">{{ product.Name }}</h1>
+         <p class="product-author"><span class="translate">by</span> {{ product.Author }}</p>
          <p class="product-price">${{ product.Price }}</p>
 
          <div class="product-meta">
-            <div><strong>Category:</strong><span id="category"> {{ product.Category }}</span></div><br>
-            <div><strong>Stock Quantity:</strong> <span id="stock">{{ product.Stock_quantity }}</span></div><br>
-            <div><strong>Sales Count:</strong> <span id="sales">{{ product.Sale_count }}</span></div>
+            <div><strong class="translate">Category:</strong> <span id="category" class="translate">{{ product.Category }}</span></div><br>
+            <div><strong class="translate">Stock Quantity:</strong> <span id="stock">{{ product.Stock_quantity }}</span></div><br>
+            <div><strong class="translate">Sales Count:</strong> <span id="sales">{{ product.Sale_count }}</span></div>
          </div>
 
-         <p class="product-description">
-            {{ product.Desc }}
-         </p>
+         <p class="product-description translate">{{ product.Desc }}</p>
 
          <div class="actions">
-            <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
-            <button class="buy-now" onclick="buyNow()">Buy Now</button>
+            <button class="add-to-cart translate" onclick="addToCart()">Add to Cart</button>
+            <button class="buy-now translate" onclick="buyNow()">Buy Now</button>
          </div>
          </div>
    </div>
 
    <div class="reviews">
-      <h2>Customer Reviews</h2>
+      <h2 class="translate">Customer Reviews</h2>
       {% if reviews|length > 0 %}
          {% for review in reviews %}
             <div class="rev-box">
@@ -63,7 +61,7 @@
          {% endfor %}
       {% else %}
          <div class="no-review">
-            <span>No reviews yet ! Be the first to share your thoughts</span>
+            <span class="translate">No reviews yet ! Be the first to share your thoughts</span>
             <i class="fa-regular fa-face-smile"></i>
          </div>
       {% endif %}
