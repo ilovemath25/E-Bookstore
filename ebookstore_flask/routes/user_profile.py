@@ -282,8 +282,10 @@ def received():
 @user_profile.route('/user/profile/order_history/closed')
 def closed():
    return order(order_type="closed")
+
 @user_profile.route('/user/profile/order_history/<int:order_id>')
 def order_detail(order_id):
+   print ("order_id",order_id)
    if not check_session():
       return redirect(url_for('login.index'))
    session_id = request.cookies.get("session_id")
@@ -294,7 +296,47 @@ def order_detail(order_id):
    role = None
    session_data = check_session()
    if(session_data): _, role = session_data
+
+   order = Order.query.get(order_id)
+   customer = Member.query.get(order.CMID) if order else None
+   item_lines = Item_line.query.filter_by(OID=order_id).all()
+   discounts = Discount.query.get(order.DID) if order else None
+
+   item_details = []
+   total_price = 0
+   for line in item_lines:
+      product = Product.query.get(line.PID)
+      prt_price = product.Price
+      if discounts and product.SpEvent_ID==order.DID:
+         prt_price *= discounts.Disc_value
+      subtotal = line.Quantity * prt_price
+      total_price += subtotal
+      item_details.append({"line": line, "product": product, "prt_price":prt_price, "subtotal": subtotal})
+
+   shp_fee = order.Ship_fee
+   if discounts and discounts.Disc_type=='Shipping':
+      shp_fee *= discounts.Disc_value
+
+   order_total = shp_fee + total_price
+   if discounts and discounts.Disc_type=='Seasoning':
+      order_total = round(order_total * discounts.Disc_value)
+      order_total = int(order_total)
+   
+   steps = [
+      {"status": "Processing", "text": "Processing", "completed_statuses": ["Processing", "Shipping", "Received", "Closed"], "line_completed_statuses": ["Shipping", "Received", "Closed"]},
+      {"status": "Shipping", "text": "Shipping", "completed_statuses": ["Shipping", "Received", "Closed"], "line_completed_statuses": ["Received", "Closed"]},
+      {"status": "Received", "text": "Arrived", "completed_statuses": ["Received", "Closed"], "line_completed_statuses": ["Closed"]},
+      {"status": "Closed", "text": "Collected", "completed_statuses": ["Closed"], "line_completed_statuses": []},
+   ]
+
    return render_template(
-      'order_detail.html',
+      "/user/user_profile_order_history_detail.html", 
+      order=order, 
+      customer=customer, 
+      item_details=item_details, 
+      total_price=total_price, 
+      shp_fee=shp_fee, 
+      order_total=order_total, 
+      steps=steps,
       role=role
    )
