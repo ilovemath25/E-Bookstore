@@ -19,7 +19,7 @@
       {% for book in products %}
       <form class="cart-item" >
          <div class="item-details">
-            <input type="checkbox" class="select-item checkbox-input">
+            <input type="checkbox" class="select-item checkbox-input" {% if book.PID == buyNow %}checked{% endif %}>
             <img src="{{ book.Product_pict }}" alt="{{ book.Name }}">
             <h3 class="translate">{{ book.Name }}</h3>
          </div>

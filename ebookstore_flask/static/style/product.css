@@ -113,12 +113,11 @@ h2{
 .actions {
     margin-top: 20px;
   }
-.actions button {
+.actions a {
     padding: 10px 20px;
     margin-right: 10px;
     font-size: 16px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
   }
 .add-to-cart {
@@ -162,3 +161,17 @@ h2{
   padding-left: 10px;
   padding-right: 20px;
 }
+.btn-like{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    border-radius: 10px;
+    border: #000;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 43px;
+ }
