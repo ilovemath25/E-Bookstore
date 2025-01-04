@@ -123,7 +123,7 @@ body{
     transition: all 0.3s;
 
 }
-.login-button:hover {
+.register-button:hover {
     background-color: #0056b3;
 }
 .error-message {
@@ -131,7 +131,6 @@ body{
     text-align: center;
     margin-bottom: 15px;
 }
-
 
 .modal {
     display: none;
@@ -154,15 +153,22 @@ body{
     border-radius: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .privacyPolicy-modal-content p {
     text-align: left;
     font-size: 16px;
     padding: 20px;
 }
+
 .form-group-container .privacyPolicy a{
     text-decoration: none;
     color: blue; 
 }
+.form-group-container .privacyPolicy a:hover{
+    color: purple;
+    transition: all 0.3s;
+}
+
 .privacyPolicy-modal-content .closeButton-container{
     display: flex;
     justify-content: center;
@@ -181,11 +187,11 @@ body{
     cursor: pointer; 
 }
 
-.close:hover,
-.close:focus {
+.close-button:hover {
     background-color: #0056b3;
     text-decoration: none;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .backToLoginPage{
@@ -195,4 +201,9 @@ body{
 .backToLoginPage a{
     text-decoration: none;
     color:  blue; ;
+}
+
+.backToLoginPage a:hover{
+    color: purple;
+    transition: all 0.3s;
 }

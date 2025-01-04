@@ -51,17 +51,17 @@ def register():
    
        # Get email from the form
    if request.method == 'POST':
-      
       email = request.form.get('email')
-
-      # Check if the email already exists
-      existing_member = Member.query.filter_by(Email=email).first()
-
+      existing_member = (
+         Member.query                     # SELECT * FROM "Member"
+         .filter(Member.Email == email)   # WHERE "Email" = <email>;
+         .first()
+      )
       if existing_member:
-         # Email already registered
-         flash("Email is already registered. Please use a different email.")
-         return redirect(url_for('login.register'))  # Redirect back to the registration form
-
+         return render_template(
+            "/login/register.html",
+            error="Email already registered."
+         )
       elif not existing_member:
          first_name = request.form.get('firstName')
          last_name = request.form.get('lastName')
@@ -69,7 +69,6 @@ def register():
          gender = request.form.get('gender')
          phone_number = request.form.get('phoneNumber')
          password = request.form.get('password')
-         confirm_password = request.form.get('confirmPassword')
          address = request.form.get('address')
          birth_date = request.form.get('birthDate')
          new_member = Member(
@@ -78,20 +77,18 @@ def register():
             Email=email.lower(),
             Gender=gender,
             Phone=phone_number,
-            Password=password,  # Consider hashing the password
+            Password=password,
             Address=address if address else None,
             Birth=datetime.strptime(birth_date, '%Y/%m/%d').date() if birth_date else None,
             Reg_date=date.today(),
-            A_flag=False,  # Example activation flag
-            S_flag=False,  # Example subscription flag
-            C_flag=True  # Example consent flag
-            )
-
+            A_flag=False,
+            S_flag=False,
+            C_flag=True
+         )
          try:
-               # Add the new member to the database
-               db.session.add(new_member)
-               db.session.commit()
-               return redirect(url_for('login.index'))  # Redirect to login page after successful registration
+            db.session.add(new_member)
+            db.session.commit()
+            return redirect(url_for('login.index'))
          except Exception as e:
                # Rollback in case of an error
                db.session.rollback()

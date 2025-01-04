@@ -4,35 +4,34 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
 <div class="login-page-container">
     <div class="login-form-container">
-        <div class="login-profile-logo"><i class="fa-solid fa-circle-user"></i></div>
+        <div class="login-profile-logo\"><i class="fa-solid fa-circle-user"></i></div>
         {% if error %}
-            <p class="error-message">{{ error }}</p>
+            <p class="error-message translate">{{ error }}</p>
         {% endif %}
-        <div class="form-group-container" >
+        <div class="form-group-container">
             <form method="POST" action="{{ url_for('login.index') }}">
                 <div class="form-group">
-                    <div class="email-logo logo"><i class="fa-solid fa-envelope"></i></div>
-                    <input class ="form-group-input" type="email" id="email" name="email" placeholder="Enter your Email" required>
+                    <div class="email-logo logo\"><i class="fa-solid fa-envelope"></i></div>
+                    <input class="form-group-input translate" type="email" id="email" name="email" placeholder="Enter your Email" required>
                 </div>
                 <hr>
                 <div class="form-group">
-                    <div class="password-logo logo"><i class="fa-solid fa-lock"></i></div>
-                    <input class ="form-group-input" type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <div class="password-logo logo\"><i class="fa-solid fa-lock"></i></div>
+                    <input class="form-group-input translate" type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 <hr>
                 <!-- <div class="forgot-password-button">
-                <a href=""  class="forgot-password-button">Forgot Password?</a>
+                <a href="" class="forgot-password-button translate">Forgot Password?</a>
                 </div> -->
-                <input type="submit" class="login-button" value="Login"></input>
+                <input type="submit" class="login-button translate" value="Login"></input>
             </form>
         </div>
     </div>
     
     <div class="right-sidebar-container-login-page">
-        <div class="right-sidebar-title"><h2>New Here ?</h2></div>
-        <div class="right-sidebar-content"><p>Get Access to your order, shopping cart, and explore many books.</p></div>
-        <div class="register-button-container"><a href="{{ url_for('login.register') }}" class="register-button" >Register</a></div>
+        <div class="right-sidebar-title"><h2 class="translate">New Here ?</h2></div>
+        <div class="right-sidebar-content"><p class="translate">Get Access to your order, shopping cart, and explore many books.</p></div>
+        <div class="register-button-container"><a href="{{ url_for('login.register') }}" class="register-button translate">Register</a></div>
     </div>
 </div>
 {% endblock %}
-
