@@ -14,7 +14,8 @@ from datetime import datetime
 shopping_cart = Blueprint('shopping_cart', __name__)
 
 @shopping_cart.route('/cart')
-def index():
+def index(buyNow=""):
+   buyNow = request.args.get('buyNow', '')
    session_data = check_session()
    if not session_data: return redirect(url_for('login.index'))
    session_id = request.cookies.get("session_id")
@@ -26,6 +27,40 @@ def index():
       .filter(Member.Email == email)    # WHERE "Email" = email
       .first()
    )
+   cards = (
+      Credit_card.query.with_entities(Credit_card.Number) # SELECT "Credit_card"."Number" FROM "Credit_card"
+      .join(Member, Member.MID == Credit_card.CMID)       # JOIN "Member" ON "Member"."MID" = "Credit_card"."CMID"
+      .filter(Member.Email == email)                      # WHERE "Member"."Email" = <email>;
+      .all()
+   )
+
+   if buyNow:
+      product = Product.query.get(buyNow)
+
+      session_now = load_sessions()
+      key = list(session_now.keys())[0]
+      email = session_now[key][0]
+      member = Member.query.filter_by(Email=email).first()
+
+      customer_ID = member.MID
+
+      new_shopCart = ShoppingCart_item(
+         CMID = customer_ID,
+         Tot_price = product.Price
+      )
+      db.session.add(new_shopCart)
+      db.session.commit()
+
+      new_itemline = Item_line(
+         PID = product.PID,
+         SCID = new_shopCart.SCID,
+         Line_type = "Order",
+         Quantity = 1
+      )
+
+      db.session.add(new_itemline)
+      db.session.commit()
+
    products = (
       Product.query                                                       # SELECT * FROM "Product"
       .join(Item_line, Item_line.PID == Product.PID)                      # JOIN "Item_line" ON "Item_line"."PID" = "Product"."PID"
@@ -33,12 +68,7 @@ def index():
       .filter(ShoppingCart_item.CMID == user.MID)                         # WHERE "ShoppingCart_item"."CMID" = user.MID
       .all()
    )
-   cards = (
-      Credit_card.query.with_entities(Credit_card.Number) # SELECT "Credit_card"."Number" FROM "Credit_card"
-      .join(Member, Member.MID == Credit_card.CMID)       # JOIN "Member" ON "Member"."MID" = "Credit_card"."CMID"
-      .filter(Member.Email == email)                      # WHERE "Member"."Email" = <email>;
-      .all()
-   )
+
    credit_cards = [card[0] for card in cards]
    for i in range(len(credit_cards)):
       bin_info = bin_number_checker(credit_cards[i][:6])
@@ -48,6 +78,10 @@ def index():
          'Brand': bin_info.get('Brand', 'Unknown'),
          'Issuer': bin_info.get('Issuer', 'Unknown')
       }
+   try:
+      buyNow = int(buyNow)
+   except:
+      buyNow = buyNow
    discount_code = session.get('discount_code')
    discount = None
    if discount_code: discount = Discount.query.filter(Discount.Disc_code == discount_code).first()
@@ -58,6 +92,7 @@ def index():
       role=session_data[1],
       products=products,
       credit_cards=credit_cards,
+      buyNow=buyNow,
       discount=discount,
       dmsg=discount_message,
       cmsg=card_message
