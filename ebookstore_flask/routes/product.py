@@ -27,22 +27,38 @@ def index(product_id, cart=""):
 
       customer_ID = member.MID
 
-      new_shopCart = ShoppingCart_item(
-         CMID = customer_ID,
-         Tot_price = product.Price
-      )
-      db.session.add(new_shopCart)
-      db.session.commit()
+      itemLine = (Item_line.query.filter_by(PID=product_id)
+                  .filter_by(Line_type = 'ShoppingCart')
+                  .first()
+                  )
+      
+      if itemLine :
+         shopCartID = itemLine.SCID
 
-      new_itemline = Item_line(
-         PID = product.PID,
-         SCID = new_shopCart.SCID,
-         Line_type = "ShoppingCart",
-         Quantity = 1
-      )
+         itemLine.Quantity = itemLine.Quantity + 1
 
-      db.session.add(new_itemline)
-      db.session.commit()
+         shoppingCart = ShoppingCart_item.query.filter_by(SCID = shopCartID).first()
+
+         shoppingCart.Tot_price = product.Price * itemLine.Quantity
+
+         db.session.commit()
+      else:
+         new_shopCart = ShoppingCart_item(
+            CMID = customer_ID,
+            Tot_price = product.Price
+         )
+         db.session.add(new_shopCart)
+         db.session.commit()
+
+         new_itemline = Item_line(
+            PID = product.PID,
+            SCID = new_shopCart.SCID,
+            Line_type = "ShoppingCart",
+            Quantity = 1
+         )
+
+         db.session.add(new_itemline)
+         db.session.commit()
 
       return render_template(
          "/user/product.html",

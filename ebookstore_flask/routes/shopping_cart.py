@@ -79,12 +79,16 @@ def index(buyNow=""):
          'Brand': bin_info.get('Brand', 'Unknown'),
          'Issuer': bin_info.get('Issuer', 'Unknown')
       }
+   try:
+      buyNow = int(buyNow)
+   except:
+      buyNow = buyNow
    return render_template(
       'user/shopping_cart.html',
       role=role,
       products=products,
       credit_cards=credit_cards,
-      buyNow=int(buyNow)
+      buyNow=buyNow
    )
 
 @shopping_cart.route('/check_bin', methods=['POST'])

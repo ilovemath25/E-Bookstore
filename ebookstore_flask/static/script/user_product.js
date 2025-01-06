@@ -10,6 +10,3 @@ function addToCart() {
     // }
     alert('Item added to cart!');
 }
-function buyNow() {
-    localStorage.setItem('checkbox', 'checked');
-}
