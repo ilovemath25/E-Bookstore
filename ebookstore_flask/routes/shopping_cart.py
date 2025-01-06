@@ -18,9 +18,7 @@ def index(buyNow=""):
    buyNow = request.args.get('buyNow', '')
    session_data = check_session()
    if not session_data: return redirect(url_for('login.index'))
-   session_id = request.cookies.get("session_id")
-   sessions = load_sessions()
-   email = sessions.get(session_id, [None])[0]
+   email = session_data[0]
    if not email: return redirect(url_for('login.index'))
    user = (
       Member.query                      # SELECT * FROM "Member"
