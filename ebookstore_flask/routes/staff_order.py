@@ -37,8 +37,9 @@ def index(order_type="order", returned="main"):
       for line in item_lines:
          product = Product.query.filter_by(PID=line.PID).first()
          order = Order.query.filter_by(OID=line.OID).first()
-         if not order_type or order.Status in status_map.get(order_type, []):
-            filtered_products.append(format_product_data(line, product, order))
+         if order:
+            if not order_type or order.Status in status_map.get(order_type, []):
+               filtered_products.append(format_product_data(line, product, order))
       return filtered_products
 
    role=check_role("Staff", "Administrator")
