@@ -38,8 +38,8 @@ def generate_insert_statements():
 if __name__ == "__main__":
    POSTGRES = {
       'user':'postgres',
-      'password':'ilovemath25',
-      'db':'ebookstore',
+      'password':'thiha2001',
+      'db':'postgres',
       'host':'localhost',
       'port':'5432',
    }
