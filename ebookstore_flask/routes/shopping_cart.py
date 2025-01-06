@@ -34,14 +34,8 @@ def index(buyNow=""):
 
    if buyNow:
       product = Product.query.get(buyNow)
-
-      session_now = load_sessions()
-      key = list(session_now.keys())[0]
-      email = session_now[key][0]
       member = Member.query.filter_by(Email=email).first()
-
       customer_ID = member.MID
-
       new_shopCart = ShoppingCart_item(
          CMID = customer_ID,
          Tot_price = product.Price
@@ -55,7 +49,6 @@ def index(buyNow=""):
          Line_type = "Order",
          Quantity = 1
       )
-
       db.session.add(new_itemline)
       db.session.commit()
 
@@ -140,6 +133,21 @@ def add_card():
       db.session.commit()
       return redirect(url_for('shopping_cart.index'))
 
+def check_all_cart(user):
+   carts = (
+      ShoppingCart_item.query
+      .filter(ShoppingCart_item.CMID == user.MID)
+      .all()
+   )
+   for cart in carts:
+      item_line = (
+         Item_line.query
+         .filter(Item_line.SCID == cart.SCID)
+         .first()
+      )
+      if item_line is None: db.session.delete(cart)
+   db.session.commit()
+
 @shopping_cart.route('/cart/delete', methods=['POST'])
 def delete():
    pid = request.form.get('pid')
@@ -154,13 +162,14 @@ def delete():
    )
    item_line = (
       Item_line.query                                                     # SELECT * FROM "Item_line"
-      .join(ShoppingCart_item, ShoppingCart_item.SCID == Item_line.SCID)  # JOIN "ShoppingCart_item" ON "ShoppingCart_item"."CMID" = "Item_line"."SCID"
+      .join(ShoppingCart_item, ShoppingCart_item.SCID == Item_line.SCID)  # JOIN "ShoppingCart_item" ON "ShoppingCart_item"."SCID" = "Item_line"."SCID"
       .filter(ShoppingCart_item.CMID == user.MID)                         # WHERE "ShoppingCart_item"."CMID" = "Member"."MID"
       .filter(Item_line.PID == int(pid))                                  #   AND "Item_line"."PID" = <pid>
       .first()
    )
    db.session.delete(item_line)
    db.session.commit()
+   check_all_cart(user)
    return redirect(url_for('shopping_cart.index'))
 
 @shopping_cart.route('/cart/checkout', methods=['POST'])
@@ -180,40 +189,51 @@ def checkout():
       .filter(Member.Email == email)    # WHERE "Email" = email
       .first()
    )
-   cart_items = (
-      ShoppingCart_item.query
-      .filter(ShoppingCart_item.CMID == user.MID)
-      .join(ShoppingCart_item, ShoppingCart_item.SCID == Item_line.SCID)
-      .all()
-   )
-   cart_product_ids = {item_line.PID for item_line in cart_items}
-   selected_products = []
-   for product in products:
-      product_obj = Product.query.get(product['id'])
-      selected_products.append((product_obj, product['quantity']))
-   
-   if payment_method == 'credit-card':
+   selected_card = None
+   if payment_method == 'Credit card':
       cards = (
          Credit_card.query.with_entities(Credit_card.Number) # SELECT "Credit_card"."Number" FROM "Credit_card"
          .join(Member, Member.MID == Credit_card.CMID)       # JOIN "Member" ON "Member"."MID" = "Credit_card"."CMID"
          .all()
       )
-      selected_card = cards[selected_card_index]
-   elif payment_method == 'cod': pass
-   for product, quantity in selected_products:
-      product.Stock_quantity -= quantity
-      itemLine = Item_line(
-         PID=product.PID,
-         SCID=None,
-         Line_type='Order',
-         Quantity=quantity
+      selected_card = cards[selected_card_index][0]
+   else: pass
+   
+   discount_code = session.get('discount_code')
+   discount = None
+   if discount_code: discount = Discount.query.filter(Discount.Disc_code == discount_code).first()
+   
+   new_order = Order(
+      CMID=user.MID,
+      SMID=2,
+      DID=discount.DID if discount else None,
+      Credit_num=selected_card,
+      Time=datetime.now(),
+      Ship_address=address['Address'],
+      Ship_fee=30,
+      Status='Processing',
+      Pay_method=payment_method,
+      Tot_price=total_price
+   )
+   db.session.add(new_order)
+   db.session.flush()
+   for product in products:
+      pid = product['id']
+      quantity = product['quantity']
+      item_line = (
+         Item_line.query                                                     # SELECT * FROM "Item_line"
+         .join(ShoppingCart_item, ShoppingCart_item.SCID == Item_line.SCID)  # JOIN "ShoppingCart_item" ON "ShoppingCart_item"."SCID" = "Item_line"."SCID"
+         .filter(ShoppingCart_item.CMID == user.MID)                         # WHERE "ShoppingCart_item"."CMID" = "Member"."MID"
+         .filter(Item_line.PID == pid)                                       #   AND "Item_line"."PID" = <pid>
+         .first()
       )
-      db.session.add(itemLine)
-   ShoppingCart_item.query.filter_by(CMID=user.MID).delete()
-   session.pop('discount_code', None)
-   session.pop('discount_message', None)
+      item_line.Quantity = quantity
+      item_line.OID = new_order.OID
+      item_line.SCID = None
+      item_line.Line_type = "Order"
    db.session.commit()
+   if 'discount_code' in session: session.pop('discount_code')
    return jsonify({
-      'message': 'Checkout successful!',
-      'totalPrice': total_price
-   }),
+      'message': 'Order placed successfully!',
+      'order_id': new_order.OID
+   })

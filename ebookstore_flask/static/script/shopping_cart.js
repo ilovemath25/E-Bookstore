@@ -168,11 +168,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
    checkoutButton.addEventListener("click", async (event) => {
       event.preventDefault();
-      const selectedProducts = Array.from(document.querySelectorAll(".select-item:checked"))
-         .map(item => ({
+      const checkboxes = document.querySelectorAll(".select-item:checked");
+      const selectedProducts = [];
+
+      for (let i = 0; i < checkboxes.length; i++) {
+         const item = checkboxes[i];
+         const product = {
             id: item.value,
             quantity: item.closest(".cart-item").querySelector(".quantity-input").value
-         }));
+         };
+         selectedProducts.push(product);
+      }
 
       if (selectedProducts.length === 0) {
          alert("Please select at least one product to checkout.");
@@ -205,11 +211,10 @@ document.addEventListener('DOMContentLoaded', function() {
          alert("Please fill out all information fields.");
          return;
       }
-      const totalPrice = parseInt(document.getElementById('total-price').textContent);
-      
+      const totalPrice = parseFloat(document.getElementById('total-price').textContent.slice(1));
       const checkoutData = {
          products: selectedProducts,
-         paymentMethod: paymentMethod,
+         paymentMethod: paymentMethod === "credit-card" ? "Credit card" : "COD",
          selectedCardIndex: selectedCardIndex,
          address: addressData,
          totalPrice: totalPrice
