@@ -1,5 +1,6 @@
 INSERT INTO "Member" (MID, F_name, L_name, Password, Gender, Email, Phone, Birth, Address, Reg_date, A_flag, S_flag, C_flag)
 VALUES
+  (1, 'Harrison', 'Mckinney', 'Password123', 'Male', 'harrison4356@gmail.com', '0912345678', 1990-01-15, '123 Main St, Springfield', 2024-10-13, TRUE, FALSE, FALSE),
   (2, 'Hudson', 'Smith', 'Passw0rd!', 'Male', 'hudson247@gmail.com', '0923456789', 1992-05-20, '456 Elm St, Springfield', 2024-10-14, FALSE, TRUE, FALSE),
   (3, 'Chris', 'Lee', 'Qwerty123', 'Other', 'chris_lee@gmail.com', '0993174028', 1995-03-10, '789 Maple St, Springfield', 2024-10-28, FALSE, FALSE, TRUE),
   (4, 'Cecilia', NULL, '1234Pass', 'Female', 'cecilia643@gmail.com', '0934567890', 1988-07-08, '321 Oak St, Springfield', 2024-10-28, FALSE, FALSE, TRUE),
@@ -9,8 +10,16 @@ VALUES
   (8, '家綺', '溫', 'Sophia!@#', 'Female', 'sophiamiller@gmail.com', '0967890123', 2000-09-12, '753 Cherry St, Springfield', 2024-10-14, FALSE, TRUE, FALSE),
   (9, 'Asher', 'Clark', 'AsherClark1', 'Other', 'alex_taylor@gmail.com', '0978901234', 1994-06-30, '852 Walnut St, Springfield', 2024-10-17, FALSE, TRUE, FALSE),
   (10, '瑞池', '宋', 'Liam2024', 'Male', 'liam_anderson@gmail.com', '0989012345', 1985-11-05, '951 Willow St, Springfield', 2024-10-28, FALSE, FALSE, TRUE),
-  (11, 'wesley', NULL, 'wesley123', 'Male', 'wesley@gmail.com', '0979249958', NULL, NULL, 2024-12-30, FALSE, FALSE, TRUE),
-  (1, 'Harrison', 'Mckinney', 'Password123', 'Male', 'harrison4356@gmail.com', '0912345678', 1990-01-15, '123 Main St, Springfield', 2024-10-13, TRUE, FALSE, FALSE);
+  (12, 'John', 'Doe', 'password123', 'Male', 'john.doe@example.com', '5551234567', 1990-01-15, '123 Main St, Springfield', 2025-01-01, FALSE, FALSE, TRUE),
+  (13, 'Jane', 'Smith', 'securepass456', 'Female', 'jane.smith@example.com', '5559876543', 1992-06-25, '456 Elm St, Springfield', 2025-01-02, FALSE, FALSE, TRUE),
+  (14, 'Michael', 'Johnson', 'mypassword789', 'Male', 'michael.johnson@example.com', '5552345678', 1988-09-12, '789 Pine St, Springfield', 2025-01-03, FALSE, FALSE, TRUE),
+  (15, 'Emily', 'Davis', 'emilypass123', 'Female', 'emily.davis@example.com', '5558765432', 1995-03-08, '321 Oak St, Springfield', 2025-01-04, FALSE, FALSE, TRUE),
+  (16, 'Daniel', 'Brown', 'dansecure456', 'Male', 'daniel.brown@example.com', '5553456789', 1993-12-20, '654 Cedar St, Springfield', 2025-01-05, FALSE, FALSE, TRUE),
+  (17, 'Sophia', 'Wilson', 'sophiapass789', 'Female', 'sophia.wilson@example.com', '5556543210', 1991-05-17, '987 Birch St, Springfield', 2025-01-06, FALSE, FALSE, TRUE),
+  (18, 'William', 'Moore', 'willpass123', 'Male', 'william.moore@example.com', '5557654321', 1987-08-30, '432 Maple St, Springfield', 2025-01-07, FALSE, FALSE, TRUE),
+  (19, 'Olivia', 'Taylor', 'oliviasecure456', 'Female', 'olivia.taylor@example.com', '5555432109', 1994-11-22, '123 Willow St, Springfield', 2025-01-08, FALSE, FALSE, TRUE),
+  (20, '家豪', '王', 'jiahao@123', 'Male', 'jiahao.wang@example.com', '0912345677', 1989-07-14, '456 萬松路, Taipei', 2025-01-09, FALSE, FALSE, TRUE),
+  (21, '雅婷', '林', 'Yating!456', 'Female', 'yating.lin@example.com', '0913455789', 1996-10-10, '123 文昌街, Kaohsiung', 2025-01-10, FALSE, FALSE, TRUE);
 
 INSERT INTO "Credit_card" (Number, CMID, Expiry_date, CVV)
 VALUES
@@ -19,7 +28,18 @@ VALUES
   ('3530111333300505', 5, 2027-09-15, '789'),
   ('5412345678901232', 6, 2026-03-20, '321'),
   ('5212345678901234', 10, 2028-11-10, '654'),
-  ('4705380312341239', 11, 2011-11-01, '111');
+  ('4111111111111111', 10, 2026-01-01, '123'),
+  ('4111111111112222', 10, 2027-02-01, '234'),
+  ('4111111111113333', 10, 2025-12-01, '345'),
+  ('4705111111114444', 10, 2026-07-01, '456'),
+  ('4705380311112222', 10, 2025-10-01, '567'),
+  ('5110111111116666', 4, 2030-10-01, '657'),
+  ('5110980011116666', 4, 2030-03-01, '125'),
+  ('4705380314576893', 4, 2029-01-01, '158'),
+  ('5110980025789634', 3, 2028-03-01, '147'),
+  ('4705380355412356', 3, 2028-08-01, '159'),
+  ('511038035478962 ', 3, 2031-07-01, '127'),
+  ('5110980054789627', 3, 2029-07-01, '127');
 
 INSERT INTO "Discount" (DID, Disc_code, Disc_value, Disc_type, Disc_name, Policy_desc, Max_usage)
 VALUES
@@ -68,7 +88,6 @@ INSERT INTO "Product" (PID, SMID, SpEvent_ID, Name, Desc, Author, Price, Stock_q
 VALUES
   (1, 2, 9, 'Harry Potter and the Sorcerer's Stone', 'The beginning of the magical journey of Harry Potter, a young wizard discovering his powers and fighting the dark forces at Hogwarts.', 'J.K. Rowling', 1500, 10, 'Fantasy', 'https://lh3.googleusercontent.com/d/1TCCNKgDTdkbYGIkjeGSyLyRPAgqVc0Ro', 2),
   (2, 2, NULL, 'The Lord of the Rings: The Fellowship of the Ring', 'A fantasy epic about a young hobbit, Frodo, tasked with destroying a powerful ring to save Middle-earth.', 'J.R.R. Tolkien', 1200, 20, 'Fantasy', 'https://lh3.googleusercontent.com/d/1XZrgK6bN9xFzAHqBpWrTN_QMPCedr_0E', 1),
-  (3, 9, NULL, 'The Da Vinci Code', 'A thrilling mystery that blends art, religion, and history in a race to uncover hidden secrets of the Church.', NULL, 800, 4, 'Mystery', 'https://lh3.googleusercontent.com/d/1IS8pqBCkkseuLix7YOg9i17tS7wsPqds', 1),
   (4, 8, NULL, 'The Great Gatsby', 'A classic exploration of the American Dream, wealth, and unrequited love during the Roaring Twenties.', 'F. Scott Fitzgerald', 900, 5, 'Classic', 'https://lh3.googleusercontent.com/d/1Mp0b8Q5V-BhtuQEckZMJpIAT1y60Rwl-', 4),
   (5, 8, NULL, 'Pride and Prejudice', 'A beloved romance set in 19th-century England, highlighting societal expectations and enduring love.', 'Jane Austen', 450, 30, 'Romance', 'https://lh3.googleusercontent.com/d/1w_voCRLtQiEhsWRxr_ukYOOzkErXevLQ', 1),
   (6, 2, NULL, 'To Kill a Mockingbird', 'A timeless tale of racial injustice and moral growth in the American South.', 'Harper Lee', 1320, 2, 'Classic', 'https://lh3.googleusercontent.com/d/1khcqiJES68XpZ3tKGTLudrTeQXILDwiX', 1),
@@ -85,15 +104,36 @@ VALUES
   (17, 9, NULL, 'The Fault in Our Stars', NULL, 'John Green', 700, 9, 'Romance', 'https://lh3.googleusercontent.com/d/1HXqhzcaTWUcqVhrLJBNTSI965VIG0ucd', 0),
   (18, 2, NULL, 'Sapiens: A Brief History of Humankind', 'A compelling exploration of human evolution, culture, and the forces that shaped modern society.', 'Yuval Noah Harari', 650, 11, 'Non-fiction', 'https://lh3.googleusercontent.com/d/1QSfnM_0qXatulU5bKnoBhTIrwjXvO68m', 5),
   (19, 2, NULL, 'The Hunger Games', 'A dystopian novel about a teenage girl who becomes a symbol of rebellion in a world ruled by authoritarian control.', 'Suzanne Collins', 750, 0, 'Science Fiction', 'https://lh3.googleusercontent.com/d/1bUE0N2s-b1X4gLJTgUnyj2xzJ76Omrei', 1),
-  (20, 9, NULL, 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe', 'A magical adventure in the land of Narnia, where children discover their destiny to save a world in turmoil.', 'C.S. Lewis', 1210, 100, 'Fantasy', 'https://lh3.googleusercontent.com/d/1Jd6gPnKkOa1hdIr0ibRMoQrJrwusTwMN', 1);
+  (20, 9, NULL, 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe', 'A magical adventure in the land of Narnia, where children discover their destiny to save a world in turmoil.', 'C.S. Lewis', 1210, 100, 'Fantasy', 'https://lh3.googleusercontent.com/d/1Jd6gPnKkOa1hdIr0ibRMoQrJrwusTwMN', 1),
+  (3, 9, NULL, 'The Da Vinci Code', 'A thrilling mystery that blends art, religion, and history in a race to uncover hidden secrets of the Church.', NULL, 800, 4, 'Mystery', 'https://lh3.googleusercontent.com/d/1IS8pqBCkkseuLix7YOg9i17tS7wsPqds', 1),
+  (36, 2, NULL, 'A Sea of Unspoken Things', 'Ever since James lost her twin brother in a freak accident, life hasn't been the same. Both tragic and tender, this is a breathtaking journey of grief, love and history from the bestselling author of Fable.', 'Adrienne Young', 900, 33, 'Mystery', 'https://lh3.googleusercontent.com/d/1UBF_STRf0hL2qh8mCCvzjEoOGzbirOup', 0),
+  (23, 2, NULL, 'How To Sleep At Night', 'Politics and romance collide in this heartfelt and hilarious read. With the wry voice of Emma Straub and the banter of Taffy Brodesser-Akner, How to Sleep at Night is a tender and timely read.', 'Elizabeth Harris', 850, 10, 'Romance', 'https://lh3.googleusercontent.com/d/1T2dUJn5lblMLZ9EDwmJZBC-XexZM1-dp', 0),
+  (24, 2, NULL, 'Your Brain On Art', 'Practical, comprehensive and essential, Your Brain on Art is ripe with insight. If you ever wanted to truly understand what art can do for the world, let this book be your guide.', 'Susan Magsamen, Ivy Ross', 700, 16, 'Non Fiction', 'https://lh3.googleusercontent.com/d/1BJNi958l2EYChdVrC2zheZcZrV5RV1s3', 0),
+  (26, 2, NULL, 'Homeseeking', 'An epic and intimate tale of one couple across sixty years as world events pull them together and apart, illuminating the Chinese diaspora and exploring what it means to find home far from your homeland.', 'Karissa Chen', 1000, 20, 'Romance', 'https://lh3.googleusercontent.com/d/1R_2XSbjoycYlckJ2aAJ4YbMWW5X2kX38', 0),
+  (27, 2, NULL, 'All The Water In The World', 'Haunting and unforgettable, All the Water in the World tells the story of a flooded world, and one family's determination to keep their community alive. This all-too-prescient story introduces us to a fictional account of a possible dystopian future.', 'Eiren Caffall', 1000, 20, 'Mystery', 'https://lh3.googleusercontent.com/d/1f-URxRz_VDmGC7MGZ0ykyxlT_ZyoApk9', 0),
+  (28, 2, NULL, 'Mom, I Want to Hear Your Story', 'Moms contain multitudes, but have you ever wondered who she was before she was your mother? Now you can find out with this touching gift journal.', 'Jeffrey Mason', 500, 22, 'Non Fiction', 'https://lh3.googleusercontent.com/d/1CWdpE5BXs5cTImdo1txwOrgyv-weev7M', 0),
+  (29, 2, NULL, 'The Tenant', 'A new, jaw-dropping thriller from the instant #1 New York Times bestseller of The Boyfriend and The Housemaid!  There's no place like home...', 'Freida McFadden', 800, 30, 'Mystery', 'https://lh3.googleusercontent.com/d/1EOWySx3FpN8MABq-4Mq6ebgVGO-rXEPu', 0),
+  (32, 2, NULL, 'Cher: The Memoir, Part One', 'The truly one-of-a-kind life story of Cher, told by the superstar herself, tracing from her humble origins to the remarkable heights she’s reached and everything in between. It’s honest, authentic and incredible.', 'Cher', 1000, 35, 'Classic', 'https://lh3.googleusercontent.com/d/1OTe1KkeTs74th5_ovusE0S1BG6XIM0W8', 0),
+  (33, 2, NULL, 'Where the Creek Bends', 'From acclaimed #1 New York Times bestselling author Linda Lael Miller comes a beautifully rendered timeslip novel about the family we create for ourselves…', 'Linda Lael Miller', 500, 9, 'Drama', 'https://lh3.googleusercontent.com/d/1DJplK6oF1wjD-J2MVhv9ER4LLfSBfigp', 0),
+  (34, 2, NULL, 'James', 'A powerful story of family, home and freedom. Percival Everett has flipped the script on an American classic as Huck Finn steps to the side and Jim — James — takes center stage.', 'Percival Everett', 700, 15, 'Fantasy', 'https://lh3.googleusercontent.com/d/1y3td-bS02dbqIwtiRPaG-dbKiG_vN-95', 0),
+  (35, 2, NULL, ' Add to Wishlist Nightbitch: A Novel', '"A must-read for anyone who can’t get enough of the ever-blurring line between the psychological and supernatural that Yellowjackets exemplifies." —Vulture', 'Rachel Yoder', 600, 21, 'Classic', 'https://lh3.googleusercontent.com/d/1Qv0xaOgaAtiENjoo2GteTNBUfcFRQUve', 0),
+  (37, 2, NULL, 'The Women', 'The Women is both singular and expansive in focus. Centered on one woman who goes to war in Vietnam, it is a stark reminder of the sacrifices women make for their country.', 'Kristin Hannah', 700, 12, 'Classic', 'https://lh3.googleusercontent.com/d/1lx897GA5MHMP2RBkhbUf7R1BhxP-NT8h', 0),
+  (38, 2, NULL, 'You'll Never Believe Me: A Life of Lies, Second Tries, and Things I Should Only Tell My Therapist', 'A larger-than-life true story bursting with deeply personal and honest insights. This coming-of-age tale takes readers through Ferrell's misadventures to prison and back, delivering a satisfying redemptive arc for the ages.', 'Kari Ferrell', 1000, 5, 'Fantasy', 'https://lh3.googleusercontent.com/d/17TFIXdy3Xg1fxDSg36BndinDFa8pSG2t', 0),
+  (39, 2, NULL, 'The Let Them Theory: A Life-Changing Tool That Millions of People Can't Stop Talking About', 'Bestselling author, podcaster and motivational speaker Mel Robbins returns with her most insightful and life-changing book yet. From helping you build friendships to break free from insecurities to finding joy and success in everyday life, The Let Them Theory is a liberating read, perfect for fans of Brené Brown and Glennon Doyle.', 'Mel Robbins', 1000, 100, 'Non Fiction', 'https://lh3.googleusercontent.com/d/1lAJJ9AarcBfVLrQ-_T_S7WUEdP5E9fgK', 0),
+  (40, 2, NULL, 'Backwater Justice', 'The Sisterhood: a group of women from all walks of life bound by friendship and years of adventure. Armed with vast resources, top-notch expertise, and a loyal network of allies around the globe, the Sisterhood will not rest until every wrong is made right.', 'Fern Michaels', 300, 30, 'Classic', 'https://lh3.googleusercontent.com/d/1uF4fnvORn9i3oDaQisOI0IGzNxUGIeva', 0),
+  (41, 2, NULL, 'To Die For', 'A brand-new action-packed thriller from David Baldacci where Travis Devine learns to keep his friends close, and his enemies closer.', 'David Baldacci', 500, 15, 'Mystery', 'https://lh3.googleusercontent.com/d/1O4X0jlyf6SLPrdL4CntDwDO9xDfUN1Tg', 0),
+  (42, 2, NULL, 'Quicksilver', 'The global phenomenon by Callie Hart—a highly addicting enemies-to-lovers Romantasy with razor-sharp banter, heart-stopping action, and blistering hot romance—now has an embossed cover, silver foiling, and an updated interior design.', 'Callie Hart', 700, 55, 'Adventure', 'https://lh3.googleusercontent.com/d/1qoahudHpwyuP5Xg2fHJmwn-lX2WxysrZ', 0),
+  (43, 2, NULL, 'Stranger Skies', 'The sequel to Curious Tides takes us into the world of Wychwood, a storybook realm flipped on its head. With Emory and Romie trapped in Wychwood and Baz and Kai stuck in another world, they all must work together to uncover Aldryn’s sinister secrets.', 'Pascale Lacelle', 500, 11, 'Mystery', 'https://lh3.googleusercontent.com/d/1NLP_JNfduBInMBF9dZRzU5JcpwQj6QpG', 0),
+  (44, 2, NULL, 'The Three Lives of Cate Kay: A Novel', 'A tale about identity, coming-of-age, friendship and love, The Three Lives of Cate Kay is a dazzling, big-hearted journey.', 'Kate Fagan', 900, 27, 'Romance', 'https://lh3.googleusercontent.com/d/1vGfaNe83hPTWl1vL0ZVZ52ChJJwKFBnQ', 0),
+  (45, 2, NULL, 'The Life Cycle of the Common Octopus', 'A sharp coming-of-age journey set in a glamorous world of high academia, old money and one eccentric upper-class family. This heartfelt tale is sure to please fans of Sally Rooney and Emma Donoghue.', 'Emma Knight', 990, 87, 'Classic', 'https://lh3.googleusercontent.com/d/1xMsn6ADzAr8sSP7Vl9KuB72hkPZwAfru', 0);
 
 INSERT INTO "ShoppingCart_item" (SCID, CMID, Tot_price)
 VALUES
   (1, 3, 2400),
   (2, 4, 1320),
   (3, 5, 4370),
-  (4, 6, 2600),
-  (5, 7, 4741);
+  (5, 7, 4741),
+  (4, 6, 3900);
 
 INSERT INTO "Item_line" (LID, PID, OID, SCID, Line_type, Quantity)
 VALUES
@@ -121,9 +161,9 @@ VALUES
   (22, 6, NULL, 2, 'ShoppingCart', 1),
   (23, 9, NULL, 3, 'ShoppingCart', 4),
   (24, 11, NULL, 3, 'ShoppingCart', 1),
-  (25, 12, NULL, 4, 'ShoppingCart', 2),
   (26, 15, NULL, 5, 'ShoppingCart', 1),
-  (27, 20, NULL, 5, 'ShoppingCart', 3);
+  (27, 20, NULL, 5, 'ShoppingCart', 3),
+  (25, 12, NULL, 4, 'ShoppingCart', 3);
 
 INSERT INTO "Review" (RID, PID, MID, Time, Rate, Rev_text, Rev_picture, Rev_video, Reply_RID)
 VALUES
