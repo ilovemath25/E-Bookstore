@@ -21,8 +21,8 @@
          <p class="product-description translate">{{ product.Desc }}</p>
 
          <div class="actions">
-            <button class="add-to-cart translate" onclick="addToCart()">Add to Cart</button>
-            <button class="buy-now translate" onclick="buyNow()">Buy Now</button>
+            <a href="{{ url_for('product.index', product_id=product.PID, cart='addCart') }}" class="btn-like add-to-cart translate" onclick="addToCart()">Add to Cart</a>
+            <a href="{{ url_for('shopping_cart.index', buyNow=product.PID) }}" class="btn-like buy-now translate" onclick="buyNow()">Buy Now</a>
          </div>
          </div>
    </div>
@@ -69,5 +69,5 @@
 </main>
 
 <div class="nothing2"></div>
-
+<script src="{{ url_for('static', filename='script/user_product.js') }}"></script>
 {% endblock %}
