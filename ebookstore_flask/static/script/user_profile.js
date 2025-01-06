@@ -91,43 +91,40 @@ const user_profile_change_password_page = () => {
    const newPasswordInput = document.getElementById("newPassword");
    const confirmNewPasswordInput = document.getElementById("confirmNewPassword");
    const messageElement = document.querySelector(".change-password-error-message");
-   const submitButton = document.querySelector(".change-password-button");
+   const submitButton = document.querySelector(".submit-button");
    document.querySelector(".change-password-container").querySelectorAll('.profile-input').forEach(input => {
       input.addEventListener('input', () => {
-         messageElement.textContent = "";
-         const oldPassword = oldPasswordInput.value.trim();
-         const currentPassword = currentPasswordInput.value.trim();
-         const newPassword = newPasswordInput.value.trim();
-         const confirmNewPassword = confirmNewPasswordInput.value.trim();
-
-         let checkAllFields = true;
-
-         // Validate fields
-         if (!currentPassword || !newPassword || !confirmNewPassword) {
-             messageElement.textContent = "All fields are required.";
-             messageElement.style.color = "red";
-             checkAllFields = false;
-         }
-         else if (currentPassword !== oldPassword) {
-            messageElement.textContent = "Old password is incorrect.";
-            messageElement.style.color = "red";
-            checkAllFields = false;
-        }
-        else if (newPassword.length < 8) {
-            messageElement.textContent = "New password must be at least 8 characters long.";
-            messageElement.style.color = "red";
-            checkAllFields = false;
-        }
-         // Check if new password matches confirmation
-         else if (newPassword !== confirmNewPassword) {
-             messageElement.textContent = "New passwords do not match.";
-             messageElement.style.color = "red";
-             checkAllFields = false;
-         }
-         submitButton.disabled = !checkAllFields;
-         submitButton.classList.toggle("disabled-button", submitButton.disabled);
-     });
+          messageElement.textContent = "";
+          const oldPassword = oldPasswordInput.value.trim();
+          const currentPassword = currentPasswordInput.value.trim();
+          const newPassword = newPasswordInput.value.trim();
+          const confirmNewPassword = confirmNewPasswordInput.value.trim();
+  
+          let checkAllFields = true;
+  
+          if (!currentPassword || !newPassword || !confirmNewPassword) {
+              messageElement.textContent = "All fields are required.";
+              messageElement.style.color = "red";
+              checkAllFields = false;
+          } else if (currentPassword !== oldPassword) {
+              messageElement.textContent = "Old password is incorrect.";
+              messageElement.style.color = "red";
+              checkAllFields = false;
+          } else if (newPassword.length < 8) {
+              messageElement.textContent = "New password must be at least 8 characters long.";
+              messageElement.style.color = "red";
+              checkAllFields = false;
+          } else if (newPassword !== confirmNewPassword) {
+              messageElement.textContent = "New passwords do not match.";
+              messageElement.style.color = "red";
+              checkAllFields = false;
+          }
+          console.log(checkAllFields);
+          submitButton.disabled = !checkAllFields;
+          submitButton.classList.toggle("disabled-button", !checkAllFields);
+      });
    });
+  
    
    form.addEventListener('submit', (e) => {
       alert("Password changed successfully!");

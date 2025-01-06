@@ -9,7 +9,7 @@
    <title>Ebookstore</title>
 </head>
 
-<body>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
    
 
    {% include "/admin/header_admin.html" %}
@@ -17,7 +17,7 @@
    {% block content %}
    {% endblock %}
 
-
+   <div class="nothing" style="display: flex; flex-grow: 2"></div>
    {% include "/user/footer.html" %}
 
 </body>

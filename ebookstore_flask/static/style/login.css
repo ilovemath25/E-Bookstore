@@ -147,5 +147,8 @@
     align-items: center;
     text-decoration: none;
 }
-
+.register-button:hover{
+    background-color: #d5d5d5;
+    transition: all 0.3s;
+}
 

@@ -14,7 +14,6 @@ shopping_cart = Blueprint('shopping_cart', __name__)
 @shopping_cart.route('/cart')
 def index(buyNow=""):
    buyNow = request.args.get('buyNow', '')
-
    if not check_session(): return redirect(url_for('login.index'))
    session_id = request.cookies.get("session_id")
    sessions = load_sessions()
@@ -97,23 +96,3 @@ def check_bin():
    if not number: return jsonify({'error': 'No number provided'}), 400
    result = bin_number_checker(number[:6])
    return jsonify(result)
-
-@shopping_cart.route('/check_discount', methods=['POST'])
-def check_discount():
-   discount = request.json.get('discount')
-   result = (
-      Discount.query                 # SELECT * FROM "Discount"
-      .filter_by(Disc_name=discount) # WHERE "Disc_name" = <discount>;
-      .first()
-   )
-   if result:
-      return jsonify({'valid': True, 'amount': result.Disc_value})
-   return jsonify({'valid': False, 'amount': 0})
-
-@shopping_cart.route('/cart/delete', methods=['POST'])
-def delete():
-   item_id = request.args.get('item_id')
-   item = Item_line.query.filter_by(PID=item_id).first()
-   db.session.delete(item)
-   db.session.commit()
-   return redirect(url_for('shopping_cart.index'))

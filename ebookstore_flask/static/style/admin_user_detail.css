@@ -38,25 +38,31 @@ body {
   background-color: #f9f7f7;
   border: 2px solid #d9d9d9;
   border-radius: 8px;
-  padding-bottom: 60px;
+  height: 100%;
 }
+
 .profile-container{
   margin: 20px 40px;
   overflow: auto;
   min-height: 320px;
 }
+
 .profile-label, .profile-value{
   padding: 15px 50px;
 }
+
 .profile-label{
   color: #868e96;
 }
+
 form .profile-container{
   width: 80%;
 }
+
 form .profile-container .profile-label{
   padding-right: 40px;
 }
+
 form .profile-container .profile-value{
   display: flex;
   width: 100%;
@@ -73,6 +79,7 @@ form .profile-container .profile-value{
   border: 1px solid #9b9b9b;
   border-radius: 5px;
   font-size: 16px;
+  margin-right: 10px;
 }
 #selected-gender{
   cursor: pointer;

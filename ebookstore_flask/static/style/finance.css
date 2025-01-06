@@ -26,6 +26,53 @@ main {
     margin: 0 10px;
     border-radius: 8px;
 }
+.summary-box p {
+    color: #555;
+}
+.year-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.year-selector label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.year-selector .year-dropdown-container {
+    position: relative;
+}
+.year-selector #selectedYear {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.year-selector .year-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 10;
+    width: 100%;
+    right: 0;
+    cursor: pointer;
+}
+.year-selector .year-dropdown div {
+    padding: 5px 10px;
+}
+.year-selector .year-dropdown div:hover {
+    background-color: #d7d7d7;
+    transition: all 0.3s;
+}
 .chart-container {
     border: 1px solid #ccc;
     padding: 20px;
@@ -52,17 +99,6 @@ main {
     margin: 0px 150px;
     margin-top: 50px;
     border-radius: 8px;
-}
-.year-selector {
-    margin-bottom: 20px;
-}
-.year-selector label {
-    font-size: 16px;
-    font-weight: bold;
-}
-.year-selector select {
-    font-size: 16px;
-    padding: 5px;
 }
 .summary-title {
     font-size: 18px;

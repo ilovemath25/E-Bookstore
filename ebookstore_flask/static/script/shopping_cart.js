@@ -62,31 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
       totalElement.textContent = `$${total.toFixed(2)}`;
    };
 
-   const checkDiscount = () => {
-      const discountCode = discountInput.value;
-      fetch('/check_discount', {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({ discount: discountCode })
-      })
-      .then(response => response.json())
-      .then(data => {
-         console.log(data);
-         if (!data.valid) {
-            discountError.textContent = "Invalid discount code";
-            discountAmount = 0;
-         } else {
-            discountError.textContent = "";
-            discountAmount = data.amount;
-         }
-         updateCartSummary();
-      });
-   };
-
    applyDiscountButton.addEventListener('click', () => {
-      checkDiscount();
+      
    });
 
    cartItems.forEach(item => {
@@ -94,12 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const bookPrice = parseFloat(item.querySelector('.book-price').textContent.replace('$', ''));
       const totalPriceElement = item.querySelector('.total-price');
       quantityInput.addEventListener('input', (event) => {
-         event.preventDefault(); // Prevent the default form submission
+         event.preventDefault();
          updateTotalPrice(quantityInput, bookPrice, totalPriceElement);
       });
       item.querySelectorAll('.quantity-btn').forEach(btn => {
          btn.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();
             let currentQuantity = parseInt(quantityInput.value);
             if (this.textContent === '-') {
                if (currentQuantity > 1) {
@@ -187,7 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
          if (data.error) {
             errorMessage.textContent = data.error;
-         } else {
+         }
+         else {
             document.querySelector('.add-card-container .card-number').textContent = maskCardNumber(cardNumber);
             document.querySelector('.add-card-container .card-type').textContent = data.Brand;
             document.querySelector('.add-card-container .card-center p').textContent = data.Issuer;
