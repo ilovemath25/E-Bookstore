@@ -15,6 +15,13 @@ header {
 .logo{
    height: 35px;
 }
+
+.logo:hover{
+   background-color: #3f72af;
+   transition: all 0.3s;
+   border-radius: 10px;
+}
+
 .navbar-top{
    display: flex;
    justify-content: space-between;

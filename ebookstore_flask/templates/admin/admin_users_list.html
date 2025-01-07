@@ -13,7 +13,7 @@
                     <span class="bar-center">Finance</span>
                 </a>
                 <hr>
-                <a href="/admin/users" target="_self" id="bar-product" class="bar-row">
+                <a href="/admin/users" target="_self" id="bar-product" class="bar-row selected-bar">
                     <span class="bar-center">User Management</span>
                 </a>
                 <hr>
@@ -63,7 +63,7 @@
                 {% else %}
                     {% for user in users %}
                         
-                        <a href="{{url_for('admin.manage_users')}}">
+                        <a href="/admin/user/{{user.MID}}">
                             <div class="content-list">
                                     <div class="list-box">
                                         <div class="detail-text">

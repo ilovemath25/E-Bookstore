@@ -53,10 +53,12 @@ def edit():
    if request.method == 'POST':
       user.F_name = request.form.get('F_name')
       user.L_name = request.form.get('L_name')
-      user.Birth = request.form.get('Birth')
+      birth = request.form.get('Birth')
+      user.Birth = birth if birth else None
       user.Gender = request.form.get('Gender')
       user.Email = request.form.get('Email')
       user.Phone = request.form.get('Phone')
+      user.Address = request.form.get('Address')
       db.session.commit()
       return redirect(url_for('user_profile.index'))
 

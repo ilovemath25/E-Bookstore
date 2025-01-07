@@ -9,29 +9,23 @@ document.addEventListener('DOMContentLoaded', function() {
    const paymentAccountSection = document.querySelector('.select-payment-account');
    const addAnotherCardButton = document.getElementById('add-another-card');
    const creditCardModal = document.querySelector('.credit-card-modal-container');
-   const saveButton = document.getElementById('confirm-edit');
    const cancelButton = document.getElementById('cancel-edit');
-   const addCardContainer = document.querySelector('.add-card-container');
    const errorMessage = document.querySelector('.error-message');
    const itemSubtotalElement = document.getElementById('item-subtotal');
    const discountElement = document.getElementById('discount');
    const shippingSubtotalElement = document.getElementById('shipping-subtotal');
-   const totalElement = document.getElementById('total');
-   const discountInput = document.querySelector('.discount-input');
-   const discountError = document.querySelector('.discount-error');
-   const applyDiscountButton = document.querySelector('.apply-discount');
-
-   let discountAmount = 0;
+   const totalElement = document.getElementById('total-price');
+   let discountAmount = 1;
+   let shippingDiscountAmount = 1;
+   let isFormModified = false;
 
    const updateCartSummary = () => {
       let totalItems = 0;
       let subtotal = 0;
       cartItems.forEach(item => {
-         const quantityInput = item.querySelector('.quantity-input');
+         const quantity = parseInt(item.querySelector('.quantity-input').value);
          const bookPrice = parseFloat(item.querySelector('.book-price').textContent.replace('$', ''));
-         const quantity = parseInt(quantityInput.value);
-         const itemCheckbox = item.querySelector('.select-item');
-         if (itemCheckbox.checked) {
+         if (item.querySelector('.select-item').checked) {
             totalItems += quantity;
             subtotal += bookPrice * quantity;
          }
@@ -42,64 +36,41 @@ document.addEventListener('DOMContentLoaded', function() {
    };
 
    const updateTotalPrice = (quantityInput, bookPrice, totalPriceElement) => {
-      let quantity = parseInt(quantityInput.value);
-      if (quantity < 1) {
-         quantityInput.value = 1;
-         quantity = 1;
-      }
-      const totalPrice = (bookPrice * quantity).toFixed(2);
-      totalPriceElement.textContent = `$${totalPrice}`;
+      let quantity = Math.max(1, parseInt(quantityInput.value));
+      quantityInput.value = quantity;
+      totalPriceElement.textContent = `$${(bookPrice * quantity).toFixed(2)}`;
       updateCartSummary();
    };
 
    const updateCheckoutDetails = (subtotal) => {
-      const shippingSubtotal = 0;
-      const total = subtotal - discountAmount + shippingSubtotal;
-
+      const shippingSubtotal = 30 * shippingDiscountAmount;
+      const total = subtotal * discountAmount + shippingSubtotal;
       itemSubtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-      discountElement.textContent = `-$${discountAmount.toFixed(2)}`;
       shippingSubtotalElement.textContent = `$${shippingSubtotal.toFixed(2)}`;
       totalElement.textContent = `$${total.toFixed(2)}`;
    };
 
-   const checkDiscount = () => {
-      const discountCode = discountInput.value;
-      fetch('/check_discount', {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({ discount: discountCode })
-      })
-      .then(response => response.json())
-      .then(data => {
-         console.log(data);
-         if (!data.valid) {
-            discountError.textContent = "Invalid discount code";
-            discountAmount = 0;
-         } else {
-            discountError.textContent = "";
-            discountAmount = data.amount;
-         }
-         updateCartSummary();
-      });
+   const applyDiscount = () => {
+      const discountType = document.querySelector('.discount-type').value;
+      const discountValue = parseFloat(document.querySelector('.discount-value').value);
+      if (discountType === 'Shipping') shippingDiscountAmount = discountValue;
+      else discountAmount = discountValue;
+      updateCartSummary();
    };
-
-   applyDiscountButton.addEventListener('click', () => {
-      checkDiscount();
-   });
 
    cartItems.forEach(item => {
       const quantityInput = item.querySelector('.quantity-input');
       const bookPrice = parseFloat(item.querySelector('.book-price').textContent.replace('$', ''));
       const totalPriceElement = item.querySelector('.total-price');
       quantityInput.addEventListener('input', (event) => {
-         event.preventDefault(); // Prevent the default form submission
+         event.preventDefault();
+         isFormModified = true;
          updateTotalPrice(quantityInput, bookPrice, totalPriceElement);
       });
       item.querySelectorAll('.quantity-btn').forEach(btn => {
          btn.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();
+            isFormModified = true;
             let currentQuantity = parseInt(quantityInput.value);
             if (this.textContent === '-') {
                if (currentQuantity > 1) {
@@ -111,12 +82,16 @@ document.addEventListener('DOMContentLoaded', function() {
             updateTotalPrice(quantityInput, bookPrice, totalPriceElement);
          });
       });
-      item.querySelector('.select-item').addEventListener('change', updateCartSummary);
+      item.querySelector('.select-item').addEventListener('change', () => {
+         isFormModified = true;
+         updateCartSummary();
+      });
       updateTotalPrice(quantityInput, bookPrice, totalPriceElement);
    });
 
    selectAllCheckboxes.forEach(selectAll => {
       selectAll.addEventListener('change', function() {
+         isFormModified = true;
          const isChecked = this.checked;
          itemCheckboxes.forEach(item => item.checked = isChecked);
          selectAllCheckboxes.forEach(checkbox => checkbox.checked = isChecked);
@@ -126,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
    itemCheckboxes.forEach(item => {
       item.addEventListener('change', function() {
+         isFormModified = true;
          const allChecked = Array.from(itemCheckboxes).every(item => item.checked);
          selectAllCheckboxes.forEach(selectAll => selectAll.checked = allChecked);
          updateCartSummary();
@@ -134,18 +110,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
    const luhnAlgorithm = (number) => {
       const digits = number.split('').reverse().map(digit => parseInt(digit, 10));
-      const result = digits.map((digit, idx) => {
-         if (idx % 2 === 1) {
-            const doubled = digit * 2;
-            return doubled > 9 ? doubled - 9 : doubled;
-         }
-         return digit;
-      });
-      const total = result.reduce((sum, digit) => sum + digit, 0);
+      const total = digits.map((digit, idx) => idx % 2 ? (digit * 2 > 9 ? digit * 2 - 9 : digit * 2) : digit)
+                          .reduce((sum, digit) => sum + digit, 0);
       return total % 10 === 0;
    };
-
-   const maskCardNumber = (cardNumber) => '**** **** **** ' + cardNumber.slice(-4);
 
    document.getElementById('card-expiry').addEventListener('input', (e) => {
       let value = e.target.value.replace(/[^\d]/g, '');
@@ -157,12 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
    document.getElementById('card-number').addEventListener('input', function() {
       const cardNumber = this.value;
-      if (cardNumber.length < 13 || cardNumber.length > 19 || !luhnAlgorithm(cardNumber)) {
-         errorMessage.textContent = 'Invalid card number. Please check and try again.';
-      }
-      else {
-         errorMessage.textContent = '';
-      }
+      errorMessage.textContent = cardNumber.length < 13 || cardNumber.length > 19 || !luhnAlgorithm(cardNumber) ? 'Invalid card number. Please check and try again.' : '';
    });
 
    addAnotherCardButton.addEventListener('click', () => {
@@ -172,39 +135,23 @@ document.addEventListener('DOMContentLoaded', function() {
    cancelButton.addEventListener('click', () => {
       creditCardModal.classList.add('credit-card-hidden');
    });
-
-   saveButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      const cardNumber = document.getElementById('card-number').value;
-      fetch('/check_bin', {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({ number: cardNumber })
-      })
-      .then(response => response.json())
-      .then(data => {
-         if (data.error) {
-            errorMessage.textContent = data.error;
-         } else {
-            document.querySelector('.add-card-container .card-number').textContent = maskCardNumber(cardNumber);
-            document.querySelector('.add-card-container .card-type').textContent = data.Brand;
-            document.querySelector('.add-card-container .card-center p').textContent = data.Issuer;
-            creditCardModal.classList.add('credit-card-hidden');
-            addAnotherCardButton.style.display = 'none';
-            addCardContainer.classList.remove('credit-card-hidden');
-         }
-      });
-   });
-
-   document.querySelectorAll('.card-container').forEach(card => {
+   
+   document.querySelectorAll('.card-container').forEach((card, index) => {
       card.addEventListener('click', () => {
          document.querySelectorAll('.card-container').forEach(c => c.classList.remove('selected-card'));
          card.classList.add('selected-card');
       });
    });
-
+   document.querySelectorAll('.fa-circle-xmark').forEach((element) => {
+      element.addEventListener('click', () => {
+         const productID = element.getAttribute('product-id');
+         document.getElementById('delete-item-id').value = productID;
+         document.querySelector(".delete-card-container").classList.remove('credit-card-hidden');
+      });
+   });
+   document.getElementById('cancel-delete').addEventListener('click', () => {
+      document.querySelector(".delete-card-container").classList.add('credit-card-hidden');
+   });
    paymentMethodInputs.forEach(input => {
       input.addEventListener('change', function() {
          if (this.checked) {
@@ -213,24 +160,87 @@ document.addEventListener('DOMContentLoaded', function() {
                   otherInput.checked = false;
                }
             });
-            if (this.id === 'credit-card') {
-               paymentAccountSection.classList.remove('payment-method-hidden');
-            } else if (this.id === 'cod') {
-               paymentAccountSection.classList.add('payment-method-hidden');
-            }
+            paymentAccountSection.classList.toggle('payment-method-hidden', this.id !== 'credit-card');
          }
       });
    });
+   const checkoutButton = document.querySelector(".checkout-btn");
 
-   document.querySelectorAll('.fa-circle-xmark').forEach((element) => {
-      element.addEventListener('click', () => {
-         const cardNumber = element.getAttribute('data-card-number');
-         document.getElementById('delete-item-id').value = cardNumber;
-         document.querySelector(".delete-card-container").classList.remove('credit-card-hidden');
-      });
-   });
-   document.getElementById('cancel-delete').addEventListener('click', () => {
-      document.querySelector(".delete-card-container").classList.add('credit-card-hidden');
+   checkoutButton.addEventListener("click", async (event) => {
+      event.preventDefault();
+      const checkboxes = document.querySelectorAll(".select-item:checked");
+      const selectedProducts = [];
+
+      for (let i = 0; i < checkboxes.length; i++) {
+         const item = checkboxes[i];
+         const product = {
+            id: item.value,
+            quantity: item.closest(".cart-item").querySelector(".quantity-input").value
+         };
+         selectedProducts.push(product);
+      }
+
+      if (selectedProducts.length === 0) {
+         alert("Please select at least one product to checkout.");
+         return;
+      }
+      const paymentMethod = Array.from(document.querySelectorAll(".payment-method-input:checked"))
+         .map(item => item.id)
+         .join(", ");
+      if (!paymentMethod) {
+         alert("Please select a payment method.");
+         return;
+      }
+      let selectedCardIndex = null;
+      if (paymentMethod === "credit-card") {
+         document.querySelectorAll(".card-container").forEach((card, index) => {
+            if (card.classList.contains("selected-card")) selectedCardIndex = index;
+         });
+         if (selectedCardIndex === null) {
+            alert("Please select a credit card.");
+            return;
+         }
+      }
+      const addressInputs = Array.from(document.querySelectorAll(".address-input"));
+      const addressData = addressInputs.reduce((acc, input) => {
+         acc[input.placeholder] = input.value;
+         return acc;
+      }, {});
+
+      if (Object.values(addressData).some(value => !value.trim())) {
+         alert("Please fill out all information fields.");
+         return;
+      }
+      const totalPrice = parseFloat(document.getElementById('total-price').textContent.slice(1));
+      const checkoutData = {
+         products: selectedProducts,
+         paymentMethod: paymentMethod === "credit-card" ? "Credit card" : "COD",
+         selectedCardIndex: selectedCardIndex,
+         address: addressData,
+         totalPrice: totalPrice
+      };
+
+      try {
+         const response = await fetch("/cart/checkout", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json"
+            },
+            body: JSON.stringify(checkoutData)
+         });
+         const result = await response.json();
+         if (response.ok) {
+            alert("Checkout successful!");
+            window.location.href = "/user/profile/order_history";
+         }
+         else {
+            alert(`Checkout failed: ${result.message}`);
+         }
+      }
+      catch (error) {
+         console.error("Error during checkout:", error);
+         alert("An error occurred during checkout. Please try again.");
+      }
    });
 
    window.addEventListener('scroll', function() {
@@ -238,5 +248,10 @@ document.addEventListener('DOMContentLoaded', function() {
       else cartSummary.classList.remove('shadow');
    });
 
+   window.addEventListener('beforeunload', (e) => {
+      if (isFormModified) e.preventDefault();
+   });
+
    updateCartSummary();
+   applyDiscount();
 });

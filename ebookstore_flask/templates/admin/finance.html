@@ -4,41 +4,58 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/finance.css') }}">
 <main>
     <div class="navbar-order-container">
-        {% include "admin/admin_menu.html" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/admin_menu.css') }}">
+        <div class="left">
+            <div class="bar-title">Admin Menu</div>
+            <div class="bar-list">
+                <a href="/admin/finance" target="_self" id="bar-order" class="bar-row selected-bar">
+                    <span class="bar-center">Finance</span>
+                </a>
+                <hr>
+                <a href="/admin/users" target="_self" id="bar-product" class="bar-row">
+                    <span class="bar-center">User Management</span>
+                </a>
+                <hr>
+                <a href="/staff/order" target="_self" id="bar-discount" class="bar-row">
+                    <span class="bar-center">Staff Centre</span>
+                </a>
+            </div>
+        </div>
         <div class="right">
             <div class="summary-boxes">
                 <div class="summary-box">
                     <h2>Total Revenue</h2>
-                    <p>${{ total_revenue }}</p>
+                    <p>$ {{ total_revenue }}</p>
                 </div>
                 <div class="summary-box">
                     <h2>Total Expenses</h2>
-                    <p>${{ total_expenses }}</p>
+                    <p>$ {{ total_expenses }}</p>
                 </div>
                 <div class="summary-box">
                     <h2>Net Profit</h2>
-                    <p>${{ net_profit }}</p>
+                    <p>$ {{ net_profit }}</p>
+                </div>
+            </div>
+            <div class="year-selector">
+                <label for="year">Select Year:</label>
+                <div id="year1" class="year-dropdown-container">
+                    <span id="selectedYear">{{ year }} <i class="fa fa-caret-down"></i></span>
+                    <div id="dropdownOptions" class="year-dropdown">
+                        {% for i in range(2022, year_now + 1) %}
+                            <div class="dropdown-item" onclick="selectYear({{ i }})">{{ i }}</div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="chart-container">
                 <h2>Financial Performance Chart</h2>
-                    <select id="year1" onchange="syncDropdowns(this.value)">
-                        {% for i in range (2022, year_now + 1) %}
-                            <option value="{{i}}" {% if year == i %}selected{% endif %}>{{i}}</option>
-                        {% endfor %}
-                    </select>
                 <div class="chart">
                     <canvas id="financialChart"></canvas>
                 </div>
             </div>
             <div class="sale-container">
-                <div class="year-selector">
+                <div style="display: none;">
                     <label for="year">Select Year:</label>
-                    <select id="year2" onchange="syncDropdowns(this.value)">
-                        {% for i in range (2022, year_now + 1) %}
-                            <option value="{{i}}" {% if year == i %}selected{% endif %}>{{i}}</option>
-                        {% endfor %}
-                    </select>
                 </div>
                 <div class="summary-title">Monthly Sales Summary</div>
                 <table>
@@ -62,128 +79,16 @@
                     </tbody>
                 </table>
             </div>
-            <div class="product-sale-container">
-                <div class="search-bar">
-                    <input type="text" placeholder="Enter Product ID">
-                    <select>
-                        <option value="2024" selected>2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
-                    <button>Search</button>
-                </div>
-                <div class="summary-title">Specific Product Sales</div>
-                <div class="product-id">Detail for product ID: 12345</div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Unit Sold</th>
-                            <th>Total Revenue</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>January</td>
-                            <td>500</td>
-                            <td>$50,000</td>
-                        </tr>
-                        <tr>
-                            <td>February</td>
-                            <td>600</td>
-                            <td>$60,000</td>
-                        </tr>
-                        <tr>
-                            <td>March</td>
-                            <td>700</td>
-                            <td>$70,000</td>
-                        </tr>
-                        <tr>
-                            <td>April</td>
-                            <td>800</td>
-                            <td>$80,000</td>
-                        </tr>
-                        <tr>
-                            <td>May</td>
-                            <td>900</td>
-                            <td>$90,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        function syncDropdowns(selectedYear) {
-            const dropdowns = [document.getElementById('year1'), document.getElementById('year2')];
-            dropdowns.forEach(dropdown => {
-                Array.from(dropdown.options).forEach(option => {
-                    option.selected = option.value === selectedYear;
-                    if (option.value === selectedYear) {
-                        option.selected = true;
-                    } else {
-                        option.selected = false;
-                    }
-                });
-            });
-            window.location.href = `/admin/finance/${selectedYear}`;
-        }
-        document.getElementById('year2').addEventListener('change', function () {
-        const selectedYear = this.value;
-            document.getElementById('year1').value = selectedYear;
-            window.location.href = `/staff_centre/${selectedYear}`;
-        });
-
         const monthlyRevenue = {{ monthly_revenue | tojson }};
         const monthlyExpenses = {{ monthly_expenses | tojson }};
         const monthlyProfit = {{ monthly_profit | tojson }};
         const monthlySales = {{ monthly_sales | tojson }};
         const topCategories = {{ top_categories | tojson }};
-        
-        const ctx = document.getElementById('financialChart').getContext('2d');
-        const financialChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                datasets: [
-                    {
-                        label: 'Total Revenue',
-                        data: monthlyRevenue,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        fill: false
-                    },
-                    {
-                        label: 'Total Expenses',
-                        data: monthlyExpenses,
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 2,
-                        fill: false
-                    },
-                    {
-                        label: 'Net Profit',
-                        data: monthlyProfit,
-                        borderColor: 'rgba(75, 192, 75, 1)',
-                        borderWidth: 2,
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
     </script>
-
+    <script src="{{ url_for('static', filename='script/finance.js') }}"></script>
 </main>
 {% endblock %}
