@@ -308,13 +308,24 @@ def order_detail(order_id):
    item_details = []
    total_price = 0
    for line in item_lines:
+      already_reviewed = False
+      ReviewID = (
+         db.session.query(Review.RID)
+         .join(Item_line, Item_line.PID == Review.PID)
+         .join(Order, Order.OID == Item_line.OID)
+         .join(Member, Member.MID == Review.MID)
+         .filter(Item_line.OID == order_id)
+         .filter(line.PID == Review.PID)
+         .first()
+      )
+      if ReviewID: already_reviewed = True
       product = Product.query.get(line.PID)
       prt_price = product.Price
       if discounts and product.SpEvent_ID==order.DID:
          prt_price *= discounts.Disc_value
       subtotal = line.Quantity * prt_price
       total_price += subtotal
-      item_details.append({"line": line, "product": product, "prt_price":prt_price, "subtotal": subtotal, "customer": customer})
+      item_details.append({"line": line, "product": product, "prt_price":prt_price, "subtotal": subtotal, "customer": customer, "order": order, "alreadyRated": already_reviewed})
 
    shp_fee = order.Ship_fee
    if discounts and discounts.Disc_type=='Shipping':
@@ -366,7 +377,7 @@ def add_review(product_id, member_id, rating, review_text, picture=None, video=N
         new_review = Review(
             PID=product_id,
             MID=member_id,
-            Time=datetime.now(),  # Set current timestamp
+            Time=datetime.now(),
             Rate=rating,
             Rev_text=review_text,
         )
