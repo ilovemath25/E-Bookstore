@@ -91,3 +91,14 @@ DB_testdata.sql
 README.md
 run.py
 ```
+** Install Postgre and pgAdmin for database **
+** Install all the required library **
+->run pip install -r requirements.txt
+
+** adjust "run.py" **
+-> change user, password, db, and port according created server
+-> run the code
+-> open the local generated link in browser
+
+
+
