@@ -15,10 +15,10 @@ from ebookstore_flask.models.special_event import Special_event
 from ebookstore_flask.models.review import Review
 
 def format_value(value):
-   if isinstance(value, str): return f"'{value}'"
+   if isinstance(value, str): return f"'{value.replace('\'', '\'\'')}'"
    elif value is None: return 'NULL'
    elif isinstance(value, bool): return 'TRUE' if value else 'FALSE'
-   else: return str(value)
+   else: return f"'{value}'"
 
 def generate_insert_statements():
    models = [Member, Credit_card, Discount, Shipping, Seasoning, Special_event, Order, Product, ShoppingCart_item, Item_line, Review]

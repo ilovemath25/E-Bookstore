@@ -179,4 +179,4 @@ VALUES
   (3, 5,  '2024-10-02 16:45:00', 3, 'An engaging plot, but the pacing felt uneven at times.'),
   (4, 6,  '2024-10-28 11:20:00', 4, 'Insightful and beautifully written. The author''s storytelling is superb.'),
   (5, 7,  '2024-09-17 18:30:00', 2, 'The story had potential, but the characters lacked depth.'),
-  (6, 10, '2024-11-26 14:00:00', 5, 'An absolute masterpiece! This book will stay with me for a long time.')
+  (6, 10, '2024-11-26 14:00:00', 5, 'An absolute masterpiece! This book will stay with me for a long time.');
