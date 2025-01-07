@@ -133,9 +133,8 @@
                                     </div>
 
                                     <!--review row-->
-                                    <div class ="book-review">
-                                        <input type="hidden" name="product_id" value="{{ detail.product.PID }}"  data-book-id="{{ detail.product.PID }}">
-                                        
+                                    <div class ="review-container book-review" id="review-container">
+                                        <input type="hidden" name="product_id" value="{{ detail.product.PID }}"  data-book-id="{{ detail.product.PID }}"></input>
                                         <div class="prt-review-product-row">
                                             <div class="prt-review-title">
                                                 <span>Review</span>
@@ -157,9 +156,13 @@
                                                 <input class="book-review-input" placeholder="Enter review product" id="reviewTextInput_{{ detail.product.PID }}" name ='reviewTextInput'></input>
                                                 
                                                 <input type="hidden" id="customerID_{{ detail.customer.MID }}" name ='reviewTextInput'></input>
+                                                <input type="hidden" class="data-order-status" value="{{ detail.order.Status }}"></input>
+                                                {% if detail.alreadyRated %}
+                                                <input type="hidden" class="already-rated"></input>
+                                                {% endif %}
                                             </div>
                                             <div class="prt-review-submit">
-                                                <a href="#" class="submit-review-btn" type="submit" data-form-id="{{ detail.product.PID }}" data-customer-id="{{ detail.customer.MID }}">Submit</a>
+                                                <button  class="submit-review-btn" type="submit" data-form-id="{{ detail.product.PID }}" data-customer-id="{{ detail.customer.MID }}" disabled>Submit</button>
                                             </div>
                                         </div>
                                     </div>

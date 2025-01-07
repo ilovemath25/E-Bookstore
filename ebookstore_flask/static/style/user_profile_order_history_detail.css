@@ -404,12 +404,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    user-select: none;
 }
 .book-rate .yellow{
     color: #ffc400;
+    user-select: none;
  }
 .book-rate .gray{
     color: #9a9a9a;
+    user-select: none;
  }
 .prt-review-start{
     display: flex;
@@ -422,4 +426,15 @@
     justify-content: space-between;
     align-items: center;
     width: auto;
+}
+
+.submit-review-btn:disabled {
+    background-color: #ccc;
+    border: none;
+    cursor: not-allowed;
+}
+
+input:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
