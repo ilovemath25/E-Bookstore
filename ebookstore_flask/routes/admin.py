@@ -192,6 +192,7 @@ def edit_user(user_id):
         user.Address = request.form.get('Address')
         db.session.commit()
         return redirect(url_for('admin.manage_users'))
+    print(user)
     return render_template(
         'admin/admin_user_edit.html',
         user=user,

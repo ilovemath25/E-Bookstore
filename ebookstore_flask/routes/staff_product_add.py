@@ -11,11 +11,9 @@ staff_product_add = Blueprint('/staff_product_add', __name__)
 
 @staff_product_add.route('/staff/product/add', methods=['GET','POST'])
 def add():
+    session_data = check_session()
     role=check_role("Staff", "Administrator")
-
-    session_now = load_sessions()
-    key = list(session_now.keys())[0]
-    email = session_now[key][0]
+    email = session_data[0]
     member = Member.query.filter_by(Email=email).first()
 
     staff_ID = member.MID

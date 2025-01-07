@@ -4,7 +4,24 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/admin_user_detail.css') }}">
 <main>
    <div class="container">
-      {% include "admin/admin_menu.html" %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='style/admin_menu.css') }}">
+      <div class="left">
+          <div class="bar-title">Admin Menu</div>
+          <div class="bar-list">
+              <!-- order -->
+              <a href="/admin/finance" target="_self" id="bar-order" class="bar-row">
+                  <span class="bar-center">Finance</span>
+              </a>
+              <hr>
+              <a href="/admin/users" target="_self" id="bar-product" class="bar-row selected-bar">
+                  <span class="bar-center">User Management</span>
+              </a>
+              <hr>
+              <a href="/staff/order" target="_self" id="bar-discount" class="bar-row">
+                  <span class="bar-center">Staff Centre</span>
+              </a>
+          </div>
+      </div>
       <div class="main-content">
          <form class="section-container" method="POST" action="{{ url_for('admin.manage_user_detail', user_id=user.MID) }}">
          <div class="sub-title">
@@ -57,7 +74,10 @@
          </table>
          <input type="submit" class="edit-profile" href="#" value="Save"></input>
          <a href="{{ url_for('admin.manage_user_detail', user_id=user.MID) }}" class="cancel-edit">Cancel</a>
-         <div class="delete-user" id="delete-user">Delete</div>
+         
+         {% if user.S_Flag or user.C_Flag %}
+            <div class="delete-user" id="delete-user">Delete</div>
+         {% endif %}
          </form>
       </div>
    </div>

@@ -4,7 +4,24 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/admin_user_detail.css') }}">
 <main>
    <div class="container">
-      {% include "admin/admin_menu.html" %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='style/admin_menu.css') }}">
+      <div class="left">
+          <div class="bar-title">Admin Menu</div>
+          <div class="bar-list">
+              <!-- order -->
+              <a href="/admin/finance" target="_self" id="bar-order" class="bar-row">
+                  <span class="bar-center">Finance</span>
+              </a>
+              <hr>
+              <a href="/admin/users" target="_self" id="bar-product" class="bar-row selected-bar">
+                  <span class="bar-center">User Management</span>
+              </a>
+              <hr>
+              <a href="/staff/order" target="_self" id="bar-discount" class="bar-row">
+                  <span class="bar-center">Staff Centre</span>
+              </a>
+          </div>
+      </div>
       <div class="section-container">
          <div class="sub-title">
             <hr><h2>Member Account</h2><hr>
@@ -33,6 +50,10 @@
             <tr class="profile-item">
                <td class="profile-label">Address</td>
                <td class="profile-value">{{ user.Address if user.Address else 'Not Provided' }}</td>
+            </tr>
+            <tr class="profile-item">
+               <td class="profile-label translate">Register Date</td>
+               <td class="profile-value" style="color:#808080">{{ user.Reg_date }}</td>
             </tr>
          </table>
          <a class="edit-profile" href="{{ url_for('admin.edit_user', user_id=user.MID) }}">Edit</a>
