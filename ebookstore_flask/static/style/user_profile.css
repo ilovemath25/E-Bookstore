@@ -681,4 +681,6 @@ form .profile-container .profile-value {
    font-size: 30px;
 }
 
-
+.checked{
+   background-color: #cacaca;
+}

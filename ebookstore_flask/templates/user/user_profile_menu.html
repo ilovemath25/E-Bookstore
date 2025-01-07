@@ -11,11 +11,11 @@
       <a class="menu-option {% if request.endpoint == 'user_profile.change_password' %}active{% endif %}"
       href="{{ url_for('user_profile.change_password') }}">Change Password</a>
       <hr>
-      <a class="menu-option {% if request.endpoint == 'user_profile.order' %}active{% endif %}"
+      <a class="menu-option {% if request.endpoint in ['user_profile.order', ] %}active{% endif %}"
       href="{{ url_for('user_profile.order') }}">Order History</a>
       <hr>
       <a class="menu-option {% if request.endpoint == 'user_discount.index' %}active{% endif %}"
-      href="{{ url_for('user_discount.index') }}">My Discount</a>
+      href="{{ url_for('user_discount.index') }}">Discount</a>
       <hr>
       <a class="menu-option" id="logout">Logout</a>
    </div>

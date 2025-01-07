@@ -1,14 +1,14 @@
-function updateJumpNav() {
+function updateJumpNav(offsetY) {
    const jumpNav = document.querySelector(".alphabetical-index");
    const sectionContainers = document.querySelectorAll(".section-container")
    const firstSectionContainer = sectionContainers[0].getBoundingClientRect();
    const lastSectionContainer = sectionContainers[sectionContainers.length - 1].getBoundingClientRect();
-   if(firstSectionContainer.top >= 40) jumpNav.style.top = (firstSectionContainer.top - 7) + "px";
-   else if (lastSectionContainer.bottom <= window.innerHeight - 85) jumpNav.style.top = `${lastSectionContainer.bottom - jumpNav.offsetHeight}px`;
+   if(firstSectionContainer.top >= 40 - offsetY) jumpNav.style.top = (firstSectionContainer.top - 7 - offsetY) + "px";
+   else if (lastSectionContainer.bottom <= window.innerHeight - 85 - offsetY) jumpNav.style.top = `${lastSectionContainer.bottom - jumpNav.offsetHeight - offsetY}px`;
    else jumpNav.style.top = "33px";
 }
-document.addEventListener("DOMContentLoaded", updateJumpNav);
-document.addEventListener("scroll", updateJumpNav);
+document.addEventListener("DOMContentLoaded", () => updateJumpNav(20));
+document.addEventListener("scroll", () => updateJumpNav(0));
 function updateJumpNavHighlight() {
    const sections = document.querySelectorAll(".section-container");
    const navLinks = document.querySelectorAll(".alphabetical-index a");
