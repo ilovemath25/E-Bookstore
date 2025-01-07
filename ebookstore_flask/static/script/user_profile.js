@@ -71,6 +71,7 @@ const user_profile_edit_page = () => {
 };
 
 const user_profile_change_password_page = () => {
+   console.log("masuk");
    const form = document.querySelector(".section-container");
    const oldPasswordInput = document.getElementById("old-password");
    const currentPasswordInput = document.getElementById("currentPassword");
@@ -176,7 +177,9 @@ const user_profile_credit_card_page = () => {
       const cardNumber = element.getAttribute('data-card-number');
       element.textContent = maskCardNumber(cardNumber);
    });
-}
+};
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
    const main = document.querySelector('main');
@@ -190,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (main.classList.contains('user_profile_change_password')) {
          user_profile_change_password_page();
       }
-      else if (main.classList.contains('user_profile_credit_card_page')) {
+      else if (main.classList.contains('user_profile_credit_card')) {
          user_profile_credit_card_page();
       }
    }

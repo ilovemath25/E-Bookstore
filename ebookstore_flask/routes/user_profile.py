@@ -7,6 +7,7 @@ from ebookstore_flask.models.product import Product
 from ebookstore_flask.models.order import Order
 from ebookstore_flask.models.item_line import Item_line
 from ebookstore_flask.models.member import Member
+from ebookstore_flask.models.review import Review
 from ebookstore_flask.models import db
 from datetime import datetime
 from itertools import groupby
@@ -289,7 +290,7 @@ def received():
 def closed():
    return order(order_type="closed")
 
-@user_profile.route('/user/profile/order_history/<int:order_id>')
+@user_profile.route('/user/profile/order_history/<int:order_id>', methods=['GET', 'POST'])
 def order_detail(order_id):
    print ("order_id",order_id)
    if not check_session():
@@ -317,7 +318,7 @@ def order_detail(order_id):
          prt_price *= discounts.Disc_value
       subtotal = line.Quantity * prt_price
       total_price += subtotal
-      item_details.append({"line": line, "product": product, "prt_price":prt_price, "subtotal": subtotal})
+      item_details.append({"line": line, "product": product, "prt_price":prt_price, "subtotal": subtotal, "customer": customer})
 
    shp_fee = order.Ship_fee
    if discounts and discounts.Disc_type=='Shipping':
@@ -334,15 +335,60 @@ def order_detail(order_id):
       {"status": "Received", "text": "Arrived", "completed_statuses": ["Received", "Closed"], "line_completed_statuses": ["Closed"]},
       {"status": "Closed", "text": "Collected", "completed_statuses": ["Closed"], "line_completed_statuses": []},
    ]
+   if request.method == 'GET':
+      return render_template(
+         "/user/user_profile_order_history_detail.html", 
+         order=order, 
+         customer=customer, 
+         item_details=item_details, 
+         total_price=total_price, 
+         shp_fee=shp_fee, 
+         order_total=order_total, 
+         steps=steps,
+         role=role
+      )
+   
+@user_profile.route('/submit_rating', methods=['POST'])
+def submit_rating():
+   product_id = request.json.get('product_id') # Product ID
+   rating = request.json.get('rating')         # Rating value
+   review = request.json.get('review')         # Review text
+   customer_id= request.json.get('customer_id')      
 
-   return render_template(
-      "/user/user_profile_order_history_detail.html", 
-      order=order, 
-      customer=customer, 
-      item_details=item_details, 
-      total_price=total_price, 
-      shp_fee=shp_fee, 
-      order_total=order_total, 
-      steps=steps,
-      role=role
-   )
+   add_review(int(product_id), int(customer_id), int(rating), review)
+
+   # Process the data (e.g., save to a database)
+   return f"Product ID: {product_id}, Rating: {rating}, Review: {review} submitted successfully!"
+
+def add_review(product_id, member_id, rating, review_text, picture=None, video=None, reply_rid=None):
+   print(f"Product ID: {product_id}")
+   print(f"Rating: {rating}")
+   print(f"Review: {review_text}")
+   print(f"Customer ID: {member_id}")
+   # try:
+   #      # Create a new Review object
+   #      new_review = Review(
+   #          PID=product_id,
+   #          MID=member_id,
+   #          Time=datetime.now(),  # Set current timestamp
+   #          Rate=rating,
+   #          Rev_text=review_text,
+   #          Rev_picture=picture,
+   #          Rev_video=video,
+   #          Reply_RID=reply_rid
+   #      )
+
+   #      # Add to the session
+   #      db.session.add(new_review)
+
+   #      # Commit the session
+   #      db.session.commit()
+
+   #      print("Review added successfully!")
+   #      return {"message": "Review added successfully!"}, 201
+
+   # except Exception as e:
+   #      # Rollback in case of an error
+   #      db.session.rollback()
+   #      print(f"Error adding review: {e}")
+   #      return {"error": str(e)}, 500
