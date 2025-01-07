@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (main.classList.contains('user_profile_change_password')) {
          user_profile_change_password_page();
       }
-      else if (main.classList.contains('user_profile_credit_card')) {
+      else if (main.classList.contains('user_profile_credit_card_page')) {
          user_profile_credit_card_page();
       }
    }

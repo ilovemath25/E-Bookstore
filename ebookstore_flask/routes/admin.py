@@ -140,7 +140,7 @@ def finance_overview(year = year_now):
             .first()
         )
         top_categories[month] = top_category[0] if top_category else "N/A"
-
+    print("top_categories",top_categories)
     total_revenue = "{:.2f}".format(total_revenue)
     total_expenses = "{:.2f}".format(total_expenses)
     net_profit = "{:.2f}".format(net_profit)
@@ -198,3 +198,11 @@ def edit_user(user_id):
         user=user,
         role=role
     )
+
+@admin.route('/admin/user/<int:user_id>/delete', methods=['POST'])
+def delete_user(user_id):
+    user = Member.query.filter_by(MID=user_id).first()
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+    return redirect(url_for('admin.manage_users'))

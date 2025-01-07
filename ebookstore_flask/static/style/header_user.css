@@ -14,7 +14,7 @@ header {
 }
 
 .logo:hover{
-   background-color: #3f72af;
+   box-shadow: inset 0px 0px 50px 30px #2d4e78;
    transition: all 0.3s;
    border-radius: 10px;
 

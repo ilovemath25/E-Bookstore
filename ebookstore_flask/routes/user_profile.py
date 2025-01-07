@@ -377,12 +377,9 @@ def add_review(product_id, member_id, rating, review_text, picture=None, video=N
         new_review = Review(
             PID=product_id,
             MID=member_id,
-            Time=datetime.now(),  # Set current timestamp
+            Time=datetime.now(),
             Rate=rating,
             Rev_text=review_text,
-            Rev_picture=picture,
-            Rev_video=video,
-            Reply_RID=reply_rid
         )
 
         # Add to the session
