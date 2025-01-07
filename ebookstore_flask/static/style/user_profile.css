@@ -525,10 +525,17 @@ form .profile-container .profile-value {
    border: 2px solid #ccc;
    border-radius: 5px;
    display: flex;
+   align-items: center;
    justify-content: space-between;
    margin-bottom: 20px;
 }
-
+.order-header hr{
+   width: 1px;
+   background-color: #ddd;
+   border: none;
+   height: 33px;
+   margin: 0;
+}
 .header-title{
    padding: 10px;
    text-align: center;
