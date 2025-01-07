@@ -361,30 +361,27 @@ def add_review(product_id, member_id, rating, review_text, picture=None, video=N
    print(f"Rating: {rating}")
    print(f"Review: {review_text}")
    print(f"Customer ID: {member_id}")
-   # try:
-   #      # Create a new Review object
-   #      new_review = Review(
-   #          PID=product_id,
-   #          MID=member_id,
-   #          Time=datetime.now(),  # Set current timestamp
-   #          Rate=rating,
-   #          Rev_text=review_text,
-   #          Rev_picture=picture,
-   #          Rev_video=video,
-   #          Reply_RID=reply_rid
-   #      )
+   try:
+        # Create a new Review object
+        new_review = Review(
+            PID=product_id,
+            MID=member_id,
+            Time=datetime.now(),  # Set current timestamp
+            Rate=rating,
+            Rev_text=review_text,
+        )
 
-   #      # Add to the session
-   #      db.session.add(new_review)
+        # Add to the session
+        db.session.add(new_review)
 
-   #      # Commit the session
-   #      db.session.commit()
+        # Commit the session
+        db.session.commit()
 
-   #      print("Review added successfully!")
-   #      return {"message": "Review added successfully!"}, 201
+        print("Review added successfully!")
+        return {"message": "Review added successfully!"}, 201
 
-   # except Exception as e:
-   #      # Rollback in case of an error
-   #      db.session.rollback()
-   #      print(f"Error adding review: {e}")
-   #      return {"error": str(e)}, 500
+   except Exception as e:
+        # Rollback in case of an error
+        db.session.rollback()
+        print(f"Error adding review: {e}")
+        return {"error": str(e)}, 500

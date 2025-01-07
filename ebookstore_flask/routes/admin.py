@@ -198,3 +198,11 @@ def edit_user(user_id):
         user=user,
         role=role
     )
+
+@admin.route('/admin/user/<int:user_id>/delete', methods=['POST'])
+def delete_user(user_id):
+    user = Member.query.filter_by(MID=user_id).first()
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+    return redirect(url_for('admin.manage_users'))
