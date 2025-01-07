@@ -140,7 +140,7 @@ def finance_overview(year = year_now):
             .first()
         )
         top_categories[month] = top_category[0] if top_category else "N/A"
-
+    print("top_categories",top_categories)
     total_revenue = "{:.2f}".format(total_revenue)
     total_expenses = "{:.2f}".format(total_expenses)
     net_profit = "{:.2f}".format(net_profit)
