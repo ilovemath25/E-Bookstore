@@ -6,6 +6,33 @@
 | 黃音慈    | 110830009   |
 | 楊建璋    | 111590057   |
 | 李其灝    | 111590062   |
+
+
+**Set up database**
+
+-> Install PostgreSQL and Pg Admin 4
+
+-> Set up user and port number
+
+-> Create database
+
+-> Right click the database and select `Query Tool`
+
+-> Execute SQL statements in files `DB_table.sql` and `DB_testdata.sql`
+
+**Set up environment**
+
+->Run in terminal `pip install -r requirements.txt`
+
+**Adjust "run.py"**
+
+-> change user, password, db, and port according created server
+
+-> Run in terminal `py run.py`
+
+-> open the local generated link in browser
+
+File structure :
 ```
 ├───ebookstore_flask
 |   ├── models
@@ -22,65 +49,27 @@
 |   |   ├── shoppingCart_item.py
 |   |   └── special_event.py
 |   ├── routes
-|   |   ├── home.py
-|   |   ├── login.py
-|   |   └── product.py
+|   |   └── ... .py
 |   ├── static
-|   |   ├── image
-|   |   |   ├── books
-|   |   |   |   ├── PID_Book1.png
-|   |   |   |   ├── PID_Book2.png
-|   |   |   |   └── ...
-|   |   |   ├── promotion
-|   |   |   |   ├── promotion1.png
-|   |   |   |   ├── promotion2.png
-|   |   |   |   └── ...
-|   |   |   └── logo.png
 |   |   ├── script
-|   |   |   ├── header.js
-|   |   |   ├── home.js
-|   |   |   └── user_profile.js
+|   |   |   └── ... .js
 |   |   ├── style
 |   |   |   ├── nunito
-|   |   |   |   ├── Nunito-Black.ttf
-|   |   |   |   ├── Nunito-BlackItalic.ttf
-|   |   |   |   └── ...
-|   |   |   ├── base_user.css
-|   |   |   ├── discount_detail.css
-|   |   |   ├── footer.css
-|   |   |   ├── header_staff.css
-|   |   |   ├── header_user.css
-|   |   |   ├── home.css
-|   |   |   ├── order_detail.css
-|   |   |   ├── order.css
-|   |   |   ├── product.css
-|   |   |   └── user_profile.css
-|   |   ├── video
-|   |   |   ├── video1.mp4
-|   |   |   ├── video2.mp4
-|   |   |   └── video3.mp4
+|   |   |   |   └── ... .ttf
+|   |   |   └── ... .css
 |   ├── templates
+|   |   ├── admin
+|   |   |   └── ... .html
 |   |   ├── login
-|   |   |   ├── base_login.html
-|   |   |   ├── login.html
+|   |   |   └── ... .html
 |   |   ├── staff
-|   |   |   ├── base_staff.html
-|   |   |   ├── discount_detail.html
-|   |   |   ├── header_staff.html
-|   |   |   ├── hearder_staff.html
-|   |   |   ├── order_detail.html
-|   |   |   └── order.html
+|   |   |   └── ... .html
 |   |   ├── user
-|   |   |   ├── base_user.html
-|   |   |   ├── footer.html
-|   |   |   ├── header_user.html
-|   |   |   ├── home.html
-|   |   |   ├── user_profile_edit.html
-|   |   |   ├── user_profile_menu.html
-|   |   |   └── user_profile.html
+|   |   |   └── ... .html
 |   ├── utils
 |   |   ├── credit_card.py
 |   |   ├── role.py
+|   |   ├── search.py
 |   |   ├── session.py
 |   |   └── sessions.json
 |   └── __init__.py
@@ -91,14 +80,3 @@ DB_testdata.sql
 README.md
 run.py
 ```
-** Install Postgre and pgAdmin for database **
-** Install all the required library **
-->run pip install -r requirements.txt
-
-** adjust "run.py" **
--> change user, password, db, and port according created server
--> run the code
--> open the local generated link in browser
-
-
-
