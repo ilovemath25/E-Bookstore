@@ -1,7 +1,7 @@
 from ebookstore_flask import create_app
 POSTGRES = {
    'user':'postgres',
-   'password':'thiha2001',
+   'password':'ilovemath25',
    'db':'postgres',
    'host':'localhost',
    'port':'5432',

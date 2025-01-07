@@ -5,7 +5,7 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='style/user_profile_order_history_detail.css') }}">
 
-<main>
+<main class="user_profile_order_history_detail">
     <div class="navbar-detail-container">
         <div class="order-detail-left">
             <!-- status -->
@@ -133,27 +133,34 @@
                                     </div>
 
                                     <!--review row-->
-                                    <div class="prt-review-product-row">
-                                        <div class="prt-review-title">
-                                            <span>Review</span>
-                                        </div>
-                                        <div class="prt-review-start">
-                                            <p>
-                                                <span class="book-rate">
-                                                   <br>
-                                                        <i class="fa-solid fa-star gray"></i>
-                                                        <i class="fa-solid fa-star gray"></i>
-                                                        <i class="fa-solid fa-star gray"></i>
-                                                        <i class="fa-solid fa-star gray"></i>
-                                                        <i class="fa-solid fa-star gray"></i>
-                                                </span>
-                                             </p>
-                                        </div>
-                                        <div class="prt-review-text">
-                                            <input class="review-text" placeholder="Enter review product"></input>
-                                        </div>
-                                        <div class="prt-review-submit">
-                                            <a href="/book/{{ detail.product.PID }}"class="submit-review-btn">Submit</a>
+                                    <div class ="book-review">
+                                        <input type="hidden" name="product_id" value="{{ detail.product.PID }}"  data-book-id="{{ detail.product.PID }}">
+                                        
+                                        <div class="prt-review-product-row">
+                                            <div class="prt-review-title">
+                                                <span>Review</span>
+                                            </div>
+                                            <div class="prt-review-start">
+                                                <p>
+                                                    <span class="book-rate">
+                                                    <br>
+                                                            <i class="fa-solid fa-star gray" data-value="1"></i>
+                                                            <i class="fa-solid fa-star gray" data-value="2"></i>
+                                                            <i class="fa-solid fa-star gray" data-value="3"></i>
+                                                            <i class="fa-solid fa-star gray" data-value="4"></i>
+                                                            <i class="fa-solid fa-star gray" data-value="5"></i>
+                                                            <input type="hidden" value="0" id="ratingStarInput_{{ detail.product.PID }}" name="ratingStarInput"  class="book-rate-input"> 
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="prt-review-text">
+                                                <input class="book-review-input" placeholder="Enter review product" id="reviewTextInput_{{ detail.product.PID }}" name ='reviewTextInput'></input>
+                                                
+                                                <input type="hidden" id="customerID_{{ detail.customer.MID }}" name ='reviewTextInput'></input>
+                                            </div>
+                                            <div class="prt-review-submit">
+                                                <a href="#" class="submit-review-btn" type="submit" data-form-id="{{ detail.product.PID }}" data-customer-id="{{ detail.customer.MID }}">Submit</a>
+                                            </div>
                                         </div>
                                     </div>
                                     {% if loop.index < item_details|length %}
@@ -206,6 +213,5 @@
         </a>
     </div>
 </main>
+<script src="{{ url_for('static', filename='script/user_profile_order_history_detail.js') }}"></script>
 {% endblock %}
-
-
