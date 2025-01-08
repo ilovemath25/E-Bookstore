@@ -24,7 +24,7 @@ Note : You must choose one test data; **Do not** use both.
 
 **Set up environment**
 
-->Run in terminal `pip install -r requirements.txt`
+-> Run in terminal `pip install -r requirements.txt`
 
 **Adjust "run.py"**
 
