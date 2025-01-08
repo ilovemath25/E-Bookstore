@@ -18,7 +18,9 @@
 
 -> Right click the database and select `Query Tool`
 
--> Execute SQL statements in files `DB_table.sql` and `DB_testdata.sql`
+-> Execute SQL statements in files `DB_table.sql` and `DB_testdata.sql` (or `DB_more_testdata.sql` for more data)
+
+Note : You must choose one test data; **Do not** use both.
 
 **Set up environment**
 
