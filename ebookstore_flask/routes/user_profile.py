@@ -367,7 +367,7 @@ def submit_rating():
    # Process the data (e.g., save to a database)
    return f"Product ID: {product_id}, Rating: {rating}, Review: {review} submitted successfully!"
 
-def add_review(product_id, member_id, rating, review_text, picture=None, video=None, reply_rid=None):
+def add_review(product_id, member_id, rating, review_text):
    print(f"Product ID: {product_id}")
    print(f"Rating: {rating}")
    print(f"Review: {review_text}")
