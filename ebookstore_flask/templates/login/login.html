@@ -4,19 +4,19 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style/login.css') }}">
 <div class="login-page-container">
     <div class="login-form-container">
-        <div class="login-profile-logo\"><i class="fa-solid fa-circle-user"></i></div>
+        <div class="login-profile-logo"><i class="fa-solid fa-circle-user"></i></div>
         {% if error %}
             <p class="error-message translate">{{ error }}</p>
         {% endif %}
         <div class="form-group-container">
             <form method="POST" action="{{ url_for('login.index') }}">
                 <div class="form-group">
-                    <div class="email-logo logo\"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="email-logo logo"><i class="fa-solid fa-envelope"></i></div>
                     <input class="form-group-input translate" type="email" id="email" name="email" placeholder="Enter your Email" required>
                 </div>
                 <hr>
                 <div class="form-group">
-                    <div class="password-logo logo\"><i class="fa-solid fa-lock"></i></div>
+                    <div class="password-logo logo"><i class="fa-solid fa-lock"></i></div>
                     <input class="form-group-input translate" type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 <hr>
